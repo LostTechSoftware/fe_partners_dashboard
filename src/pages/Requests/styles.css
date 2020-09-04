@@ -28,11 +28,15 @@
   height: 100% !important;
   background-color: #335BCA !important;
   border-radius: 12px !important;
-
 }
 .requests .taskList .MuiTab-root .MuiTab-wrapper {
+  transition: 0.4s;
   color: #000000;
   z-index: 4;
   width: auto;
+}
+.requests .taskList .Mui-selected .MuiTab-wrapper  {
+  transition: 0.4s;
+  color: #FFFFFF !important;
 }
 /* *** */
