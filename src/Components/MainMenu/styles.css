@@ -1,0 +1,19 @@
+.mainMenu {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+  align-items: center;
+  
+  border-radius: var(--default-radius);
+  width: 60px;
+}
+
+.mainMenu .userIcon {
+  width: 34px;
+  height: 34px;
+  margin-top: 29px;
+  
+  object-fit: cover;
+  border: solid 2px #335BCA;
+  border-radius: 50%;
+}

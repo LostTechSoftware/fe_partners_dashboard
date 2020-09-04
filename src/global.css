@@ -22,3 +22,12 @@ body input, button {
 button {
   cursor: pointer;
 }
+
+.page {
+  --default-radius: 35px;
+  display: flex;
+  background-color: #22222E;
+  height: 100%;
+  border-radius: var(--default-radius);
+  box-shadow: 8px 8px 41px -3px rgba(122,122,122,0.61);
+}

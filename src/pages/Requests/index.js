@@ -1,8 +1,13 @@
 import React from 'react';
+
+import MainMenu from '../../Components/MainMenu';
+
 import './styles.css';
 
 export default function Requests() {
   return(
-    <h1> requests </h1>
+    <div className='page requests'>
+      <MainMenu currentPage='requests' />    
+    </div>
   )
 }
