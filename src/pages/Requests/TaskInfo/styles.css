@@ -1,0 +1,11 @@
+.requests .taskInfo {
+  background-color: #FFFFFF;
+  width: 100%;
+  box-shadow: 8px 8px 4px -3px rgba(122,122,122,0.61);
+
+  border-radius: 0 var(--default-radius) var(--default-radius) 0;
+
+  padding: 14px;
+  padding-top: var(--deafult-top-padding);
+}
+
