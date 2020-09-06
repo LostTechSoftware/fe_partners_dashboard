@@ -1,0 +1,34 @@
+.taskIcon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #FFFFFF;
+
+  width: 100%;
+  height: 128px;
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.taskIcon .info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.taskIcon .info p.headline {
+  margin-bottom: 4px;
+}
+
+/* text */
+.taskIcon .coment {
+  color: #6d6d6d;
+}
+.taskIcon p {
+  color: #1F1F21;
+}
+.taskIcon p.price {
+  font-weight: 700;
+}
+/* *** */

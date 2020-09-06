@@ -5,7 +5,6 @@
 
   border-radius: 0 var(--default-radius) var(--default-radius) 0;
 
-  padding: 14px;
-  padding-top: var(--deafult-top-padding);
+  padding: var(--deafult-top-padding) 34px 0;
+  margin-top: -8px;
 }
-

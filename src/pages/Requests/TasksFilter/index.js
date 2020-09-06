@@ -11,7 +11,7 @@ import './styles.css';
 
 export default function TasksFilter({ openedTask, setOpenedTask }) {
   return (
-    <FormControl component="fieldset">
+    <FormControl className='TasksFilter' component="fieldset">
       <RadioGroup
         aria-label="tasks"
         name="tasks1"

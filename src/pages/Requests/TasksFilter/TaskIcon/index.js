@@ -12,6 +12,13 @@ export default function TaskIcon({ checked }) {
 
   }, [checked]);
   return (
-    <h2> {checkedState} </h2>
+    <div className='taskIcon'>
+      <section className='info'>
+        <p className='headline'> Task #00350 </p>
+        <span className='coment'> As soon as </span>
+      </section>
+
+      <p className='price'>€120,21</p>
+    </div> 
   );
 }

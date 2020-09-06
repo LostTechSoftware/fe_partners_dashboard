@@ -1,5 +1,5 @@
 .requests {
-  --deafult-top-padding: 34px;
+  --deafult-top-padding: 48px;
 }
 
 .requests .pageContent{
@@ -13,7 +13,7 @@
 
 .requests .pageContent .taskList {
   width: 29%;
-  padding: var(--deafult-top-padding) 14px 0;
+  padding: var(--deafult-top-padding) 34px 0;
 }
 
 /* Material UI tab navigation */
@@ -21,13 +21,13 @@
   box-shadow: 2px 2px 20px 0px rgba(122,122,122,0.1) !important;
 }
 .requests .taskList .MuiTabs-root {
-  border-radius: 12px;
+  border-radius: 18px;
   background-color: #FFFFFF;
 }
 .requests .taskList .MuiTabs-indicator {
   height: 100% !important;
   background-color: #335BCA !important;
-  border-radius: 12px !important;
+  border-radius: 18px !important;
 }
 .requests .taskList .MuiTab-root .MuiTab-wrapper {
   transition: 0.4s;
