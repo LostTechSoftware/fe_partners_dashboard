@@ -8,18 +8,56 @@
   margin-top: -8px;
 }
 
+/* header */
 .requests .taskInfo header {
   display: flex;
+  align-items: center;
   width: 100%;
+  background-color: #F7F7F9;
+
+  padding: 20px 30px;
+  border-radius: 18px;
+  margin-bottom: 40px;
 }
 
 .requests .taskInfo header .text {
   width: 100%;
+  margin-left: 15px;
+}
+
+.requests .taskInfo header .text h2 {
+  color: #335BCA;
 }
 
 .requests .taskInfo header .text .bottomText {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 5px;
 }
+/* *** */
+
+/* footer */
+.requests .taskInfo footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 200px;
+}
+
+.requests .taskInfo footer .MuiButton-root {
+  background-color: #FE9329;
+  height: 80px;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 18px;
+}
+
+.requests .taskInfo footer .MuiButton-text {
+  color: #FFFFFF;
+  font-size: 22px;
+  text-transform: capitalize;
+}
+/* *** */
 
