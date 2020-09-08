@@ -18,8 +18,31 @@ export default function TaskInfo() {
           </div>
         </div>
       </header>
+
       <section className='generalInfo' >
         <h2>Task info</h2>
+        
+        <div className='content'>
+          <div className='sideLine' />
+          <section className='preparingTime'>
+            <p className='label'>Preparing time</p>
+            <p className='result'>00h:25m:30s</p>
+          </section>
+
+          <div className='sideLine' />
+          <section className='address'>
+            <p className='label'>Address</p>
+            <p className='result'>Lincoln street 45</p>
+          </section>
+
+          <div className='sideLine' />
+          <section className='contact'>
+            <p className='label'>Austin Paul</p>
+            <p className='result'>+424 56778912</p>
+          </section>
+
+          <div className='sideLine' />
+        </div>
       </section>
 
       <section className='itensList' >

@@ -38,10 +38,28 @@
 }
 /* *** */
 
+/* general info */
+.requests .taskInfo .generalInfo .content {
+  display: flex;
+  height: 100%;
+  margin: 30px 0;
+}
+.requests .taskInfo .generalInfo .content section {
+  padding: 0 30px;
+  width: 33%;
+}
+
+.requests .taskInfo .generalInfo .content div {
+  background-color: #dddddd;
+  height: auto;
+  width: 1px;
+}
+/* *** */
+
 /* itens list */
 .requests .taskInfo .itensList {
   width: 100%;
-  height: calc( 100% - 480px );
+  height: calc( 100% - 550px );
   overflow: auto;
 }
 /* *** */
