@@ -1,10 +1,25 @@
 .requests .taskInfo {
-  background-color: #FFFFFF;
   width: 100%;
+  background-color: #FFFFFF;
   box-shadow: 8px 8px 4px -3px rgba(122,122,122,0.61);
 
   border-radius: 0 var(--default-radius) var(--default-radius) 0;
-
   padding: var(--deafult-top-padding) 34px 0;
   margin-top: -8px;
 }
+
+.requests .taskInfo header {
+  display: flex;
+  width: 100%;
+}
+
+.requests .taskInfo header .text {
+  width: 100%;
+}
+
+.requests .taskInfo header .text .bottomText {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
