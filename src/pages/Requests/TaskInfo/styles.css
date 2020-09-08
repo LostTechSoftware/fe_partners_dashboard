@@ -1,7 +1,8 @@
 .requests .taskInfo {
   width: 100%;
+  height: calc( 100% + 8px );
   background-color: #FFFFFF;
-  box-shadow: 8px 8px 4px -3px rgba(122,122,122,0.61);
+  box-shadow: -1px 4px 70px -3px rgba(122,122,122,0.1);
 
   border-radius: 0 var(--default-radius) var(--default-radius) 0;
   padding: var(--deafult-top-padding) 34px 0;
@@ -37,6 +38,15 @@
 }
 /* *** */
 
+/* itens list */
+.requests .taskInfo .itensList {
+  width: 100%;
+  height: calc( 100% - 480px );
+  background-color: brown;
+  overflow: auto;
+}
+/* *** */
+
 /* footer */
 .requests .taskInfo footer {
   display: flex;
@@ -60,4 +70,3 @@
   text-transform: capitalize;
 }
 /* *** */
-

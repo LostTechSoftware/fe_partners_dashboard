@@ -23,7 +23,7 @@ export default function TaskInfo() {
       </section>
 
       <section className='itensList' >
-        
+        <Item />
       </section>
 
       <footer>
