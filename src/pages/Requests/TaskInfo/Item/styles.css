@@ -1,7 +1,8 @@
 .requests .itensList .item {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  margin: 12px 0;
+  margin: 6px 0;
 }
 
 .requests .itensList .item .content {
@@ -46,3 +47,13 @@
   width: 85%;
 }
 /* *** */
+
+.requests .itensList .item .underlineBox {
+  padding-left: 112px;
+  padding-top: 12px;
+}
+
+.requests .itensList .item .underline {
+  height: 1px;
+  background-color: #dddddd;
+}

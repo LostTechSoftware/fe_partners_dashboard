@@ -26,7 +26,9 @@ export default function Item() {
         </section>
       </div>
 
-      <div className='underline' />
+      <div className='underlineBox'>
+        <div className='underline' />
+      </div>
     </div>
   )
 }
