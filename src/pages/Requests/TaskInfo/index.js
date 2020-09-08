@@ -24,6 +24,9 @@ export default function TaskInfo() {
 
       <section className='itensList' >
         <Item />
+        <Item />
+        <Item />
+        <Item />
       </section>
 
       <footer>

@@ -42,7 +42,6 @@
 .requests .taskInfo .itensList {
   width: 100%;
   height: calc( 100% - 480px );
-  background-color: brown;
   overflow: auto;
 }
 /* *** */
