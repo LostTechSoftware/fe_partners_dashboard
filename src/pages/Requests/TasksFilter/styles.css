@@ -1,17 +1,16 @@
-.TasksFilter {
-  margin-top: 24px !important;
+.requests .TasksFilter {
+  margin-top: 24px;
 }
 
-.TasksFilter,
-.TasksFilter .MuiRadio-root {
+.requests .TasksFilter,
+.requests .TasksFilter .MuiRadio-root {
   width: 100%;
 }
 
-.TasksFilter .MuiIconButton-root {
+.requests .TasksFilter .MuiIconButton-root {
   padding: 6px 0;
 }
 
-.TasksFilter .MuiFormControlLabel-root {
+.requests .TasksFilter .MuiFormControlLabel-root {
   margin: 0;
 }
-

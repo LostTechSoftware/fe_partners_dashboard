@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -7,17 +12,35 @@
 
 body, #root, .App {
   height: 100vh;
+  font-size: 62.5%;
 }
 
-body input, button {
-  font-size: 14px;
-  border: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+/* text */
+body, #root .MuiButton-root, #root .MuiTabs-flexContainer span {
+  font-family: -apple-system, 'Open Sans Condensed', 'pacifico', 'Lobster', 'Roboto', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+h1 {
+  font-size: 2.4rem;
+}
+h2 {
+  font-size: 1.8rem;
+  color: #1F1F21;
+}
+p {
+  font-size: 1.4rem;
+  color: #1F1F21;
+}
+span {
+  font-size: 1.2rem;
+  color: #6d6d6d;
+}
+p, span {
+  font-family: -apple-system, 'Open Sans', 'pacifico', 'Lobster', 'Roboto', 'Ubuntu', sans-serif;
+  font-weight: 400;
+}
+/* *** */
 
 button {
   cursor: pointer;

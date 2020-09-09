@@ -25,19 +25,19 @@ export default function TaskInfo() {
         <div className='content'>
           <div className='sideLine' />
           <section className='preparingTime'>
-            <p className='label'>Preparing time</p>
-            <p className='result'>00h:25m:30s</p>
+            <span className='label'>Preparing time</span>
+            <p className='result'>00h : 25m : 30s</p>
           </section>
 
           <div className='sideLine' />
           <section className='address'>
-            <p className='label'>Address</p>
+            <span className='label'>Address</span>
             <p className='result'>Lincoln street 45</p>
           </section>
 
           <div className='sideLine' />
           <section className='contact'>
-            <p className='label'>Austin Paul</p>
+            <span className='label'>Austin Paul</span>
             <p className='result'>+424 56778912</p>
           </section>
 
@@ -55,7 +55,7 @@ export default function TaskInfo() {
       <footer>
         <h2 className='finalPrice'> €99,60 </h2>
         <Button onClick={console.log('request accepted')}>
-          Accepted order
+          Accept order
         </Button>
       </footer>
     </div>

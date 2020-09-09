@@ -22,12 +22,6 @@
 }
 
 /* text */
-.taskIcon .coment {
-  color: #6d6d6d;
-}
-.taskIcon p {
-  color: #1F1F21;
-}
 .taskIcon p.price {
   font-weight: 700;
 }

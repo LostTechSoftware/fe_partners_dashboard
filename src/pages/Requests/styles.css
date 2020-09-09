@@ -12,31 +12,36 @@
 }
 
 .requests .pageContent .taskList {
-  width: 29%;
+  width: 546px;
   padding: var(--deafult-top-padding) 34px 0;
 }
 
 /* Material UI tab navigation */
 .requests .taskList .MuiAppBar-root {
-  box-shadow: 2px 2px 20px 0px rgba(122,122,122,0.1) !important;
+  box-shadow: 2px 2px 20px 0px rgba(122,122,122,0.1);
 }
 .requests .taskList .MuiTabs-root {
   border-radius: 18px;
   background-color: #FFFFFF;
 }
 .requests .taskList .MuiTabs-indicator {
-  height: 100% !important;
-  background-color: #335BCA !important;
-  border-radius: 18px !important;
+  height: 100%;
+  background-color: #335BCA;
+  border-radius: 18px;
 }
 .requests .taskList .MuiTab-root .MuiTab-wrapper {
   transition: 0.4s;
-  color: #000000;
-  z-index: 4;
   width: auto;
+  z-index: 4;
+  color: #000000;
+  
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
 }
 .requests .taskList .Mui-selected .MuiTab-wrapper  {
   transition: 0.4s;
-  color: #FFFFFF !important;
+  color: #FFFFFF;
 }
 /* *** */
