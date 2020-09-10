@@ -48,8 +48,7 @@
   padding: 0 30px;
   width: 33%;
 }
-
-.requests .taskInfo .generalInfo .content div {
+.requests .taskInfo .generalInfo .content .sideLine {
   background-color: #dddddd;
   height: auto;
   width: 1px;
@@ -57,7 +56,14 @@
 .requests .taskInfo .generalInfo .content .result {
   letter-spacing: 2px;
 }
-
+.requests .taskInfo .generalInfo .content .contact {
+  display: flex;
+  justify-content: space-between;
+}
+.requests .taskInfo .generalInfo .content .contact img {
+  width: 55px;
+  color: #335BCA;
+}
 /* *** */
 
 /* itens list */

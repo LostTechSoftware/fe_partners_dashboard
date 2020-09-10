@@ -2,6 +2,8 @@ import React from 'react';
 import { CircularProgress, Button } from '@material-ui/core';
 
 import Item from './Item' 
+
+import phoneIcon from '../../../assets/phoneIcon.svg';
 import './styles.css';
 
 export default function TaskInfo() {
@@ -37,8 +39,12 @@ export default function TaskInfo() {
 
           <div className='sideLine' />
           <section className='contact'>
-            <span className='label'>Austin Paul</span>
-            <p className='result'>+424 56778912</p>
+            <div>
+              <span className='label'>Austin Paul</span>
+              <p className='result'>+424 56778912</p>
+            </div>
+
+            <img src={ phoneIcon } alt='phone'/>
           </section>
 
           <div className='sideLine' />

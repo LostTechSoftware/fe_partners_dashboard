@@ -17,3 +17,27 @@
   border: solid 2px #335BCA;
   border-radius: 50%;
 }
+
+.mainMenu nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainMenu nav a {
+  text-decoration: none;
+}
+
+.mainMenu nav span {
+  color: #FFFFFF;
+}
+
+.mainMenu nav svg {
+  fill: #6C6C77;
+  height: 50px;
+  width: auto;
+  margin: 10px 0;
+}
+
+.mainMenu nav .onPage svg {
+  fill: #FFFFFF;
+}
