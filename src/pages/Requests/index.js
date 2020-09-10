@@ -10,6 +10,7 @@ import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
 
+import './responsivity.css';
 import './styles.css';
 
 export default function Requests() {

@@ -1,4 +1,6 @@
 .requests .itensList .item {
+  --thumb-width: 94px;
+  --thumb-height: 75px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -13,6 +15,8 @@
 }
 
 .requests .itensList .item p {
+  display: flex;
+  align-items: center;
   padding: 0 18px;
 }
 .requests .itensList .item .price {
@@ -26,8 +30,8 @@
 }
 
 .requests .itensList .item .content .thumb {
-  height: 75px;
-  width: 94px;
+  height: var(--thumb-height);
+  width: var(--thumb-width);
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 4px 4px 10px -2px rgba(122,122,122,0.61);
@@ -35,13 +39,13 @@
 /* *** */
 
 /* item Infos */
-.requests .itensList .item .content .itemInfo {
+.requests .itensList .item .itemInfo {
   display: flex;
   width: 50%;
   justify-content: space-between;
 }
 
-.requests .itensList .item .content .moreInfo {
+.requests .itensList .item .moreInfo {
   display: flex;
   justify-content: space-between;
   width: 85%;
@@ -49,7 +53,7 @@
 /* *** */
 
 .requests .itensList .item .underlineBox {
-  padding-left: 112px;
+  padding-left: calc( var(--thumb-width) + 12px );
   padding-top: 12px;
 }
 

@@ -32,6 +32,38 @@ export default function TasksFilter({ openedTask, setOpenedTask }) {
           value='task3'
           control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
         />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
+        <FormControlLabel
+          value='task2'
+          control={<Radio icon={<TaskIcon/>} checkedIcon={<TaskIcon checked/>} />}
+        />
       </RadioGroup>
     </FormControl>
   );

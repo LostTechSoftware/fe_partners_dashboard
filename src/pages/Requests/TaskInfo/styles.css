@@ -1,12 +1,20 @@
 .requests .taskInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
   width: 100%;
   height: calc( 100% + 8px );
   background-color: #FFFFFF;
   box-shadow: -1px 4px 70px -3px rgba(122,122,122,0.1);
-
+  
   border-radius: 0 var(--default-radius) var(--default-radius) 0;
   padding: var(--deafult-top-padding) 34px 0;
   margin-top: -8px;
+}
+
+.requests .taskInfo main {
+  overflow: auto;
 }
 
 /* header */
@@ -59,18 +67,17 @@
 .requests .taskInfo .generalInfo .content .contact {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .requests .taskInfo .generalInfo .content .contact img {
   width: 55px;
-  margin-left: 20px;
+  margin: 5px 20px;
 }
 /* *** */
 
 /* itens list */
 .requests .taskInfo .itensList {
   width: 100%;
-  height: calc( 100% - 550px );
-  overflow: auto;
 }
 /* *** */
 
@@ -80,7 +87,12 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
-  height: 200px;
+  height: 180px;
+  margin: 40px 0;
+}
+
+.requests .taskInfo footer .finalPrice {
+  font-size: 2.3rem;
 }
 
 .requests .taskInfo footer .MuiButton-root {

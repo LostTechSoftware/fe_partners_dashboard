@@ -20,7 +20,7 @@ export default function Item() {
           {/* Amount */}
           <p>x2</p>
           <section className='moreInfo' >
-            <p> without syrup </p>
+            <p> without syrup without syrup without syrup without syrup without syrup </p>
             <p className='price'> €18,50 </p>
           </section>
         </section>

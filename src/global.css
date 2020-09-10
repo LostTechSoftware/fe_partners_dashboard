@@ -12,6 +12,8 @@
 
 body, #root, .App {
   height: 100vh;
+}
+body {
   font-size: 62.5%;
 }
 

@@ -1,5 +1,7 @@
 .requests .TasksFilter {
+  height: calc( 100vh - 200px);
   margin-top: 24px;
+  overflow: auto;
 }
 
 .requests .TasksFilter,
