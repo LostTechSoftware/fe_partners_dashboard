@@ -12,7 +12,8 @@
 }
 
 .requests .pageContent .taskList {
-  width: 546px;
+  width: 100%;
+  max-width: 546px;
   padding: var(--deafult-top-padding) 34px 0;
 }
 

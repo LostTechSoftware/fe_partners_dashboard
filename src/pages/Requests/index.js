@@ -10,8 +10,8 @@ import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
 
-import './responsivity.css';
 import './styles.css';
+import './responsivity.css';
 
 export default function Requests() {
   const [ page, setPage ] = useState(0);

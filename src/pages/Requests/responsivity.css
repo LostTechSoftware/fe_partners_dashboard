@@ -60,14 +60,58 @@
     align-items: flex-start;
   }
   .requests .itensList .item .itemInfo {
+    flex-direction: column;
     margin-left: var(--thumb-width);
     width: calc( 100% - var(--thumb-width) );
   }
   .requests .itensList .item .moreInfo {
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
     justify-content: flex-end;
-  }
-  .requests .itensList .item p {
-    align-items: flex-start;
+    width: 100%;
   }
 }
+@media screen and (max-width: 505px) {
+  .mainMenu {
+    width: 70px;
+  }
+  .mainMenu .userIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .mainMenu nav svg {
+    height: 30px;
+  }
+  .requests .pageContent .taskList,
+  .requests .taskInfo {
+    padding: var(--deafult-top-padding) 20px 0;
+  }
+  .requests .taskList .MuiTab-root .MuiTab-wrapper {
+    font-size: 0.98rem !important;
+  }
+  .requests .itensList .item .itemInfo {
+    width: 100%;
+    margin-left: 0;
+    align-items: center;
+  }
+  .requests .itensList .item .moreInfo {
+    align-items: center;
+  }
+  .requests .itensList .item .underlineBox {
+    padding-left: 12px;
+  }
+}
+@media screen and (max-width: 415px) {
+  .requests .itensList .item p {
+    text-align: center;
+  }
+  .requests .itensList .item .thumb {
+    margin: 10px 0;
+  }
+  .requests .itensList .item .itemTitle {
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+/* fix navigation at 450px */

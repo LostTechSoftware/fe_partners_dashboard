@@ -42,6 +42,11 @@ p, span {
   font-family: -apple-system, 'Open Sans', 'pacifico', 'Lobster', 'Roboto', 'Ubuntu', sans-serif;
   font-weight: 400;
 }
+@media screen and (max-width: 505px) {
+  h2 { font-size: 1.4rem;}
+  p { font-size: 1rem;}
+  span { font-size: 0.8rem;}
+}
 /* *** */
 
 button {
