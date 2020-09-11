@@ -44,6 +44,9 @@
 }
 
 @media screen and (max-width: 650px) {
+  .requests .taskInfo header .text .bottomText {
+    flex-direction: column;
+  }
   .requests .taskInfo .generalInfo .content {
     flex-direction: column;
   }
@@ -101,6 +104,9 @@
   }
 }
 @media screen and (max-width: 415px) {
+  .requests .taskInfo header {
+    flex-direction: column;
+  }
   .requests .itensList .item p {
     text-align: center;
   }
@@ -113,5 +119,4 @@
     width: 100%;
   }
 }
-
 /* fix navigation at 450px */

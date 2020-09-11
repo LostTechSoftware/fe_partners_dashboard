@@ -44,6 +44,10 @@
   width: 100%;
   margin-top: 5px;
 }
+.requests .taskInfo header .text .bottomText p:first-of-type {
+  margin-right: 18px;
+}
+
 /* *** */
 
 /* general info */
