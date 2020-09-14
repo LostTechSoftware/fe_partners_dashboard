@@ -24,7 +24,7 @@ export default function Requests() {
       <div className='pageContent'>
         <section className='taskList'>
           <header>
-            <h1>Task list</h1>
+            <h1 style={{fontSize:'30px'}}>Task list</h1>
           </header>
 
           <AppBar id='navHeadText' position='static' color='default'>
