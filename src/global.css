@@ -18,8 +18,8 @@ body {
 }
 
 /* text */
-body, #root .MuiButton-root, #root .MuiTabs-flexContainer span {
-  font-family: -apple-system, 'Open Sans Condensed', 'pacifico', 'Lobster', 'Roboto', 'Ubuntu', sans-serif;
+body, #root .MuiButton-root, #root .MuiTabs-flexContainer span, .price {
+  font-family: -apple-system, 'Lobster', 'pacifico', 'Open Sans Condensed', 'Roboto', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,6 +31,7 @@ h2 {
   color: #1F1F21;
 }
 p {
+  font-family: -apple-system, 'Roboto', 'Ubuntu', sans-serif;
   font-size: 1.4rem;
   color: #1F1F21;
 }
@@ -39,7 +40,6 @@ span {
   color: #6d6d6d;
 }
 p, span {
-  font-family: -apple-system, 'Open Sans', 'pacifico', 'Lobster', 'Roboto', 'Ubuntu', sans-serif;
   font-weight: 400;
 }
 @media screen and (max-width: 505px) {

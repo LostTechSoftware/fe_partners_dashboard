@@ -16,8 +16,8 @@ export default function TaskInfo() {
           <div className='text'>
             <h2 className='category'>New</h2>
             <div className='bottomText' >
-              <p>Order execution starts automaticly</p>
-              <p>Manager - <strong>Ana</strong> </p>
+              <span>Order execution starts automaticly</span>
+              <span>Manager - <strong>Ana</strong> </span>
             </div>
           </div>
         </header>

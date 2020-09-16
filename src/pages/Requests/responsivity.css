@@ -107,7 +107,7 @@
   .requests .taskInfo header {
     flex-direction: column;
   }
-  .requests .itensList .item p {
+  .requests .itensList .item span {
     text-align: center;
   }
   .requests .itensList .item .thumb {
