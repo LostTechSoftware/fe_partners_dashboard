@@ -13,7 +13,7 @@
 body, #root, .App {
   height: 100vh;
 }
-body {
+html {
   font-size: 62.5%;
 }
 
@@ -24,28 +24,24 @@ body, #root .MuiButton-root, #root .MuiTabs-flexContainer span, .price {
   -moz-osx-font-smoothing: grayscale;
 }
 h1 {
-  font-size: 2.4rem;
+  /* fix to 30px result */
+  font-size: 3.9rem;
 }
 h2 {
-  font-size: 1.8rem;
+  font-size: 2.9rem;
   color: #1F1F21;
 }
 p {
   font-family: -apple-system, 'Roboto', 'Ubuntu', sans-serif;
-  font-size: 1.4rem;
+  font-size: 2.3rem;
   color: #1F1F21;
 }
 span {
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   color: #6d6d6d;
 }
 p, span {
   font-weight: 400;
-}
-@media screen and (max-width: 505px) {
-  h2 { font-size: 1.4rem;}
-  p { font-size: 1rem;}
-  span { font-size: 0.8rem;}
 }
 /* *** */
 
@@ -57,6 +53,11 @@ button {
   display: flex;
   background-color: #22222E;
   height: 100%;
-  border-radius: var(--default-radius);
   box-shadow: 8px 8px 41px -3px rgba(122,122,122,0.61);
+}
+
+@media screen and (max-width: 505px) {
+  html {
+    font-size: 45%;
+  }
 }

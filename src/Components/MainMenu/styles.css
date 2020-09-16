@@ -4,7 +4,6 @@
   flex-flow: column;
   align-items: center;
   
-  border-radius: var(--default-radius);
   width: 120px;
 }
 
@@ -40,4 +39,27 @@
 
 .mainMenu nav .onPage svg {
   fill: #FFFFFF;
+}
+
+@media screen and (max-width: 1377px) {
+  .mainMenu {
+    width: 90px;
+  }
+  .mainMenu .userIcon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 505px) {
+  .mainMenu {
+    width: 70px;
+  }
+  .mainMenu .userIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .mainMenu nav svg {
+    height: 30px;
+  }
 }

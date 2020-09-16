@@ -7,13 +7,12 @@
   width: 100%;
 
   background-color: #F7F7F9;
-  border-radius: var(--default-radius);
   box-shadow: 8px 8px 41px -3px rgba(122,122,122,0.61);
 }
 
 .requests .pageContent .taskList {
   width: 100%;
-  max-width: 546px;
+  max-width: 486px;
   padding: var(--deafult-top-padding) 3px 0;
 }
 
@@ -36,7 +35,7 @@
   z-index: 4;
   color: #000000;
   
-  font-size: 1.3rem;
+  font-size: 2.1rem;
   text-transform: capitalize;
   font-weight: 600;
   letter-spacing: 0.15rem;
@@ -46,3 +45,18 @@
   color: #FFFFFF;
 }
 /* *** */
+
+@media screen and (max-width: 1250px) {
+  .requests .pageContent {
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 505px) {
+  .requests .pageContent .taskList,
+  .requests .taskInfo {
+    padding: var(--deafult-top-padding) 20px 0;
+  }
+}

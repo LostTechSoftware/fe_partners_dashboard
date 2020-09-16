@@ -5,6 +5,7 @@ import Item from './Item'
 
 import phoneIcon from '../../../assets/phoneIcon.svg';
 import './styles.css';
+import './responsivity.css';
 
 export default function TaskInfo() {
   return (

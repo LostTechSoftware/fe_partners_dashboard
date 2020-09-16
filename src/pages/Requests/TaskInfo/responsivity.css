@@ -1,0 +1,53 @@
+@media screen and (max-width: 1762px) {
+  .requests .taskInfo .generalInfo .content .contact {
+    justify-content: center;
+  }
+  .requests .taskInfo .generalInfo .content section {
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 1377px) {
+  .requests .taskInfo .generalInfo .content .contact {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 1092px) {
+  .requests .taskInfo .generalInfo .content .contact {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 801px) {
+  .requests .taskInfo .generalInfo .content .contact {
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .requests .taskInfo {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .requests .taskInfo header .text .bottomText {
+    flex-direction: column;
+  }
+  .requests .taskInfo .generalInfo .content {
+    flex-direction: column;
+  }
+  .requests .taskInfo .generalInfo .content .sideLine {
+    height: 1px;
+    width: auto;
+  }
+  .requests .taskInfo .generalInfo .content section {
+    width: 100%;
+    padding: 15px;
+  }
+}
+@media screen and (max-width: 415px) {
+  .requests .taskInfo header {
+    flex-direction: column;
+  }
+}
