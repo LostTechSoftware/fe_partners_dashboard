@@ -34,7 +34,7 @@ export default function MainMenu({ currentPage }) {
         </Link>
 
         <Link className={ isTheCurrentPage('otherPage') } to='/'>
-          <RoomServiceRounded />
+          <RoomServiceRounded/>
         </Link>
 
         <Link className={ isTheCurrentPage('otherPage') } to='/'>

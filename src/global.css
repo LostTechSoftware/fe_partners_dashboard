@@ -54,7 +54,6 @@ button {
 }
 
 .page {
-  --default-radius: 25px;
   display: flex;
   background-color: #22222E;
   height: 100%;
