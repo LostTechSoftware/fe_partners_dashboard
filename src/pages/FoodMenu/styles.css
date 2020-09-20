@@ -1,0 +1,40 @@
+.foodMenu {
+  background-color: #F7F7F9;
+}
+
+.foodMenu .pageContent {
+  padding: var(--deafult-top-padding);
+  width: 100%;
+}
+
+.foodMenu .pageContent .delayWarning {
+  color: #6d6d6d;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.foodMenu .pageContent .searchBox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 850px;
+  height: 70px;
+
+  border-radius: 18px;
+  background-color: #FFFFFF;
+}
+
+.foodMenu .pageContent .searchBox input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: none;
+  font-size: 2.4rem;
+  padding: 12px;
+}
+
+.foodMenu .pageContent .itensList {
+  height: calc( 100% - 236px);
+  overflow: auto;
+  margin-top: 20px;
+}

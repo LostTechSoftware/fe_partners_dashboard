@@ -45,7 +45,7 @@ export default function MainMenu({ currentPage }) {
           <MonetizationOnRounded />
         </Link>
 
-        <Link className={ isTheCurrentPage('otherPage') } to='/'>
+        <Link className={ isTheCurrentPage('foodMenu') } to='/menu'>
           <ViewCarouselRounded />
         </Link>
 

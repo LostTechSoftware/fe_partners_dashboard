@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Switch , Route  } from 'react-router-dom';
 
-import Request from './pages/Requests';
+import Requests from './pages/Requests';
+import FoodMenu from './pages/FoodMenu';
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route path='/' exact component={Request} />
+      <Route exact path='/' component={Requests} />
+      <Route path='/menu' component={FoodMenu} />
     </Switch>
   </BrowserRouter>
 );

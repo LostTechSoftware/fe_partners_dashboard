@@ -1,7 +1,3 @@
-.requests {
-  --deafult-top-padding: 48px;
-}
-
 .requests .pageContent {
   display: flex;
   width: 100%;
@@ -54,9 +50,12 @@
   }
 }
 
-@media screen and (max-width: 505px) {
+@media screen and (max-width: 650px) {
   .requests .pageContent .taskList,
   .requests .taskInfo {
     padding: var(--deafult-top-padding) 20px 0;
+  }
+  .requests .pageContent .taskList {
+    max-width: 520px;
   }
 }
