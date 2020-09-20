@@ -26,8 +26,11 @@ export default function FoodMenu() {
            minutos para refletir no aplicativo dos seus consumidores
         </p>
         <section className='searchBox'>
-          <label> <SearchRounded/> </label>
+          <label htmlFor='expectedItemName'>
+            <SearchRounded/>
+          </label>
           <input
+            id='expectedItemName'
             placeholder='Buscar item do cardápio'
             value={expectedItemName}
             onChange={event => setExpectedItemName(event.target.value)}
@@ -36,10 +39,7 @@ export default function FoodMenu() {
 
         <section className='itensList'>
           {itensList.map(() => (
-            <>
-            <h2> Mini Snack </h2>
             <ItensTable />
-            </>
           ))}
         </section>
       </div>

@@ -36,7 +36,7 @@ export default function ItensTable() {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell><h2>Mini snacks</h2></TableCell>
+            <TableCell><h2>Mini Snacks</h2></TableCell>
             <TableCell> </TableCell>
             <TableCell> </TableCell>
           </TableRow>
@@ -47,7 +47,11 @@ export default function ItensTable() {
               <TableCell component="th" scope="row">
                 <p> {row.name} </p>
               </TableCell>
-              <TableCell align="right"><p> {row.price} </p></TableCell>
+              
+              <TableCell align="right">
+                <p className='price'> € {row.price},00 </p>
+              </TableCell>
+              
               <TableCell align="right">
                 {row.sellingState ?
                   <p> selling</p>

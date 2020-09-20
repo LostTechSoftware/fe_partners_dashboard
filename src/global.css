@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
   padding: 0;
@@ -18,8 +17,10 @@ html {
 }
 
 /* text */
-body, #root .MuiButton-root, #root .MuiTabs-flexContainer span, .price {
-  font-family: -apple-system, 'Lobster', 'pacifico', 'Open Sans Condensed', 'Roboto', 'Ubuntu', sans-serif;
+body, .price, #root .MuiTable-root h2,
+#root .MuiTabs-flexContainer span, #root .MuiButton-root {
+  font-family: -apple-system, 'Lobster', 'pacifico', 'Open Sans Condensed',
+    'Roboto', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

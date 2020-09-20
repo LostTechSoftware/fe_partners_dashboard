@@ -8,11 +8,12 @@
 }
 
 .foodMenu .pageContent .delayWarning {
-  color: #6d6d6d;
+  color: #6D6D6D;
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
+/* Search Box */
 .foodMenu .pageContent .searchBox {
   display: flex;
   align-items: center;
@@ -24,6 +25,19 @@
   background-color: #FFFFFF;
 }
 
+.foodMenu .pageContent .searchBox label {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 10px;
+}
+
+.foodMenu .pageContent .searchBox svg {
+  height: 60%;
+  width: auto;
+  fill: #6D6D6D;
+}
+
 .foodMenu .pageContent .searchBox input {
   width: 100%;
   height: 100%;
@@ -31,10 +45,24 @@
   background: none;
   font-size: 2.4rem;
   padding: 12px;
+  color: #6d6d6db4;
 }
+
+.foodMenu .pageContent .searchBox input::placeholder {
+  color: #6d6d6db4;
+}
+/* *** */
 
 .foodMenu .pageContent .itensList {
   height: calc( 100% - 236px);
   overflow: auto;
   margin-top: 20px;
+}
+
+.foodMenu .pageContent .itensList .MuiTableContainer-root {
+  margin-bottom: 30px;
+}
+
+.foodMenu .pageContent .itensList .MuiTable-root h2 {
+  color: #335BCA;
 }
