@@ -4,10 +4,28 @@
   padding-right: 6px;
 }
 
-.foodMenu .itensTable .MuiButton-root {
-  width: 290px;
-  border-radius: 18px;
+.foodMenu .itensTable .MuiTableHead-root {
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  letter-spacing: 0.011em;
 }
+.foodMenu .itensTable .MuiTableHead-root h2 {
+  width: max-content !important;
+  padding: 16px !important;
+}
+
+.foodMenu .itensTable .MuiButton-root {
+  width: 100%;
+  max-width: 290px;
+  border-radius: 18px;
+  text-transform: inherit;
+}
+
 .foodMenu .itensTable .MuiButton-root .MuiButton-label {
   justify-content: flex-start;
+}
+
+@media screen and (max-width: 1000px) {
+  .foodMenu .itensTable svg {
+    height: 20px;
+  }
 }

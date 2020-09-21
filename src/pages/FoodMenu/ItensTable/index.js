@@ -31,15 +31,12 @@ const rows = [
 ];
 
 export default function ItensTable() {
+  const deviceWidth = window.innerWidth;
   return (
     <TableContainer className='itensTable' component={Paper}>
       <Table aria-label='simple table'>
         <TableHead>
-          <TableRow>
-            <TableCell><h2>Mini Snacks</h2></TableCell>
-            <TableCell> </TableCell>
-            <TableCell> </TableCell>
-          </TableRow>
+          <h2>Mini Snacks</h2>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
@@ -53,16 +50,19 @@ export default function ItensTable() {
               </TableCell>
               
               <TableCell align='right' className=''>
-                {row.sellingState ?
-                  <Button> 
-                    <PauseCircleFilledRounded />
-                    <p>Pausar vendas</p>
-                  </Button>
+                {deviceWidth >= 600 ?
+                  row.sellingState ?
+                    <Button onClick={() => alert(deviceWidth)}> 
+                      <PauseCircleFilledRounded />
+                      <p>Pausar vendas</p>
+                    </Button>
+                    :
+                    <Button> 
+                      <PlayCircleFilledRounded />
+                      <p>Retomar vendas</p>
+                    </Button>
                   :
-                  <Button> 
-                    <PlayCircleFilledRounded />
-                    <p>Retomar vendas</p>
-                  </Button>
+                  <p>bla</p>
                 }
               </TableCell>
             </TableRow>

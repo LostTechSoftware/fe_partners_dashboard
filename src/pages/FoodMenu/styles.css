@@ -41,10 +41,11 @@
 .foodMenu .pageContent .searchBox input {
   width: 100%;
   height: 100%;
-  border: 0;
   background: none;
-  font-size: 2.4rem;
   padding: 12px;
+  
+  border: 0;
+  font-size: 2.4rem;
   color: #6d6d6db4;
 }
 
@@ -65,4 +66,25 @@
 
 .foodMenu .pageContent .itensList .MuiTable-root h2 {
   color: #335BCA;
+}
+
+@media screen and (max-width: 770px) {
+  .foodMenu .pageContent {
+    padding: calc(var(--deafult-top-padding)/2);
+  }
+  .foodMenu .pageContent .delayWarning {
+    margin-top: 20px;
+  }
+  .foodMenu .pageContent .searchBox {
+    height: 40px;
+  }
+  .foodMenu .pageContent .itensList {
+    height: calc( 100% - 170px);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .foodMenu .pageContent {
+    padding: calc(var(--deafult-top-padding)/4);
+  }
 }

@@ -52,15 +52,29 @@
   }
 }
 
-@media screen and (max-width: 505px) {
+@media screen and (max-width: 770px) {
   .mainMenu {
     width: 70px;
   }
   .mainMenu .userIcon {
     width: 40px;
     height: 40px;
+    border: solid 1px #335BCA;
   }
   .mainMenu nav svg {
     height: 30px;
+  }
+}
+
+@media screen and (max-width: 505px) {
+  .mainMenu {
+    width: 50px;
+  }
+  .mainMenu .userIcon {
+    width: 29px;
+    height: 29px;
+  }
+  .mainMenu nav svg {
+    height: 25px;
   }
 }
