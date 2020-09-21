@@ -21,7 +21,7 @@ export default function MainMenu({ currentPage }) {
   return (
     <div className='mainMenu'>
       <img
-        src='https://wp-portugal.com/wp-content/uploads/2017/09/React-icon.jpg'
+        src='https://foodzilla.com.br/assets/images/favicon.png'
         className='userIcon'
         alt='user icon'
       />
