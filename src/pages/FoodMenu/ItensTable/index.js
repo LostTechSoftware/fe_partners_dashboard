@@ -6,16 +6,10 @@ import {
   TableCell,
   TableHead,
   TableBody,
-  
-  Button,
   Paper,
 } from '@material-ui/core';
 
-import {
-  PlayCircleFilledRounded,
-  PauseCircleFilledRounded,
-} from '@material-ui/icons';
-
+import SellingStateControllerButton from './SellingStateControllerButton';
 import './styles.css';
 
 function createData(name, price, sellingState) {
@@ -32,6 +26,7 @@ const rows = [
 
 export default function ItensTable() {
   const deviceWidth = window.innerWidth;
+
   return (
     <TableContainer className='itensTable' component={Paper}>
       <Table aria-label='simple table'>
@@ -40,6 +35,7 @@ export default function ItensTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
+            <>
             <TableRow key={row.name}>
               <TableCell component='th' scope='row'>
                 <p> {row.name} </p>
@@ -49,23 +45,24 @@ export default function ItensTable() {
                 <p className='price'> € {row.price},00 </p>
               </TableCell>
               
-              <TableCell align='right' className=''>
-                {deviceWidth >= 600 ?
-                  row.sellingState ?
-                    <Button onClick={() => alert(deviceWidth)}> 
-                      <PauseCircleFilledRounded />
-                      <p>Pausar vendas</p>
-                    </Button>
-                    :
-                    <Button> 
-                      <PlayCircleFilledRounded />
-                      <p>Retomar vendas</p>
-                    </Button>
-                  :
-                  <p>bla</p>
-                }
-              </TableCell>
+              { deviceWidth > 600 ?
+                <TableCell align='right' className=''>
+                  <SellingStateControllerButton
+                    sellingState={row.sellingState}
+                  /> 
+                </TableCell>
+                : <> </>
+              }
             </TableRow>
+            { deviceWidth <= 600 ?
+              <TableRow className='sellingStateRow'>
+                <SellingStateControllerButton
+                  sellingState={row.sellingState}
+                />
+              </TableRow>
+              : <> </>
+            }
+            </>
           ))}
         </TableBody>
       </Table>
