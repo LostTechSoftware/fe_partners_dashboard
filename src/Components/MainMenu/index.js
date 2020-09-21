@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   RoomServiceRounded,
   DonutSmallRounded,
-  ViewCarouselRounded,
   MonetizationOnRounded,
-  LockOpenRounded,
 } from '@material-ui/icons';
 
 import ClipboardIcon from '../../assets/clipboardIcon';
@@ -33,24 +31,17 @@ export default function MainMenu({ currentPage }) {
           <ClipboardIcon />
         </Link>
 
-        <Link className={ isTheCurrentPage('otherPage') } to='/'>
+        <Link className={ isTheCurrentPage('foodMenu') } to='/menu'>
           <RoomServiceRounded/>
         </Link>
 
-        <Link className={ isTheCurrentPage('otherPage') } to='/'>
+        {/* [] use this route after graph building */}
+        {/* <Link className={ isTheCurrentPage('otherPage') } to='/'>
           <DonutSmallRounded />
-        </Link>
+        </Link> */}
 
         <Link className={ isTheCurrentPage('otherPage') } to='/'>
           <MonetizationOnRounded />
-        </Link>
-
-        <Link className={ isTheCurrentPage('foodMenu') } to='/menu'>
-          <ViewCarouselRounded />
-        </Link>
-
-        <Link className={ isTheCurrentPage('otherPage') } to='/'>
-          <LockOpenRounded />
         </Link>
       </nav>
 
