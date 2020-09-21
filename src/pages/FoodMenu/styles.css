@@ -88,3 +88,9 @@
     padding: calc(var(--deafult-top-padding)/4);
   }
 }
+
+@media screen and (max-width: 515px) {
+  .foodMenu .pageContent .itensList {
+    height: calc( 100% - 210px);
+  }
+}
