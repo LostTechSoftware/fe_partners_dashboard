@@ -1,0 +1,13 @@
+.foodMenu .itensTable svg {
+  height: 40px;
+  width: auto;
+  padding-right: 6px;
+}
+
+.foodMenu .itensTable .MuiButton-root {
+  width: 290px;
+  border-radius: 18px;
+}
+.foodMenu .itensTable .MuiButton-root .MuiButton-label {
+  justify-content: flex-start;
+}

@@ -6,8 +6,8 @@ import {
   TableCell,
   TableHead,
   TableBody,
-  IconButton,
-
+  
+  Button,
   Paper,
 } from '@material-ui/core';
 
@@ -32,8 +32,8 @@ const rows = [
 
 export default function ItensTable() {
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+    <TableContainer className='itensTable' component={Paper}>
+      <Table aria-label='simple table'>
         <TableHead>
           <TableRow>
             <TableCell><h2>Mini Snacks</h2></TableCell>
@@ -44,19 +44,25 @@ export default function ItensTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
+              <TableCell component='th' scope='row'>
                 <p> {row.name} </p>
               </TableCell>
               
-              <TableCell align="right">
+              <TableCell align='right'>
                 <p className='price'> € {row.price},00 </p>
               </TableCell>
               
-              <TableCell align="right">
+              <TableCell align='right' className=''>
                 {row.sellingState ?
-                  <p> selling</p>
+                  <Button> 
+                    <PauseCircleFilledRounded />
+                    <p>Pausar vendas</p>
+                  </Button>
                   :
-                  <p> notSelling </p>
+                  <Button> 
+                    <PlayCircleFilledRounded />
+                    <p>Retomar vendas</p>
+                  </Button>
                 }
               </TableCell>
             </TableRow>
