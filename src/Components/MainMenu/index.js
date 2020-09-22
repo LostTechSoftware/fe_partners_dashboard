@@ -40,11 +40,12 @@ export default function MainMenu({ currentPage }) {
           <DonutSmallRounded />
         </Link> */}
 
-        <Link className={ isTheCurrentPage('otherPage') } to='/'>
+        <Link className={ isTheCurrentPage('money') } to='/money'>
           <MonetizationOnRounded />
         </Link>
       </nav>
 
+      {/* dinamyc bottom margin div */}
       <div />
     </div>
   );
