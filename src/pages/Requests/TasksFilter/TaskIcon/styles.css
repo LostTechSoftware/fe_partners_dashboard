@@ -26,3 +26,14 @@
   font-weight: 700;
 }
 /* *** */
+
+/* checked */
+.taskIconChecked {
+  background-color: #ffe115;
+}
+
+.taskIconChecked p,
+.taskIconChecked span {
+  color: #ffffff;
+}
+/* *** */

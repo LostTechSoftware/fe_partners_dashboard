@@ -34,7 +34,7 @@
 }
 
 .requests .taskInfo header .text h2 {
-  color: #335BCA;
+  color: #ffe115;
 }
 
 .requests .taskInfo header .text .bottomText {
@@ -59,6 +59,11 @@
   padding: 0 30px;
   width: 33%;
 }
+
+.requests .taskInfo .generalInfo .content section p {
+  text-transform: capitalize;
+}
+
 .requests .taskInfo .generalInfo .content .sideLine {
   background-color: #dddddd;
   height: auto;

@@ -1,27 +1,29 @@
 import React from 'react';
 import './styles.css';
 
-export default function Item() {
+export default function Item({title, price, description, quantity, avatar}) {
   return (
     <div className='item'>
       <div className='content' >
 
         <section className='itemTitle' >
-          <img
-            className='thumb'
-            src='https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/132842.jpg?output-format=auto&output-quality=auto'
-            alt='fruity pancakes'
-          />
-          <p>fruity pancakes </p>
+          {avatar ?
+            <img
+              className='thumb'
+              src={avatar}
+              alt='fruity pancakes'
+            />
+          : null
+          }
+          <p>{title}</p>
         </section>
 
         {/* responsivity build with full 'space-between' justify */}
         <section className='itemInfo' >
-          {/* Amount */}
-          <p>x2</p>
+          <p>{quantity}x</p>
           <section className='moreInfo' >
-            <p className='observations'> without syrup without syrup </p>
-            <p className='price'> €18,50 </p>
+            <p className='observations'>{description}</p>
+            <p className='price'>{(price * quantity).toLocaleString('pt-br',{style:'currency', currency:'brl'})}</p>
           </section>
         </section>
       </div>

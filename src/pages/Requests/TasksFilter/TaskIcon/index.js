@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css'
 
-export default function TaskIcon({ checked }) {
+export default function TaskIcon({ checkedStatus = null, taskId, price, name, createdAt }) {
   const [ checkedState, setCheckedState ] = useState('')
+  
   useEffect(() => {
-    if(checked) {
-      setCheckedState('this was checked');
+    if(checkedStatus) {
+      setCheckedState('Checked');
     } else {
       setCheckedState('NOT checked');
     }
 
-  }, [checked]);
+  }, [checkedStatus]);
+
   return (
-    <div className='taskIcon'>
+    <div className={`taskIcon taskIcon${checkedState}`}>
       <section className='info'>
-        <p className='headline'> Task #00350 </p>
-        <span className='coment'> As soon as </span>
+        <p className='headline'> {name} #{taskId} </p>
+        <span className='coment'> Feito as {createdAt} </span>
       </section>
 
-      <p className='price'>€120,21</p>
+      <p className='price'>{price.toLocaleString('pt-br',{style:'currency', currency:'brl'})}</p>
     </div> 
   );
 }

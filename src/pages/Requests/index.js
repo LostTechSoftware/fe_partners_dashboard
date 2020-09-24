@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SwipeableViews from "react-swipeable-views";
 import {
   AppBar,
@@ -6,6 +6,7 @@ import {
   Tab
 } from '@material-ui/core';
 
+import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
@@ -14,7 +15,48 @@ import './styles.css';
 
 export default function Requests() {
   const [ page, setPage ] = useState(0);
-  const [ openedTask, setOpenedTask ] = useState(0);
+  const [ openedTaskId, setOpenedTaskId ] = useState(0);
+  const [ taskInfos, setTaskInfos ] = useState('');
+  
+  const [taskListPreparing, setTaskListPreparing] = useState([])  
+  const [taskListNew, setTaskListNew] = useState([])  
+  const [taskListDelivery, setTaskListDelivery] = useState([])  
+
+  useEffect(() => {
+    async function LoadRequests(){
+      const response = await api.get('/tasks/preparing/5f6af2b3df273108f45e8998')
+
+      setTaskListPreparing(response.data)
+    }
+    LoadRequests()
+  },[])
+
+  useEffect(() => {
+    async function LoadRequests(){
+      const response = await api.get('/tasks/new/5f6af2b3df273108f45e8998')
+
+      setTaskListNew(response.data)
+    }
+    LoadRequests()
+  },[])
+
+  useEffect(() => {
+    async function LoadRequests(){
+      const response = await api.get('/tasks/delivery/5f6af2b3df273108f45e8998')
+
+      setTaskListDelivery(response.data)
+    }
+    LoadRequests()
+  },[])
+
+  useEffect(() => {
+    async function LoadRequests(){
+      const response = await api.get(`/tasks/${openedTaskId}`)
+
+      setTaskInfos(response.data)
+    }
+    LoadRequests()
+  }, [openedTaskId])
 
   return(
     <div className='page requests'>
@@ -23,7 +65,7 @@ export default function Requests() {
       <div className='pageContent'>
         <section className='taskList'>
           <header>
-            <h1>Task list</h1>
+            <h1>Seus pedidos</h1>
           </header>
 
           <AppBar id='navHeadText' position='static' color='default'>
@@ -31,8 +73,8 @@ export default function Requests() {
               value={page}
               onChange={ (event, newValue) => setPage(newValue) }
             >
-              <Tab label='New' />
-              <Tab label='Preparing' />
+              <Tab label='Novos' />
+              <Tab label='Aceitos' />
               <Tab label='Delivery' />
             </Tabs>
           </AppBar>
@@ -43,18 +85,26 @@ export default function Requests() {
             onChangeIndex={ index => setPage(index) }
           >
             <div className='subPage' value={page} index={0}>
-              <TasksFilter openedTask={openedTask} setOpenedTask={setOpenedTask} />
+              <TasksFilter openedTaskId={openedTaskId} setOpenedTaskId={setOpenedTaskId}>
+                {taskListNew}
+              </TasksFilter>
             </div>
             <div className='subPage' value={page} index={1}>
-              <TasksFilter openedTask={openedTask} setOpenedTask={setOpenedTask} />
+              <TasksFilter openedTaskId={openedTaskId} setOpenedTaskId={setOpenedTaskId}>
+                {taskListPreparing}
+              </TasksFilter>
             </div>
             <div className='subPage' value={page} index={2}>
-              <TasksFilter openedTask={openedTask} setOpenedTask={setOpenedTask} />
+              <TasksFilter openedTaskId={openedTaskId} setOpenedTaskId={setOpenedTaskId}>
+                {taskListDelivery}
+              </TasksFilter>
             </div>
           </SwipeableViews>
         </section>
 
-        <TaskInfo />
+        <TaskInfo>
+          {taskInfos}
+        </TaskInfo>
 
       </div>
     </div>
