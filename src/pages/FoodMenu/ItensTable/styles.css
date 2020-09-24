@@ -24,6 +24,12 @@
   justify-content: flex-start;
 }
 
+@media screen and (min-width: 2000px) {
+  .foodMenu .itensTable .MuiButton-root {
+    max-width: 436px;
+  }  
+}
+
 @media screen and (max-width: 1000px) {
   .foodMenu .itensTable svg {
     height: 20px;

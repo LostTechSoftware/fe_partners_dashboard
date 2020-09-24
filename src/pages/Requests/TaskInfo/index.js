@@ -1,7 +1,8 @@
 import React from 'react';
-import { CircularProgress, Button } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 
-import Item from './Item' 
+import ButtonSubmit from '../../../Components/ButtonSubmit/index';
+import Item from './Item';
 
 import phoneIcon from '../../../assets/phoneIcon.svg';
 import './styles.css';
@@ -67,9 +68,9 @@ export default function TaskInfo() {
 
       <footer>
         <h2 className='finalPrice'> €99,60 </h2>
-        <Button onClick={console.log('request accepted')}>
+        <ButtonSubmit onClick={console.log('request accepted')}>
           Accept order
-        </Button>
+        </ButtonSubmit>
       </footer>
     </div>
   );

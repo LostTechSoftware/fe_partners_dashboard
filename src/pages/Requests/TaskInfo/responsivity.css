@@ -18,9 +18,6 @@
 
   .requests .taskInfo footer {
     margin: 22px 0;
-  } 
-  .requests .taskInfo footer .MuiButton-root {
-    height: 50px;
   }
   .requests .taskInfo footer .finalPrice {
     font-size: 2.6rem;

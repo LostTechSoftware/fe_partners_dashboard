@@ -1,0 +1,81 @@
+.money .pageContent {
+  width: 100%;
+  padding: var(--deafult-top-padding);
+  background-color: #F7F7F9;
+}
+
+.money .pageContent header h1 {
+  margin-bottom: 10px;
+}
+
+.money .pageContent .balance {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: calc( 100% - 116px );
+  margin: 20px 0;
+}
+
+.money .pageContent .balance .info {
+  height: 100%;
+  width: 66%;
+  padding-right: 2%;
+}
+
+/* Total balance */
+.money .pageContent .balance .info .totalBalance {
+  background-color: #FFFFFF;
+  border-radius: 18px;
+  padding: 4rem;
+  box-shadow: 9px 9px 41px 0px rgba(122,122,122,0.31);
+}
+
+.money .pageContent .balance .info .totalBalance span {
+  font-size: 2.2rem;
+}
+
+.money .pageContent .balance .info .totalBalance h2 {
+  font-size: 4.2rem;
+  margin-top: 25px;
+}
+
+/* Historic */
+.money .pageContent .balance .info .historic {
+  background-color: orangered;
+}
+
+/* Withdraw */
+.money .pageContent .withdraw {
+  background-color: #FFFFFF;
+  width: 32%;
+  padding: 4rem;
+  margin-left: 2%;
+  box-shadow: 9px 9px 41px 0px rgba(122,122,122,0.31);
+  border-radius: 18px;
+}
+
+.money .pageContent .withdraw .MuiTextField-root {
+  width: 100%;
+}
+.money .pageContent .withdraw .MuiTextField-root input,
+.money .pageContent .withdraw .MuiInputAdornment-root p {
+  font-size: 2.8rem;
+}
+
+.money .submitButton {
+  max-width: 100%;
+  margin-top: 20px;
+}
+/* *** */
+
+@media screen and (max-width: 770px) {
+  .money .pageContent {
+    padding: calc(var(--deafult-top-padding)/2);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .money .pageContent {
+    padding: calc(var(--deafult-top-padding)/4);
+  }
+}

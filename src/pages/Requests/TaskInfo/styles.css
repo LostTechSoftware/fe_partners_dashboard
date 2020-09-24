@@ -97,19 +97,4 @@
 .requests .taskInfo footer .finalPrice {
   font-size: 3.7rem;
 }
-
-.requests .taskInfo footer .MuiButton-root {
-  background-color: #FE9329;
-  height: 80px;
-  width: 100%;
-  max-width: 320px;
-  border-radius: 18px;
-}
-
-.requests .taskInfo footer .MuiButton-text .MuiButton-label {
-  color: #FFFFFF;
-  font-size: 2.4rem;
-  text-transform: capitalize;
-  font-weight: 600;
-}
 /* *** */
