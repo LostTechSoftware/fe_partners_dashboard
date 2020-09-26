@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
 
+  transition: 0.4s;
   background-color: #FFFFFF;
 
   width: 100%;
@@ -29,11 +30,13 @@
 
 /* checked */
 .taskIconChecked {
+  transition: 0.4s;
   background-color: #ffe115;
 }
 
 .taskIconChecked p,
 .taskIconChecked span {
+  transition: 0.2s;
   color: #ffffff;
 }
 /* *** */
