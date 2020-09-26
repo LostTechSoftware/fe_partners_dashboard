@@ -1,8 +1,6 @@
 import React from 'react';
-import { TextField, InputAdornment } from '@material-ui/core';
 
 import MainMenu from '../../Components/MainMenu';
-import ButtonSubmit from '../../Components/ButtonSubmit';
 import './styles.css'
 
 export default function Money() {
@@ -16,25 +14,41 @@ export default function Money() {
         </header>
 
         <section className='balance'>
-          <div className='info'>
-            <section className='totalBalance'>
-              <span>Your Balance</span>
-              <h2> €40,000.00 </h2>
-            </section>
+          <section className='totalBalance'>
+            <span>Your Balance</span>
+            <h2> €40,000.00 </h2>
+          </section>
 
-            <section className='historic'>
-            </section>
-          </div>
+          <section className='historic'>
+            <span className='date'>Today | 22/JAN/2020</span>
+            <div className='underLine' />
+            
+            <div className='transaction'>
+              <div className='info'>
+                <p>Transfer to Zomato</p>
+                <p>Online food order</p>
+              </div>
 
-          <section className='withdraw' >
-            <TextField
-              id="standard-start-adornment"
-              InputProps={{
-                startAdornment: <InputAdornment position="start">€</InputAdornment>,
-              }}
-            />
+              <p className='price'>R$100,50</p>
+            </div>
 
-            <ButtonSubmit> withdraw </ButtonSubmit>
+            <div className='transaction'>
+              <div className='info'>
+                <p>Transfer to Zomato</p>
+                <p>Online food order</p>
+              </div>
+
+              <p className='price'>R$100,50</p>
+            </div>
+
+            <div className='transaction'>
+              <div className='info'>
+                <p>Transfer to Zomato</p>
+                <p>Online food order</p>
+              </div>
+
+              <p className='price'>R$100,50</p>
+            </div>
           </section>
         </section>
       </div>

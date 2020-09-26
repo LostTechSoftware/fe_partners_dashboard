@@ -10,61 +10,65 @@
 
 .money .pageContent .balance {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   height: calc( 100% - 116px );
   margin: 20px 0;
 }
 
-.money .pageContent .balance .info {
-  height: 100%;
-  width: 66%;
-  padding-right: 2%;
-}
-
 /* Total balance */
-.money .pageContent .balance .info .totalBalance {
+.money .pageContent .balance .totalBalance {
+  width: 100%;
+  height: fit-content;
   background-color: #FFFFFF;
+  padding: 40px;
+  margin-bottom: 80px;
+
   border-radius: 18px;
-  padding: 4rem;
   box-shadow: 9px 9px 41px 0px rgba(122,122,122,0.31);
 }
 
-.money .pageContent .balance .info .totalBalance span {
+.money .pageContent .balance .totalBalance span {
   font-size: 2.2rem;
 }
 
-.money .pageContent .balance .info .totalBalance h2 {
+.money .pageContent .balance .totalBalance h2 {
   font-size: 4.2rem;
   margin-top: 25px;
 }
 
 /* Historic */
-.money .pageContent .balance .info .historic {
-  background-color: orangered;
-}
-
-/* Withdraw */
-.money .pageContent .withdraw {
-  background-color: #FFFFFF;
-  width: 32%;
-  padding: 4rem;
-  margin-left: 2%;
-  box-shadow: 9px 9px 41px 0px rgba(122,122,122,0.31);
-  border-radius: 18px;
-}
-
-.money .pageContent .withdraw .MuiTextField-root {
+.money .pageContent .balance .historic {
+  height: 100%;
   width: 100%;
 }
-.money .pageContent .withdraw .MuiTextField-root input,
-.money .pageContent .withdraw .MuiInputAdornment-root p {
-  font-size: 2.8rem;
+
+.money .pageContent .balance .historic .date {
+  font-weight: 900;
 }
 
-.money .submitButton {
-  max-width: 100%;
-  margin-top: 20px;
+.money .pageContent .balance .historic .underLine {
+  background-color: #dddddd;
+  width: auto;
+  height: 1px;
+  margin: 20px 0 40px;
+}
+
+.money .pageContent .balance .historic .transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.money .pageContent .balance .historic 
+  .transaction .info p:first-of-type {
+    margin-bottom: 3px;
+  }
+
+.money .pageContent .balance .historic .transaction .price {
+  font-size: 2.5rem;
 }
 /* *** */
 
