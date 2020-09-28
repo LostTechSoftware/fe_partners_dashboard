@@ -94,7 +94,7 @@ export default function TaskInfo({ children = {} }) {
       <footer>
         <h2 className='finalPrice'>{children.realPrice.toLocaleString('pt-br',{style:'currency', currency:'brl'})}</h2>
 
-        {children.approved === 'Aceito' ?
+        {children.approved !== 'Aceito' ?
           <div className='orderActions'>
             <ButtonSubmit onClick={() => console.log({children})}>
               Aceitar pedido
