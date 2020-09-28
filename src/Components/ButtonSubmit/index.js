@@ -5,8 +5,10 @@ import './styles.css'
 
 export default function ButtonSubmit({ children, onClick }) {
   return (
-    <Button className='submitButton' onClick={onClick}>
-      {children}
-    </Button>
+    <div className='submitButton'>
+      <Button onClick={onClick}>
+        {children}
+      </Button>
+    </div>
   )
 }

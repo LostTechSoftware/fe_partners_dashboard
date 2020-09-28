@@ -1,4 +1,4 @@
-.page .submitButton {
+.page .submitButton .MuiButton-root {
   background-color: #FE9329;
   height: 80px;
   width: 100%;
@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width: 1533px) {
-  .submitButton {
+  .page .submitButton .MuiButton-root {
     height: 50px;
   }
 }
