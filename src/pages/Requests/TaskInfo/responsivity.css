@@ -1,16 +1,9 @@
 @media screen and (max-width: 1700px) {
-  .requests .taskInfo .generalInfo .content .contact img {
-    width: 30px;
-  }
   .requests .taskInfo .generalInfo .content section {
     padding: 0 15px;
   }
 }
 @media screen and (max-width: 1533px) {
-  .requests .taskInfo .generalInfo .content .contact {
-    justify-content: center;
-  }
-
   .requests .taskInfo header {
     margin-bottom: 20px;
   }
@@ -19,15 +12,6 @@
 @media screen and (max-width: 1250px) {
   .requests .taskInfo {
     margin-top: 20px;
-  }
-  .requests .taskInfo .generalInfo .content .contact {
-    justify-content: space-between;
-  }
-}
-
-@media screen and (max-width: 895px) {
-  .requests .taskInfo .generalInfo .content .contact {
-    justify-content: center;
   }
 }
 
@@ -45,10 +29,6 @@
   .requests .taskInfo .generalInfo .content section {
     width: 100%;
     padding: 15px;
-  }
-
-  .requests .taskInfo .generalInfo .content .contact {
-    justify-content: flex-start;
   }
 }
 @media screen and (max-width: 415px) {
