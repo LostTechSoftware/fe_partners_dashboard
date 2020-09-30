@@ -71,6 +71,7 @@
 }
 .requests .taskInfo .generalInfo .content .result {
   letter-spacing: 2px;
+  color: #000000;
 }
 .requests .taskInfo .generalInfo .content .contact {
   display: flex;
