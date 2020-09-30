@@ -23,7 +23,12 @@ export default function Item({title, price, description, quantity, avatar}) {
           <p>{quantity}x</p>
           <section className='moreInfo' >
             <p className='observations'>{description}</p>
-            <p className='price'>{(price * quantity).toLocaleString('pt-br',{style:'currency', currency:'brl'})}</p>
+            <p className='price'>
+              {(price * quantity).toLocaleString(
+                'pt-br',
+                {style:'currency', currency:'brl'}
+              )}
+            </p>
           </section>
         </section>
       </div>
