@@ -3,9 +3,9 @@ import { Button } from '@material-ui/core';
 
 import './styles.css'
 
-export default function ButtonSubmit({ children, onClick }) {
+export default function MainButton({ children, onClick }) {
   return (
-    <div className='submitButton'>
+    <div className='mainButton'>
       <Button onClick={onClick}>
         {children}
       </Button>

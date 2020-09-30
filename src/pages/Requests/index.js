@@ -22,32 +22,33 @@ export default function Requests() {
   const [taskListNew, setTaskListNew] = useState([])  
   const [taskListDelivery, setTaskListDelivery] = useState([])  
 
+  // This solution to update Request list is not very performing once it will
+    // update every time the user switch tabs and not necessarily every time
+      // that some task is created or canceled, once its not real time
   useEffect(() => {
     async function LoadRequests(){
-      const response = await api.get('/tasks/preparing/5f6af2b3df273108f45e8998')
-
-      setTaskListPreparing(response.data)
+      console.log('open function')
+      // new taks
+      if(page === 0) {
+        console.log('update new')
+        const response = await api.get('/tasks/new/5f6af2b3df273108f45e8998')
+        setTaskListNew(response.data)
+      }
+      // preparing tasks
+      if(page === 1) {
+        console.log('update preparing')
+        const response = await api.get('/tasks/preparing/5f6af2b3df273108f45e8998');
+        setTaskListPreparing(response.data);
+      }
+      // delivery tasks
+      if(page === 2) {
+        console.log('update delivery')
+        const response = await api.get('/tasks/delivery/5f6af2b3df273108f45e8998')
+        setTaskListDelivery(response.data)
+      }      
     }
     LoadRequests()
-  },[])
-
-  useEffect(() => {
-    async function LoadRequests(){
-      const response = await api.get('/tasks/new/5f6af2b3df273108f45e8998')
-
-      setTaskListNew(response.data)
-    }
-    LoadRequests()
-  },[])
-
-  useEffect(() => {
-    async function LoadRequests(){
-      const response = await api.get('/tasks/delivery/5f6af2b3df273108f45e8998')
-
-      setTaskListDelivery(response.data)
-    }
-    LoadRequests()
-  },[])
+  }, [page])
 
   useEffect(() => {
     async function LoadRequests(){
@@ -105,7 +106,6 @@ export default function Requests() {
         <TaskInfo>
           {taskInfos}
         </TaskInfo>
-
       </div>
     </div>
   )

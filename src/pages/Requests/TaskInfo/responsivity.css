@@ -11,16 +11,8 @@
     justify-content: center;
   }
 
-  /* resize footer and header */
   .requests .taskInfo header {
     margin-bottom: 20px;
-  }
-
-  .requests .taskInfo footer {
-    margin: 22px 0;
-  }
-  .requests .taskInfo footer .finalPrice {
-    font-size: 2.6rem;
   }
 }
 

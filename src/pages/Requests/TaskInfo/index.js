@@ -3,30 +3,15 @@ import moment from 'moment'
 import NumberFormat from 'react-number-format';
 import 'moment/locale/pt-br'
 
-import ButtonSubmit from '../../../Components/ButtonSubmit/index';
+import Footer from './Footer';
 import Item from './Item';
 import './styles.css';
 import './responsivity.css';
 
-export default function TaskInfo({ children = {} }) {  
-//onTheWay/order/:id
-//"despachar pedido" ou "pedir pra retirar" no texto do button
-
-  function AcceptOrder() {
-    console.log('acceptOrder');
-    // /approve/order/:id
-  }
-
-  function RejectOrder() {
-    console.log('rejectOrder');
-    // /reject/order/:id
-  }
-
-// children.expiresIn
-
+export default function TaskInfo({ children, taskInfos = children }) {
   return ( 
     <div className='taskInfo'>
-    {children.products ?
+    {taskInfos.products ?
       <>
       <main>
         <section className='generalInfo' >
@@ -36,20 +21,20 @@ export default function TaskInfo({ children = {} }) {
             <div className='sideLine' />
             <section className='preparingTime'>
               <span className='label'>Tempo de preparo</span>
-              <p className='result'>{moment(children.createdAt).startOf('hour').fromNow()}</p>
+              <p className='result'>{moment(taskInfos.createdAt).startOf('hour').fromNow()}</p>
             </section>
 
             <div className='sideLine' />
             <section className='address'>
-              {children.address ?
+              {taskInfos.address ?
                 <>
                   <span className='label'>Endereço</span>
                   <p className='result'>
-                    {`${children.address.street},
-                      ${children.address.Number},
-                      ${children.address.neighborhood},
-                      ${children.address.complement},
-                      ${children.address.reference}`}
+                    {`${taskInfos.address.street},
+                      ${taskInfos.address.Number},
+                      ${taskInfos.address.neighborhood},
+                      ${taskInfos.address.complement},
+                      ${taskInfos.address.reference}`}
                   </p>
                 </>
                 : <>
@@ -63,10 +48,10 @@ export default function TaskInfo({ children = {} }) {
             <div className='sideLine' />
             <section className='contact'>
               <div>
-                <span className='label'>{children.user.name}</span>
+                <span className='label'>{taskInfos.user.name}</span>
                 <p>
 
-                <NumberFormat className='result' value={children.user.telephone} displayType={'text'} format="(##) ##### - #### " />
+                <NumberFormat className='result' value={taskInfos.user.telephone} displayType={'text'} format="(##) ##### - #### " />
                 </p>
               </div>
             </section>
@@ -76,7 +61,7 @@ export default function TaskInfo({ children = {} }) {
         </section>
         <section className='itensList' >
           {
-            children.products.map(product => (
+            taskInfos.products.map(product => (
               <Item
                 key={Math.random()}
                 title={product.title}
@@ -91,29 +76,11 @@ export default function TaskInfo({ children = {} }) {
         </section>
       </main>
 
-      <footer>
-        <h2 className='finalPrice'>{children.realPrice.toLocaleString('pt-br',{style:'currency', currency:'brl'})}</h2>
-
-        {children.approved === 'Aceito' ?
-          <div className='orderActions'>
-            <ButtonSubmit onClick={() => console.log({children})}>
-              Aceitar pedido
-            </ButtonSubmit>
-          
-            <ButtonSubmit onClick={() => console.log({children})}>
-              Rejeitar pedido
-            </ButtonSubmit>
-          </div>
-          :
-          <div className='paymentMethod' >
-            <span>Formas de pagamentos </span>
-
-            <div className='method'>
-              <p>Pago no cartão de credito</p>
-            </div>
-          </div>
-        }
-      </footer>
+      <Footer
+        realPrice={taskInfos.realPrice}
+        approved={taskInfos.approved}
+        taskId={taskInfos._id}
+      />  
       </>
       : <> </>
     }
