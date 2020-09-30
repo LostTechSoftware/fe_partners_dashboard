@@ -50,8 +50,13 @@ export default function TaskInfo({ children, taskInfos = children }) {
               <div>
                 <span className='label'>{taskInfos.user.name}</span>
                 <p>
-
-                <NumberFormat className='result' value={taskInfos.user.telephone} displayType={'text'} format="(##) ##### - #### " />
+                
+                <NumberFormat
+                  className='result'
+                  value={taskInfos.user.telephone}
+                  displayType={'text'}
+                  format="(##) ##### - ####"
+                />
                 </p>
               </div>
             </section>
