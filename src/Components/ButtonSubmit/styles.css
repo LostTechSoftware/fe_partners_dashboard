@@ -1,8 +1,12 @@
+.page .submitButton {
+  width: 100%;
+  width: 320px !important;
+}
+
 .page .submitButton .MuiButton-root {
   background-color: #FE9329;
   height: 80px;
   width: 100%;
-  max-width: 320px;
   border-radius: 18px;
 }
 
