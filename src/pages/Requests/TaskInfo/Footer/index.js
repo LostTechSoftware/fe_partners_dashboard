@@ -38,7 +38,7 @@ export default function Footer({ realPrice, approved, taskId}) {
             Rejeitar pedido
           </MainButton>
         </div>
-        : approved === 'Aceito' ?
+        :
         <div className='paymentMethod' >
           <main>
             <span>Formas de pagamentos </span>
@@ -47,13 +47,13 @@ export default function Footer({ realPrice, approved, taskId}) {
               <p>Pago no cartão de credito</p>
             </div>
           </main>
-
-          <MainButton onClick={console.log('entregar pedido')}>
-            Entregar pedido
-          </MainButton>
-        </div>
-        : <p> não aceito</p>
-      }
+          {approved === 'Aceito' ? 
+            <MainButton onClick={console.log('entregar pedido')}>
+              Entregar pedido
+            </MainButton> : <> </>
+          }
+        </div> 
+      } : <> </>
     </footer>
   );
 }
