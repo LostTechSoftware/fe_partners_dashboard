@@ -94,3 +94,12 @@
     height: calc( 100% - 210px);
   }
 }
+
+@media screen and (max-height: 624px) {
+  .foodMenu .pageContent {
+    overflow: auto;
+  }
+  .foodMenu .pageContent .itensList {
+    overflow: visible;
+  }
+} 
