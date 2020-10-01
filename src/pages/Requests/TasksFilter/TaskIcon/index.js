@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import './styles.css'
+import { Button } from '@material-ui/core';
 
-export default function TaskIcon({ checkedStatus = null, taskId, price, name, createdAt }) {
+import './styles.css';
+
+export default function TaskIcon({
+  checkedStatus = null,
+  taskId,
+  price,
+  name,
+  createdAt
+}) {
   const [ checkedState, setCheckedState ] = useState('')
   
   useEffect(() => {

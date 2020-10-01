@@ -24,7 +24,8 @@ export default function TasksFilter({ children = [], openedTaskId, setOpenedTask
           <FormControlLabel
             key={request._id}
             value={request._id} 
-            control={<Radio 
+            control={<Radio
+              centerRipple={false}
               icon={<TaskIcon
                 key={request._id}
                 name={request.user.name}
