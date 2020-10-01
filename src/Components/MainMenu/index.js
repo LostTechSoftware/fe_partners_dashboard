@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Button,
+  Popover
+} from '@material-ui/core';
+import {
   RoomServiceRounded,
-  DonutSmallRounded,
   MonetizationOnRounded,
 } from '@material-ui/icons';
 
@@ -10,7 +13,10 @@ import ClipboardIcon from '../../assets/clipboardIcon';
 import './styles.css';
 
 export default function MainMenu({ currentPage }) {
-  
+  const [ modalOpen, setModalOpen ] = useState(null);
+
+  const open = Boolean(modalOpen);
+
   function isTheCurrentPage(page){
     if(page === currentPage)
       return 'onPage';
@@ -46,7 +52,25 @@ export default function MainMenu({ currentPage }) {
       </nav>
 
       {/* dinamyc bottom margin div */}
-      <div />
+
+      <Button onClick={event => setModalOpen(event.currentTarget)}>
+        aa
+      </Button>
+      <Popover
+        open={open}
+        anchorEl={modalOpen}
+        onClose={event => setModalOpen(null)}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        The content of the Popover.
+      </Popover>
     </div>
   );
 }
