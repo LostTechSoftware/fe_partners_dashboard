@@ -14,7 +14,7 @@
   justify-content: space-between;
   width: 100%;
   height: calc( 100% - 116px );
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 /* Total balance */
@@ -23,7 +23,7 @@
   height: fit-content;
   background-color: #FFFFFF;
   padding: 40px;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 
   border-radius: 18px;
   box-shadow: 9px 9px 41px 0px rgba(122,122,122,0.31);
@@ -42,6 +42,7 @@
 .money .pageContent .balance .historic {
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 
 .money .pageContent .balance .historic .date {
@@ -52,6 +53,11 @@
   background-color: #dddddd;
   width: auto;
   height: 1px;
+
+  margin-bottom: 20px;
+  margin-left: 15%;
+}
+.money .pageContent .balance .historic .underLine:first-of-type {
   margin: 20px 0 40px;
 }
 
@@ -59,7 +65,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .money .pageContent .balance .historic 
@@ -72,9 +77,28 @@
 }
 /* *** */
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 1440px) {
+  .money .pageContent .balance .totalBalance {
+    margin-bottom: 30px;
+    padding: 30px;
+  }
+  .money .pageContent .balance .historic .underLine {
+    margin-bottom: 12px;
+  }
+  .money .pageContent .balance .historic .underLine:first-of-type {
+    margin: 10px 0 25px;
+  }
   .money .pageContent {
     padding: calc(var(--deafult-top-padding)/2);
+  }
+}
+
+@media screen and (max-width: 1370px) {
+  .money .pageContent .balance .historic .transaction p {
+    font-size: 1.8rem;
+  }
+  .money .pageContent .balance .historic .transaction span {
+    font-size: 1.4rem;
   }
 }
 

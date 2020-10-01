@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import MainMenu from '../../Components/MainMenu';
 import './styles.css'
 
 export default function Money() {
+  const [ transactions, setTransactions ] = useState([]);
+
+  useEffect(() => {
+    setTransactions([0, 1, 2, 3]);
+  }, []);
   return (
     <div className='page money'>
       <MainMenu currentPage='money' />
@@ -23,32 +28,20 @@ export default function Money() {
             <span className='date'>Today | 22/JAN/2020</span>
             <div className='underLine' />
             
-            <div className='transaction'>
-              <div className='info'>
-                <p>Transfer to Zomato</p>
-                <p>Online food order</p>
+            {transactions.map(transaction => (
+              <>
+              <div className='transaction' key={transaction} >
+                <div className='info'>
+                  <p>Transfer to Zomato</p>
+                  <span>Online food order</span>
+                </div>
+
+                <p className='price'>R$100,50</p>
               </div>
-
-              <p className='price'>R$100,50</p>
-            </div>
-
-            <div className='transaction'>
-              <div className='info'>
-                <p>Transfer to Zomato</p>
-                <p>Online food order</p>
-              </div>
-
-              <p className='price'>R$100,50</p>
-            </div>
-
-            <div className='transaction'>
-              <div className='info'>
-                <p>Transfer to Zomato</p>
-                <p>Online food order</p>
-              </div>
-
-              <p className='price'>R$100,50</p>
-            </div>
+              <div className='underLine' />
+              </>
+            ))}
+            
           </section>
         </section>
       </div>
