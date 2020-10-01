@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import MainMenu from '../../Components/MainMenu';
-import './styles.css'
+import './styles.css';
+import './responsivity.css';
 
 export default function Money() {
   const [ transactions, setTransactions ] = useState([]);
