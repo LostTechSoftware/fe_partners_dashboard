@@ -17,8 +17,8 @@ html {
 }
 
 /* text */
-body, .price, #root .MuiTable-root h2,
-#root .MuiTabs-flexContainer span, #root .MuiButton-root {
+body, .price, #root .MuiTable-root h2, #root .MuiButton-root,
+#root .MuiTabs-flexContainer span, .closeRestaurant .MuiButton-label {
   font-family: -apple-system, 'Lobster', 'pacifico', 'Open Sans Condensed',
     'Roboto', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;

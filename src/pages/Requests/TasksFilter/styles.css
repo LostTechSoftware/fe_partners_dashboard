@@ -1,5 +1,5 @@
 .requests .TasksFilter {
-  height: calc( 100vh - 200px);
+  height: calc( 100vh - 224px);
   margin-top: 24px;
   overflow: auto;
 }
@@ -17,4 +17,3 @@
 .requests .TasksFilter .MuiFormControlLabel-root {
   margin: 0;
 }
-

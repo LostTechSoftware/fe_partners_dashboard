@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
-  Popover
+  Popover,
 } from '@material-ui/core';
 import {
   RoomServiceRounded,
   MonetizationOnRounded,
+  ScheduleRounded,
 } from '@material-ui/icons';
 
 import ClipboardIcon from '../../assets/clipboardIcon';
+import CloseRestaurant from './CloseRestaurant';
 import './styles.css';
 
 export default function MainMenu({ currentPage }) {
@@ -51,11 +53,14 @@ export default function MainMenu({ currentPage }) {
         </Link>
       </nav>
 
-      {/* dinamyc bottom margin div */}
-
-      <Button onClick={event => setModalOpen(event.currentTarget)}>
-        aa
+      <Button
+        className='modalButton'
+        fullWidth
+        onClick={event => setModalOpen(event.currentTarget)}
+      >
+        <ScheduleRounded />
       </Button>
+      
       <Popover
         open={open}
         anchorEl={modalOpen}
@@ -69,7 +74,7 @@ export default function MainMenu({ currentPage }) {
           horizontal: 'left',
         }}
       >
-        The content of the Popover.
+        <CloseRestaurant />
       </Popover>
     </div>
   );

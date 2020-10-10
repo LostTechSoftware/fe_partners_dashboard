@@ -1,0 +1,82 @@
+.closeRestaurant {
+  display: flex;
+  padding: 20px;
+}
+
+.closeRestaurant .line {
+  height: auto;
+  width: 2px;
+  margin: 0 20px;
+  background-color: #dddddd;
+}
+
+.closeRestaurant .MuiButton-root {
+  background-color: #ffe115;
+  height: 90px;
+  border-radius: 18px;
+}
+
+.closeRestaurant .MuiButton-label {
+  color: #FFFFFF;
+  font-size: 2.4rem;
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  margin: 0 12px;
+}
+
+.closeRestaurant .info {
+  display: flex;
+  align-items: center;
+}
+
+.closeRestaurant .info svg {
+  fill: #00ff00;
+  height: 70px;
+  width: auto;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 1440px) {
+  .closeRestaurant .MuiButton-root {
+    height: 70px;
+  }
+  .closeRestaurant .line {
+    width: 1px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .closeRestaurant .MuiButton-root {
+    height: 60px;
+  }
+  .closeRestaurant .info svg {
+    height: 60px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .closeRestaurant .MuiButton-root {
+    height: 50px;
+  }
+  .closeRestaurant .info svg {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .closeRestaurant {
+    flex-direction: column;
+  }
+  .closeRestaurant .line {
+    height: 1px;
+    width: auto;
+    margin: 15px 0;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .closeRestaurant .info svg {
+    display: none;
+  }
+}
