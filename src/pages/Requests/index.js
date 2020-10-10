@@ -29,22 +29,26 @@ export default function Requests() {
     async function LoadRequests(){
       console.log('open function')
       // new taks
+      
       if(page === 0) {
         console.log('update new')
-        const response = await api.get('/tasks/new/5f6af2b3df273108f45e8998')
-        setTaskListNew(response.data)
+        const response = await api.get('/tasks/new/5f76c3bce654f8262cc8679e');
+        console.log(response.data)
+        setTaskListNew(response.data);
       }
       // preparing tasks
       if(page === 1) {
         console.log('update preparing')
-        const response = await api.get('/tasks/preparing/5f6af2b3df273108f45e8998');
+        const response = await api.get('/tasks/preparing/5f76c3bce654f8262cc8679e');
+        console.log(response.data)
         setTaskListPreparing(response.data);
       }
       // delivery tasks
       if(page === 2) {
         console.log('update delivery')
-        const response = await api.get('/tasks/delivery/5f6af2b3df273108f45e8998')
-        setTaskListDelivery(response.data)
+        const response = await api.get('/tasks/delivery/5f76c3bce654f8262cc8679e');
+        console.log(response.data)
+        setTaskListDelivery(response.data);
       }      
     }
     LoadRequests()

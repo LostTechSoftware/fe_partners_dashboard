@@ -15,10 +15,12 @@ export default function FoodMenu() {
 
   useEffect(() => {
     async function getItens() {
-      const response = await api.get('/menu/5f6af2b3df273108f45e8998')
+      console.log('start response')
+      const response = await api.get('/menu/5f76c3bce654f8262cc8679e')
 
-      // console.log(response.data)
+      console.log(response.data)
       setItensList(response.data.products)
+      console.log('debug over')
     }
 
     getItens();
