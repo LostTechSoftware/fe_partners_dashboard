@@ -66,7 +66,7 @@ export default function MainMenu({ currentPage }) {
         anchorEl={modalOpen}
         onClose={event => setModalOpen(null)}
         anchorOrigin={{
-          vertical: 'bottom',
+          vertical: 'top',
           horizontal: 'left',
         }}
         transformOrigin={{
