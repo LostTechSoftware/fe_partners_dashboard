@@ -47,7 +47,6 @@ export default function Item({
         </div>
         
         {additionals.map( additional => (
-          <>
           <div className='additional' key={additional.id}>
             <AddRounded />
             <p> {additional.title} </p>
@@ -58,7 +57,6 @@ export default function Item({
               )}
             </p>
           </div>
-          </>
         ))}
       </section>
 
