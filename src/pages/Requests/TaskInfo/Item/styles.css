@@ -1,112 +1,92 @@
-.requests .itensList .item {
+.requests .itensList .itemBox {
   --thumb-width: 94px;
   --thumb-height: 75px;
   display: flex;
   flex-direction: column;
-  width: 100%;
   margin: 6px 0;
 }
 
-.requests .itensList .item .content {
+.requests .itensList .itemBox .item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
+  margin-bottom: 8px;
 }
 
-.requests .itensList .item p {
+.requests .itensList .itemBox p {
   display: flex;
   align-items: center;
   padding: 0 18px;
 }
-.requests .itensList .item .price {
+.requests .itensList .itemBox .price {
   padding: 0;
 }
 
-/* item title */
-.requests .itensList .item .content .itemTitle {
+/* itemBox Infos */
+.requests .itensList .itemBox .item .title {
   display: flex;
   align-items: center;
 }
 
-.requests .itensList .item .content .thumb {
+.requests .itensList .itemBox .item .thumb {
   height: var(--thumb-height);
   width: var(--thumb-width);
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 4px 4px 10px -2px rgba(122,122,122,0.61);
 }
-/* *** */
 
-/* item Infos */
-.requests .itensList .item .itemInfo {
+.requests .itensList .itemBox .itemInfo {
   display: flex;
-  width: 50%;
+  width: 100%;
   justify-content: space-between;
 }
-
-.requests .itensList .item .moreInfo {
+.requests .itensList .itemBox .moreInfo {
   display: flex;
   justify-content: space-between;
-  width: 85%;
-}
-
-.requests .itensList .item .moreInfo .observations {
-  color: #9e9e9e;
+  width: 160px;
 }
 /* *** */
 
-.requests .itensList .item .underlineBox {
-  padding-left: calc( var(--thumb-width) + 12px );
-  padding-top: 12px;
-}
+/* observations */
+  .requests .itensList .itemBox .observations {
+    margin-left: 18px;
+  }
+  .requests .itensList .itemBox .observations p {
+    color: #9e9e9e;
+    font-size: 2rem;
+    padding: 0 18px 0 4px;
+  }
+  .requests .itensList .itemBox .observations svg {
+    width: 16px;
+    height: auto;
+    fill: #9e9e9e;
+  }
 
-.requests .itensList .item .underline {
+  .requests .itensList .itemBox .description {
+    display: flex;
+    align-items: center;
+  }
+  .requests .itensList .itemBox .additional {
+    display: flex;
+  }
+/* *** */
+
+.requests .itensList .itemBox .underline {
   height: 1px;
+  width: 100%;
+  margin-top: 12px;
   background-color: #dddddd;
 }
 
-@media screen and (max-width: 740px) {
-  .requests .itensList .item .content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .requests .itensList .item .itemInfo {
-    flex-direction: column;
-    margin-left: var(--thumb-width);
-    width: calc( 100% - var(--thumb-width) );
-  }
-  .requests .itensList .item .moreInfo {
-    flex-direction: column-reverse;
-    justify-content: flex-end;
-    width: 100%;
+@media screen and (min-width: 2000px) {
+  .requests .itensList .itemBox .moreInfo {
+    width: 230px;
   }
 }
 
-@media screen and (max-width: 505px) {
-  .requests .itensList .item .itemInfo {
-    width: 100%;
-    margin-left: 0;
-    align-items: center;
-  }
-  .requests .itensList .item .moreInfo {
-    align-items: center;
-  }
-  .requests .itensList .item .underlineBox {
-    padding-left: 12px;
-  }
-}
-
-@media screen and (max-width: 415px) {
-  .requests .itensList .item span {
-    text-align: center;
-  }
-  .requests .itensList .item .thumb {
-    margin: 10px 0;
-  }
-  .requests .itensList .item .itemTitle {
-    flex-direction: column-reverse;
-    align-items: center;
-    width: 100%;
+@media screen and (max-width: 540px) {
+  .requests .itensList .itemBox .itemInfo {
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 }

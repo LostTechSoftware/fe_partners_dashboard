@@ -1,41 +1,68 @@
 import React from 'react';
+import { 
+  FiberManualRecordRounded,
+  AddRounded,
+} from '@material-ui/icons';
+
 import './styles.css';
 
-export default function Item({title, price, description, quantity, avatar}) {
+export default function Item({
+  title,
+  price,
+  quantity,
+  description,
+  additionals,
+  avatar,
+}) {
   return (
-    <div className='item'>
-      <div className='content' >
+    <div className='itemBox'>
+      <div className='item' >
+        {avatar ?
+          <img
+            className='thumb'
+            src={avatar}
+            alt='fruity pancakes'
+          /> : null
+        }
 
-        <section className='itemTitle' >
-          {avatar ?
-            <img
-              className='thumb'
-              src={avatar}
-              alt='fruity pancakes'
-            />
-          : null
-          }
-          <p>{title}</p>
-        </section>
-
-        {/* responsivity build with full 'space-between' justify */}
         <section className='itemInfo' >
-          <p>{quantity}x</p>
-          <section className='moreInfo' >
-            <p className='observations'>{description}</p>
+          <p className='title' >{title}</p>
+
+          <div className='moreInfo'>
+            <p>{quantity}x</p>
             <p className='price'>
               {(price * quantity).toLocaleString(
                 'pt-br',
                 {style:'currency', currency:'brl'}
               )}
             </p>
-          </section>
+          </div>
         </section>
       </div>
 
-      <div className='underlineBox'>
-        <div className='underline' />
-      </div>
+      <section className='observations'>
+        <div className='description'>
+          <FiberManualRecordRounded />
+          <p> {description} descrição aq </p>
+        </div>
+        
+        {additionals.map( additional => (
+          <>
+          <div className='additional' key={additional.id}>
+            <AddRounded />
+            <p> {additional.title} </p>
+            <p className='price'>
+              {additional.price.toLocaleString(
+                'pt-br',
+                {style: 'currency', currency: 'brl'}
+              )}
+            </p>
+          </div>
+          </>
+        ))}
+      </section>
+
+      <div className='underline' />
     </div>
   )
 }

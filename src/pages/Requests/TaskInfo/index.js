@@ -68,11 +68,12 @@ export default function TaskInfo({ children, taskInfos = children }) {
           {
             taskInfos.products.map(product => (
               <Item
-                key={Math.random()}
+                key={product._id}
                 title={product.title}
                 price={product.price}
-                description={product.description}
                 quantity={product.quantidade}
+                description={product.description}
+                additionals={product.additional}
                 avatar={product.avatar}
               />
             ))
