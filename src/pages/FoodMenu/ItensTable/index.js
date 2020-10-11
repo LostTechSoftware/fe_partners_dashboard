@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import {
   Table,
   TableContainer,
@@ -12,43 +12,32 @@ import {
 import SellingStateControllerButton from './SellingStateControllerButton';
 import './styles.css';
 
-function createData(name, price, sellingState) {
-  return { name, price, sellingState };
-}
-
-const rows = [
-  createData('Mini bacon', 8, true),
-  createData('Mini burg', 6, true),
-  createData('Mini calabresa', 8, false),
-  createData('Mini frango', 8, false),
-  createData('Mini salada', 6, true),
-];
-
-export default function ItensTable() {
+export default function ItensTable({ title, rowsProps }) {
   const deviceWidth = window.innerWidth;
 
   return (
     <TableContainer className='itensTable' component={Paper}>
       <Table aria-label='simple table'>
         <TableHead>
-          <h2>Mini Snacks</h2>
+          <h2> {title} </h2>
         </TableHead>
+
         <TableBody>
-          {rows.map((row) => (
-            <>
-            <TableRow key={row.name}>
+          {rowsProps.map(row => (
+            <React.Fragment key={Math.random()} >
+            <TableRow key={row}>
               <TableCell component='th' scope='row'>
-                <p> {row.name} </p>
+                <p> {row.title ? row.title : row} </p>
               </TableCell>
               
               <TableCell align='right'>
-                <p className='price'> € {row.price},00 </p>
+                <p className='price'> € {row.price ? row.price : 10},00 </p>
               </TableCell>
               
               { deviceWidth > 600 ?
                 <TableCell align='right' className=''>
                   <SellingStateControllerButton
-                    sellingState={row.sellingState}
+                    sellingState={true}
                   /> 
                 </TableCell>
                 : <> </>
@@ -57,12 +46,12 @@ export default function ItensTable() {
             { deviceWidth <= 600 ?
               <TableRow className='sellingStateRow'>
                 <SellingStateControllerButton
-                  sellingState={row.sellingState}
+                  sellingState={true}
                 />
               </TableRow>
               : <> </>
             }
-            </>
+            </ React.Fragment>
           ))}
         </TableBody>
       </Table>

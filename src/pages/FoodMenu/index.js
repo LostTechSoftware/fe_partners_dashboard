@@ -3,7 +3,6 @@ import {
   SearchRounded,
 } from '@material-ui/icons';
 
-
 import api from '../../services/api'
 import MainMenu from '../../Components/MainMenu';
 import ItensTable from './ItensTable';
@@ -15,12 +14,8 @@ export default function FoodMenu() {
 
   useEffect(() => {
     async function getItens() {
-      console.log('start response')
       const response = await api.get('/menu/5f76c3bce654f8262cc8679e')
-
-      console.log(response.data)
-      setItensList(response.data.products)
-      console.log('debug over')
+      setItensList(response.data)
     }
 
     getItens();
@@ -65,9 +60,21 @@ export default function FoodMenu() {
         </section>
 
         <section className='itensList'>
-          {itensList.map(() => (
-            <ItensTable />
-          ))}
+          {itensList.rows ? itensList.rows.map( row => (
+            <ItensTable
+              key={row._id}
+              title={row.title}
+              rowsProps={row.products}
+            />
+          )) : null }
+
+          {itensList.additional ?
+            <ItensTable
+              key={itensList.additional._id}
+              title='Adicionais'
+              rowsProps={itensList.additional}
+            /> : null
+          }
         </section>
       </div>
     </div>
