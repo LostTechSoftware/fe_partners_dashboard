@@ -19,8 +19,8 @@ html {
 /* text */
 body, .price, #root .MuiTable-root h2, #root .MuiButton-root,
 #root .MuiTabs-flexContainer span, .closeRestaurant .MuiButton-label {
-  font-family: -apple-system, 'Lobster', 'pacifico', 'Open Sans Condensed',
-    'Roboto', 'Ubuntu', sans-serif;
+  font-family: -apple-system, 'Lobster', 'pacifico', 
+  'Open Sans Condensed', 'Roboto', 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,7 +32,7 @@ h2 {
   font-size: 2.9rem;
   color: #1F1F21;
 }
-p {
+p, input {
   font-family: -apple-system, 'Roboto', 'Ubuntu', sans-serif;
   font-size: 2.3rem;
   color: #1F1F21;

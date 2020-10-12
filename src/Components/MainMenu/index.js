@@ -35,7 +35,7 @@ export default function MainMenu({ currentPage }) {
       />
 
       <nav>
-        <Link className={ isTheCurrentPage('requests') } to='/'>
+        <Link className={ isTheCurrentPage('requests') } to='/requests'>
           <ClipboardIcon />
         </Link>
 

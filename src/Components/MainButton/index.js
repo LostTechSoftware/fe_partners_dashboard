@@ -3,10 +3,10 @@ import { Button } from '@material-ui/core';
 
 import './styles.css'
 
-export default function MainButton({ children, onClick }) {
+export default function MainButton({ children, onClick, type }) {
   return (
     <div className='mainButton'>
-      <Button onClick={onClick}>
+      <Button onClick={onClick} type={type} >
         {children}
       </Button>
     </div>

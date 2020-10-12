@@ -1,6 +1,6 @@
 .page .mainButton {
   width: 100%;
-  width: 320px;
+  max-width: 320px;
 }
 
 .page .mainButton .MuiButton-root {
@@ -18,8 +18,17 @@
   letter-spacing: 0.2rem;
 }
 
+@media screen and (min-width: 2000px) {
+  .page .mainButton {
+    max-width: 500px;
+  }
+  .page .mainButton .MuiButton-root {
+    height: 100px;
+  }
+}
+
 @media screen and (max-width: 1533px) {
   .page .mainButton .MuiButton-root {
-    height: 50px;
+    max-height: 50px;
   }
 }
