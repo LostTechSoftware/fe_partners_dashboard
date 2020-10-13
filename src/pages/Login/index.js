@@ -1,18 +1,29 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import api from '../../services/api';
 import MainButton from '../../Components/MainButton';
 
 import './styles.css';
 
 export default function Login() {
+  const history = useHistory();
+
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
-  function tryLogin(event) {
+  async function tryLogin(event) {
     event.preventDefault();
+    
     try {
       alert('I try')
+      const response = await api.post();
+
+      localStorage.setItem();
+      
+      history.push('/requests');
     } catch (error) {
-      return error;
+      alert("Falha no login, tente novamente");
     }
   }
 
