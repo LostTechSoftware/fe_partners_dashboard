@@ -1,22 +1,22 @@
-.closeRestaurant {
+.restaurantOpening {
   display: flex;
   padding: 20px;
 }
 
-.closeRestaurant .line {
+.restaurantOpening .line {
   height: auto;
   width: 2px;
   margin: 0 20px;
   background-color: #dddddd;
 }
 
-.closeRestaurant .MuiButton-root {
+.restaurantOpening .MuiButton-root {
   background-color: #ffe115;
   height: 90px;
   border-radius: 18px;
 }
 
-.closeRestaurant .MuiButton-label {
+.restaurantOpening .MuiButton-label {
   color: #FFFFFF;
   font-size: 2.4rem;
   text-transform: capitalize;
@@ -25,12 +25,12 @@
   margin: 0 12px;
 }
 
-.closeRestaurant .info {
+.restaurantOpening .info {
   display: flex;
   align-items: center;
 }
 
-.closeRestaurant .info svg {
+.restaurantOpening .info svg {
   fill: #00ff00;
   height: 70px;
   width: auto;
@@ -38,37 +38,37 @@
 }
 
 @media screen and (max-width: 1440px) {
-  .closeRestaurant .MuiButton-root {
+  .restaurantOpening .MuiButton-root {
     height: 70px;
   }
-  .closeRestaurant .line {
+  .restaurantOpening .line {
     width: 1px;
   }
 }
 
 @media screen and (max-width: 1000px) {
-  .closeRestaurant .MuiButton-root {
+  .restaurantOpening .MuiButton-root {
     height: 60px;
   }
-  .closeRestaurant .info svg {
+  .restaurantOpening .info svg {
     height: 60px;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .closeRestaurant .MuiButton-root {
+  .restaurantOpening .MuiButton-root {
     height: 50px;
   }
-  .closeRestaurant .info svg {
+  .restaurantOpening .info svg {
     height: 50px;
   }
 }
 
 @media screen and (max-width: 599px) {
-  .closeRestaurant {
+  .restaurantOpening {
     flex-direction: column;
   }
-  .closeRestaurant .line {
+  .restaurantOpening .line {
     height: 1px;
     width: auto;
     margin: 15px 0;
@@ -76,7 +76,7 @@
 }
 
 @media screen and (max-width: 370px) {
-  .closeRestaurant .info svg {
+  .restaurantOpening .info svg {
     display: none;
   }
 }

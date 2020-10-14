@@ -9,34 +9,28 @@ import ItensTable from './ItensTable';
 import './styles.css';
 
 export default function FoodMenu() {
-  const [ expectedItemName, setExpectedItemName ] = useState('');
+  const [ expectedItensName, setExpectedItensName ] = useState('');
   const [ itensList, setItensList ] = useState([]);
 
   useEffect(() => {
     async function getItens() {
-      const response = await api.get('/menu/5f76c3bce654f8262cc8679e')
-      setItensList(response.data)
+      try {
+        if( !expectedItensName ) {
+          // [] pegar id do sessionStorage
+          const response = await api.get('/menu/5f76c3bce654f8262cc8679e')
+          setItensList(response.data);
+        } else {
+          const response = await api.get(`/search/${ expectedItensName }`);
+          console.log(response.data);
+          setItensList(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     getItens();
-  }, [expectedItemName]);
-  
-  // "products": [
-  //   {
-  //     "paused": false,
-  //     "favorite": [],
-  //     "promotion": false,
-  //     "_id": "5f6af4153cbc2b274499f977",
-  //     "classd": "Pastél",
-  //     "title": "Abobrinha",
-  //     "description": "",
-  //     "price": 6,
-  //     "city": "Aguaí",
-  //     "restaurant": "5f6af2b3df273108f45e8998",
-  //     "additional": [],
-  //     "__v": 0
-  //   },
-  // ]
+  }, [expectedItensName]);
 
   return (
     <div className='page foodMenu'>
@@ -54,8 +48,8 @@ export default function FoodMenu() {
           <input
             id='expectedItemName'
             placeholder='Buscar item do cardápio'
-            value={expectedItemName}
-            onChange={event => setExpectedItemName(event.target.value)}
+            value={expectedItensName}
+            onChange={event => setExpectedItensName(event.target.value)}
           />
         </section>
 
@@ -63,18 +57,10 @@ export default function FoodMenu() {
           {itensList.rows ? itensList.rows.map( row => (
             <ItensTable
               key={row._id}
+              id={row._id}
               title={row.title}
-              rowsProps={row.products}
             />
           )) : null }
-
-          {itensList.additional ?
-            <ItensTable
-              key={itensList.additional._id}
-              title='Adicionais'
-              rowsProps={itensList.additional}
-            /> : null
-          }
         </section>
       </div>
     </div>

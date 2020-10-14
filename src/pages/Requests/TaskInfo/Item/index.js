@@ -43,7 +43,7 @@ export default function Item({
       <section className='observations'>
         <div className='description'>
           <FiberManualRecordRounded />
-          <p> {description} descrição aq </p>
+          <p> {description} </p>
         </div>
         
         {additionals.map( additional => (

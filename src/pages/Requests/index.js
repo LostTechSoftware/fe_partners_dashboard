@@ -32,21 +32,21 @@ export default function Requests() {
       
       if(page === 0) {
         console.log('update new')
-        const response = await api.get('/tasks/new/5f76c3bce654f8262cc8679e');
+        const response = await api.get('/tasks/new');
         console.log(response.data)
         setTaskListNew(response.data);
       }
       // preparing tasks
       if(page === 1) {
         console.log('update preparing')
-        const response = await api.get('/tasks/preparing/5f76c3bce654f8262cc8679e');
+        const response = await api.get('/tasks/preparing');
         console.log(response.data)
         setTaskListPreparing(response.data);
       }
       // delivery tasks
       if(page === 2) {
         console.log('update delivery')
-        const response = await api.get('/tasks/delivery/5f76c3bce654f8262cc8679e');
+        const response = await api.get('/tasks/delivery');
         console.log(response.data)
         setTaskListDelivery(response.data);
       }      

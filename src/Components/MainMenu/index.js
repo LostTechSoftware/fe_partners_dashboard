@@ -11,7 +11,7 @@ import {
 } from '@material-ui/icons';
 
 import ClipboardIcon from '../../assets/clipboardIcon';
-import CloseRestaurant from './CloseRestaurant';
+import RestaurantOpening from './RestaurantOpening';
 import './styles.css';
 
 export default function MainMenu({ currentPage }) {
@@ -74,7 +74,7 @@ export default function MainMenu({ currentPage }) {
           horizontal: 'left',
         }}
       >
-        <CloseRestaurant />
+        <RestaurantOpening />
       </Popover>
     </div>
   );

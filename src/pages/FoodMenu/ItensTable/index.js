@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableContainer,
@@ -9,11 +9,25 @@ import {
   Paper,
 } from '@material-ui/core';
 
+import api from '../../../services/api';
 import SellingStateControllerButton from './SellingStateControllerButton';
 import './styles.css';
 
-export default function ItensTable({ title, rowsProps }) {
+export default function ItensTable({ title, id }) {
   const deviceWidth = window.innerWidth;
+  const [ products, setProducts ] = useState([])
+
+  useEffect(() => {
+    async function getProducts(){
+      try {
+        const response = await api.get(`/row/${id}`)
+        setProducts(response.data.products);
+      } catch(error) {
+        console.log(error)
+      }
+    }
+    getProducts();
+  }, [id])
 
   return (
     <TableContainer className='itensTable' component={Paper}>
@@ -23,21 +37,27 @@ export default function ItensTable({ title, rowsProps }) {
         </TableHead>
 
         <TableBody>
-          {rowsProps.map(row => (
+          {products.map(product => (
             <React.Fragment key={Math.random()} >
-            <TableRow key={row}>
+            <TableRow key={ product._id} >
               <TableCell component='th' scope='row'>
-                <p> {row.title ? row.title : row} </p>
+                <p> { product.title } </p>
               </TableCell>
               
               <TableCell align='right'>
-                <p className='price'> € {row.price ? row.price : 10},00 </p>
+                <p className='price'>
+                {product.price.toLocaleString(
+                  'pt-br',
+                  {style:'currency', currency:'brl'}
+                )}
+                </p>
               </TableCell>
               
               { deviceWidth > 600 ?
                 <TableCell align='right' className=''>
                   <SellingStateControllerButton
-                    sellingState={true}
+                    sellingState={ product.paused }
+                    productId={ product._id }
                   /> 
                 </TableCell>
                 : <> </>
@@ -46,7 +66,8 @@ export default function ItensTable({ title, rowsProps }) {
             { deviceWidth <= 600 ?
               <TableRow className='sellingStateRow'>
                 <SellingStateControllerButton
-                  sellingState={true}
+                  sellingState={ product.paused }
+                  productId={ product._id }
                 />
               </TableRow>
               : <> </>

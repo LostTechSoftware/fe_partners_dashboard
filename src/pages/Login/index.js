@@ -16,14 +16,18 @@ export default function Login() {
     event.preventDefault();
     
     try {
-      alert('I try')
-      const response = await api.post();
+      const response = await api.post('/restaurant/authenticate', {
+        email,
+        password
+      });
+      
+      const { token } = response.data;
 
-      localStorage.setItem();
+      sessionStorage.setItem('token', token);
       
       history.push('/requests');
     } catch (error) {
-      alert("Falha no login, tente novamente");
+      console.log(error);
     }
   }
 

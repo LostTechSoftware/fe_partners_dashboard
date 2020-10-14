@@ -21,23 +21,23 @@ export default function Money() {
 
         <section className='balance'>
           <section className='totalBalance'>
-            <span>Your Balance</span>
+            <span>Balanço nas últimas 24 horas</span>
             <h2> €40,000.00 </h2>
           </section>
 
           <section className='historic'>
-            <span className='date'>Today | 22/JAN/2020</span>
+            <span className='date'>Pedidos das últimas 24 horas</span>
             <div className='underLine' />
             
             {transactions.map(transaction => (
               <>
               <div className='transaction' key={transaction} >
                 <div className='info'>
-                  <p>Transfer to Zomato</p>
-                  <span>Online food order</span>
+                  <p>Pedido #token</p>
+                  <span>Pago online</span>
                 </div>
 
-                <p className='price'>R$100,50</p>
+                <p className='price'>realprice</p>
               </div>
               <div className='underLine' />
               </>
