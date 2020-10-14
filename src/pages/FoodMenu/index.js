@@ -15,13 +15,12 @@ export default function FoodMenu() {
   useEffect(() => {
     async function getItens() {
       try {
+        const restaurantId = sessionStorage.getItem('_id');
         if( !expectedItensName ) {
-          // [] pegar id do sessionStorage
-          const response = await api.get('/menu/5f76c3bce654f8262cc8679e')
+          const response = await api.get(`/menu/${ restaurantId }`);
           setItensList(response.data);
         } else {
           const response = await api.get(`/search/${ expectedItensName }`);
-          console.log(response.data);
           setItensList(response.data);
         }
       } catch (error) {

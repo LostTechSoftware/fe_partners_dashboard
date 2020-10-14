@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -16,6 +16,7 @@ import './styles.css';
 
 export default function MainMenu({ currentPage }) {
   const [ modalOpen, setModalOpen ] = useState(null);
+  const [ avatar, setAvatar ] = useState('');
 
   const open = Boolean(modalOpen);
 
@@ -26,10 +27,19 @@ export default function MainMenu({ currentPage }) {
       return null;
   }
 
+  useEffect(() => {
+    setAvatar(sessionStorage.getItem('avatar'));
+    console.log(sessionStorage.getItem('avatar'));
+  }, [])
+
   return (
     <div className='mainMenu'>
       <img
-        src='https://foodzilla.com.br/assets/images/favicon.png'
+        src={ avatar === ''?
+          'https://foodzilla.com.br/assets/images/favicon.png'
+          :
+          avatar
+        }
         className='userIcon'
         alt='user icon'
       />

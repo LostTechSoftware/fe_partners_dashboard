@@ -22,9 +22,12 @@ export default function Login() {
       });
       
       const { token } = response.data;
-
-      sessionStorage.setItem('token', token);
+      const { avatar, _id } = response.data.user
       
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('avatar', avatar);
+      sessionStorage.setItem('_id', _id);
+
       history.push('/requests');
     } catch (error) {
       console.log(error);
