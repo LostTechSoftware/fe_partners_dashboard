@@ -11,7 +11,7 @@
 }
 
 .restaurantOpening .MuiButton-root {
-  background-color: #ffe115;
+  background-color: #ffe115 !important;
   height: 90px;
   border-radius: 18px;
 }
