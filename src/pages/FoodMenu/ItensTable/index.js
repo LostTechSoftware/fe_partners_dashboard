@@ -60,7 +60,7 @@ export default function ItensTable({ title, id }) {
                     productId={ product._id }
                   /> 
                 </TableCell>
-                : <> </>
+                : null
               }
             </TableRow>
             { deviceWidth <= 600 ?
@@ -70,7 +70,7 @@ export default function ItensTable({ title, id }) {
                   productId={ product._id }
                 />
               </TableRow>
-              : <> </>
+              : null
             }
             </ React.Fragment>
           ))}

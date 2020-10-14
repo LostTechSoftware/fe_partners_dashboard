@@ -65,10 +65,10 @@ export default function Footer({ realPrice, approved, taskId }) {
           {approved === 'Aceito' ? 
             <MainButton onClick={taskId => deliveryOrder(taskId)}>
               Entregar pedido
-            </MainButton> : <> </>
+            </MainButton> : null
           }
         </div> 
-      } : <> </>
+      } : {null}
     </footer>
   );
 }

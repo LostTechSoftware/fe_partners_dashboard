@@ -65,20 +65,17 @@ export default function TaskInfo({ children, taskInfos = children }) {
           </div>
         </section>
         <section className='itensList' >
-          {
-            taskInfos.products.map(product => (
-              <Item
-                key={product._id}
-                title={product.title}
-                price={product.price}
-                quantity={product.quantidade}
-                description={product.description}
-                additionals={product.additional}
-                avatar={product.avatar}
-              />
-            ))
-          }
-
+          {taskInfos.products.map(product => (
+            <Item
+              key={product._id}
+              title={product.title}
+              price={product.price}
+              quantity={product.quantidade}
+              description={product.description}
+              additionals={product.additional}
+              avatar={product.avatar}
+            />
+          ))}
         </section>
       </main>
 
@@ -88,7 +85,7 @@ export default function TaskInfo({ children, taskInfos = children }) {
         taskId={taskInfos._id}
       />  
       </>
-      : <> </>
+      : null
     }
     </div>
   );
