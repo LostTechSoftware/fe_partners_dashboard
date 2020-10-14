@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
+
 import './styles.css';
 import './responsivity.css';
 
@@ -8,40 +10,56 @@ export default function Money() {
   const [ transactions, setTransactions ] = useState([]);
 
   useEffect(() => {
-    setTransactions([0, 1, 2, 3]);
+    async function getTransactions() {
+      const response = await api.get('/financial');
+      console.log(response.data)
+      setTransactions(response.data);
+    }
+    getTransactions();
   }, []);
+
   return (
     <div className='page money'>
       <MainMenu currentPage='money' />
       <div className='pageContent' >
         <header>
           <h1>Finanças</h1>
-          <p>Hi Aaron, welcome back!</p>
+          <p>Olá, bem vindo de volta!</p>
         </header>
 
         <section className='balance'>
           <section className='totalBalance'>
             <span>Balanço nas últimas 24 horas</span>
-            <h2> €40,000.00 </h2>
+            <h2>
+              {transactions.saleDay ? transactions.saleDay.toLocaleString(
+                'pt-br',
+                {style:'currency', currency:'brl'}
+              ) : null}
+            </h2>
           </section>
 
           <section className='historic'>
-            <span className='date'>Pedidos das últimas 24 horas</span>
+            <span className='date'>Vendas das últimas 24 horas</span>
             <div className='underLine' />
             
-            {transactions.map(transaction => (
+            {transactions.order ? transactions.order.map(order => (
               <>
-              <div className='transaction' key={transaction} >
+              <div className='order' key={Math.random()} >
                 <div className='info'>
-                  <p>Pedido #token</p>
-                  <span>Pago online</span>
+                  <p>Pedido #{order.token}</p>
+                  <span> {order.payment_method} </span>
                 </div>
 
-                <p className='price'>realprice</p>
+                <p className='price'>
+                  {order.realPrice.toLocaleString(
+                    'pt-br',
+                    {style:'currency', currency:'brl'}
+                  )}
+                </p>
               </div>
               <div className='underLine' />
               </>
-            ))}
+            )) : null }
             
           </section>
         </section>
