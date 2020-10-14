@@ -41,10 +41,12 @@ export default function Item({
       </div>
 
       <section className='observations'>
-        <div className='description'>
-          <FiberManualRecordRounded />
-          <p> {description} </p>
-        </div>
+        {description ? 
+          <div className='description'>
+            <FiberManualRecordRounded />
+            <p> {description} </p>
+          </div>
+        : null}
         
         {additionals.map( additional => (
           <div className='additional' key={additional.id}>

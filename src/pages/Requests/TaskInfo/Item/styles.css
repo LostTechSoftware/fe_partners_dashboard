@@ -64,7 +64,7 @@
 
   .requests .itensList .itemBox .description {
     display: flex;
-    align-items: center;
+    align-items: baseline;
   }
   .requests .itensList .itemBox .additional {
     display: flex;
