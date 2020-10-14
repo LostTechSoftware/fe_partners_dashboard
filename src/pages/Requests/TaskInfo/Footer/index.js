@@ -11,17 +11,9 @@ export default function Footer({ realPrice, approved, taskId }) {
 //onTheWay/order/:id
 //"despachar pedido" ou "pedir pra retirar" no texto do button
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
-  const [ rejectionReason, setRejectionReason ] = useState('');
 
   async function acceptOrder() {
     const response = await api.post(`/approve/order/${taskId}`);
-  }
-
-  async function rejectOrder() {
-    setOpenRejectionModal(true)
-    // const response = await api.post(`/reject/order/${taskId}`, {
-    //   reason: rejectionReason,
-    // });
   }
 
   async function deliveryOrder() {
@@ -41,7 +33,10 @@ export default function Footer({ realPrice, approved, taskId }) {
 
       {approved === 'Aguardando aprovação' ?
         <div className='orderActions'>
-          <MainButton onClick={ rejectOrder } boxId='rejectOrder' >
+          <MainButton
+            boxId='rejectOrder'
+            onClick={ () => setOpenRejectionModal(true) }
+          >
             Rejeitar pedido
           </MainButton>
 
@@ -58,16 +53,17 @@ export default function Footer({ realPrice, approved, taskId }) {
               <p>Pago no cartão de credito</p>
             </div>
           </main>
+
           {approved === 'Aceito' ? 
-            <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
+            <MainButton onClick={ () => setOpenRejectionModal(true) } boxId='deliveryOrder' >
               Entregar pedido
-            </MainButton> : null
-          }
+            </MainButton>
+          : null }
         </div> 
       } : {null}
 
-      <MainModal open={openRejectionModal} setOpen={openRejectionModal} >
-        <RejectionReason />
+      <MainModal open={openRejectionModal} setOpen={setOpenRejectionModal} >
+        <RejectionReason taskId={taskId} />
       </MainModal>
     </footer>
   );

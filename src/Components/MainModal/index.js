@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, Backdrop, Fade } from '@material-ui/core';
 
+import './styles.css';
+
 const MainModal = ({ children, open, setOpen }) => (
   <Modal
     open={open}
@@ -12,7 +14,9 @@ const MainModal = ({ children, open, setOpen }) => (
     }}
   >
     <Fade in={open}>
-      { children }
+      <div className='modalBox'>
+        { children }
+      </div>
     </Fade>
   </Modal>
 )

@@ -32,7 +32,7 @@ h2 {
   font-size: 2.9rem;
   color: #1F1F21;
 }
-p, input {
+p, input, textarea {
   font-family: -apple-system, 'Roboto', 'Ubuntu', sans-serif;
   font-size: 2.3rem;
   color: #1F1F21;

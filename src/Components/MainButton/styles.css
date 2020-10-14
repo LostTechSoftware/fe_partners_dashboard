@@ -1,16 +1,18 @@
-.page .mainButton {
+.mainButton {
   width: 100%;
   max-width: 320px;
 }
 
 .page .mainButton .MuiButton-root {
   background-color: #ffe115;
+}
+.mainButton .MuiButton-root { 
   height: 80px;
   width: 100%;
   border-radius: 18px;
 }
 
-.page .mainButton .MuiButton-label {
+.mainButton .MuiButton-label {
   color: #FFFFFF;
   font-size: 2.4rem;
   text-transform: capitalize;
@@ -19,16 +21,16 @@
 }
 
 @media screen and (min-width: 2000px) {
-  .page .mainButton {
+  .mainButton {
     max-width: 500px;
   }
-  .page .mainButton .MuiButton-root {
+  .mainButton .MuiButton-root {
     height: 100px;
   }
 }
 
 @media screen and (max-width: 1533px) {
-  .page .mainButton .MuiButton-root {
+  .mainButton .MuiButton-root {
     max-height: 50px;
   }
 }

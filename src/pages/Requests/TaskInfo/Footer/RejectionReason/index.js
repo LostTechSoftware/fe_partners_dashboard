@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import api from '../../../../../services/api';
+import MainButton from '../../../../../Components/MainButton';
 import './styles.css';
 
-export default function RejectionReason({ reason, setReason }) {
+export default function RejectionReason({ taskId }) {
+  const [ reason, setReason ] = useState('');
+
+  async function rejectOrder() {
+    const response = await api.post(`/reject/order/${taskId}`, {
+      reason: reason,
+    });
+  }
+
   return (
     <div className='rejectionReason'>
       <label htmlFor='reason'>
@@ -16,6 +27,10 @@ export default function RejectionReason({ reason, setReason }) {
         value={reason}
         onChange={event => setReason(event.target.value)}
       />
+
+      <MainButton onClick={rejectOrder}>
+        Enviar
+      </MainButton>
     </div>
   )
 }
