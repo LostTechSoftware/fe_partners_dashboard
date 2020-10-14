@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import api from '../../../../services/api';
 import MainButton from '../../../../Components/MainButton';
+import MainModal from '../../../../Components/MainModal';
 
+import RejectionReason from './RejectionReason';
 import './styles.css';
 
 export default function Footer({ realPrice, approved, taskId }) {
 //onTheWay/order/:id
 //"despachar pedido" ou "pedir pra retirar" no texto do button
+  const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
+  const [ rejectionReason, setRejectionReason ] = useState('');
 
   async function acceptOrder() {
     const response = await api.post(`/approve/order/${taskId}`);
   }
 
   async function rejectOrder() {
-    const response = await api.post(`/reject/order/${taskId}`);
+    setOpenRejectionModal(true)
+    // const response = await api.post(`/reject/order/${taskId}`, {
+    //   reason: rejectionReason,
+    // });
   }
 
   async function deliveryOrder() {
@@ -33,12 +41,12 @@ export default function Footer({ realPrice, approved, taskId }) {
 
       {approved === 'Aguardando aprovação' ?
         <div className='orderActions'>
-          <MainButton onClick={ acceptOrder } boxId='acceptOrder' >
-            Aceitar pedido
-          </MainButton>
-        
           <MainButton onClick={ rejectOrder } boxId='rejectOrder' >
             Rejeitar pedido
+          </MainButton>
+
+          <MainButton onClick={ acceptOrder } boxId='acceptOrder' >
+            Aceitar pedido
           </MainButton>
         </div>
         :
@@ -57,6 +65,10 @@ export default function Footer({ realPrice, approved, taskId }) {
           }
         </div> 
       } : {null}
+
+      <MainModal open={openRejectionModal} setOpen={openRejectionModal} >
+        <RejectionReason />
+      </MainModal>
     </footer>
   );
 }

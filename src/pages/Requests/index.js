@@ -47,11 +47,11 @@ export default function Requests() {
   }, [page])
 
   useEffect(() => {
-    async function LoadRequests(){
+    async function LoadTask(){
       const response = await api.get(`/tasks/${openedTaskId}`)
       setTaskInfos(response.data)
     }
-    LoadRequests()
+    LoadTask()
   }, [openedTaskId])
 
   return(
