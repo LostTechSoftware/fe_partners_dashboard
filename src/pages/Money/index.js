@@ -12,7 +12,6 @@ export default function Money() {
   useEffect(() => {
     async function getTransactions() {
       const response = await api.get('/financial');
-      console.log(response.data)
       setTransactions(response.data);
     }
     getTransactions();
