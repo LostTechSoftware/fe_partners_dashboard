@@ -21,6 +21,13 @@
   margin-right: 20px;
 }
 
+.requests .taskInfo footer #acceptOrder .MuiButton-root {
+  background-color: #00ff00;
+}
+.requests .taskInfo footer #rejectOrder .MuiButton-root {
+  background-color: #e92222;
+}
+
 .requests .taskInfo footer .paymentMethod {
   display: flex;
   justify-content: space-between;

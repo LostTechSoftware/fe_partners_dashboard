@@ -27,27 +27,19 @@ export default function Requests() {
       // that some task is created or canceled, once its not real time
   useEffect(() => {
     async function LoadRequests(){
-      console.log('open function')
       // new taks
-      
       if(page === 0) {
-        console.log('update new')
         const response = await api.get('/tasks/new');
-        console.log(response.data)
         setTaskListNew(response.data);
       }
       // preparing tasks
       if(page === 1) {
-        console.log('update preparing')
         const response = await api.get('/tasks/preparing');
-        console.log(response.data)
         setTaskListPreparing(response.data);
       }
       // delivery tasks
       if(page === 2) {
-        console.log('update delivery')
         const response = await api.get('/tasks/delivery');
-        console.log(response.data)
         setTaskListDelivery(response.data);
       }      
     }
@@ -57,7 +49,6 @@ export default function Requests() {
   useEffect(() => {
     async function LoadRequests(){
       const response = await api.get(`/tasks/${openedTaskId}`)
-
       setTaskInfos(response.data)
     }
     LoadRequests()

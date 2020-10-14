@@ -9,27 +9,15 @@ export default function Footer({ realPrice, approved, taskId }) {
 //"despachar pedido" ou "pedir pra retirar" no texto do button
 
   async function acceptOrder() {
-    console.log('acceptOrder');
-    console.log(taskId)
-    const response = await api.post(`/approve/order/${taskId}`, {
-      headers: { authorization: 'token' }
-    });
-    console.log('response:');
-    console.log(response);
+    const response = await api.post(`/approve/order/${taskId}`);
   }
 
-  async function rejectOrder(taskId) {
-    console.log('rejectOrder');
-    const response = await api.post(`/reject/order/${taskId}`, {
-      headers: { authorization: 'token' }
-    });
-    console.log('response:');
-    console.log(response);
+  async function rejectOrder() {
+    const response = await api.post(`/reject/order/${taskId}`);
   }
 
-  async function deliveryOrder(taskId) {
-    console.log('deliveryOrder');
-    const response = api.get('/');
+  async function deliveryOrder() {
+    const response = await api.post(`/onTheWay/order/${taskId}`);
   }
 
 // taskInfos.expiresIn
@@ -45,11 +33,11 @@ export default function Footer({ realPrice, approved, taskId }) {
 
       {approved === 'Aguardando aprovação' ?
         <div className='orderActions'>
-          <MainButton onClick={ acceptOrder }>
+          <MainButton onClick={ acceptOrder } boxId='acceptOrder' >
             Aceitar pedido
           </MainButton>
         
-          <MainButton onClick={ rejectOrder }>
+          <MainButton onClick={ rejectOrder } boxId='rejectOrder' >
             Rejeitar pedido
           </MainButton>
         </div>
@@ -63,7 +51,7 @@ export default function Footer({ realPrice, approved, taskId }) {
             </div>
           </main>
           {approved === 'Aceito' ? 
-            <MainButton onClick={taskId => deliveryOrder(taskId)}>
+            <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
               Entregar pedido
             </MainButton> : null
           }
