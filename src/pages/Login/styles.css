@@ -40,7 +40,7 @@
     height: 100px;
     margin-bottom: 30px;
   }
-  .page .mainButton .MuiButton-root {
+  .login .mainButton .MuiButton-root {
     height: 140px;
   }
 }
