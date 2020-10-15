@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { Dialog } from '@material-ui/core';
 
 import api from '../../../../services/api';
 import MainButton from '../../../../Components/MainButton';
-import MainModal from '../../../../Components/MainModal';
 
 import RejectionReason from './RejectionReason';
 import './styles.css';
@@ -55,16 +55,21 @@ export default function Footer({ realPrice, approved, taskId }) {
           </main>
 
           {approved === 'Aceito' ? 
-            <MainButton onClick={ () => setOpenRejectionModal(true) } boxId='deliveryOrder' >
+            <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
               Entregar pedido
             </MainButton>
           : null }
         </div> 
       } : {null}
 
-      <MainModal open={openRejectionModal} setOpen={setOpenRejectionModal} >
+      <Dialog
+        fullWidth
+        maxWidth='xl'
+        open={openRejectionModal}
+        onClose={() => setOpenRejectionModal(false)}
+      >
         <RejectionReason taskId={taskId} />
-      </MainModal>
+      </Dialog>
     </footer>
   );
 }

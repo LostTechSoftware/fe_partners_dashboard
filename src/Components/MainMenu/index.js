@@ -18,8 +18,6 @@ export default function MainMenu({ currentPage }) {
   const [ modalOpen, setModalOpen ] = useState(null);
   const [ avatar, setAvatar ] = useState('');
 
-  const open = Boolean(modalOpen);
-
   function isTheCurrentPage(page){
     if(page === currentPage)
       return 'onPage';
@@ -29,7 +27,6 @@ export default function MainMenu({ currentPage }) {
 
   useEffect(() => {
     setAvatar(sessionStorage.getItem('avatar'));
-    console.log(sessionStorage.getItem('avatar'));
   }, [])
 
   return (
@@ -72,7 +69,7 @@ export default function MainMenu({ currentPage }) {
       </Button>
       
       <Popover
-        open={open}
+        open={Boolean(modalOpen)}
         anchorEl={modalOpen}
         onClose={event => setModalOpen(null)}
         anchorOrigin={{

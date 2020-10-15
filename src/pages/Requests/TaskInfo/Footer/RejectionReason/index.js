@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DialogActions } from '@material-ui/core';
 
 import api from '../../../../../services/api';
 import MainButton from '../../../../../Components/MainButton';
@@ -28,9 +29,11 @@ export default function RejectionReason({ taskId }) {
         onChange={event => setReason(event.target.value)}
       />
 
-      <MainButton onClick={rejectOrder}>
-        Enviar
-      </MainButton>
+      <DialogActions>
+        <MainButton onClick={rejectOrder}>
+          Enviar
+        </MainButton>
+      </DialogActions>
     </div>
   )
 }

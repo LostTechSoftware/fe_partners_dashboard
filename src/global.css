@@ -49,6 +49,9 @@ p, span {
 button {
   cursor: pointer;
 }
+input, textarea {
+  border: none;
+}
 
 .page {
   --deafult-top-padding: 48px;
