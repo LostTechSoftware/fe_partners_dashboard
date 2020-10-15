@@ -36,7 +36,6 @@ export default function Requests() {
       if(page === 1) {
         const response = await api.get('/tasks/preparing');
         setTaskListPreparing(response.data);
-        console.log(response.data)
       }
       // delivery tasks
       if(page === 2) {
