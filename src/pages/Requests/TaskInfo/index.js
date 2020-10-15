@@ -83,6 +83,7 @@ export default function TaskInfo({ children, taskInfos = children }) {
         realPrice={taskInfos.realPrice}
         approved={taskInfos.approved}
         taskId={taskInfos._id}
+        payment_method={taskInfos.payment_method}
       />  
       </>
       : null
