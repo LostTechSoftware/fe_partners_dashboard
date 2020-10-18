@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 import moment from 'moment'
 import NumberFormat from 'react-number-format';
 import 'moment/locale/pt-br'
@@ -28,14 +29,16 @@ export default function TaskInfo({ children, taskInfos = children }) {
             <section className='address'>
               {taskInfos.address ?
                 <>
-                  <span className='label'>Endereço</span>
-                  <p className='result'>
-                    {`${taskInfos.address.street},
-                      ${taskInfos.address.Number},
-                      ${taskInfos.address.neighborhood},
-                      ${taskInfos.address.complement},
-                      ${taskInfos.address.reference}`}
-                  </p>
+                  <a href='https://www.google.com/maps/dir/-22.0621785,-46.9729812/-22.056778,-46.981406/@-22.0593744,-46.9815846,16z/data=!3m1!4b1'>
+                    <span className='label'>Endereço</span>
+                    <p className='result'>
+                      {`${taskInfos.address.street},
+                        ${taskInfos.address.Number},
+                        ${taskInfos.address.neighborhood},
+                        ${taskInfos.address.complement},
+                        ${taskInfos.address.reference}`}
+                    </p>
+                  </a>
                 </>
                 : <>
                     <span className='label'>Retirada</span>

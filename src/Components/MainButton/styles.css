@@ -3,7 +3,7 @@
   max-width: 320px;
 }
 
-.mainButton .MuiButton-root,
+#root .mainButton .MuiButton-root,
 .MuiDialog-root .mainButton .MuiButton-root,
 .MuiPopover-root .mainButton .MuiButton-root {
   background-color: #ffe115;
