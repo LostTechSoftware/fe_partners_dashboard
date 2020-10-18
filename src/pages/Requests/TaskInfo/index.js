@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
 import moment from 'moment'
 import NumberFormat from 'react-number-format';
 import 'moment/locale/pt-br'
@@ -9,8 +8,8 @@ import Item from './Item';
 import './styles.css';
 import './responsivity.css';
 
-export default function TaskInfo({ children, taskInfos = children }) {
-  return ( 
+export default function TaskInfo({ children: taskInfos }) {
+  return (
     <div className='taskInfo'>
     {taskInfos.products ?
       <>
