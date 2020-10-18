@@ -1,0 +1,30 @@
+.updateItem {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #dddddd;
+}
+
+.updateItem input, 
+.updateItem textarea {
+  min-width: 100%;
+  max-width: 100%;
+  height: 50px;
+
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 18px;
+}
+
+.updateItem textarea {
+  height: 200px;
+}
+
+@media screen and (min-width: 1440px) {
+  .updateItem input {
+    height: 70px;
+  }
+  .updateItem textarea {
+    height: 350px;
+  }
+}

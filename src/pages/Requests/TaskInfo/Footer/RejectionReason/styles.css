@@ -13,10 +13,6 @@
   border-radius: 18px;
 }
 
-.rejectionReason .MuiButton-root {
-  background-color: #ffe115 !important;
-}
-
 @media screen and (max-width: 1440px) {
   .rejectionReason {
     padding: 20px;
