@@ -62,7 +62,7 @@
   margin: 20px 0 40px;
 }
 
-.money .pageContent .balance .historic .transaction {
+.money .pageContent .balance .historic .order {
   display: flex;
   justify-content: space-between;
   align-items: center;
