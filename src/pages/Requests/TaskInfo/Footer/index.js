@@ -7,7 +7,14 @@ import MainButton from '../../../../Components/MainButton';
 import RejectionReason from './RejectionReason';
 import './styles.css';
 
-export default function Footer({ realPrice, approved, taskId, payment_method }) {
+export default function Footer({
+  realPrice,
+  taskId,
+  payment_method,
+  approved,
+  onTheWay,
+  toDelivery,
+}) {
 //onTheWay/order/:id
 //"despachar pedido" ou "pedir pra retirar" no texto do button
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
@@ -54,9 +61,9 @@ export default function Footer({ realPrice, approved, taskId, payment_method }) 
             </div>
           </main>
 
-          {approved === 'Aceito' ? 
+          {approved === 'Aceito' && !onTheWay ? 
             <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
-              Entregar pedido
+              {toDelivery ? 'Entregar pedido' : 'Pedir pra retirar'}
             </MainButton>
           : null }
         </div> 

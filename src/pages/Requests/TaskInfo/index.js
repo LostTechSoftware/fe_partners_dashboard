@@ -84,6 +84,8 @@ export default function TaskInfo({ children, taskInfos = children }) {
         approved={taskInfos.approved}
         taskId={taskInfos._id}
         payment_method={taskInfos.payment_method}
+        onTheWay={taskInfos.onTheWay}
+        toDelivery={taskInfos.address ? true : false}
       />  
       </>
       : null
