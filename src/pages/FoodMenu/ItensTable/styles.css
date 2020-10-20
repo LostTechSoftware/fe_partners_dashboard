@@ -20,6 +20,14 @@
   text-transform: inherit;
 }
 
+.foodMenu .itensTable .MuiButton-root {
+  max-width: 900px;
+}
+
+.foodMenu .itensTable .itemTitle p {
+  text-align: left;
+}
+
 .foodMenu .itensTable .MuiButton-root .MuiButton-label {
   justify-content: flex-start;
 }

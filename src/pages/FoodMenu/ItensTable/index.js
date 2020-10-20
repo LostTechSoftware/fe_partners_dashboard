@@ -53,7 +53,11 @@ export default function ItensTable({ title, id }) {
           {products.map(product => (
             <React.Fragment key={Math.random()} >
             <TableRow key={ product._id } >
-              <TableCell component='th' scope='row'>
+              <TableCell
+                className='itemTitle'
+                component='th'
+                scope='row'
+              >
                 <Button onClick={ () => openUpdate(product._id) } >
                   <EditRounded />
                   <p> { product.title } </p>
