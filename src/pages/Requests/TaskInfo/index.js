@@ -39,10 +39,11 @@ export default function TaskInfo({ children: taskInfos }) {
                     </p>
                   </a>
                 </>
-                : <>
-                    <span className='label'>Retirada</span>
-                    <p className='result'>Não necessita entregar</p>
-                  </>
+                :
+                <>
+                  <span className='label'>Retirada</span>
+                  <p className='result'>Não necessita entregar</p>
+                </>
 
               }
             </section>
