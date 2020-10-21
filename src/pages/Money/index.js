@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
+import PaymentMethod from '../../Components/PaymentMethod';
 
 import './styles.css';
 import './responsivity.css';
@@ -42,22 +43,24 @@ export default function Money() {
             <div className='underLine' />
             
             {transactions.order ? transactions.order.map(order => (
-              <>
-              <div className='order' key={Math.random()} >
-                <div className='info'>
-                  <p>Pedido #{order.token}</p>
-                  <span> {order.payment_method} </span>
-                </div>
+              <React.Fragment key={Math.random()} >
+                <div className='order' key={Math.random()} >
+                  <div className='info'>
+                    <p>Pedido #{order.token}</p>
+                    <PaymentMethod>
+                      {order.payment_method}
+                    </PaymentMethod>
+                  </div>
 
-                <p className='price'>
-                  {order.realPrice.toLocaleString(
-                    'pt-br',
-                    {style:'currency', currency:'brl'}
-                  )}
-                </p>
-              </div>
-              <div className='underLine' />
-              </>
+                  <p className='price'>
+                    {order.realPrice.toLocaleString(
+                      'pt-br',
+                      {style:'currency', currency:'brl'}
+                    )}
+                  </p>
+                </div>
+                <div className='underLine' />
+              </React.Fragment>
             )) : null }
             
           </section>

@@ -21,9 +21,6 @@
   .money .pageContent .balance .historic .transaction p {
     font-size: 1.8rem;
   }
-  .money .pageContent .balance .historic .transaction span {
-    font-size: 1.4rem;
-  }
 }
 
 @media screen and (max-width: 770px) {

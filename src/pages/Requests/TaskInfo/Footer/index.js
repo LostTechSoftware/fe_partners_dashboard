@@ -3,6 +3,7 @@ import { Dialog } from '@material-ui/core';
 
 import api from '../../../../services/api';
 import MainButton from '../../../../Components/MainButton';
+import PaymentMethod from '../../../../Components/PaymentMethod';
 
 import RejectionReason from './RejectionReason';
 import './styles.css';
@@ -52,12 +53,14 @@ export default function Footer({
           </MainButton>
         </div>
         :
-        <div className='paymentMethod' >
+        <div className='paymentMethodBox' >
           <main>
-            <span>Forma de pagamentos </span>
+            <span>Forma de pagamento</span>
 
             <div className='method'>
-              <p>{payment_method}</p>
+              <PaymentMethod>
+                {payment_method}
+              </PaymentMethod>
             </div>
           </main>
 

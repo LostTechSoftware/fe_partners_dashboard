@@ -29,10 +29,6 @@
   box-shadow: 9px 9px 41px 0px rgba(122,122,122,0.31);
 }
 
-.money .pageContent .balance .totalBalance span {
-  font-size: 2.2rem;
-}
-
 .money .pageContent .balance .totalBalance h2 {
   font-size: 4.2rem;
   margin-top: 25px;

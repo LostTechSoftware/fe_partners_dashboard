@@ -1,0 +1,9 @@
+.paymentMethod {
+  font-size: 2.2rem !important;
+}
+
+@media screen and (max-width: 1370px) {
+  .paymentMethod {
+    font-size: 1.4rem !important;
+  }
+}
