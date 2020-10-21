@@ -11,6 +11,7 @@ export default function Item({
   price,
   quantity,
   description,
+  observation,
   additionals,
   avatar,
 }) {
@@ -43,11 +44,17 @@ export default function Item({
       <section className='observations'>
         {description ? 
           <div className='description'>
-            <FiberManualRecordRounded />
             <p> {description} </p>
           </div>
         : null}
-        
+
+        {observation ? 
+          <div className='observation'>
+            <FiberManualRecordRounded />
+            <p> {observation} </p>
+          </div>
+        : null}
+
         {additionals.map( additional => (
           <div className='additional' key={additional.id}>
             <AddRounded />

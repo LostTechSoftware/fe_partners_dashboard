@@ -21,7 +21,7 @@ export default function TaskInfo({ children: taskInfos }) {
             <div className='sideLine' />
             <section className='preparingTime'>
               <span className='label'>Tempo de preparo</span>
-              <p className='result'>{moment(taskInfos.createdAt).startOf('hour').fromNow()}</p>
+              <p className='result'>{moment(taskInfos.createdAt).fromNow()}</p>
             </section>
 
             <div className='sideLine' />
@@ -74,6 +74,7 @@ export default function TaskInfo({ children: taskInfos }) {
               price={product.price}
               quantity={product.quantidade}
               description={product.description}
+              observation={product.observation}
               additionals={product.additional}
               avatar={product.avatar}
             />
