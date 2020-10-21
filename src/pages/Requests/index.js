@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import SwipeableViews from "react-swipeable-views";
 import {
   AppBar,
   Tabs,
   Tab
 } from '@material-ui/core';
+
+import socketio from 'socket.io-client';
 
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
@@ -25,25 +27,43 @@ export default function Requests() {
   // This solution to update Request list is not very performing once it will
     // update every time the user switch tabs and not necessarily every time
       // that some task is created or canceled, once its not real time
-  useEffect(() => {
-    async function LoadRequests(){
-      // new taks
-      if(page === 0) {
-        const response = await api.get('/tasks/new');
-        setTaskListNew(response.data);
-      }
-      // preparing tasks
-      if(page === 1) {
-        const response = await api.get('/tasks/preparing');
-        setTaskListPreparing(response.data);
-      }
-      // delivery tasks
-      if(page === 2) {
-        const response = await api.get('/tasks/delivery');
-        setTaskListDelivery(response.data);
-      }      
+
+      
+  const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
+    query: {
+      user_id:sessionStorage.getItem('_id')
     }
-    LoadRequests()
+  }), [] )
+
+  async function LoadRequests(page){
+    // new taks
+    if(page === 0) {
+      const response = await api.get('/tasks/new');
+      setTaskListNew(response.data);
+    }
+    // preparing tasks
+    if(page === 1) {
+      const response = await api.get('/tasks/preparing');
+      setTaskListPreparing(response.data);
+    }
+    // delivery tasks
+    if(page === 2) {
+      const response = await api.get('/tasks/delivery');
+      setTaskListDelivery(response.data);
+    }
+  }
+  
+  async function ReLoadNewTasks() {
+    const response = await api.get('/tasks/new');
+    setTaskListNew(response.data);
+  }
+
+  useEffect(() => {
+    socket.on('new_order', ReLoadNewTasks)
+  }, [socket])
+
+  useEffect(() => {
+    LoadRequests(page)
   }, [page])
 
   useEffect(() => {
