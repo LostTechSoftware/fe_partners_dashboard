@@ -28,7 +28,7 @@
   background-color: #e92222;
 }
 
-.requests .taskInfo footer .paymentMethod {
+.requests .taskInfo footer .paymentMethodBox {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -50,14 +50,14 @@
 }
 
 @media screen and (max-width: 580px) {
-  .requests .taskInfo footer .paymentMethod {
+  .requests .taskInfo footer .paymentMethodBox {
     flex-direction: column;
     align-items: center;
   }
-  .requests .taskInfo footer .paymentMethod p {
+  .requests .taskInfo footer .paymentMethodBox .paymentMethod {
     text-align: center;
   }
-  .requests .taskInfo footer .paymentMethod main {
+  .requests .taskInfo footer .paymentMethodBox main {
     margin-bottom: 8px;
   }
 }
