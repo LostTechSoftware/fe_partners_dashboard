@@ -40,13 +40,17 @@ export default function RestaurantOpening() {
       <div className='line' />
 
       <div className='info'>
-        <div className='text'>
-          <h2>
-            { restaurantIsOpen ? 'Restaurante aberto' : 'Restaurante fechado' }
-          </h2>
-        </div>
+        <h2>
+          {restaurantIsOpen ?
+            'Restaurante aberto'
+            :
+            'Restaurante fechado'
+          }
+        </h2>
 
-        <CheckCircleRounded />
+        <CheckCircleRounded
+          className={ restaurantIsOpen ? 'open' : 'closed' }
+        />
       </div>
     </div>
   );

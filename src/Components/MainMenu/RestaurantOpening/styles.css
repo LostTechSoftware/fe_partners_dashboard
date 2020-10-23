@@ -10,6 +10,10 @@
   background-color: #dddddd;
 }
 
+.restaurantOpening .mainButton {
+  width: 100vw;
+}
+
 .restaurantOpening .MuiButton-label {
   letter-spacing: 0.25rem;
   margin: 0 12px;
@@ -18,14 +22,24 @@
 .restaurantOpening .info {
   display: flex;
   align-items: center;
+  white-space: nowrap
 }
 
+/* SVG */
 .restaurantOpening .info svg {
-  fill: #00ff00;
-  height: 70px;
+  height: 40px;
   width: auto;
   margin-left: 20px;
+  transition: 0.5s;
 }
+
+.restaurantOpening .info svg.open {
+  fill: #00ff00;
+}
+.restaurantOpening .info svg.closed {
+  fill: #e92222;
+}
+/* *** */
 
 @media screen and (max-width: 1440px) {
   .restaurantOpening .MuiButton-root {
@@ -41,15 +55,12 @@
     height: 60px;
   }
   .restaurantOpening .info svg {
-    height: 60px;
+    height: 30px;
   }
 }
 
 @media screen and (max-width: 700px) {
   .restaurantOpening .MuiButton-root {
-    height: 50px;
-  }
-  .restaurantOpening .info svg {
     height: 50px;
   }
 }
@@ -58,15 +69,12 @@
   .restaurantOpening {
     flex-direction: column;
   }
+  .restaurantOpening .mainButton {
+    width: auto;
+  }  
   .restaurantOpening .line {
     height: 1px;
     width: auto;
     margin: 15px 0;
-  }
-}
-
-@media screen and (max-width: 370px) {
-  .restaurantOpening .info svg {
-    display: none;
   }
 }
