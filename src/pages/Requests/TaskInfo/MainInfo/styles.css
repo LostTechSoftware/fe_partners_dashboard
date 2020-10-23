@@ -1,0 +1,71 @@
+/* main info */
+.requests .taskInfo .mainInfo .content {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+.requests .taskInfo .mainInfo .content section p {
+  text-transform: capitalize;
+}
+
+.requests .taskInfo .mainInfo .content main {
+  display: flex;
+  height: 100%;
+  margin-top: 12px;
+}
+.requests .taskInfo .mainInfo .content section {
+  padding: 0 30px;
+  width: 50%;
+}
+
+.requests .taskInfo .mainInfo .content .sideLine {
+  background-color: #dddddd;
+  height: auto;
+  width: 1px;
+}
+.requests .taskInfo .mainInfo .content .result {
+  letter-spacing: 2px;
+  color: #000000;
+}
+/* *** */
+
+/* sections */
+.requests .taskInfo .mainInfo .content .address {
+  width: 100%;
+}
+.requests .taskInfo .mainInfo .content .contact {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.requests .taskInfo .mainInfo .content .contact img {
+  width: 55px;
+  margin: 5px 20px;
+}
+/* *** */
+
+@media screen and (max-width: 1700px) {
+  .requests .taskInfo .mainInfo .content section {
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .requests .taskInfo .mainInfo .content .address .result {
+    font-size: 1.9rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .requests .taskInfo .mainInfo .content {
+    flex-direction: column;
+  }
+  .requests .taskInfo .mainInfo .content .sideLine {
+    height: 1px;
+    width: auto;
+  }
+  .requests .taskInfo .mainInfo .content section {
+    width: 100%;
+    padding: 15px;
+  }
+}
