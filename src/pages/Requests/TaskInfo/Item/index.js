@@ -57,8 +57,10 @@ export default function Item({
 
         {additionals.map( additional => (
           <div className='additional' key={additional.id}>
-            <AddRounded />
-            <p> {additional.title} </p>
+            <main>
+              <AddRounded />
+              <p> {additional.title} </p>
+            </main>
             <p className='price'>
               {additional.price.toLocaleString(
                 'pt-br',
