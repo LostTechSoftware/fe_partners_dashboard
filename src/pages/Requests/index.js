@@ -23,12 +23,7 @@ export default function Requests() {
   const [taskListPreparing, setTaskListPreparing] = useState([])  
   const [taskListNew, setTaskListNew] = useState([])  
   const [taskListDelivery, setTaskListDelivery] = useState([])  
-
-  // This solution to update Request list is not very performing once it will
-    // update every time the user switch tabs and not necessarily every time
-      // that some task is created or canceled, once its not real time
-
-      
+     
   const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
     query: {
       user_id:sessionStorage.getItem('_id')
