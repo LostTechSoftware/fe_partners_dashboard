@@ -4,12 +4,11 @@
   justify-content: space-between;
   
   width: 100%;
-  height: calc( 100% + 8px );
+  height: 100%;
   background-color: #FFFFFF;
   box-shadow: -1px 4px 70px -3px rgba(122,122,122,0.1);
   
   padding: var(--deafult-top-padding) 34px 0;
-  margin-top: -8px;
   overflow: auto;
 }
 
@@ -60,6 +59,8 @@
 
 @media screen and (max-width: 1262px) {
   .requests .taskInfo {
+    height: fit-content;
+    overflow: visible;
     margin-top: 20px;
   }
 }

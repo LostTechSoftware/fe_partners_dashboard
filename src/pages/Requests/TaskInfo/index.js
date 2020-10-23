@@ -11,14 +11,14 @@ export default function TaskInfo({ children: taskInfos }) {
     <div className='taskInfo'>
     {taskInfos.products ?
       <>
-        <MainInfo
-          address={ taskInfos.address ? taskInfos.address : null }
-          createdAt={ taskInfos.createdAt }
-          userName={ taskInfos.user.name }
-          userPhone={ taskInfos.user.telephone }
-        />
-        
         <main>
+          <MainInfo
+            address={ taskInfos.address ? taskInfos.address : null }
+            createdAt={ taskInfos.createdAt }
+            userName={ taskInfos.user.name }
+            userPhone={ taskInfos.user.telephone }
+          />
+          
           <section className='itensList' >
             {taskInfos.products.map(product => (
               <Item

@@ -22,7 +22,6 @@ export default function Footer({
     const response = await api.post(`/approve/order/${taskId}`);
   }
 
-  //"despachar pedido" ou "pedir pra retirar" no texto do button
   async function deliveryOrder() {
     const response = await api.post(`/onTheWay/order/${taskId}`);
   }
