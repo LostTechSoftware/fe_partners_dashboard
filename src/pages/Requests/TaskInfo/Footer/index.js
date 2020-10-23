@@ -16,16 +16,19 @@ export default function Footer({
   onTheWay,
   toDelivery,
 }) {
-//onTheWay/order/:id
-//"despachar pedido" ou "pedir pra retirar" no texto do button
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
 
   async function acceptOrder() {
     const response = await api.post(`/approve/order/${taskId}`);
   }
 
+  //"despachar pedido" ou "pedir pra retirar" no texto do button
   async function deliveryOrder() {
     const response = await api.post(`/onTheWay/order/${taskId}`);
+  }
+
+  async function cancelOrder() {
+    const response = await api.post(`/restaurant/cancel/${taskId}`);
   }
 
 // taskInfos.expiresIn
@@ -54,21 +57,27 @@ export default function Footer({
         </div>
         :
         <div className='paymentMethodBox' >
-          <main>
-            <span>Forma de pagamento</span>
+          <span>Forma de pagamento</span>
 
-            <div className='method'>
-              <PaymentMethod>
-                {payment_method}
-              </PaymentMethod>
-            </div>
-          </main>
+          <div className='method'>
+            <PaymentMethod>
+              {payment_method}
+            </PaymentMethod>
+          </div>
 
-          {approved === 'Aceito' && !onTheWay ? 
-            <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
-              {toDelivery ? 'Entregar pedido' : 'Pedir pra retirar'}
-            </MainButton>
-          : null }
+          <section className='orderButtons'>
+            {approved === 'Aceito' && !onTheWay ?
+              <>
+              <MainButton onClick={ cancelOrder } boxId='cancelOrder' >
+                Cancelar
+              </MainButton>
+
+              <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
+                {toDelivery ? 'Entregar pedido' : 'Pedir pra retirar'}
+              </MainButton>
+              </>
+            : null }
+          </section>
         </div> 
       } : {null}
 

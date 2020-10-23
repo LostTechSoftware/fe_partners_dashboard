@@ -24,14 +24,23 @@
 .requests .taskInfo footer #acceptOrder .MuiButton-root {
   background-color: #00ff00;
 }
+.requests .taskInfo footer #cancelOrder .MuiButton-root,
 .requests .taskInfo footer #rejectOrder .MuiButton-root {
   background-color: #e92222;
 }
 
 .requests .taskInfo footer .paymentMethodBox {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
+}
+
+.requests .taskInfo footer .paymentMethodBox .orderButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .requests .taskInfo footer .finalPrice {
@@ -46,18 +55,5 @@
   }
   .requests .taskInfo footer .finalPrice {
     font-size: 2.6rem;
-  }
-}
-
-@media screen and (max-width: 580px) {
-  .requests .taskInfo footer .paymentMethodBox {
-    flex-direction: column;
-    align-items: center;
-  }
-  .requests .taskInfo footer .paymentMethodBox .paymentMethod {
-    text-align: center;
-  }
-  .requests .taskInfo footer .paymentMethodBox main {
-    margin-bottom: 8px;
   }
 }
