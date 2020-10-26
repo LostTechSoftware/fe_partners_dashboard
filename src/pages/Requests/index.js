@@ -5,14 +5,15 @@ import {
   Tabs,
   Tab
 } from '@material-ui/core';
-
 import socketio from 'socket.io-client';
+import useSound from 'use-sound';
 
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
 
+import requestRecived from '../../assets/request-recived.mp3';
 import './styles.css';
 
 export default function Requests() {
@@ -20,9 +21,11 @@ export default function Requests() {
   const [ openedTaskId, setOpenedTaskId ] = useState(0);
   const [ taskInfos, setTaskInfos ] = useState('');
   
-  const [taskListPreparing, setTaskListPreparing] = useState([])  
-  const [taskListNew, setTaskListNew] = useState([])  
-  const [taskListDelivery, setTaskListDelivery] = useState([])  
+  const [taskListPreparing, setTaskListPreparing] = useState([])
+  const [taskListNew, setTaskListNew] = useState([])
+  const [taskListDelivery, setTaskListDelivery] = useState([])
+
+  const [ playRequestRecived ] = useSound(requestRecived)
      
   const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
     query: {
@@ -51,6 +54,7 @@ export default function Requests() {
   async function ReLoadNewTasks() {
     const response = await api.get('/tasks/new');
     setTaskListNew(response.data);
+    playRequestRecived();
   }
 
   useEffect(() => {
