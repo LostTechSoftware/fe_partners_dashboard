@@ -1,0 +1,98 @@
+.MessageElement {
+  display: flex;
+  flex-direction: column;
+}
+
+.MessageElement .messageLine {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 20px 20px 20px;
+}
+
+.MessageElement .messageLine .messageBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.messageBlock .aboutThisMessage {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+
+  align-items: center;
+}
+
+.aboutThisMessage span {
+  color: #636466;
+}
+
+.aboutThisMessage .profilePhoto {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  overflow: hidden;  
+  object-fit: cover;
+}
+
+.aboutThisMessage .check {
+  height: 16px;
+  width: 16px;
+  margin: 4px 10px 4px 10px;
+}
+
+.messageBlock .content p {
+  max-width: 600px;
+  padding: 20px;  
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  line-height: 24px;
+}
+
+#client p {
+  background-color: #ffffff;
+  border-radius: 0px 10px 10px 10px;
+}
+
+/* *** */
+#client .arrow {
+    position: relative;
+    top: 0; 
+    left: 0;
+    border-top: 16px solid #E5E5E5;
+    border-left: 16px solid #ffffff;
+    width: 0;
+}
+
+#client .content {
+  display: flex;
+  flex-direction: row;
+}
+
+#attendant p {
+  background-color: #d1fadf;
+  border-radius: 10px 0px 10px 10px;
+}
+
+#attendant .aboutThisMessage {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#attendant .arrowAlign {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.messageLine #attendant .arrow {
+  position: relative;
+  top: 0; 
+  left: 0;
+  border-top: 16px solid #E5E5E5;
+  border-right: 16px solid #d1fadf;
+  width: 0;
+}
+
+#attendant .content {
+  display: flex;
+  flex-direction: row-reverse;
+}

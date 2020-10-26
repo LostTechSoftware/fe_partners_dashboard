@@ -8,6 +8,8 @@ import {
 import socketio from 'socket.io-client';
 import useSound from 'use-sound';
 
+import Messages from '../../Components/Messages';
+
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
@@ -120,6 +122,8 @@ export default function Requests() {
         <TaskInfo>
           {taskInfos}
         </TaskInfo>
+
+        <Messages request={taskInfos} />
       </div>
     </div>
   )
