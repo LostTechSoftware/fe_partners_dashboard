@@ -6,7 +6,7 @@ import api from '../../../services/api';
 import './styles.css';
 
 export default function RestaurantOpening() {
-  const [ restaurantIsOpen, setRestaurantIsOpen ] = useState(false);
+  const [ restaurantIsOpen, setRestaurantIsOpen ] = useState();
 
   async function closeRestaurant() {
     const response = await api.post('/close');
