@@ -23,12 +23,20 @@ export default function RestaurantOpening() {
       closeRestaurant();
     else
       openRestaurant();
-    localStorage.setItem('restaurantIsOpen', restaurantIsOpen);
+    sessionStorage.setItem('restaurantIsOpen', restaurantIsOpen);
   }
 
   useEffect(() => {
-    const restaurantIsOpenOnStorage = localStorage.getItem('restaurantIsOpen');
-    setRestaurantIsOpen(restaurantIsOpenOnStorage);
+    async function getOpenState() {
+      const response = await api.get('/opened');
+      sessionStorage.setItem('restaurantIsOpen', response.data);
+    }
+
+    const restaurantIsOpenOnStorage = sessionStorage.getItem('restaurantIsOpen');
+    if(restaurantIsOpenOnStorage)
+      setRestaurantIsOpen(restaurantIsOpenOnStorage);
+    else
+      getOpenState();
   }, []);
 
   return (
