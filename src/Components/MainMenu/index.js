@@ -8,8 +8,10 @@ import {
   RoomServiceRounded,
   MonetizationOnRounded,
   ScheduleRounded,
+  HelpRounded,
 } from '@material-ui/icons';
 
+import api from '../../services/api';
 import ClipboardIcon from '../../assets/clipboardIcon';
 import RestaurantOpening from './RestaurantOpening';
 import './styles.css';
@@ -59,14 +61,22 @@ export default function MainMenu({ currentPage }) {
           <MonetizationOnRounded />
         </Link>
       </nav>
+      
+      <section className='actions'>
+        {/* help center button */}
+        <a href='https://helpcenter.foodzilla.com.br'>
+          <HelpRounded />
+        </a>
 
-      <Button
-        className='modalButton'
-        fullWidth
-        onClick={event => setModalOpen(event.currentTarget)}
-      >
-        <ScheduleRounded />
-      </Button>
+        {/* modal button */}
+        <Button
+          className='button'
+          fullWidth
+          onClick={event => setModalOpen(event.currentTarget)}
+        >
+          <ScheduleRounded />
+        </Button>
+      </section>
       
       <Popover
         open={Boolean(modalOpen)}
