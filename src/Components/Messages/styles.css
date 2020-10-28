@@ -9,21 +9,24 @@
 }
 
 .ChatBox .messages {
-  height: calc(100% - 64px - 64px);
+  height: 100%;
+  padding-top: 20px;
 }
 
-.ChatBox .newMessage {
-  height: 64px;
-  
+.ChatBox form {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
   background: #FFFFFF;
+  padding: 10px !important;
 }
 
-.ChatBox .newMessage input {
+.ChatBox form input {
   height: 16px;
   width: 60%;
   max-width: 478px;
 
-  margin: 24px 30px 24px 30px;
+  font-size: 1.4rem;
   border: 0;
 }
 .ChatBox .newMessage ::-webkit-input-placeholder {

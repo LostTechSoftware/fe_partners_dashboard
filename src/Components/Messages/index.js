@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import socketio from 'socket.io-client';
+import { Button } from '@material-ui/core';
+import SendRounded from '@material-ui/icons/SendRounded';
 
 import api from '../../services/api';
 import Message from './Message';
@@ -11,17 +13,17 @@ export default function Messages({ request }) {
 
   const [messages, setMessages] = useState([{
     _id: 2,
-      type: 'text',
-      content: 'Olá, que bom que está aqui, digite algo para iniciar a conversa',
-      targetId: '12345678',
-      chatInfo: {
-        avatar: 'https://foodzilla.com.br/assets/images/favicon.png',
-        id: '12345678',
-        nickName: 'Test'
-      },
-      renderTime: false,
-      sendStatus: 0,
-      time: new Date()
+    type: 'text',
+    content: 'Olá, que bom que está aqui, digite algo para iniciar a conversa',
+    targetId: '12345678',
+    chatInfo: {
+      avatar: 'https://foodzilla.com.br/assets/images/favicon.png',
+      id: '12345678',
+      nickName: 'Test'
+    },
+    renderTime: false,
+    sendStatus: 0,
+    time: new Date()
   }]);
 
   const [ chat, setChat ] = useState('');
@@ -74,10 +76,10 @@ export default function Messages({ request }) {
   }, [ messages, chat ])
 
   return (
-    <div className="ChatBox">
-      <section cclassName="messages">
+    <div className='ChatBox'>
+      <section cclassName='messages'>
         {
-          [ 0, 1, 2].map(e => (
+          [0, 1, 2].map(e => (
             <Message
               send_by   = {'haha'}
               date      = {'haha'}
@@ -88,13 +90,15 @@ export default function Messages({ request }) {
         }
       </section>
 
-      <form className="newMessage">
+      <form onSubmit={ event => event.preventDefault() }>
         <input
-          type="text"
-          placeholder="Digite sua mensagem..."
+          type='text'
+          placeholder='Digite sua mensagem...'
         />
 
-        <button>send</button>
+        <Button type='submit' >
+          <SendRounded />
+        </Button>
       </form>
     </div>
   )
