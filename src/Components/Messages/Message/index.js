@@ -1,14 +1,15 @@
-import React from 'react';
-import moment from 'moment'
-import 'moment/locale/pt-br'
+import React, { useState } from 'react';
 
 import './styles.css';
 
 const Message = (props) => {
+  const restaurantName = sessionStorage.getItem('restaurantName');
+  const sendBy = restaurantName === props.userName ? 'attendant' : 'client';
+
   return (
     <div className='MessageElement'>
       <div className='messageLine'>
-        <div className='messageBlock' id={'attendant'}>
+        <div className='messageBlock' id={sendBy}>
           <section className='aboutThisMessage'>
             <img 
               src={props.avatar}
@@ -17,7 +18,7 @@ const Message = (props) => {
             />
 
             <span>
-              <strong> { props.userName } </strong> 
+              <strong> {props.userName} </strong> 
             </span>
           </section>
 
@@ -26,7 +27,7 @@ const Message = (props) => {
           </section>
           
           <section className='content'>
-            <p>{props.children}</p>
+            <p> {props.children} </p>
           </section>
         </div>
       </div>

@@ -70,11 +70,6 @@ export default function Messages({ requestId }) {
     })
   }, [socket]);
 
-  useEffect(() => {
-    console.log('messages');
-    console.log(messages);
-  }, [ messages, chat, restaurantId ])
-
   return (
     <div className='ChatBox'>
       <section cclassName='messages'>
