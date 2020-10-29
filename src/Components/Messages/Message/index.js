@@ -1,25 +1,23 @@
 import React from 'react';
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 import './styles.css';
 
 const Message = (props) => {
-  const avatar = sessionStorage.getItem('avatar');
-  
   return (
     <div className='MessageElement'>
       <div className='messageLine'>
         <div className='messageBlock' id={'attendant'}>
           <section className='aboutThisMessage'>
             <img 
-              src={avatar}
+              src={props.avatar}
               alt='profilePhoto'
               className='profilePhoto'
             />
 
             <span>
-              <strong>Username</strong> 
-              <strong>&nbsp;-&nbsp;</strong> 
-              <time>{props.date} {props.time}</time>
+              <strong> { props.userName } </strong> 
             </span>
           </section>
 
@@ -28,7 +26,7 @@ const Message = (props) => {
           </section>
           
           <section className='content'>
-            <p>{props.content}</p>
+            <p>{props.children}</p>
           </section>
         </div>
       </div>

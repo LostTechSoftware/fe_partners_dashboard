@@ -149,7 +149,7 @@ export default function Requests() {
             horizontal: 'left',
           }}
         >
-          <Messages request={taskInfos} />
+          <Messages requestId={taskInfos._id} />
         </Popover>
         {/* *** */}
       </div>
