@@ -6,8 +6,10 @@
 .MessageElement .messageLine {
   display: flex;
   flex-direction: column;
-
-  margin: 0 20px 20px 20px;
+  padding: 0 20px 20px 20px;
+}
+.MessageElement:first-of-type .messageLine {
+  margin-top: 20px;
 }
 
 .MessageElement .messageLine .messageBlock {
@@ -24,7 +26,6 @@
 
 .aboutThisMessage span {
   display: flex;
-  color: #636466;
   margin: 0 10px;
 }
 
@@ -36,17 +37,12 @@
   object-fit: cover;
 }
 
-.aboutThisMessage .check {
-  height: 16px;
-  width: 16px;
-  margin: 4px 10px 4px 10px;
-}
-
 .messageBlock .content p {
-  max-width: 600px;
+  max-width: 100%;
   padding: 8px;
-  font-size: 1.6rem;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  
+  word-wrap: break-word;
   line-height: 24px;
 }
 
@@ -65,7 +61,7 @@
   position: relative;
   top: 0; 
   left: 0;
-  border-top: 10px solid #E5E5E5;
+  border-top: 10px solid #F7F7F9;
   border-left: 10px solid #ffffff;
   width: 0;
 }
@@ -95,11 +91,11 @@
   flex-direction: row-reverse;
 }
 
-.messageLine #attendant .arrow {
+#attendant .arrow {
   position: relative;
   top: 0; 
   left: 0;
-  border-top: 10px solid #E5E5E5;
+  border-top: 10px solid #F7F7F9;
   border-right: 10px solid #d1fadf;
   width: 0;
 }

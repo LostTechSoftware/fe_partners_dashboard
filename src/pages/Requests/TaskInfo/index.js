@@ -13,6 +13,7 @@ export default function TaskInfo({ children: taskInfos }) {
       <>
         <main>
           <MainInfo
+            taskId={taskInfos._id}
             address={ taskInfos.address ? taskInfos.address : null }
             createdAt={ taskInfos.createdAt }
             userName={ taskInfos.user.name }

@@ -11,7 +11,6 @@ import socketio from 'socket.io-client';
 import useSound from 'use-sound';
 
 import api from '../../services/api';
-import Messages from '../../Components/Messages';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
@@ -20,9 +19,6 @@ import requestRecived from '../../assets/request-recived.mp3';
 import './styles.css';
 
 export default function Requests() {
-  // temporary
-  const [ modalOpen, setModalOpen ] = useState(null);
-
   const [ page, setPage ] = useState(0);
   const [ openedTaskId, setOpenedTaskId ] = useState(0);
   const [ taskInfos, setTaskInfos ] = useState('');
@@ -126,32 +122,6 @@ export default function Requests() {
         <TaskInfo>
           {taskInfos}
         </TaskInfo>
-
-        {/* temporary */}
-        <Button
-          className='button'
-          fullWidth
-          onClick={event => setModalOpen(event.currentTarget)}
-        >
-          openChatMock
-        </Button>
-
-        <Popover
-          open={Boolean(modalOpen)}
-          anchorEl={modalOpen}
-          onClose={event => setModalOpen(null)}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-        >
-          <Messages requestId={taskInfos._id} />
-        </Popover>
-        {/* *** */}
       </div>
     </div>
   )

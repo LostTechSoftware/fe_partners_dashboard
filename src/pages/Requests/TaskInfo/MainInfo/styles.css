@@ -23,6 +23,7 @@
   height: auto;
   width: 1px;
 }
+.contactPopoverRoot .result,
 .requests .taskInfo .mainInfo .content .result {
   letter-spacing: 2px;
   color: #000000;
@@ -38,9 +39,33 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.requests .taskInfo .mainInfo .contact .MuiButton-root {
+  background-color: #ffe0153d;
+  border-radius: 18px;
+  padding: 0;
+}
+.requests .taskInfo .mainInfo .contact .MuiButton-root:hover {
+  background-color: #ffe01559;
+}
+
+
 .requests .taskInfo .mainInfo .content .contact img {
   width: 55px;
   margin: 5px 20px;
+}
+/* *** */
+
+/* Contact popover */
+.contactPopoverRoot .MuiPopover-paper {
+  max-height: 60%;
+  width: 40%;
+  background-color: #F7F7F9;
+  padding-top: 12px;
+}
+.contactPopoverRoot .result {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 /* *** */
 
@@ -49,7 +74,6 @@
     padding: 0 15px;
   }
 }
-
 @media screen and (max-width: 1440px) {
   .requests .taskInfo .mainInfo .content .address .result {
     font-size: 1.9rem;
