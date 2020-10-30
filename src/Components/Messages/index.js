@@ -37,15 +37,18 @@ export default function Messages({ requestId }) {
 
   async function sendMessage( event ) {
     event.preventDefault();
-    setMessageInput('');
-    if (!chat._id) {
-      await api.post(`/restaurant/new/chat/${requestId}`, {
-        content: messageInput
-      })
-    } else {
-      await api.post(`/restaurant/chat/${chat._id}`, {
-        content: messageInput
-      })
+    // Block messages without some letter or number
+    if(/\w|_/.test(messageInput)) {
+      setMessageInput('');
+      if (!chat._id) {
+        await api.post(`/restaurant/new/chat/${requestId}`, {
+          content: messageInput
+        })
+      } else {
+        await api.post(`/restaurant/chat/${chat._id}`, {
+          content: messageInput
+        })
+      }
     }
   }
   
