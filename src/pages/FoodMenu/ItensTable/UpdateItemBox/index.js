@@ -20,11 +20,19 @@ export default function UpdateItemBox({ children: { _id, title, price, descripti
   function handlePriceChange(event) {
     let notFormatedPrice = event.target.value;
     // Troca ',' por '.'
-    notFormatedPrice.replace(/,/g, '.');
-    // Mantem apenas numeros e um ponto
-    notFormatedPrice = notFormatedPrice.replace(/[^1-9\.]|\.(?=\.)/g, '');
-    
+    notFormatedPrice = notFormatedPrice.replace(/,/g, '.');
+    console.log('put point:');
     console.log(notFormatedPrice);
+    // Mantem apenas numeros e um ponto
+    notFormatedPrice = notFormatedPrice.replace(/[^0-9\.]|\.(?=\.)/g, '');
+    // Apaga zeros depois do ponto quando tiver um terceiro numero depois depois da virgola
+    notFormatedPrice = notFormatedPrice.replace(/0(?=([1-9]))/g, '');
+
+    console.log('final set:')
+    console.log(notFormatedPrice);
+    
+    console.log('targe.value:')    
+    console.log(event.target.value);
     if(notFormatedPrice)
       setEditingPrice(notFormatedPrice);
     else
