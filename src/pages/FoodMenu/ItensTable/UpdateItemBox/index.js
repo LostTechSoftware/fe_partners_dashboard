@@ -4,16 +4,31 @@ import { DialogActions } from '@material-ui/core';
 import MainButton from '../../../../Components/MainButton'
 import api from '../../../../services/api';
 import './styles.css';
-
-export default function UpdateItemBox({ productId }) {
-  const [ title, setTitle ] = useState('');
-  const [ price, setPrice ] = useState('');
-  const [ description, setDescription ] = useState('');
+// 
+export default function UpdateItemBox({ children: { _id, title, price, description } }) {
+  const [ editingTitle, setEditingTitle ] = useState(title);
+  const [ editingPrice, setEditingPrice ] = useState(price);
+  const [ editingDescription, setEditingDescription ] = useState(description);
 
   function updateItem() {
     // const response = api.post('/', {
     // });
     console.log('updateItens');
+    console.log({title, price, description})
+  }
+
+  function handlePriceChange(event) {
+    let notFormatedPrice = event.target.value;
+    // Troca ',' por '.'
+    notFormatedPrice.replace(/,/g, '.');
+    // Mantem apenas numeros e um ponto
+    notFormatedPrice = notFormatedPrice.replace(/[^1-9\.]|\.(?=\.)/g, '');
+    
+    console.log(notFormatedPrice);
+    if(notFormatedPrice)
+      setEditingPrice(notFormatedPrice);
+    else
+      setEditingPrice('0.00');
   }
 
   return (
@@ -21,22 +36,27 @@ export default function UpdateItemBox({ productId }) {
       <input
         type='text'
         placeholder='Titulo'
-        value={ title }
-        onChange={ event => setTitle(event.target.value) }
+        value={ editingTitle }
+        onChange={ event => setEditingTitle(event.target.value) }
       />
 
       <input
         type='text'
         placeholder='preço'
-        value={ price }
-        onChange={ event => setPrice(event.target.value) }
+        value={ 
+          parseFloat(editingPrice).toLocaleString(
+            'pt-br',
+            {style:'currency', currency:'brl'}
+          )
+        }
+        onChange={ handlePriceChange }
       />
 
       <textarea
         type='text'
         placeholder='Descrição'
-        value={ description }
-        onChange={ event => setDescription(event.target.value) }
+        value={ editingDescription }
+        onChange={ event => setEditingDescription(event.target.value) }
       />
 
       <DialogActions>

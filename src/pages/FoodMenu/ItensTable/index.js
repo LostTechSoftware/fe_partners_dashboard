@@ -22,10 +22,15 @@ export default function ItensTable({ title, id }) {
   const deviceWidth = window.innerWidth;
   const [ products, setProducts ] = useState([])
   const [ openUpdateModal, setOpenUpdateModal ] = useState(false);
-  const [ currentEditingProductId, setCurrentEditingProductId] = useState('');
+  const [ currentEditingProduct, setCurrentEditingProduct] = useState('');
 
-  function openUpdate(ProductId) {
-    setCurrentEditingProductId(ProductId);
+  function openUpdate({ _id, title, price, description }) {
+    setCurrentEditingProduct({
+      _id,
+      title,
+      price,
+      description,
+    });
     setOpenUpdateModal(true);
   }
 
@@ -58,7 +63,7 @@ export default function ItensTable({ title, id }) {
                 component='th'
                 scope='row'
               >
-                <Button onClick={ () => openUpdate(product._id) } >
+                <Button onClick={ () => openUpdate(product) } >
                   <EditRounded />
                   <p> { product.title } </p>
                 </Button>
@@ -105,7 +110,9 @@ export default function ItensTable({ title, id }) {
       open={ openUpdateModal }
       onClose={() => setOpenUpdateModal(false)}
     >
-      <UpdateItemBox productId={currentEditingProductId} />
+      <UpdateItemBox>
+        {currentEditingProduct}
+      </UpdateItemBox>
     </Dialog>
     </>
   );
