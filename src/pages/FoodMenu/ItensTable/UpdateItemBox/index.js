@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { DialogActions } from '@material-ui/core';
 
 import MainButton from '../../../../Components/MainButton'
@@ -9,6 +9,8 @@ export default function UpdateItemBox({ children: { _id, title, price, descripti
   const [ editingTitle, setEditingTitle ] = useState(title);
   const [ editingPrice, setEditingPrice ] = useState(price);
   const [ editingDescription, setEditingDescription ] = useState(description);
+  const [ priceInputPosition, setPriceInputPosition] = useState(0);
+  const priceInputRef = useRef(null);
 
   function updateItem(event) {
     // const response = api.post('/', {
@@ -19,8 +21,14 @@ export default function UpdateItemBox({ children: { _id, title, price, descripti
   }
 
   function handlePriceChange(event) {
-    console.log('inicial value:')
-    console.log(event.target.value);
+    const position = event.target.selectionStart;
+    
+    // define for wrong cursor position when (value >= 100) 
+    if(position > 2)
+      setPriceInputPosition(position);
+    else
+      setPriceInputPosition(4);
+
     let formatedPrice = event.target.value;
     // Remove separação de centena e troca ',' por '.'
     formatedPrice = formatedPrice.replace(/\./g, '');
@@ -29,30 +37,32 @@ export default function UpdateItemBox({ children: { _id, title, price, descripti
     if(formatedPrice.length === 1)
       console.log('arrumar bug aq');
 
-    // Mantem apenas numeros e um ponto
+    // keep only numbers and 1 dot
     formatedPrice = formatedPrice.replace(/[^0-9\.]|\.(?=\.)/g, '');
 
-    // Apaga zeros depois do ponto quando tiver um terceiro numero depois depois da virgula
+    // erase a zero when finds 3 number for cents
     formatedPrice = formatedPrice.replace(/0(?=([1-9]{0,2})$)/g, '');
 
-    // Adiciona '.' com dois numeros no fim sempre que n tiver '.'
+    // add a dot before last two number with no dot finded 
     const dotNotfinded = formatedPrice.indexOf('.') === -1;
     if(dotNotfinded) {
       let arrayPrice = formatedPrice.split('');
-
       arrayPrice.push(arrayPrice[arrayPrice.length - 1]);
       arrayPrice[arrayPrice.length - 2] = arrayPrice[arrayPrice.length - 3];
       arrayPrice[arrayPrice.length - 3] = '.';
-
       formatedPrice = arrayPrice.join('');
     }
-
-    console.log('final format:')
-    console.log(formatedPrice);
     
     if(formatedPrice)
       setEditingPrice(formatedPrice);
+    else
+      setEditingPrice(0);
   }
+
+  useEffect(() => {
+    priceInputRef.current.selectionStart = priceInputPosition;
+    priceInputRef.current.selectionEnd = priceInputPosition;
+  }, [ priceInputPosition ])
 
   return (
     <form className='updateItem' onSubmit={ updateItem }>
@@ -74,6 +84,7 @@ export default function UpdateItemBox({ children: { _id, title, price, descripti
             )
           : ''
         }
+        ref={ priceInputRef }
         onChange={ handlePriceChange }
       />
 
