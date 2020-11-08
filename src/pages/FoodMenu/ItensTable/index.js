@@ -8,7 +8,6 @@ import {
   TableBody,
   Paper,
   Button,
-  Dialog,
 } from '@material-ui/core';
 
 import { EditRounded } from '@material-ui/icons';
@@ -24,7 +23,7 @@ export default function ItensTable({ title, id }) {
   const [ openUpdateModal, setOpenUpdateModal ] = useState(false);
   const [ currentEditingProduct, setCurrentEditingProduct] = useState('');
 
-  function openUpdate({ _id, title, price, description }) {
+  function productToUpdate({ _id, title, price, description }) {
     setCurrentEditingProduct({
       _id,
       title,
@@ -63,7 +62,7 @@ export default function ItensTable({ title, id }) {
                 component='th'
                 scope='row'
               >
-                <Button onClick={ () => openUpdate(product) } >
+                <Button onClick={ () => productToUpdate(product) } >
                   <EditRounded />
                   <p> { product.title } </p>
                 </Button>
@@ -104,16 +103,11 @@ export default function ItensTable({ title, id }) {
       </Table>
     </TableContainer>
 
-    <Dialog
-      fullWidth
-      maxWidth='xl'
-      open={ openUpdateModal }
-      onClose={() => setOpenUpdateModal(false)}
-    >
-      <UpdateItemBox>
-        {currentEditingProduct}
-      </UpdateItemBox>
-    </Dialog>
+    <UpdateItemBox
+      product={currentEditingProduct}
+      openModal={openUpdateModal}
+      closeModal={() => setOpenUpdateModal(false)}
+    />
     </>
   );
 }
