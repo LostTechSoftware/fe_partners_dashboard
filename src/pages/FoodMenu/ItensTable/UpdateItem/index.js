@@ -23,7 +23,6 @@ export default function UpdateItemBox({
 
   return (
     <ItemInfoForm
-      _id={_id}
       submit={updateItem}
       openModal={openModal}
       closeModal={closeModal}

@@ -14,7 +14,7 @@ import { EditRounded } from '@material-ui/icons';
 
 import api from '../../../services/api';
 import SellingStateControllerButton from './SellingStateControllerButton';
-import UpdateItemBox from './UpdateItemBox';
+import UpdateItem from './UpdateItem';
 import './styles.css';
 
 export default function ItensTable({ title, id }) {
@@ -103,7 +103,7 @@ export default function ItensTable({ title, id }) {
       </Table>
     </TableContainer>
 
-    <UpdateItemBox
+    <UpdateItem
       product={currentEditingProduct}
       openModal={openUpdateModal}
       closeModal={() => setOpenUpdateModal(false)}
