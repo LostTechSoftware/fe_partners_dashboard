@@ -1,0 +1,16 @@
+#root .foodMenu .MuiFab-root {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color:  #ffe115;
+}
+
+#root .foodMenu .MuiFab-root:hover {
+  background-color: #ffe015c7;
+}
+
+.foodMenu .MuiFab-root .MuiSvgIcon-root {
+  fill: #FFFFFF;
+  width: 60%;
+  height: 60%;
+}

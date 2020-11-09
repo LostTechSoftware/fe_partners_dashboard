@@ -6,6 +6,7 @@ import {
 import api from '../../services/api'
 import MainMenu from '../../Components/MainMenu';
 import ItensTable from './ItensTable';
+import CreateItem from './CreateItem';
 import './styles.css';
 
 export default function FoodMenu() {
@@ -62,6 +63,8 @@ export default function FoodMenu() {
           )) : null }
         </section>
       </div>
+      
+      <CreateItem />
     </div>
   );
 }
