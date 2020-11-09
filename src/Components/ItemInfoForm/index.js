@@ -10,11 +10,11 @@ export default function ItemInfoForm({
   openModal,
   closeModal,
   title,
-  price,
+  price=0,
   description
 }) {
   const [ editingTitle, setEditingTitle ] = useState('');
-  const [ editingPrice, setEditingPrice ] = useState('');
+  const [ editingPrice, setEditingPrice ] = useState(0);
   const [ editingDescription, setEditingDescription ] = useState('');
 
   useEffect(() => {
