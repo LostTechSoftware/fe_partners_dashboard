@@ -30,11 +30,21 @@ export default function UpdateItemBox({
   },[ description ]);
 
   function updateItem(event) {
-    // const response = api.post('/', {
-    // });
     event.preventDefault();
-    console.log('updateItens');
-    console.log({title, price, description})
+
+    try {
+      const response = api.post(`/product/edit/${_id}`, {
+        title,
+        price,
+        description,
+        // bool promotion
+        // number OldPrice
+        // img avatar
+      });
+      console.log(`Item ${_id} shall be updated`);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
