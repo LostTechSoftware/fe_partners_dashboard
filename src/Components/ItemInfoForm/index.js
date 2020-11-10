@@ -6,6 +6,7 @@ import MainButton from '../MainButton'
 import './styles.css';
 
 export default function ItemInfoForm({
+  update,
   submit,
   openModal,
   closeModal,
@@ -24,7 +25,7 @@ export default function ItemInfoForm({
       open={ openModal }
       onClose={ closeModal }
     >
-      <form className='updateItem' onSubmit={ submit }>
+      <form className='submitItem' onSubmit={ submit }>
         <input
           type='text'
           placeholder='Titulo'
@@ -45,6 +46,13 @@ export default function ItemInfoForm({
         />
 
         <DialogActions>
+          {
+            update ?
+              <MainButton boxId='deleteItem'>
+                Apagar Produto
+              </MainButton>
+            : null
+          }
           <MainButton type='submit' >
             Enviar
           </MainButton>
