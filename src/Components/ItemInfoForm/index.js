@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Switch,
-  FormControlLabel,
   Dialog,
   DialogActions
 } from '@material-ui/core';
