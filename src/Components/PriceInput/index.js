@@ -52,6 +52,7 @@ export default function PriceInput({
   return (
     <input
       type='text'
+      className='formatedPrice'
       placeholder={placeholder}
       value={ 
         parseFloat(priceValue) !== 0 ?

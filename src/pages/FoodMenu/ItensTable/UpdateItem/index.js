@@ -13,9 +13,12 @@ export default function UpdateItemBox({
   openModal,
   closeModal
 }) {
+  const OldPrice = price;
   const [ editingTitle, setEditingTitle ] = useState(title);
   const [ editingPrice, setEditingPrice ] = useState(price);
   const [ editingDescription, setEditingDescription ] = useState(description);
+
+  const [ promotion, setPromotion ] = useState(true);
 
   useEffect(() => {
     setEditingTitle(title)
@@ -34,17 +37,19 @@ export default function UpdateItemBox({
 
     try {
       const response = api.post(`/product/edit/${_id}`, {
-        title,
-        price,
-        description,
-        // bool promotion
-        // number OldPrice
+        title: editingTitle,
+        price: parseFloat(editingPrice),
+        description: editingDescription,
+        promotion,
+        OldPrice,
         // img avatar
       });
       console.log(`Item ${_id} shall be updated`);
     } catch (error) {
       console.log(error)
     }
+    console.log('oldPrice');
+    console.log(editingPrice);
   }
 
   return (
@@ -57,10 +62,12 @@ export default function UpdateItemBox({
       title={editingTitle}
       price={editingPrice}
       description={editingDescription}
+      promotion={promotion}
       
       setTitle={setEditingTitle}
       setPrice={setEditingPrice}
       setDescription={setEditingDescription}
+      setPromotion={setPromotion}
     />
   );
 }

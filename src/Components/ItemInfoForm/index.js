@@ -1,5 +1,10 @@
 import React from 'react';
-import { Dialog, DialogActions } from '@material-ui/core';
+import {
+  Switch,
+  FormControlLabel,
+  Dialog,
+  DialogActions
+} from '@material-ui/core';
 
 import PriceInput from '../PriceInput';
 import MainButton from '../MainButton'
@@ -10,12 +15,16 @@ export default function ItemInfoForm({
   submit,
   openModal,
   closeModal,
+
   title,
   price=0,
   description,
+  promotion,
+  
   setTitle,
   setPrice,
   setDescription,
+  setPromotion,
 }) {
 
   return (
@@ -25,7 +34,7 @@ export default function ItemInfoForm({
       open={ openModal }
       onClose={ closeModal }
     >
-      <form className='submitItem' onSubmit={ submit }>
+      <form className={`submitItem ${ update ? 'update' : null }`} onSubmit={ submit }>
         <input
           type='text'
           placeholder='Titulo'
@@ -33,10 +42,24 @@ export default function ItemInfoForm({
           onChange={ event => setTitle(event.target.value) }
         />
 
-        <PriceInput
-          priceValue={ price }
-          setPriceValue={ setPrice }
-        />
+        <section className='price'>
+          <PriceInput
+            priceValue={ price }
+            setPriceValue={ setPrice }
+          />
+
+          {
+            update ?
+              <label className='promotion'>
+                <Switch
+                  checked={promotion}
+                  onChange={event => setPromotion(event.target.checked)}
+                />
+                <span>Preço Promocional</span>
+              </label>
+            : null
+          }
+        </section>
 
         <textarea
           type='text'
