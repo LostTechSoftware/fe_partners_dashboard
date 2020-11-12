@@ -12,6 +12,7 @@ import './styles.css';
 export default function ItemInfoForm({
   update,
   submit,
+  deleteItem,
   openModal,
   closeModal,
 
@@ -70,7 +71,7 @@ export default function ItemInfoForm({
         <DialogActions>
           {
             update ?
-              <MainButton boxId='deleteItem'>
+              <MainButton boxId='deleteItem' onClick={deleteItem}>
                 Apagar Produto
               </MainButton>
             : null

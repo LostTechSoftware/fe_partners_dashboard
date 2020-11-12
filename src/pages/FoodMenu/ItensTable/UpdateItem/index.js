@@ -52,10 +52,19 @@ export default function UpdateItemBox({
     console.log(editingPrice);
   }
 
+  function deleteItem() {
+    try {
+      const response = api.delete(`/delete/product/${_id}`)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <ItemInfoForm
       update
       submit={updateItem}
+      deleteItem={deleteItem}
       openModal={openModal}
       closeModal={closeModal}
       
