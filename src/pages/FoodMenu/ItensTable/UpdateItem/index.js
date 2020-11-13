@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import filesize from "filesize";
 
 import api from '../../../../services/api';
 import ItemInfoForm from '../../../../Components/ItemInfoForm';
@@ -18,6 +19,7 @@ export default function UpdateItemBox({
   const [ editingPrice, setEditingPrice ] = useState(price);
   const [ editingDescription, setEditingDescription ] = useState(description);
 
+  const [ uploadedFile, setUploadedFile ] = useState({});
   const [ promotion, setPromotion ] = useState(true);
 
   useEffect(() => {
@@ -42,14 +44,12 @@ export default function UpdateItemBox({
         description: editingDescription,
         promotion,
         OldPrice,
-        // img avatar
+        avatar: uploadedFile,
       });
       console.log(`Item ${_id} shall be updated`);
     } catch (error) {
       console.log(error)
     }
-    console.log('oldPrice');
-    console.log(editingPrice);
   }
 
   function deleteItem() {
@@ -60,6 +60,21 @@ export default function UpdateItemBox({
     }
   }
 
+  const handleUpload = files => {
+    const uploadedFiles = files.map(file => ({
+      file,
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null
+    }));
+
+    setUploadedFile(uploadedFiles[0])
+  };
+
   return (
     <ItemInfoForm
       update
@@ -67,6 +82,9 @@ export default function UpdateItemBox({
       deleteItem={deleteItem}
       openModal={openModal}
       closeModal={closeModal}
+
+      handleUpload={handleUpload}
+      file={uploadedFile}
       
       title={editingTitle}
       price={editingPrice}

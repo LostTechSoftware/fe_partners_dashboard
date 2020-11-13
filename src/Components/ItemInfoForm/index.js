@@ -5,6 +5,8 @@ import {
   DialogActions
 } from '@material-ui/core';
 
+import Upload from '../Upload';
+import File from '../File';
 import PriceInput from '../PriceInput';
 import MainButton from '../MainButton'
 import './styles.css';
@@ -25,6 +27,9 @@ export default function ItemInfoForm({
   setPrice,
   setDescription,
   setPromotion,
+
+  handleUpload,
+  file,
 }) {
 
   return (
@@ -35,6 +40,10 @@ export default function ItemInfoForm({
       onClose={ closeModal }
     >
       <form className={`submitItem ${ update ? 'update' : null }`} onSubmit={ submit }>
+        <Upload
+          onUpload={handleUpload}
+          file={file}
+        />
         <input
           type='text'
           placeholder='Titulo'
