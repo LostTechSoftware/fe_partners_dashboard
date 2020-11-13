@@ -9,12 +9,13 @@ const PrinterHeader = () => (
       {sessionStorage.getItem('restaurantName')}
     </h2>
   
+    <span> Endereço: </span>
     <p>
       {sessionStorage.getItem('restaurantAddress')}
     </p>
 
+    <span> Telefone: </span>
     <p>
-      Telefone:
       <NumberFormat
         className='result print'
         value={sessionStorage.getItem('restaurantPhone')}

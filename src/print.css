@@ -7,7 +7,7 @@
     filter:none !important;
     -ms-filter:none !important;
     letter-spacing: normal !important;
-    page-break-before: auto;
+    page-break-before: auto !important;
   }
   
   html {
@@ -19,7 +19,8 @@
     padding:0;
   }
   @page {
-    margin: 0.5cm;
+    margin-bottom: 2cm;
+    overflow: visible !important;
   }
   
   nav, video, audio, img, svg, button, input,
@@ -38,7 +39,20 @@
   }
 
   .print {
-    display: block;
+    display: block !important;
+  }
+
+  head.print {
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer.print img {
+    width: 25%;
+    position: absolute;
+    top: -1cm;
+    right: 0;
+    opacity: 80%;
   }
   
   a {

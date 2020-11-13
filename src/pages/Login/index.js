@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { toast } from 'react-toastify';
-
-import api from '../../services/api';
+import 'react-toastify/dist/ReactToastify.css';
 import MainButton from '../../Components/MainButton';
-import 'react-toastify/dist/ReactToastify.css'
+import api from '../../services/api';
 import './styles.css';
+
+
 
 export default function Login() {
   const history = useHistory();
@@ -25,7 +25,16 @@ export default function Login() {
       });
       
       const { token } = response.data;
-      const { _id, name, avatar} = response.data.user;
+      const {
+        _id,
+        name,
+        avatar,
+        telephone,
+        uf,
+        city,
+        street,
+        number,
+      } = response.data.user;
       const restaurantLocation = JSON.stringify(response.data.user.location.coordinates);
       
       sessionStorage.setItem('token', token);
@@ -34,6 +43,14 @@ export default function Login() {
       sessionStorage.setItem('restaurantName', name);
       sessionStorage.setItem('restaurantLocation', restaurantLocation);
 
+      sessionStorage.setItem('restaurantPhone', telephone)
+      sessionStorage.setItem(
+        'restaurantAddress',
+        `Rua ${street} nº${number}, ${city} - ${uf}`
+      );
+
+      console.log(response.data.user)
+      
       setLoading(false)
       history.push('/requests');
     } catch (error) {
