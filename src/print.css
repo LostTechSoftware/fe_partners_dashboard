@@ -3,8 +3,11 @@
     background:transparent !important;
     color:#000 !important;
     text-shadow:none !important;
+    box-shadow: none !important;
     filter:none !important;
     -ms-filter:none !important;
+    letter-spacing: normal !important;
+    page-break-before: auto;
   }
   
   html {
@@ -15,7 +18,6 @@
     margin:0;
     padding:0;
   }
-  
   @page {
     margin: 0.5cm;
   }
