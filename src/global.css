@@ -64,6 +64,10 @@ input, textarea {
   box-shadow: 8px 8px 41px -3px rgba(122,122,122,0.61);
 }
 
+.print {
+  display: none;
+}
+
 @media screen and (min-width: 2000px) {
   html {
     font-size: 100%;

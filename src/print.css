@@ -36,6 +36,10 @@
     overflow: hidden !important;
     height: fit-content;
   }
+
+  .print {
+    display: block;
+  }
   
   a {
     text-decoration: none;

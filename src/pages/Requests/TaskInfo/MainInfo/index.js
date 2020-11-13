@@ -66,6 +66,16 @@ export default function MainInfo ({
               >
                 <p> Contato </p>
               </Button>
+              
+              {/* just show it when print */}
+              <NumberFormat
+                className='result print'
+                value={userPhone}
+                displayType={'text'}
+                format='(##) ##### - ####'
+              />
+              {/* *** */}
+
               </p>
             </div>
           </section>
