@@ -1,0 +1,41 @@
+@media print {
+  * {
+    background:transparent !important;
+    color:#000 !important;
+    text-shadow:none !important;
+    filter:none !important;
+    -ms-filter:none !important;
+  }
+  
+  html {
+    font-size: 45%;
+  }
+    
+  body {
+    margin:0;
+    padding:0;
+  }
+  
+  @page {
+    margin: 0.5cm;
+  }
+  
+  nav, video, audio, img, svg, button, input,
+  .mainMenu, .taskList, .preparingTime { 
+    display:none !important; 
+  }
+  
+  footer .infos {
+    justify-content: flex-end !important;
+  }
+  
+  .requests .pageContent,
+  .requests .taskInfo {
+    overflow: hidden !important;
+    height: fit-content;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+}
