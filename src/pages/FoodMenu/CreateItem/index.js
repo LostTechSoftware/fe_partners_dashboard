@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Fab } from '@material-ui/core';
+import { toast } from 'react-toastify';
 import filesize from "filesize";
+
 import {
   AddRounded,
 } from '@material-ui/icons';
+import 'react-toastify/dist/ReactToastify.css'
 
+import api from '../../../services/api';
 import ItemInfoForm from '../../../Components/ItemInfoForm';
 import './styles.css';
 
@@ -15,11 +19,30 @@ export default function CreateItem() {
   const [ editingPrice, setEditingPrice ] = useState(0);
   const [ editingDescription, setEditingDescription ] = useState('');
 
-  const [ uploadedFile, setUploadedFile ] = useState({});
+  const [ loading, setLoading ] = useState('')
+  const [ uploadedFile, setUploadedFile ] = useState(null);
 
-  function createItem(event) {
+  const [ rowId, setRowId ] = useState('')
+
+  async function createItem(event) {
     event.preventDefault();
-    alert('an item shall be created')
+    setLoading('send');
+    try {
+      const data = new FormData()
+
+      data.append('title', editingTitle)
+      data.append('price', parseFloat(editingPrice))
+      data.append('description', editingDescription)
+      if(uploadedFile.file)
+        data.append('avatar', uploadedFile.file);
+      
+      await api.post(`/add/product/${rowId}`)
+      toast.success('Produto salvo!');
+    } catch (error) {
+      console.log(error);
+      toast.error('Erro ao salvar produto, tente novamente!');
+    }
+    setLoading('');
   }
 
   const handleUpload = files => {
@@ -44,20 +67,20 @@ export default function CreateItem() {
     </Fab>
 
     <ItemInfoForm
+      loading={loading}
       submit= { createItem }
       openModal={openModal}
       closeModal={() => setOpenModal(false)}
-
-      handleUpload={handleUpload}
-      file={uploadedFile}
       
       title={editingTitle}
       price={editingPrice}
       description={editingDescription}
+      file={uploadedFile}
       
       setTitle={setEditingTitle}
       setPrice={setEditingPrice}
       setDescription={setEditingDescription}
+      handleUpload={handleUpload}
     />
     </>
   )

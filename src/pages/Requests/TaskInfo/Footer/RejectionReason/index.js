@@ -5,18 +5,24 @@ import { toast } from 'react-toastify';
 import api from '../../../../../services/api';
 import MainButton from '../../../../../Components/MainButton';
 import './styles.css';
+import 'react-toastify/dist/ReactToastify.css'
 
-export default function RejectionReason({ taskId, closeModal }) {
+export default function RejectionReason({ taskId, closeModal, reloadTask, loadRequests }) {
   const [ reason, setReason ] = useState('');
   const [ loading, setLoading ] = useState(false);
-
+  console.log(taskId)
   async function rejectOrder() {
     setLoading(true);
     const response = await api.post(`/reject/order/${taskId}`, {
       reason: reason,
-    }).catch(error => toast.error(error.response.data));
+    })
+    .catch(error => toast.error(error.response.data))
+    .then(response => toast.warning('Pedido rejeitado!'));
+
     closeModal();
     setLoading(false);
+    reloadTask()
+    loadRequests()
   }
 
   return (
@@ -28,7 +34,6 @@ export default function RejectionReason({ taskId, closeModal }) {
       <div className='rejectionReason'>
         <label htmlFor='reason'>
           <h2>
-            Por que o pedido foi rejeitado?
           </h2>
         </label>
         

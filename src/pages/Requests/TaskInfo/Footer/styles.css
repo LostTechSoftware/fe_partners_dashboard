@@ -43,11 +43,50 @@
   margin-top: 20px;
 }
 
+.requests .taskInfo footer .paymentMethodBox .infos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.requests .taskInfo footer .paymentMethodBox .text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.requests .taskInfo footer .paymentMethodBox
+ .infos .MuiIconButton-root {
+  background-color: #ffe115;
+  margin-top: -65px;
+  height: 130px;
+  width: 130px;
+}
+.requests .taskInfo footer .paymentMethodBox
+ .infos .MuiIconButton-root svg {
+  fill: #FFF;
+  height: 70px;
+  width: auto;
+}
+
 .requests .taskInfo footer .finalPrice {
   font-size: 3.7rem;
   margin-bottom: 14px;
 }
 /* *** */
+
+@media screen and (max-width: 1700px) {
+  .requests .taskInfo footer .paymentMethodBox
+   .infos .MuiIconButton-root {
+    height: 90px;
+    width: 90px;
+    margin-top: -45px;
+  }
+  .requests .taskInfo footer .paymentMethodBox
+   .infos .MuiIconButton-root svg {
+    height: 50px;
+  }
+}
 
 @media screen and (max-width: 1533px) {
   .requests .taskInfo footer {
@@ -55,5 +94,18 @@
   }
   .requests .taskInfo footer .finalPrice {
     font-size: 2.6rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .requests .taskInfo footer .paymentMethodBox
+   .infos .MuiIconButton-root {
+    height: 60px;
+    width: 60px;
+    margin-top: -35px;
+  }
+  .requests .taskInfo footer .paymentMethodBox
+   .infos .MuiIconButton-root svg {
+    height: 40px;
   }
 }

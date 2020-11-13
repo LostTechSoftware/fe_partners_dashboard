@@ -12,6 +12,17 @@
   padding: var(--deafult-top-padding) 3px 0;
 }
 
+::-webkit-scrollbar-track {
+  background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #dad7d7;
+}
+
 /* Material UI tab navigation */
 .requests .taskList .MuiAppBar-root {
   box-shadow: 2px 2px 20px 0px rgba(122,122,122,0.1);

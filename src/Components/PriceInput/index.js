@@ -48,7 +48,7 @@ export default function PriceInput({
     priceInputRef.current.selectionStart = priceInputPosition;
     priceInputRef.current.selectionEnd = priceInputPosition;
   }, [ priceInputPosition ])
-
+  
   return (
     <input
       type='text'

@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Switch,
   Dialog,
-  DialogActions
+  DialogActions,
+  Select,
+  MenuItem,
+  Switch,
 } from '@material-ui/core';
 
+import api from '../../services/api'
 import Upload from '../Upload';
 import PriceInput from '../PriceInput';
 import MainButton from '../MainButton'
@@ -12,6 +15,7 @@ import './styles.css';
 
 export default function ItemInfoForm({
   update,
+  loading,
   submit,
   deleteItem,
   openModal,
@@ -21,20 +25,28 @@ export default function ItemInfoForm({
   price=0,
   description,
   promotion,
+  file,
   
   setTitle,
   setPrice,
   setDescription,
   setPromotion,
-
   handleUpload,
-  file,
-
-  loading
 }) {
+  const [ categoryId, setCategoryId ] = useState('');
+  const [ categories, setCategories ] = useState([]);
+
   useEffect(() => {
-    console.log({loadidfsadsfa:loading})
-  }, [loading])
+    async function LoadCategories(){
+      const response = await api.get(`/menu/${sessionStorage.getItem('_id')}`)
+      setCategories(response.data.rows.map( r => ({
+        title:r.title,
+        _id:r._id
+      })))
+    }
+    LoadCategories();
+  }, [])
+
   return (
     <Dialog
       fullWidth
@@ -47,12 +59,24 @@ export default function ItemInfoForm({
           onUpload={handleUpload}
           file={file}
         />
-        <input
-          type='text'
-          placeholder='Titulo'
-          value={ title }
-          onChange={ event => setTitle(event.target.value) }
-        />
+
+        <section className='titleLine'>
+          <input
+            type='text'
+            placeholder='Titulo'
+            value={ title }
+            onChange={ event => setTitle(event.target.value) }
+          />
+
+          <Select
+            value={categoryId}
+            onChange={event => setCategoryId(event.target.value)}
+          >
+            {categories.map(category => (
+              <MenuItem value={category._id}> {category.title} </MenuItem>
+            ))}
+          </Select>
+        </section>
 
         <section className='price'>
           <PriceInput

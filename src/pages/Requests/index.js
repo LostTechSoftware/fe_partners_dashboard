@@ -4,8 +4,6 @@ import {
   AppBar,
   Tabs,
   Tab,
-  Button,
-  Popover,
 } from '@material-ui/core';
 import socketio from 'socket.io-client';
 import useSound from 'use-sound';
@@ -21,13 +19,14 @@ import './styles.css';
 export default function Requests() {
   const [ page, setPage ] = useState(0);
   const [ openedTaskId, setOpenedTaskId ] = useState(0);
-  const [ taskInfos, setTaskInfos ] = useState('');
   
   const [taskListPreparing, setTaskListPreparing] = useState([])
   const [taskListNew, setTaskListNew] = useState([])
   const [taskListDelivery, setTaskListDelivery] = useState([])
 
   const [ playRequestRecived ] = useSound(requestRecived)
+
+  const [loading, setLoading] = useState(true)
      
   const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
     query: {
@@ -35,21 +34,24 @@ export default function Requests() {
     }
   }), [] )
 
-  async function LoadRequests(page){
+  async function loadRequests(){
     // new taks
     if(page === 0) {
       const response = await api.get('/tasks/new');
       setTaskListNew(response.data);
+      setLoading(false)
     }
     // preparing tasks
     if(page === 1) {
       const response = await api.get('/tasks/preparing');
-      setTaskListPreparing(response.data);
+      setTaskListPreparing(response.data)
+      setLoading(false)
     }
     // delivery tasks
     if(page === 2) {
       const response = await api.get('/tasks/delivery');
-      setTaskListDelivery(response.data);
+      setTaskListDelivery(response.data)
+      setLoading(false)
     }
   }
   
@@ -64,16 +66,8 @@ export default function Requests() {
   }, [socket])
 
   useEffect(() => {
-    LoadRequests(page)
+    loadRequests()
   }, [page])
-
-  useEffect(() => {
-    async function LoadTask(){
-      const response = await api.get(`/tasks/${openedTaskId}`)
-      setTaskInfos(response.data)
-    }
-    LoadTask()
-  }, [openedTaskId])
 
   return(
     <div className='page requests'>
@@ -119,9 +113,10 @@ export default function Requests() {
           </SwipeableViews>
         </section>
 
-        <TaskInfo>
-          {taskInfos}
-        </TaskInfo>
+        <TaskInfo
+          loadRequests={loadRequests}
+          requestId={openedTaskId}
+        />
       </div>
     </div>
   )

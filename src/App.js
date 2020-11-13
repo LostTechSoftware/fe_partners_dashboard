@@ -1,5 +1,6 @@
 import React from 'react';
 import './global.css';
+import './print.css';
 
 import Router from './routes';
 import { ToastContainer } from 'react-toastify';

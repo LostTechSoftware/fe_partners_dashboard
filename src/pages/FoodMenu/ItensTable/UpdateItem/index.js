@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import filesize from "filesize";
 
@@ -54,9 +54,7 @@ export default function UpdateItemBox({
 
       if(uploadedFile)
         data.append('avatar', uploadedFile.file)
-      else
-        data.append('avatar', avatar);
-
+        
       await api.post(`/product/edit/${_id}`, data);
       toast.success('Produto salvo!');
       
