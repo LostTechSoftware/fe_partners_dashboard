@@ -28,7 +28,7 @@ const File = ({ uploadedFile, onDelete }) => (
             <CircularProgressbar
               styles={{
                 root: { width: 24 },
-                path: { stroke: "#7159c1" }
+                path: { stroke: "#00ff00" }
               }}
               strokeWidth={10}
               percentage={uploadedFile.progress}

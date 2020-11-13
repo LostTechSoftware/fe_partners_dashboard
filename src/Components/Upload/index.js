@@ -6,21 +6,18 @@ import Dropzone from "react-dropzone";
 import File from '../File';
 import { DropContainer, UploadMessage } from "./styles";
 
-export default function Upload({ onUpload, file }) {
+export default function Upload({ onUpload, file = {} }) {
   const renderDragMessage = (isDragActive, isDragReject) => {
-    if (file.name)
-      // console.log(file.name)
+    if (file)
       return <File uploadedFile={file} />
-    if (!isDragActive) {
-      return <UploadMessage>Arraste arquivos aqui...</UploadMessage>;
-    }
 
-    if (isDragReject) {
+    if (!isDragActive)
+      return <UploadMessage>Adicione uma foto ao produto...</UploadMessage>;
+
+    if (isDragReject)
       return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
-    }
 
-
-    return <UploadMessage type="success">Solte os arquivos aqui</UploadMessage>;
+    return <UploadMessage type="success">Solte uma imagem aqui</UploadMessage>;
   };
 
   return (

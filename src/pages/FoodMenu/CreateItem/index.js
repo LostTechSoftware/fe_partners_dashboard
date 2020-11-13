@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Fab } from '@material-ui/core';
+import filesize from "filesize";
 import {
   AddRounded,
 } from '@material-ui/icons';
@@ -14,10 +15,27 @@ export default function CreateItem() {
   const [ editingPrice, setEditingPrice ] = useState(0);
   const [ editingDescription, setEditingDescription ] = useState('');
 
+  const [ uploadedFile, setUploadedFile ] = useState({});
+
   function createItem(event) {
     event.preventDefault();
     alert('an item shall be created')
   }
+
+  const handleUpload = files => {
+    const uploadedFiles = files.map(file => ({
+      file,
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null
+    }));
+
+    setUploadedFile(uploadedFiles[0])
+  };
 
   return (
     <>
@@ -29,6 +47,9 @@ export default function CreateItem() {
       submit= { createItem }
       openModal={openModal}
       closeModal={() => setOpenModal(false)}
+
+      handleUpload={handleUpload}
+      file={uploadedFile}
       
       title={editingTitle}
       price={editingPrice}

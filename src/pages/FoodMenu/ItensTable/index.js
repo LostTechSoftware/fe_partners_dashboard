@@ -23,12 +23,13 @@ export default function ItensTable({ title, id }) {
   const [ openUpdateModal, setOpenUpdateModal ] = useState(false);
   const [ currentEditingProduct, setCurrentEditingProduct] = useState('');
 
-  function productToUpdate({ _id, title, price, description }) {
+  function productToUpdate({ _id, title, price, description, avatar }) {
     setCurrentEditingProduct({
       _id,
       title,
       price,
       description,
+      avatar,
     });
     setOpenUpdateModal(true);
   }

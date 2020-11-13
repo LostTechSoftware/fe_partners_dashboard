@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog } from '@material-ui/core';
 
 import api from '../../../../services/api';
 import MainButton from '../../../../Components/MainButton';
 import PaymentMethod from '../../../../Components/PaymentMethod';
+import { toast } from 'react-toastify';
 
 import RejectionReason from './RejectionReason';
 import './styles.css';
@@ -17,20 +18,32 @@ export default function Footer({
   toDelivery,
 }) {
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
+  const [loading, setLoading] = useState('')
 
   async function acceptOrder() {
-    const response = await api.post(`/approve/order/${taskId}`);
+    setLoading('accept')
+    const response = await api.post(`/approve/order/${taskId}`)
+      .catch(error => toast.error(error.response.data));
+    setLoading('')
   }
 
   async function deliveryOrder() {
-    const response = await api.post(`/onTheWay/order/${taskId}`);
+    setLoading('delivery')
+    const response = await api.post(`/onTheWay/order/${taskId}`)
+      .catch(error => toast.error(error.response.data))
+    setLoading('')
   }
 
   async function cancelOrder() {
-    const response = await api.post(`/restaurant/cancel/${taskId}`);
+    setLoading('cancel')
+    const response = await api.post(`/restaurant/cancel/${taskId}`)
+      .catch(error => toast.error(error.response.data));
+    setLoading('')
   }
 
-// taskInfos.expiresIn
+  useEffect(() => {
+    console.log('up');
+  }, []);
 
   return (
     <footer>
@@ -50,7 +63,11 @@ export default function Footer({
             Rejeitar pedido
           </MainButton>
 
-          <MainButton onClick={ acceptOrder } boxId='acceptOrder' >
+          <MainButton
+            loading={loading === 'accept'}
+            onClick={ acceptOrder }
+            boxId='acceptOrder'
+          >
             Aceitar pedido
           </MainButton>
         </div>
@@ -67,11 +84,19 @@ export default function Footer({
           <section className='orderButtons'>
             {approved === 'Aceito' && !onTheWay ?
               <>
-              <MainButton onClick={ cancelOrder } boxId='cancelOrder' >
+              <MainButton 
+              loading={loading === 'cancel'}
+              onClick={ cancelOrder } 
+              boxId='cancelOrder' 
+              >
                 Cancelar
               </MainButton>
 
-              <MainButton onClick={ deliveryOrder } boxId='deliveryOrder' >
+              <MainButton
+                loading={loading === 'delivery'}
+                onClick={ deliveryOrder }
+                boxId='deliveryOrder'
+              >
                 {toDelivery ? 'Entregar pedido' : 'Pedir pra retirar'}
               </MainButton>
               </>
@@ -86,7 +111,10 @@ export default function Footer({
         open={openRejectionModal}
         onClose={() => setOpenRejectionModal(false)}
       >
-        <RejectionReason taskId={taskId} />
+        <RejectionReason
+          taskId={taskId}
+          closeModal={() => setOpenRejectionModal(false)}
+        />
       </Dialog>
     </footer>
   );

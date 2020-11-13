@@ -1,100 +1,123 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { toast } from 'react-toastify';
 import filesize from "filesize";
 
 import api from '../../../../services/api';
 import ItemInfoForm from '../../../../Components/ItemInfoForm';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function UpdateItemBox({
   product: {
     _id,
     title,
     price,
-    description
+    description,
+    avatar,
   },
   openModal,
   closeModal
 }) {
-  const OldPrice = price;
+  const [ OldPrice, setOldPrice] = useState(price);
   const [ editingTitle, setEditingTitle ] = useState(title);
   const [ editingPrice, setEditingPrice ] = useState(price);
   const [ editingDescription, setEditingDescription ] = useState(description);
 
-  const [ uploadedFile, setUploadedFile ] = useState({});
-  const [ promotion, setPromotion ] = useState(true);
+  const [ uploadedFile, setUploadedFile ] = useState(null);
+  const [ promotion, setPromotion ] = useState(false);
+  
+  const [loading, setLoading] = useState('')
 
   useEffect(() => {
-    setEditingTitle(title)
+    setEditingTitle(title);
   },[ title ]);
-
+  
   useEffect(() => {
-    setEditingPrice(price)
+    setEditingPrice(price);
+    setOldPrice(price);
   },[ price ]);
 
   useEffect(() => {
     setEditingDescription(description)
   },[ description ]);
 
-  function updateItem(event) {
+  async function updateItem(event) {
     event.preventDefault();
-
+    setLoading('send')
     try {
-      const response = api.post(`/product/edit/${_id}`, {
-        title: editingTitle,
-        price: parseFloat(editingPrice),
-        description: editingDescription,
-        promotion,
-        OldPrice,
-        avatar: uploadedFile,
-      });
-      console.log(`Item ${_id} shall be updated`);
-    } catch (error) {
-      console.log(error)
-    }
-  }
+      const data = new FormData()
 
-  function deleteItem() {
-    try {
-      const response = api.delete(`/delete/product/${_id}`)
+      data.append('title', editingTitle)
+      data.append('price', parseFloat(editingPrice))
+      data.append('description', editingDescription)
+      data.append('promotion', promotion)
+      data.append('OldPrice', OldPrice)
+
+      if(uploadedFile)
+        data.append('avatar', uploadedFile.file)
+      else
+        data.append('avatar', avatar);
+
+      await api.post(`/product/edit/${_id}`, data);
+      toast.success('Produto salvo!');
+      
     } catch (error) {
       console.log(error);
+      toast.error('Erro ao salvar produto, tente novamente!');
     }
+    setLoading('');
+  }
+
+  async function deleteItem() {
+    try {
+      setLoading('delete')
+      await api.delete(`/delete/product/${_id}`);
+      toast.success('Produto deletado!');
+    } catch (error) {
+      toast.error('Erro ao deletar produto, tente novamente!');
+      console.log(error);
+    }
+    setLoading('')
   }
 
   const handleUpload = files => {
     const uploadedFiles = files.map(file => ({
+      id: file.lastModified,
       file,
       name: file.name,
       readableSize: filesize(file.size),
-      preview: URL.createObjectURL(file),
       progress: 0,
+      preview: URL.createObjectURL(file),
       uploaded: false,
       error: false,
       url: null
     }));
 
-    setUploadedFile(uploadedFiles[0])
-  };
-
+    setUploadedFile(uploadedFiles[0]);
+  }
+  
   return (
+    <>
     <ItemInfoForm
       update
+      loading={loading}
       submit={updateItem}
       deleteItem={deleteItem}
       openModal={openModal}
       closeModal={closeModal}
 
-      handleUpload={handleUpload}
-      file={uploadedFile}
       
       title={editingTitle}
       price={editingPrice}
       description={editingDescription}
       promotion={promotion}
+      file={uploadedFile}
       
       setTitle={setEditingTitle}
       setPrice={setEditingPrice}
       setDescription={setEditingDescription}
       setPromotion={setPromotion}
+      handleUpload={handleUpload}
     />
+    </>
   );
 }

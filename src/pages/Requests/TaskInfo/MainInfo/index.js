@@ -18,7 +18,8 @@ export default function MainInfo ({
   userPhone,
 }) {
   const [ modalOpen, setModalOpen ] = useState(null);
-
+  const [ coordinates, ] = useState(JSON.parse(sessionStorage.getItem('restaurantLocation')))
+  
   return (
     <section className='mainInfo' >
       <h2>Informações do Pedido</h2>
@@ -27,13 +28,13 @@ export default function MainInfo ({
         <div className='sideLine' />
         <section className='address'>
           {address ?
-            <a href='https://www.google.com/maps/dir/-22.0621785,-46.9729812/-22.056778,-46.981406/@-22.0593744,-46.9815846,16z/data=!3m1!4b1'>
+            <a target="blank" href={`https://www.google.com/maps/dir/${coordinates[1]},${coordinates[0]}/${address.location.coordinates[1]},${address.location.coordinates[0]}`}>
               <span className='label'>Endereço</span>
               <p className='result'>
                 {`${address.street},
                   ${address.Number},
                   ${address.neighborhood},
-                  ${address.complement},
+                  ${address.complement ? `${address.complement},` : ''}
                   ${address.reference}`}
               </p>
             </a>
@@ -63,9 +64,7 @@ export default function MainInfo ({
                 fullWidth
                 onClick={event => setModalOpen(event.currentTarget)}
               >
-                <p>
-                  Contato
-                </p>
+                <p> Contato </p>
               </Button>
               </p>
             </div>

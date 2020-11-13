@@ -54,9 +54,9 @@ export default function Requests() {
   }
   
   async function ReLoadNewTasks() {
+    playRequestRecived();
     const response = await api.get('/tasks/new');
     setTaskListNew(response.data);
-    playRequestRecived();
   }
 
   useEffect(() => {

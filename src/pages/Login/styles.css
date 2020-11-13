@@ -29,7 +29,7 @@
 }
 
 .login form .mainButton .MuiButton-label {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 @media screen and (min-width: 2000px) {
@@ -42,6 +42,9 @@
   }
   .login .mainButton .MuiButton-root {
     height: 140px;
+  }
+  .login form .mainButton .MuiButton-label {
+    font-size: 4rem;
   }
 }
 

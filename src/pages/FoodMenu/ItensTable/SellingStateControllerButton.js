@@ -9,10 +9,13 @@ import api from '../../../services/api';
 
 export default function SellingStateControllerButton({ sellingState, productId }) {
   const [ state, setState ] = useState(sellingState)
+  const [loading, setLoading] = useState(false)
 
   async function changeProductAvailability() {
-    const response = await api.post(`/product/pause/${ productId }`);
+    setLoading(true)
+    const response = await api.post(`/product/pause/${ productId }`)
     setState(state ? false : true)
+    setLoading(false)
   }
 
   return (
@@ -21,12 +24,12 @@ export default function SellingStateControllerButton({ sellingState, productId }
         !state ?
           <>
             <PauseCircleFilledRounded />
-            <p>Pausar vendas</p>
+            <p>{loading ? 'Pausando...' : 'Pausar vendas'}</p>
           </>
         :
           <>
             <PlayCircleFilledRounded />
-            <p>Retomar vendas</p>
+            <p>{loading ? 'Despausando...' : 'Retomar vendas'}</p>
           </>
       }
     </Button>

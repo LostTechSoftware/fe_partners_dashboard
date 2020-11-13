@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Switch,
   Dialog,
@@ -6,7 +6,6 @@ import {
 } from '@material-ui/core';
 
 import Upload from '../Upload';
-import File from '../File';
 import PriceInput from '../PriceInput';
 import MainButton from '../MainButton'
 import './styles.css';
@@ -30,8 +29,12 @@ export default function ItemInfoForm({
 
   handleUpload,
   file,
-}) {
 
+  loading
+}) {
+  useEffect(() => {
+    console.log({loadidfsadsfa:loading})
+  }, [loading])
   return (
     <Dialog
       fullWidth
@@ -39,7 +42,7 @@ export default function ItemInfoForm({
       open={ openModal }
       onClose={ closeModal }
     >
-      <form className={`submitItem ${ update ? 'update' : null }`} onSubmit={ submit }>
+      <form encType="multipart/form-data" className={`submitItem ${ update ? 'update' : null }`} onSubmit={ submit }>
         <Upload
           onUpload={handleUpload}
           file={file}
@@ -80,12 +83,12 @@ export default function ItemInfoForm({
         <DialogActions>
           {
             update ?
-              <MainButton boxId='deleteItem' onClick={deleteItem}>
+              <MainButton loading={loading === 'delete'} boxId='deleteItem' onClick={deleteItem}>
                 Apagar Produto
               </MainButton>
             : null
           }
-          <MainButton type='submit' >
+          <MainButton loading={loading === 'send'} type='submit' >
             Enviar
           </MainButton>
         </DialogActions>
