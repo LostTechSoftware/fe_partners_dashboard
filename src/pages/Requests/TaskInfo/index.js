@@ -61,6 +61,7 @@ export default function TaskInfo({ requestId, loadRequests }) {
           change={taskInfos.change}
           payment_method={taskInfos.payment_method}
           onTheWay={taskInfos.onTheWay}
+          tip={taskInfos.tip}
           toDelivery={taskInfos.address ? true : false}
           
           loadRequests={loadRequests}

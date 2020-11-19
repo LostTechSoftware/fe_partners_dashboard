@@ -32,8 +32,10 @@ export default function ItemInfoForm({
   setDescription,
   setPromotion,
   handleUpload,
+
+  setRowId,
+  rowId
 }) {
-  const [ categoryId, setCategoryId ] = useState('');
   const [ categories, setCategories ] = useState([]);
 
   useEffect(() => {
@@ -68,14 +70,16 @@ export default function ItemInfoForm({
             onChange={ event => setTitle(event.target.value) }
           />
 
-          <Select
-            value={categoryId}
-            onChange={event => setCategoryId(event.target.value)}
+          {!update
+            && <Select
+            value={rowId}
+            onChange={(event) => setRowId(event.target.value)}
           >
             {categories.map(category => (
-              <MenuItem value={category._id}> {category.title} </MenuItem>
+              <MenuItem style={{fontSize:20}} value={category._id}> {category.title} </MenuItem>
             ))}
           </Select>
+          }
         </section>
 
         <section className='price'>

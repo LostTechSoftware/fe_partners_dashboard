@@ -60,7 +60,14 @@ export default function FoodMenu() {
               id={row._id}
               title={row.title}
             />
-          )) : null }
+          )) 
+          : <ItensTable
+              key={1}
+              id={1}
+              title={expectedItensName}
+              products={itensList}
+            />
+        }
         </section>
       </div>
       

@@ -20,14 +20,15 @@ export default function Footer({
   toDelivery,
   change,
   reloadTask,
-  loadRequests
+  loadRequests,
+  tip
 }) {
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
   const [loading, setLoading] = useState('')
 
   async function acceptOrder() {
     setLoading('accept')
-    const response = await api.post(`/approve/order/${taskId}`)
+    await api.post(`/approve/order/${taskId}`)
       .catch(error => toast.error(error.response.data))
       .then(response => toast.success('Pedido aceito!'))
     setLoading('')
@@ -37,7 +38,7 @@ export default function Footer({
 
   async function deliveryOrder() {
     setLoading('delivery')
-    const response = await api.post(`/onTheWay/order/${taskId}`)
+    await api.post(`/onTheWay/order/${taskId}`)
       .catch(error => toast.error(error.response.data))
       .then(response => toast.success('Pedido enviado!'))
     setLoading('')
@@ -47,7 +48,7 @@ export default function Footer({
 
   async function cancelOrder() {
     setLoading('cancel')
-    const response = await api.post(`/restaurant/cancel/${taskId}`)
+    await api.post(`/restaurant/cancel/${taskId}`)
       .catch(error => toast.error(error.response.data))
       .then(response => toast.warning('Pedido aguardando ser cancelado!'))
     setLoading('')
@@ -89,16 +90,24 @@ export default function Footer({
             </IconButton>
 
             <div className='text'>
-              <span>Forma de pagamento</span>
+              <div className='method'>
+                  {!! tip
+                    && <span>A gorjeta de {tip.toLocaleString('pt-br', {currency:'brl',style:'currency'})} está incluída no preço.</span>
+                  }
+              </div>
 
+              <div className='method'>
+                  {!! change
+                    && <span>Troco para: {change.toLocaleString('pt-br', {currency:'brl',style:'currency'})}</span>
+                  }
+              </div>
+              <span>Forma de pagamento</span>
               <div className='method'>
                 <PaymentMethod>
                   {payment_method}
                 </PaymentMethod>
-                {!! change
-                  && <span>Troco para: {change.toLocaleString('pt-br', {currency:'brl',style:'currency'})}</span>
-                }
               </div>
+          
             </div>
           </section>
 

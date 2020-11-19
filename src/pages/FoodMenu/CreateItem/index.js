@@ -23,7 +23,7 @@ export default function CreateItem() {
   const [ uploadedFile, setUploadedFile ] = useState(null);
 
   const [ rowId, setRowId ] = useState('')
-
+  
   async function createItem(event) {
     event.preventDefault();
     setLoading('send');
@@ -76,7 +76,9 @@ export default function CreateItem() {
       price={editingPrice}
       description={editingDescription}
       file={uploadedFile}
-      
+      setRowId={setRowId}
+      rowId={rowId}
+
       setTitle={setEditingTitle}
       setPrice={setEditingPrice}
       setDescription={setEditingDescription}

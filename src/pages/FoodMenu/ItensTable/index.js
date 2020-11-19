@@ -17,11 +17,12 @@ import SellingStateControllerButton from './SellingStateControllerButton';
 import UpdateItem from './UpdateItem';
 import './styles.css';
 
-export default function ItensTable({ title, id }) {
+export default function ItensTable({ title, id, products = [] }) {
   const deviceWidth = window.innerWidth;
-  const [ products, setProducts ] = useState([])
+  const [ product, setProducts ] = useState(products)
   const [ openUpdateModal, setOpenUpdateModal ] = useState(false);
   const [ currentEditingProduct, setCurrentEditingProduct] = useState('');
+  const [loading, setLoading] = useState(false)
 
   function productToUpdate({ _id, title, price, description, avatar }) {
     setCurrentEditingProduct({
@@ -33,19 +34,26 @@ export default function ItensTable({ title, id }) {
     });
     setOpenUpdateModal(true);
   }
-
+  
   useEffect(() => {
-    async function getProducts(){
+    async function getProducts() {
       try {
+        setLoading(true)
+        if (id === 1) {
+          setLoading(false)
+          return;
+        }
+
         const response = await api.get(`/row/${id}`)
         setProducts(response.data.products);
-      } catch(error) {
-        console.log(error)
+        setLoading(false)
+      } catch (error) {
+        setLoading(false)
       }
     }
     getProducts();
   }, [id])
-
+  
   return (
     <>
     <TableContainer className='itensTable' component={Paper}>
@@ -55,7 +63,8 @@ export default function ItensTable({ title, id }) {
         </TableHead>
 
         <TableBody>
-          {products.map(product => (
+        {!!loading === false
+          && (product.map(product => (
             <React.Fragment key={Math.random()} >
             <TableRow key={ product._id } >
               <TableCell
@@ -99,8 +108,9 @@ export default function ItensTable({ title, id }) {
               : null
             }
             </ React.Fragment>
-          ))}
-        </TableBody>
+          )))
+        }        
+      </TableBody>
       </Table>
     </TableContainer>
 

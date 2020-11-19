@@ -33,7 +33,7 @@ export default function Login() {
         uf,
         city,
         street,
-        number,
+        Number,
       } = response.data.user;
       const restaurantLocation = JSON.stringify(response.data.user.location.coordinates);
       
@@ -46,7 +46,7 @@ export default function Login() {
       sessionStorage.setItem('restaurantPhone', telephone)
       sessionStorage.setItem(
         'restaurantAddress',
-        `Rua ${street} nº${number}, ${city} - ${uf}`
+        `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
 
       console.log(response.data.user)

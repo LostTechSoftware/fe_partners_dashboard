@@ -55,8 +55,12 @@ export default function Item({
           </div>
         : null}
 
-        {additionals.map( additional => (
+        {additionals.map( ad => (
+          ad.additional.map(additional => 
           <div className='additional' key={additional.id}>
+            {!!additional.quantidade &&
+              <p>{additional.quantidade}</p>
+            }
             <main>
               <AddRounded />
               <p> {additional.title} </p>
@@ -68,7 +72,7 @@ export default function Item({
               )}
             </p>
           </div>
-        ))}
+        )))}
       </section>
 
       <div className='underline' />

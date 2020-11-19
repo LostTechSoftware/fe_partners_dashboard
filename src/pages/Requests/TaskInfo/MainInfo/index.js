@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import Badge from '@material-ui/core/Badge';
 
 import Messages from '../../../../Components/Messages';
 import './styles.css';
@@ -19,7 +20,8 @@ export default function MainInfo ({
 }) {
   const [ modalOpen, setModalOpen ] = useState(null);
   const [ coordinates, ] = useState(JSON.parse(sessionStorage.getItem('restaurantLocation')))
-  
+  const [messages, setMessages] = useState([])
+
   return (
     <section className='mainInfo' >
       <h2>Informações do Pedido</h2>
@@ -66,7 +68,8 @@ export default function MainInfo ({
               >
                 <p> Contato </p>
               </Button>
-              
+              <Badge badgeContent={messages.length} color="primary">
+              </Badge>
               {/* just show it when print */}
               <NumberFormat
                 className='result print'
@@ -104,7 +107,7 @@ export default function MainInfo ({
           displayType={'text'}
           format='(##) ##### - ####'
         />
-        <Messages requestId={taskId} />
+        <Messages requestId={taskId} setMessages={setMessages}/>
       </Popover>
     </section>
   );

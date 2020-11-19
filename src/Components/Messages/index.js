@@ -8,7 +8,7 @@ import api from '../../services/api';
 import Message from './Message';
 import './styles.css';
 
-export default function Messages({ requestId }) {
+export default function Messages({ requestId, setMessages: setM }) {
   const [ messageInput, setMessageInput ] = useState('');
 
   const [messages, setMessages] = useState([{
@@ -59,6 +59,7 @@ export default function Messages({ requestId }) {
       const response = await api.get(`/chat/${requestId}`);
 
       if (response.data) {
+        setM(response.data.text)
         setMessages(response.data.text);
         setChat(response.data);
       }
@@ -68,6 +69,7 @@ export default function Messages({ requestId }) {
 
   useEffect(() => {
     socket.on('message', function response(response) {
+      setM(response.text)
       setMessages(response.text)
       setChat(response)
     })
