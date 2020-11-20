@@ -48,8 +48,6 @@ export default function Login() {
         'restaurantAddress',
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
-
-      console.log(response.data.user)
       
       setLoading(false)
       history.push('/requests');
