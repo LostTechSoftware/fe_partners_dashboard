@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import Footer from './Footer';
 import Item from './Item';
@@ -6,10 +6,17 @@ import MainInfo from './MainInfo';
 import api from '../../../services/api'
 import './styles.css';
 import LoadingTask from './LoadingTask';
+import socketio from 'socket.io-client';
 
 export default function TaskInfo({ requestId, loadRequests }) {
   const [ taskInfos, setTaskInfos ] = useState({})
   const [loading, setLoading] = useState(false)
+
+  const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
+    query: {
+      user_id:sessionStorage.getItem('_id')
+    }
+  }), [] )
 
   async function getTaskInfo(){
     setLoading(true)
@@ -18,6 +25,10 @@ export default function TaskInfo({ requestId, loadRequests }) {
     setTaskInfos(response.data)
     setLoading(false)
   }
+
+  useEffect(() => {
+    socket.on('cancelattion_status', getTaskInfo)
+  }, [socket])
 
   useEffect(() => {
     getTaskInfo()

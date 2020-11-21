@@ -5,6 +5,7 @@ import {
   Tabs,
   Tab,
 } from '@material-ui/core';
+import { toast } from 'react-toastify';
 import socketio from 'socket.io-client';
 import useSound from 'use-sound';
 
@@ -15,6 +16,7 @@ import TaskInfo from './TaskInfo';
 
 import requestRecived from '../../assets/request-recived.mp3';
 import './styles.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Requests() {
   const [ page, setPage ] = useState(0);
@@ -25,8 +27,6 @@ export default function Requests() {
   const [taskListDelivery, setTaskListDelivery] = useState([])
 
   const [ playRequestRecived ] = useSound(requestRecived)
-
-  const [loading, setLoading] = useState(true)
      
   const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
     query: {
@@ -39,30 +39,30 @@ export default function Requests() {
     if(page === 0) {
       const response = await api.get('/tasks/new');
       setTaskListNew(response.data);
-      setLoading(false)
     }
     // preparing tasks
     if(page === 1) {
       const response = await api.get('/tasks/preparing');
       setTaskListPreparing(response.data)
-      setLoading(false)
     }
     // delivery tasks
     if(page === 2) {
       const response = await api.get('/tasks/delivery');
       setTaskListDelivery(response.data)
-      setLoading(false)
     }
   }
   
   async function ReLoadNewTasks() {
-    playRequestRecived();
+    playRequestRecived()
     const response = await api.get('/tasks/new');
     setTaskListNew(response.data);
   }
 
+
   useEffect(() => {
     socket.on('new_order', ReLoadNewTasks)
+    socket.on('cancelattion_status', loadRequests)
+    socket.on('cancelattion_status', () => toast.warning('Um pedido foi cancelado!'))
   }, [socket])
 
   useEffect(() => {

@@ -71,12 +71,14 @@ export default function MainInfo ({
                   </Button>
               </Badge>
               {/* just show it when print */}
-              <NumberFormat
+              {!! userPhone > 0
+              && <NumberFormat
                 className='result print'
                 value={userPhone}
                 displayType={'text'}
                 format='(##) ##### - ####'
               />
+              }
               {/* *** */}
 
               </p>
