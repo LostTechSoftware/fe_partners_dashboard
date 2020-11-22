@@ -3,10 +3,12 @@ import React, { useState, useEffect, useMemo } from 'react';
 import socketio from 'socket.io-client';
 import { Button } from '@material-ui/core';
 import SendRounded from '@material-ui/icons/SendRounded';
+import useSound from 'use-sound';
 
 import api from '../../services/api';
 import Message from './Message';
 import './styles.css';
+import requestRecived from '../../assets/request-recived.mp3';
 
 export default function Messages({ requestId, setMessages: setM }) {
   const [ messageInput, setMessageInput ] = useState('');
@@ -28,7 +30,8 @@ export default function Messages({ requestId, setMessages: setM }) {
 
   const [ chat, setChat ] = useState('');
   const [ restaurantId, setRestaurantId ] = useState('');
-  
+  const [ playRequestRecived ] = useSound(requestRecived)
+
   const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
     query: {
       user_id: restaurantId
@@ -69,6 +72,7 @@ export default function Messages({ requestId, setMessages: setM }) {
 
   useEffect(() => {
     socket.on('message', function response(response) {
+      playRequestRecived()
       setM(response.text)
       setMessages(response.text)
       setChat(response)

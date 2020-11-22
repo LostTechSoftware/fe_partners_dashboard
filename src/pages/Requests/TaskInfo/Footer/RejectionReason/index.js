@@ -10,10 +10,10 @@ import 'react-toastify/dist/ReactToastify.css'
 export default function RejectionReason({ taskId, closeModal, reloadTask, loadRequests }) {
   const [ reason, setReason ] = useState('');
   const [ loading, setLoading ] = useState(false);
-  console.log(taskId)
+
   async function rejectOrder() {
     setLoading(true);
-    const response = await api.post(`/reject/order/${taskId}`, {
+   await api.post(`/reject/order/${taskId}`, {
       reason: reason,
     })
     .catch(error => toast.error(error.response.data))
@@ -40,6 +40,7 @@ export default function RejectionReason({ taskId, closeModal, reloadTask, loadRe
         <textarea
           type='text'
           id='reason'
+          placeholder="Motivo do cancelamento (Acabou...)"
           value={reason}
           onChange={event => setReason(event.target.value)}
         />

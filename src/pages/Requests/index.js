@@ -7,14 +7,13 @@ import {
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import socketio from 'socket.io-client';
-import useSound from 'use-sound';
+import Sound from 'react-sound';
 
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
 
-import requestRecived from '../../assets/request-recived.mp3';
 import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -25,8 +24,6 @@ export default function Requests() {
   const [taskListPreparing, setTaskListPreparing] = useState([])
   const [taskListNew, setTaskListNew] = useState([])
   const [taskListDelivery, setTaskListDelivery] = useState([])
-
-  const [ playRequestRecived ] = useSound(requestRecived)
      
   const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
     query: {
@@ -53,7 +50,6 @@ export default function Requests() {
   }
   
   async function ReLoadNewTasks() {
-    playRequestRecived()
     const response = await api.get('/tasks/new');
     setTaskListNew(response.data);
   }
@@ -61,8 +57,10 @@ export default function Requests() {
 
   useEffect(() => {
     socket.on('new_order', ReLoadNewTasks)
-    socket.on('cancelattion_status', loadRequests)
-    socket.on('cancelattion_status', () => toast.warning('Um pedido foi cancelado!'))
+    socket.on('cancelattion_status', () => {
+      loadRequests()
+      toast.warning('Um pedido foi cancelado!')
+    })
   }, [socket])
 
   useEffect(() => {
@@ -71,8 +69,18 @@ export default function Requests() {
 
   return(
     <div className='page requests'>
+    {!! taskListNew.length
+     && <Sound 
+      url="https://serverem.s3.us-east-2.amazonaws.com/old_telephone.mp3" 
+      loop={true} 
+      autoLoad={true}
+      volume={100} 
+      playFromPosition = { 300  /*em milissegundos*/ }
+      playStatus={Sound.status.PLAYING}
+      autoPlay={true}
+      />
+    }
       <MainMenu currentPage='requests' />
-
       <div className='pageContent'>
         <section className='taskList'>
           <header>
