@@ -38,6 +38,10 @@
     height: fit-content;
   }
 
+  .requests .taskInfo {
+    padding: 0;
+  }
+
   .print {
     display: block !important;
   }
