@@ -58,4 +58,17 @@
   a {
     text-decoration: none;
   }
+
+  p {
+    padding: 0 !important;
+  }
+}
+
+@media print and ( max-width: 600px ) {
+  footer.print img {
+    top: -0.5cm;
+  }
+  .requests .taskInfo .mainInfo .content section {
+    padding: 5px 0;
+  }
 }
