@@ -42,14 +42,15 @@ export default function RestaurantOpening() {
   return (
     <div className='restaurantOpening'>
       <MainButton onClick={ controlRestaurantOpening } >
-        { restaurantIsOpen ? 'Fechar agora' : 'Abrir agora' }
+        { restaurantIsOpen === true ? 'Fechar agora' : 'Abrir agora' }
       </MainButton>
 
       <div className='line' />
 
       <div className='info'>
         <h2>
-          {restaurantIsOpen ?
+          {restaurantIsOpen === true
+            ?
             'Restaurante aberto'
             :
             'Restaurante fechado'
@@ -57,7 +58,7 @@ export default function RestaurantOpening() {
         </h2>
 
         <CheckCircleRounded
-          className={ restaurantIsOpen ? 'open' : 'closed' }
+          className={ restaurantIsOpen === true ? 'open' : 'closed' }
         />
       </div>
     </div>
