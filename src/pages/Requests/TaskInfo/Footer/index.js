@@ -12,7 +12,7 @@ import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Footer({
-  cancel,
+  cancelClient,
   taskId,
   payment_method,
   approved,
@@ -120,7 +120,7 @@ export default function Footer({
           <section className='orderButtons'>
             {approved === 'Aceito' && !onTheWay ?
               <>
-              {!!cancel !== 'Restaurant'
+              {!!cancelClient !== 'Restaurant'
               && <MainButton 
               loading={loading === 'cancel'}
               onClick={ cancelOrder } 

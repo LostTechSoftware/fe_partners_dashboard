@@ -65,7 +65,7 @@ export default function TaskInfo({ requestId, loadRequests }) {
           </section>
         </main>
         <Footer
-          cancel={taskInfos.cancel}
+          cancelClient={taskInfos.cancelClient}
           approved={taskInfos.approved}
           coupon={taskInfos.coupon}
           taskId={taskInfos._id}
