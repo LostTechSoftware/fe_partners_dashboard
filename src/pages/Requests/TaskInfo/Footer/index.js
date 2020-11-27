@@ -12,7 +12,7 @@ import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Footer({
-  realPrice,
+  cancel,
   taskId,
   payment_method,
   approved,
@@ -21,7 +21,9 @@ export default function Footer({
   change,
   reloadTask,
   loadRequests,
-  tip
+  tip,
+  price,
+  coupon = {}
 }) {
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
   const [loading, setLoading] = useState('')
@@ -59,7 +61,7 @@ export default function Footer({
   return (
     <footer>
       <h2 className='finalPrice'>
-        {realPrice.toLocaleString(
+        {price.toLocaleString(
           'pt-br',
           {style:'currency', currency:'brl'}
         )}
@@ -90,6 +92,11 @@ export default function Footer({
             </IconButton>
 
             <div className='text'>
+            <div className='method'>
+                  {!! coupon._id
+                    && <span>O cliente usou um cupom de {coupon.price.toLocaleString('pt-br', {currency:'brl',style:'currency'})}.</span>
+                  }
+              </div>
               <div className='method'>
                   {!! tip
                     && <span>A gorjeta de {tip.toLocaleString('pt-br', {currency:'brl',style:'currency'})} está incluída no preço.</span>
@@ -113,14 +120,15 @@ export default function Footer({
           <section className='orderButtons'>
             {approved === 'Aceito' && !onTheWay ?
               <>
-              <MainButton 
+              {!!cancel !== 'Restaurant'
+              && <MainButton 
               loading={loading === 'cancel'}
               onClick={ cancelOrder } 
               boxId='cancelOrder' 
               >
                 Cancelar
               </MainButton>
-
+              }
               <MainButton
                 loading={loading === 'delivery'}
                 onClick={ deliveryOrder }

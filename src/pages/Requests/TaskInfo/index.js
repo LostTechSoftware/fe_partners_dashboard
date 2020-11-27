@@ -64,13 +64,13 @@ export default function TaskInfo({ requestId, loadRequests }) {
             ))}
           </section>
         </main>
-
         <Footer
-          realPrice={taskInfos.price}
+          cancel={taskInfos.cancel}
           approved={taskInfos.approved}
           coupon={taskInfos.coupon}
           taskId={taskInfos._id}
           change={taskInfos.change}
+          price={taskInfos.price}
           payment_method={taskInfos.payment_method}
           onTheWay={taskInfos.onTheWay}
           tip={taskInfos.tip}
