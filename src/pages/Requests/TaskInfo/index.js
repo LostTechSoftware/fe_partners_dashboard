@@ -66,8 +66,9 @@ export default function TaskInfo({ requestId, loadRequests }) {
         </main>
 
         <Footer
-          realPrice={taskInfos.realPrice}
+          realPrice={taskInfos.price}
           approved={taskInfos.approved}
+          coupon={taskInfos.coupon}
           taskId={taskInfos._id}
           change={taskInfos.change}
           payment_method={taskInfos.payment_method}

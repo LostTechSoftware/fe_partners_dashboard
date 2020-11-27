@@ -110,7 +110,6 @@ export default function Footer({
           
             </div>
           </section>
-
           <section className='orderButtons'>
             {approved === 'Aceito' && !onTheWay ?
               <>
