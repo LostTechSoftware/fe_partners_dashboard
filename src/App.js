@@ -9,10 +9,14 @@ import './print.css';
 
 function App() {
   function Reload() {
-    setTimeout(function(){document.location.reload()}, 600000);
+    setTimeout(function () {
+      document.location.reload()
+    }, 600000);
   }
 
-  Reload()
+  if (sessionStorage.getItem('sandbox')) {
+    Reload()
+  }
 
   return (
     <div className="App">
