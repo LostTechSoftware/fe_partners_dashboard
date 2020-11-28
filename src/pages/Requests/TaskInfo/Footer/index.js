@@ -23,7 +23,7 @@ export default function Footer({
   loadRequests,
   tip,
   price,
-  coupon = {}
+  coupon
 }) {
   const [ openRejectionModal, setOpenRejectionModal ] = useState(false);
   const [loading, setLoading] = useState('')
@@ -93,7 +93,7 @@ export default function Footer({
 
             <div className='text'>
             <div className='method'>
-                  {!! coupon._id
+                  {!! coupon
                     && <span>O cliente usou um cupom de {coupon.price.toLocaleString('pt-br', {currency:'brl',style:'currency'})}.</span>
                   }
               </div>

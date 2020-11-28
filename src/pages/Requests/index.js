@@ -49,14 +49,8 @@ export default function Requests() {
     }
   }
   
-  async function ReLoadNewTasks() {
-    const response = await api.get('/tasks/new');
-    setTaskListNew(response.data);
-  }
-
-
   useEffect(() => {
-    socket.on('new_order', ReLoadNewTasks)
+    socket.on('new_order', loadRequests)
     socket.on('cancelattion_status', () => {
       loadRequests()
       toast.warning('Um pedido foi cancelado!')
@@ -75,7 +69,7 @@ export default function Requests() {
       loop={true} 
       autoLoad={true}
       volume={100} 
-      playFromPosition = { 300  /*em milissegundos*/ }
+      playFromPosition={1000}
       playStatus={Sound.status.PLAYING}
       autoPlay={true}
       />
