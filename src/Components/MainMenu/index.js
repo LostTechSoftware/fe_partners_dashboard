@@ -11,7 +11,6 @@ import {
   HelpRounded,
 } from '@material-ui/icons';
 
-import api from '../../services/api';
 import ClipboardIcon from '../../assets/clipboardIcon';
 import RestaurantOpening from './RestaurantOpening';
 import './styles.css';

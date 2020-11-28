@@ -13,6 +13,7 @@ import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
+import Pusher from 'pusher-js';
 
 import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
@@ -49,8 +50,15 @@ export default function Requests() {
     }
   }
   
+  const pusher = new Pusher('01486d854af72256e153', {
+    cluster: 'mt1',
+  });
+
+  const channel = pusher.subscribe('my-channel');
+
+  channel.bind('new_order', loadRequests);
+
   useEffect(() => {
-    socket.on('new_order', loadRequests)
     socket.on('cancelattion_status', () => {
       loadRequests()
       toast.warning('Um pedido foi cancelado!')

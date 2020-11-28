@@ -8,6 +8,12 @@ import './global.css';
 import './print.css';
 
 function App() {
+  function Reload() {
+    setTimeout(function(){document.location.reload()}, 600000);
+  }
+
+  Reload()
+
   return (
     <div className="App">
       <PrinterHeader />
