@@ -6,7 +6,7 @@ import api from '../../../services/api';
 import './styles.css';
 
 export default function RestaurantOpening() {
-  const [ restaurantIsOpen, setRestaurantIsOpen ] = useState();
+  const [ restaurantIsOpen, setRestaurantIsOpen ] = useState(false);
 
   async function closeRestaurant() {
     const response = await api.post('/close');
@@ -23,20 +23,14 @@ export default function RestaurantOpening() {
       closeRestaurant();
     else
       openRestaurant();
-    sessionStorage.setItem('restaurantIsOpen', restaurantIsOpen);
   }
 
   useEffect(() => {
     async function getOpenState() {
       const response = await api.get('/opened');
-      sessionStorage.setItem('restaurantIsOpen', response.data);
+      setRestaurantIsOpen(response.data)
     }
-
-    const restaurantIsOpenOnStorage = sessionStorage.getItem('restaurantIsOpen');
-    if(restaurantIsOpenOnStorage)
-      setRestaurantIsOpen(restaurantIsOpenOnStorage);
-    else
-      getOpenState();
+    getOpenState()
   }, []);
 
   return (
