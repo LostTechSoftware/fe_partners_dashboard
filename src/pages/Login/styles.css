@@ -5,6 +5,7 @@
   
   background-color: #22222E;
   padding: calc(var(--deafult-top-padding)/2);
+  overflow-y: hidden;
 }
 
 .login form {
