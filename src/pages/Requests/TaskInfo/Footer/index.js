@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Dialog, IconButton } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import PrintRoundedIcon from '@material-ui/icons/PrintRounded';
@@ -59,7 +59,7 @@ export default function Footer({
   }
 
   return (
-    <footer>
+    <footer> 
       <h2 className='finalPrice'>
         {price.toLocaleString(
           'pt-br',

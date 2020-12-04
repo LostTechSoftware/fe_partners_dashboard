@@ -1,37 +1,47 @@
 @media print {
   * {
-    background:transparent !important;
-    color:#000 !important;
-    text-shadow:none !important;
+    background: transparent !important;
+    color: #000 !important;
+    text-shadow: none !important;
     box-shadow: none !important;
-    filter:none !important;
-    -ms-filter:none !important;
+    filter: none !important;
+    -ms-filter: none !important;
     letter-spacing: normal !important;
     page-break-before: auto !important;
   }
-  
+
   html {
     font-size: 45%;
   }
-    
+
   body {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
   }
+
   @page {
     margin-bottom: 2cm;
     overflow: visible !important;
+    size: auto;
   }
-  
-  nav, video, audio, img, svg, button, input,
-  .mainMenu, .taskList, .preparingTime { 
-    display:none !important; 
+
+  nav,
+  video,
+  audio,
+  img,
+  svg,
+  button,
+  input,
+  .mainMenu,
+  .taskList,
+  .preparingTime {
+    display: none !important;
   }
-  
+
   footer .infos {
     justify-content: flex-end !important;
   }
-  
+
   .requests .pageContent,
   .requests .taskInfo {
     overflow: hidden !important;
@@ -58,7 +68,7 @@
     right: 0;
     opacity: 80%;
   }
-  
+
   a {
     text-decoration: none;
   }
@@ -68,10 +78,11 @@
   }
 }
 
-@media print and ( max-width: 600px ) {
+@media print and (max-width: 600px) {
   footer.print img {
     top: -0.5cm;
   }
+
   .requests .taskInfo .mainInfo .content section {
     padding: 5px 0;
   }
