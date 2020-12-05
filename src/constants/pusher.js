@@ -1,4 +1,4 @@
-import Pusher from 'pusher-js/react-native';
+import Pusher from 'pusher-js';
 
 const pusher = new Pusher('01486d854af72256e153', {
     cluster: 'mt1',
