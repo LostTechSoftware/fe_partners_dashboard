@@ -6,7 +6,6 @@ import {
   Tab,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
-import socketio from 'socket.io-client';
 import Sound from 'react-sound';
 
 import api from '../../services/api';
@@ -26,12 +25,6 @@ export default function Requests() {
   const [taskListNew, setTaskListNew] = useState([])
   const [taskListDelivery, setTaskListDelivery] = useState([])
      
-  const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
-    query: {
-      user_id:sessionStorage.getItem('_id')
-    }
-  }), [] )
-
   async function loadRequests(){
     // new taks
     if(page === 0) {
@@ -57,13 +50,10 @@ export default function Requests() {
   const channel = pusher.subscribe('my-channel');
 
   channel.bind('new_order', loadRequests);
-
-  useEffect(() => {
-    socket.on('cancelattion_status', () => {
-      loadRequests()
-      toast.warning('Um pedido foi cancelado!')
-    })
-  }, [socket])
+  channel.bind('cancelattion_status',  () => {
+    loadRequests()
+    toast.warning('Um pedido foi cancelado!')
+  });
 
   useEffect(() => {
     loadRequests()

@@ -1,14 +1,12 @@
 
-import React, { useState, useEffect, useMemo } from 'react';
-import socketio from 'socket.io-client';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import SendRounded from '@material-ui/icons/SendRounded';
-import useSound from 'use-sound';
 
 import api from '../../services/api';
 import Message from './Message';
 import './styles.css';
-import requestRecived from '../../assets/request-recived.mp3';
+import Pusher from 'pusher-js';
 
 export default function Messages({ requestId, setMessages: setM }) {
   const [ messageInput, setMessageInput ] = useState('');
@@ -29,14 +27,6 @@ export default function Messages({ requestId, setMessages: setM }) {
   }]);
 
   const [ chat, setChat ] = useState('');
-  const [ restaurantId, setRestaurantId ] = useState('');
-  const [ playRequestRecived ] = useSound(requestRecived)
-
-  const socket = useMemo(() => socketio('https://foodzilla-backend.herokuapp.com', {
-    query: {
-      user_id: restaurantId
-    }
-  }), [restaurantId]);
 
   async function sendMessage( event ) {
     event.preventDefault();
@@ -57,8 +47,6 @@ export default function Messages({ requestId, setMessages: setM }) {
   
   useEffect(() => {
     async function LoadMessages() {
-      const userId = sessionStorage.getItem('_id');
-      setRestaurantId(userId);
       const response = await api.get(`/chat/${requestId}`);
 
       if (response.data) {
@@ -70,14 +58,17 @@ export default function Messages({ requestId, setMessages: setM }) {
     LoadMessages()
   }, []);
 
-  useEffect(() => {
-    socket.on('message', function response(response) {
-      playRequestRecived()
-      setM(response.text)
-      setMessages(response.text)
-      setChat(response)
-    })
-  }, [socket]);
+  const pusher = new Pusher('01486d854af72256e153', {
+    cluster: 'mt1',
+  });
+
+  const channel = pusher.subscribe('my-channel');
+
+  channel.bind('message', function response(response) {
+    setM(response.text)
+    setMessages(response.text)
+    setChat(response)
+  });
 
   return (
     <div className='ChatBox'>
