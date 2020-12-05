@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import SwipeableViews from "react-swipeable-views";
 import {
   AppBar,
@@ -7,15 +7,16 @@ import {
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import Sound from 'react-sound';
+import socketio from 'socket.io-client';
 
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
 import TasksFilter from './TasksFilter';
 import TaskInfo from './TaskInfo';
-import Pusher from 'pusher-js';
 
 import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
+import channel from '../../constants/pusher';
 
 export default function Requests() {
   const [ page, setPage ] = useState(0);
@@ -43,11 +44,22 @@ export default function Requests() {
     }
   }
   
-  const pusher = new Pusher('01486d854af72256e153', {
-    cluster: 'mt1',
-  });
-
-  const channel = pusher.subscribe('my-channel');
+  useEffect(() => {
+    async function socket() {
+      const _id = sessionStorage.getItem('_id')
+      const socket = socketio('https://foodzilla-backend.herokuapp.com', {
+        query: {
+          user_id: _id
+       }
+      })
+      socket.on('new_order', loadRequests)
+      socket.on('cancelattion_status',  () => {
+        loadRequests()
+        toast.warning('Um pedido foi cancelado!')
+      });    
+    }
+    socket()
+  }, []);
 
   channel.bind('new_order', loadRequests);
   channel.bind('cancelattion_status',  () => {

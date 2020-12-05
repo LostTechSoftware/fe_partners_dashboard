@@ -6,7 +6,8 @@ import SendRounded from '@material-ui/icons/SendRounded';
 import api from '../../services/api';
 import Message from './Message';
 import './styles.css';
-import Pusher from 'pusher-js';
+import channel from '../../constants/pusher'
+import socketio from 'socket.io-client';
 
 export default function Messages({ requestId, setMessages: setM }) {
   const [ messageInput, setMessageInput ] = useState('');
@@ -58,11 +59,21 @@ export default function Messages({ requestId, setMessages: setM }) {
     LoadMessages()
   }, []);
 
-  const pusher = new Pusher('01486d854af72256e153', {
-    cluster: 'mt1',
-  });
-
-  const channel = pusher.subscribe('my-channel');
+  useEffect(() => {
+    async function socket() {
+      const _id = sessionStorage.getItem('_id')
+      const socket = socketio('https://foodzilla-backend.herokuapp.com', {
+        query: {
+          user_id: _id
+       }
+      })
+      socket.on('message', function response(response) {
+        setMessages(response.text)
+        setChat(response)
+      })
+    }
+    socket()
+  }, []);
 
   channel.bind('message', function response(response) {
     setM(response.text)

@@ -6,7 +6,8 @@ import MainInfo from './MainInfo';
 import api from '../../../services/api'
 import './styles.css';
 import LoadingTask from './LoadingTask';
-import Pusher from 'pusher-js';
+import channel from '../../../constants/pusher';
+import socketio from 'socket.io-client';
 
 export default function TaskInfo({ requestId, loadRequests }) {
   const [ taskInfos, setTaskInfos ] = useState({})
@@ -20,11 +21,18 @@ export default function TaskInfo({ requestId, loadRequests }) {
     setLoading(false)
   }
 
-  const pusher = new Pusher('01486d854af72256e153', {
-    cluster: 'mt1',
-  });
-
-  const channel = pusher.subscribe('my-channel');
+  useEffect(() => {
+    async function socket() {
+      const _id = sessionStorage.getItem('_id')
+      const socket = socketio('https://foodzilla-backend.herokuapp.com', {
+        query: {
+          user_id: _id
+       }
+      })
+      socket.on('cancelattion_status', getTaskInfo);    
+    }
+    socket()
+  }, []);
 
   channel.bind('cancelattion_status', getTaskInfo);
 
