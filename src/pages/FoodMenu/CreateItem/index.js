@@ -33,7 +33,7 @@ export default function CreateItem() {
       data.append('title', editingTitle)
       data.append('price', parseFloat(editingPrice))
       data.append('description', editingDescription)
-      if(uploadedFile.file)
+      if(uploadedFile)
         data.append('avatar', uploadedFile.file);
       
       await api.post(`/add/product/${rowId}`)
