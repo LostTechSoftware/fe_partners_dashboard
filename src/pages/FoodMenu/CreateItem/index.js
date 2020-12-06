@@ -36,7 +36,7 @@ export default function CreateItem() {
       if(uploadedFile)
         data.append('avatar', uploadedFile.file);
       
-      await api.post(`/add/product/${rowId}`)
+      await api.post(`/add/product/${rowId}`,data)
       toast.success('Produto salvo!');
     } catch (error) {
       console.log(error);
