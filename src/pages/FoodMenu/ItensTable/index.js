@@ -41,7 +41,7 @@ export default function ItensTable({ title, id, products = [] }) {
         setLoading(true)
         if (id === 1) {
           setLoading(false)
-          return;
+          return setProducts(products)
         }
 
         const response = await api.get(`/row/${id}`)
@@ -53,6 +53,11 @@ export default function ItensTable({ title, id, products = [] }) {
     }
     getProducts();
   }, [id])
+
+  useEffect(() => {
+     if(id === 1)
+       return setProducts(products)
+  },[products])
   
   return (
     <>
