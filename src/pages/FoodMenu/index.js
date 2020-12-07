@@ -16,7 +16,7 @@ export default function FoodMenu() {
   useEffect(() => {
     async function getItens() {
         if( !expectedItensName ) {
-          const response = await api.get(`/menu/restaurant`);
+          const response = await api.get(`/menu/restaurant/get`);
 
           setItensList(response.data);
         } else {
