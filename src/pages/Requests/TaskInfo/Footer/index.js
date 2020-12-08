@@ -93,20 +93,20 @@ export default function Footer({
 
             <div className='text'>
             <div className='method'>
-                  {!! coupon
-                    && <span>O cliente usou um cupom de {coupon.price.toLocaleString('pt-br', {currency:'brl',style:'currency'})}.</span>
-                  }
+                {!! coupon
+                  && <span>O cliente usou um cupom de {coupon.price.toLocaleString('pt-br', {currency:'brl',style:'currency'})}.</span>
+                }
               </div>
               <div className='method'>
-                  {!! tip
-                    && <span>A gorjeta de {tip.toLocaleString('pt-br', {currency:'brl',style:'currency'})} está incluída no preço.</span>
-                  }
+                {!! tip
+                  && <span>A gorjeta de {tip.toLocaleString('pt-br', {currency:'brl',style:'currency'})} está incluída no preço.</span>
+                }
               </div>
 
               <div className='method'>
-                  {!! change
-                    && <span>Troco para: {change.toLocaleString('pt-br', {currency:'brl',style:'currency'})}</span>
-                  }
+                {!! change
+                  && <span>Troco para: {change.toLocaleString('pt-br', {currency:'brl',style:'currency'})}</span>
+                }
               </div>
               <span>Forma de pagamento</span>
               <div className='method'>
@@ -114,20 +114,19 @@ export default function Footer({
                   {payment_method}
                 </PaymentMethod>
               </div>
-          
             </div>
           </section>
           <section className='orderButtons'>
             {approved === 'Aceito' && !onTheWay ?
               <>
               {!!cancelClient !== 'Restaurant'
-              && <MainButton 
-              loading={loading === 'cancel'}
-              onClick={ cancelOrder } 
-              boxId='cancelOrder' 
-              >
-                Cancelar
-              </MainButton>
+                && <MainButton 
+                  loading={ loading === 'cancel' }
+                  onClick={ cancelOrder } 
+                  boxId='cancelOrder' 
+                >
+                  Cancelar
+                </MainButton>
               }
               <MainButton
                 loading={loading === 'delivery'}
