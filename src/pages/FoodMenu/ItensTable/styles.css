@@ -4,18 +4,24 @@
   padding-right: 6px;
 }
 
-.foodMenu .itensTable .MuiTableHead-root {
+.foodMenu .itensTable .productsRowHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  
+  padding: 16px;
   border-bottom: 1px solid rgba(224, 224, 224, 1);
   letter-spacing: 0.011em;
 }
-.foodMenu .itensTable .MuiTableHead-root h2 {
+.foodMenu .itensTable .productsRowHeader h2 {
   width: max-content !important;
   padding: 16px !important;
 }
 
 .foodMenu .itensTable .MuiButton-root {
   width: 100%;
-  max-width: 290px;
+  max-width: 290px !important;
+  min-width: 180px !important;
   border-radius: 18px;
   text-transform: inherit;
 }
@@ -42,6 +48,10 @@
   .foodMenu .itensTable svg {
     height: 20px;
   }
+  .foodMenu .itensTable .MuiButton-root {
+    max-width: 240px !important;
+  }
+
 }
 
 @media screen and (max-width: 600px) {

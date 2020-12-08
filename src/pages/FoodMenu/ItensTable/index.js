@@ -19,10 +19,10 @@ import './styles.css';
 
 export default function ItensTable({ title, id, products = [] }) {
   const deviceWidth = window.innerWidth;
-  const [ product, setProducts ] = useState(products)
+  const [ productsRow, setProductsRow ] = useState(products)
   const [ openUpdateModal, setOpenUpdateModal ] = useState(false);
   const [ currentEditingProduct, setCurrentEditingProduct] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [ loading, setLoading ] = useState(false)
 
   function productToUpdate({ _id, title, price, description, avatar }) {
     setCurrentEditingProduct({
@@ -41,11 +41,14 @@ export default function ItensTable({ title, id, products = [] }) {
         setLoading(true)
         if (id === 1) {
           setLoading(false)
-          return setProducts(products)
+          return setProductsRow(products)
         }
 
-        const response = await api.get(`/row/${id}`)
-        setProducts(response.data.products);
+        const response = await api.get(`/row/${id}`);
+
+        console.log("response:")
+        console.log(response.data);
+        setProductsRow(response.data.products);
         setLoading(false)
       } catch (error) {
         setLoading(false)
@@ -55,21 +58,26 @@ export default function ItensTable({ title, id, products = [] }) {
   }, [id])
 
   useEffect(() => {
-     if(id === 1)
-       return setProducts(products)
-  },[products])
+    if(id === 1)
+      return setProductsRow(products)
+  }, [products])
   
   return (
     <>
     <TableContainer className='itensTable' component={Paper}>
-      <Table aria-label='simple table'>
-        <TableHead>
-          <h2> {title} </h2>
-        </TableHead>
+      <header className='productsRowHeader'>
+        <h2> {title} </h2>
+      
+        <SellingStateControllerButton
+          sellingState={ productsRow.paused }
+          rowId={ productsRow._id }
+        />
+      </header>
 
+      <Table aria-label='simple table'>
         <TableBody>
         {!!loading === false
-          && (product.map(product => (
+          && (productsRow.map(product => (
             <React.Fragment key={Math.random()} >
             <TableRow key={ product._id } >
               <TableCell

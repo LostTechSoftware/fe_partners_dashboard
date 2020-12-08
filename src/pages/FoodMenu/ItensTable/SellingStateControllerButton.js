@@ -7,13 +7,23 @@ import {
 
 import api from '../../../services/api';
 
-export default function SellingStateControllerButton({ sellingState, productId }) {
+export default function SellingStateControllerButton({
+  sellingState,
+  productId,
+  rowId, 
+}) {
   const [ state, setState ] = useState(sellingState)
-  const [loading, setLoading] = useState(false)
+  const [ loading, setLoading ] = useState(false)
 
   async function changeProductAvailability() {
     setLoading(true)
-    const response = await api.post(`/product/pause/${ productId }`)
+
+    if(rowId)
+      await api.post(`/pause/row/${ rowId }`);
+
+    if(productId)
+      await api.post(`/product/pause/${ productId }`);
+    
     setState(state ? false : true)
     setLoading(false)
   }

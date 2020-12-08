@@ -18,7 +18,7 @@ html {
 
 /* text */
 body,
-.price, #root .MuiTable-root h2,
+.price, #root .productsRowHeader h2,
 #root .MuiTabs-flexContainer span,
 #root .MuiButton-root,
 .MuiDialog-root .mainButton .MuiButton-root,
