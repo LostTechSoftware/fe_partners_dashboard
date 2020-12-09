@@ -6,8 +6,6 @@ import MainButton from '../../Components/MainButton';
 import api from '../../services/api';
 import './styles.css';
 
-
-
 export default function Login() {
   const history = useHistory();
 
@@ -37,6 +35,7 @@ export default function Login() {
       } = response.data.user;
       const restaurantLocation = JSON.stringify(response.data.user.location.coordinates);
       
+      console.log(response.data)
       sessionStorage.setItem('token', token);
       sessionStorage.setItem('_id', _id);
       sessionStorage.setItem('avatar', avatar);

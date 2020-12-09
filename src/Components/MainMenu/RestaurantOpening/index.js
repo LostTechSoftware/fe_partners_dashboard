@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, TextField } from '@material-ui/core';
 import { CheckCircleRounded, SendRounded } from '@material-ui/icons'
 
 import MainButton from '../../../Components/MainButton';
@@ -10,7 +10,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 export default function RestaurantOpening() {
   const [loading, setLoading] = useState(true);
   const [ restaurantIsOpen, setRestaurantIsOpen ] = useState(false);
-  const [ expectedDeliveryTime, setExpectedDeliveryTime ] = useState('00:30');
+  const [ expectedDeliveryTime, setExpectedDeliveryTime ] = useState(1);
 
   async function closeRestaurant() {
     setLoading(true)
@@ -82,18 +82,22 @@ export default function RestaurantOpening() {
         <label htmlFor='expectedTime'>
           Tempo de entrega estimado
         </label>
-        
+        /
         <div className='actions'>
-          <input
+          <TextField
             id='expectedTime'
-            type='time'
+            type='number'
+            label='Em minutos'
             value={ expectedDeliveryTime }
-            onChange={ event => setExpectedDeliveryTime(event.target.value) }
+            onChange={ event => event.target.value >= 0 ? 
+              setExpectedDeliveryTime(event.target.value)
+            : null }
           />
 
-          <IconButton onClick={ async () => await api.put(
-            '/change/delay', { expectedDeliveryTime }
-          )}>
+          <IconButton onClick={ async () => {
+            const delay = Number(expectedDeliveryTime)
+            await api.put('/change/delay', { delay });
+          }}>
             <SendRounded/>
           </IconButton>
         </div>
