@@ -96,7 +96,8 @@ export default function RestaurantOpening() {
 
           <IconButton onClick={ async () => {
             const delay = Number(expectedDeliveryTime)
-            await api.put('/change/delay', { delay });
+            if (delay > 0)
+              await api.put('/change/delay', { delay });
           }}>
             <SendRounded/>
           </IconButton>
