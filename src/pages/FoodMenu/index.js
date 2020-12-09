@@ -56,6 +56,7 @@ export default function FoodMenu() {
               key={row._id}
               id={row._id}
               title={row.title}
+              paused={row.paused}
             />
           )) 
           : <ItensTable

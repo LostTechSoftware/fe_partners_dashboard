@@ -10,7 +10,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 export default function RestaurantOpening() {
   const [loading, setLoading] = useState(true);
   const [ restaurantIsOpen, setRestaurantIsOpen ] = useState(false);
-  const [ expectedDeliveryTime, setExpectedDeliveryTime ] = useState(1);
+  const [ expectedDeliveryTime, setExpectedDeliveryTime ] = useState(sessionStorage.getItem('delay'));
 
   async function closeRestaurant() {
     setLoading(true)

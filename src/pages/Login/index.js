@@ -32,15 +32,16 @@ export default function Login() {
         city,
         street,
         Number,
+        delay
       } = response.data.user;
       const restaurantLocation = JSON.stringify(response.data.user.location.coordinates);
       
-      console.log(response.data)
       sessionStorage.setItem('token', token);
       sessionStorage.setItem('_id', _id);
       sessionStorage.setItem('avatar', avatar);
       sessionStorage.setItem('restaurantName', name);
       sessionStorage.setItem('restaurantLocation', restaurantLocation);
+      sessionStorage.setItem('delay', delay);
 
       sessionStorage.setItem('restaurantPhone', telephone)
       sessionStorage.setItem(

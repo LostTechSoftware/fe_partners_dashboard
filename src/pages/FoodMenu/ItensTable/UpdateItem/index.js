@@ -59,10 +59,10 @@ export default function UpdateItemBox({
       toast.success('Produto salvo!');
       
     } catch (error) {
-      console.log(error);
       toast.error('Erro ao salvar produto, tente novamente!');
     }
     setLoading('');
+    closeModal()
   }
 
   async function deleteItem() {
@@ -72,7 +72,6 @@ export default function UpdateItemBox({
       toast.success('Produto deletado!');
     } catch (error) {
       toast.error('Erro ao deletar produto, tente novamente!');
-      console.log(error);
     }
     setLoading('')
   }

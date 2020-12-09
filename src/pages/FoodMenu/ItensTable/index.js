@@ -17,7 +17,7 @@ import SellingStateControllerButton from './SellingStateControllerButton';
 import UpdateItem from './UpdateItem';
 import './styles.css';
 
-export default function ItensTable({ title, id, products = [] }) {
+export default function ItensTable({ title, id, products = [], paused }) {
   const deviceWidth = window.innerWidth;
   const [ productsRow, setProductsRow ] = useState(products)
   const [ openUpdateModal, setOpenUpdateModal ] = useState(false);
@@ -46,8 +46,6 @@ export default function ItensTable({ title, id, products = [] }) {
 
         const response = await api.get(`/row/${id}`);
 
-        console.log("response:")
-        console.log(response.data);
         setProductsRow(response.data.products);
         setLoading(false)
       } catch (error) {
@@ -67,11 +65,12 @@ export default function ItensTable({ title, id, products = [] }) {
     <TableContainer className='itensTable' component={Paper}>
       <header className='productsRowHeader'>
         <h2> {title} </h2>
-      
-        <SellingStateControllerButton
-          sellingState={ productsRow.paused }
-          rowId={ productsRow._id }
-        />
+        {id !== 1
+        && <SellingStateControllerButton
+            sellingState={ paused }
+            rowId={ id }
+          />
+        }
       </header>
 
       <Table aria-label='simple table'>
