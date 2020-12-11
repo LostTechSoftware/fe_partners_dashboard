@@ -14,6 +14,10 @@
     font-size: 45%;
   }
 
+  .result {
+    font-size: 1.3rem;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -34,7 +38,8 @@
   input,
   .mainMenu,
   .taskList,
-  .preparingTime {
+  .preparingTime,
+  .MuiBadge-root {
     display: none !important;
   }
 

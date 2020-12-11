@@ -73,7 +73,7 @@ export default function MainInfo ({
               {/* just show it when print */}
               {!! userPhone > 0
               && <NumberFormat
-                className='result print'
+                className='result print userPhonePrint'
                 value={userPhone}
                 displayType={'text'}
                 format='(##) ##### - ####'
@@ -103,12 +103,15 @@ export default function MainInfo ({
           horizontal: 'right',
         }}
       >
-        <NumberFormat
-          className='result'
-          value={userPhone}
-          displayType={'text'}
-          format='(##) ##### - ####'
-        />
+        { userPhone ?
+          <NumberFormat
+            className='result'
+            value={userPhone}
+            displayType={'text'}
+            format='(##) ##### - ####'
+          />
+          : null
+        }
         <Messages requestId={taskId} setMessages={setMessages}/>
       </Popover>
     </section>
