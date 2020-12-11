@@ -9,6 +9,8 @@ import LoadingTask from './LoadingTask';
 import channel from '../../../constants/pusher';
 import socketio from 'socket.io-client';
 
+import { PrintUnderLine } from '../../../Components/Print'
+
 export default function TaskInfo({ requestId, loadRequests }) {
   const [ taskInfos, setTaskInfos ] = useState({})
   const [loading, setLoading] = useState(false)
@@ -55,6 +57,7 @@ export default function TaskInfo({ requestId, loadRequests }) {
             userPhone={ taskInfos.user.telephone }
           />
           
+          <PrintUnderLine />
           <section className='itensList' >
             {taskInfos.products.map(product => (
               <Item
@@ -70,6 +73,7 @@ export default function TaskInfo({ requestId, loadRequests }) {
             ))}
           </section>
         </main>
+        <PrintUnderLine />
         <Footer
           cancelClient={taskInfos.cancelClient}
           approved={taskInfos.approved}

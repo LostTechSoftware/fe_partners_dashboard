@@ -8,6 +8,7 @@
     -ms-filter: none !important;
     letter-spacing: normal !important;
     page-break-before: auto !important;
+    margin-left: 0 !important;
   }
 
   html {
@@ -15,12 +16,18 @@
   }
 
   .result {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
 
   body {
     margin: 0;
     padding: 0;
+  }
+
+  .printUnderLine {
+    height: 1px;
+    width: 100%;
+    border: dashed 1px #000;
   }
 
   @page {

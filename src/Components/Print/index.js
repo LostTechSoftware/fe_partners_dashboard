@@ -8,6 +8,8 @@ const PrinterHeader = () => (
     <h2>
       {sessionStorage.getItem('restaurantName')}
     </h2>
+
+    <PrintUnderLine />
   
     <span> Endereço: </span>
     <p>
@@ -23,6 +25,7 @@ const PrinterHeader = () => (
         format='(##) ##### - ####'
       />
     </p>
+    <PrintUnderLine />
   </head>
 );
 
@@ -32,4 +35,6 @@ const PrinterFooter = () => (
   </footer>
 );
 
-export { PrinterHeader, PrinterFooter };
+const PrintUnderLine = () => <div className='print printUnderLine' />
+
+export { PrinterHeader, PrinterFooter, PrintUnderLine };
