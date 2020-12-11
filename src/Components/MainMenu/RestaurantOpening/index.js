@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { IconButton, TextField } from '@material-ui/core';
+import { toast } from 'react-toastify';
 import { CheckCircleRounded, SendRounded } from '@material-ui/icons'
 
 import MainButton from '../../../Components/MainButton';
 import api from '../../../services/api';
 import './styles.css';
 import Skeleton from '@material-ui/lab/Skeleton';
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function RestaurantOpening() {
   const [loading, setLoading] = useState(true);
@@ -96,8 +98,17 @@ export default function RestaurantOpening() {
 
           <IconButton onClick={ async () => {
             const delay = Number(expectedDeliveryTime)
-            if (delay > 0)
-              await api.put('/change/delay', { delay });
+            if (delay > 0) {
+              const response = await api.put('/change/delay', {
+                delay
+              }).catch(error => {
+                if (error)
+                  toast.error('Erro ao mudar tempo de entrega!')
+              })
+
+              sessionStorage.setItem('delay', response.data.delay)
+              toast.success('Tempo de entrega mudado!')
+            }
           }}>
             <SendRounded/>
           </IconButton>
