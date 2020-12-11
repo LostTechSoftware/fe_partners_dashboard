@@ -15,7 +15,7 @@
   }
 
   .result {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   body {
@@ -28,11 +28,10 @@
     overflow: visible !important;
     size: auto;
   }
-
+  
   nav,
   video,
   audio,
-  img,
   svg,
   button,
   input,
@@ -41,6 +40,10 @@
   .preparingTime,
   .MuiBadge-root {
     display: none !important;
+  }
+
+  .page {
+    height: auto;
   }
 
   footer .infos {
@@ -69,7 +72,7 @@
   footer.print img {
     width: 25%;
     position: absolute;
-    top: -1cm;
+    top: 0;
     right: 0;
     opacity: 80%;
   }

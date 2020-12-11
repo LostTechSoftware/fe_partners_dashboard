@@ -20,8 +20,10 @@ function App() {
 
   return (
     <div className="App">
+      <PrinterHeader />
       <Router />
       <ToastContainer/>
+      <PrinterFooter />
     </div>
   );
 }
