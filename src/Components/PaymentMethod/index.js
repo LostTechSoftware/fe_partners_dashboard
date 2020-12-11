@@ -7,7 +7,7 @@ export default function PaymentMethod({ children }) {
   useEffect(() => {
     switch (children) {        
       case 'online':
-        setResponse('online');
+        setResponse('Pago através do aplicativo');
         break;
         
       case 'card': 
