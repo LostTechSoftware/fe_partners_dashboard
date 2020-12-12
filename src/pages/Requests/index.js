@@ -43,6 +43,12 @@ export default function Requests() {
       setTaskListDelivery(response.data)
     }
   }
+
+  async function loadNewRequest(){
+    const response = await api.get('/tasks/new')
+
+    setTaskListDelivery(response.data)
+  }
   
   useEffect(() => {
     async function socket() {
@@ -52,7 +58,7 @@ export default function Requests() {
           user_id: _id
        }
       })
-      socket.on('new_order', loadRequests)
+      socket.on('new_order', loadNewRequest)
       socket.on('cancelattion_status',  () => {
         loadRequests()
         toast.warning('Um pedido foi cancelado!')
@@ -61,7 +67,7 @@ export default function Requests() {
     socket()
   }, []);
 
-  channel.bind('new_order', loadRequests);
+  channel.bind('new_order', loadNewRequest);
   channel.bind('cancelattion_status',  () => {
     loadRequests()
     toast.warning('Um pedido foi cancelado!')
