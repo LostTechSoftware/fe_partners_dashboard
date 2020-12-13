@@ -31,8 +31,15 @@ export default function Footer({
   async function acceptOrder() {
     setLoading('accept')
     await api.post(`/approve/order/${taskId}`)
-      .catch(error => toast.error(error.response.data))
-      .then(response => toast.success('Pedido aceito!'))
+      .catch(error => {
+        if (error) {
+          setLoading('')
+          reloadTask()
+          loadRequests()
+          return toast.error(error.response.data)
+        }
+      })
+    toast.success('Pedido aceito!')
     setLoading('')
     reloadTask()
     loadRequests()
@@ -41,8 +48,15 @@ export default function Footer({
   async function deliveryOrder() {
     setLoading('delivery')
     await api.post(`/onTheWay/order/${taskId}`)
-      .catch(error => toast.error(error.response.data))
-      .then(response => toast.success('Pedido enviado!'))
+    .catch(error => {
+      if (error) {
+        setLoading('')
+        reloadTask()
+        loadRequests()
+        return toast.error(error.response.data)
+      }
+    })
+    toast.success('Pedido enviado!')
     setLoading('')
     reloadTask()
     loadRequests()
@@ -51,8 +65,15 @@ export default function Footer({
   async function cancelOrder() {
     setLoading('cancel')
     await api.post(`/restaurant/cancel/${taskId}`)
-      .catch(error => toast.error(error.response.data))
-      .then(response => toast.warning('Pedido aguardando ser cancelado!'))
+    .catch(error => {
+      if (error) {
+        setLoading('')
+        reloadTask()
+        loadRequests()
+        return toast.error(error.response.data)
+      }
+    })
+    toast.warning('Pedido aguardando ser cancelado!')
     setLoading('')
     reloadTask()
     loadRequests()
