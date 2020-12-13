@@ -47,7 +47,7 @@ export default function Requests() {
   async function loadNewRequest(){
     const response = await api.get('/tasks/new')
 
-    setTaskListDelivery(response.data)
+    setTaskListNew(response.data)
   }
   
   useEffect(() => {
