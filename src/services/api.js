@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://foodzilla-backend.herokuapp.com'
+  baseURL: 'http://backend-env.eba-x4hi9e3v.us-east-2.elasticbeanstalk.com'
 });
 
 api.interceptors.request.use(config => {
