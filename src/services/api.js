@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://backend-env.eba-x4hi9e3v.us-east-2.elasticbeanstalk.com'
+  baseURL: 'https://backendfood.link'
 });
 
 api.interceptors.request.use(config => {

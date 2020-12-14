@@ -53,7 +53,7 @@ export default function Requests() {
   useEffect(() => {
     async function socket() {
       const _id = sessionStorage.getItem('_id')
-      const socket = socketio('http://backend-env.eba-x4hi9e3v.us-east-2.elasticbeanstalk.com', {
+      const socket = socketio('https://backendfood.link', {
         query: {
           user_id: _id
        }
