@@ -44,7 +44,7 @@ export default function ItensTable({ title, id, products = [], paused }) {
           return setProductsRow(products)
         }
 
-        const response = await api.get(`/row/${id}`);
+        const response = await api.get(`/row/get/${id}`);
 
         setProductsRow(response.data.products);
         setLoading(false)
