@@ -62,13 +62,13 @@ export default function MainInfo ({
               <p>
               
               <Badge badgeContent={messages.length} color="primary">
-                  <Button
-                    className='button'
-                    fullWidth
-                    onClick={event => setModalOpen(event.currentTarget)}
-                  >
-                    <p> Contato </p>
-                  </Button>
+                <Button
+                  className='button'
+                  fullWidth
+                  onClick={event => setModalOpen(event.currentTarget)}
+                >
+                  <p> Contato </p>
+                </Button>
               </Badge>
               {/* just show it when print */}
               {!! userPhone > 0

@@ -42,7 +42,8 @@
 .requests .taskInfo .mainInfo .contact .MuiButton-root {
   background-color: #ffe0153d;
   border-radius: 18px;
-  padding: 0;
+  padding: 0 8px;
+  margin-top: 4px;
 }
 .requests .taskInfo .mainInfo .contact .MuiButton-root:hover {
   background-color: #ffe01559;
