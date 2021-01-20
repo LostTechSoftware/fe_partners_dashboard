@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IconButton, TextField } from '@material-ui/core';
 import { toast } from 'react-toastify';
-import { CheckCircleRounded, SendRounded } from '@material-ui/icons'
+import { CheckCircleRounded, CancelRounded, SendRounded } from '@material-ui/icons'
 
 import MainButton from '../../../Components/MainButton';
 import api from '../../../services/api';
@@ -13,6 +13,7 @@ export default function RestaurantOpening() {
   const [loading, setLoading] = useState(true);
   const [ restaurantIsOpen, setRestaurantIsOpen ] = useState(false);
   const [ expectedDeliveryTime, setExpectedDeliveryTime ] = useState(sessionStorage.getItem('delay'));
+  const [ expectedWithdrawalTime, setExpectedWithdrawalTime ] = useState(sessionStorage.getItem('delay'));
 
   async function closeRestaurant() {
     setLoading(true)
@@ -71,10 +72,10 @@ export default function RestaurantOpening() {
           <div style={loading ? {marginLeft:'10%'} : {}}>
             {loading ?
               <Skeleton animation='wave' variant='circle' width='40px' height='40px'/>
-              : 
-              <CheckCircleRounded
-                className={ restaurantIsOpen === true ? 'open' : 'closed' }
-              />
+              : restaurantIsOpen === true ?
+                <CheckCircleRounded className='open' />
+                :
+                <CancelRounded className='closed' />
             }
           </div>
         </div>
@@ -104,10 +105,54 @@ export default function RestaurantOpening() {
               }).catch(error => {
                 if (error)
                   toast.error('Erro ao mudar tempo de entrega!')
-              })
+              });
 
-              sessionStorage.setItem('delay', response.data.delay)
-              toast.success('Tempo de entrega mudado!')
+              if(response.data) {
+                sessionStorage.setItem('delay', response.data.delay);
+                toast.success('Tempo de entrega mudado!');
+              }
+            }
+          }}>
+            <SendRounded/>
+          </IconButton>
+        </div>
+      </section>
+
+      <section className='expectedDeliveryTime'>
+        <label htmlFor='expectedTime'>
+          Tempo estimado para retirada
+        </label>
+        /
+        <div className='actions'>
+          <TextField
+            id='expectedTime'
+            type='number'
+            label='Em minutos'
+            value={ expectedDeliveryTime }
+            onChange={ event => event.target.value >= 0 ? 
+              setExpectedDeliveryTime(event.target.value)
+            : null }
+          />
+
+          <IconButton onClick={ async () => {
+            const delay = Number(expectedWithdrawalTime)
+            if (delay > 0) {
+              const response = await api.put('/change/delay/remove', {
+                delay
+              }).catch(error => {
+                if (error)
+                  toast.error('Erro ao mudar tempo para retirada!');
+
+                return error;
+              });
+
+              console.log("reponse:");
+              console.log(response);
+
+              if(response.data) {
+                sessionStorage.setItem('delay', response.data.delay);
+                toast.success('Tempo para retirada mudado!');
+              }
             }
           }}>
             <SendRounded/>
