@@ -32,7 +32,8 @@ export default function Login() {
         city,
         street,
         Number,
-        delay
+        delay,
+        delayRemove
       } = response.data.user;
       const restaurantLocation = JSON.stringify(response.data.user.location.coordinates);
       
@@ -42,12 +43,16 @@ export default function Login() {
       sessionStorage.setItem('restaurantName', name);
       sessionStorage.setItem('restaurantLocation', restaurantLocation);
       sessionStorage.setItem('delay', delay);
+      sessionStorage.setItem('delayToWithdrawal', delayRemove);
 
       sessionStorage.setItem('restaurantPhone', telephone)
       sessionStorage.setItem(
         'restaurantAddress',
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
+
+      console.log("USER:")
+      console.log(response.data.user);
       
       setLoading(false)
       history.push('/requests');

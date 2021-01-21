@@ -13,7 +13,7 @@ export default function RestaurantOpening() {
   const [loading, setLoading] = useState(true);
   const [ restaurantIsOpen, setRestaurantIsOpen ] = useState(false);
   const [ expectedDeliveryTime, setExpectedDeliveryTime ] = useState(sessionStorage.getItem('delay'));
-  const [ expectedWithdrawalTime, setExpectedWithdrawalTime ] = useState(sessionStorage.getItem('delay'));
+  const [ expectedWithdrawalTime, setExpectedWithdrawalTime ] = useState(sessionStorage.getItem('delayToWithdrawal'));
 
   async function closeRestaurant() {
     setLoading(true)
@@ -34,6 +34,46 @@ export default function RestaurantOpening() {
       closeRestaurant();
     else
       openRestaurant();
+  }
+
+  async function updateDeliveryDelay(event){
+    const delay = Number(expectedDeliveryTime);
+    event.preventDefault();
+    
+    if (delay > 0) {
+      const response = await api.put('/change/delay', {
+        delay
+      }).catch(error => {
+        if (error)
+          toast.error('Erro ao mudar tempo de entrega!')
+      });
+
+      if(response.data) {
+        sessionStorage.setItem('delay', response.data.delay);
+        toast.success('Tempo de entrega mudado!');
+      }
+    }
+  }
+
+  async function updateWithdrawalDelay(event){
+    const delay = Number(expectedWithdrawalTime);
+    event.preventDefault();
+    
+    if (delay > 0) {
+      const response = await api.put('/change/delay/remove', {
+        delay
+      }).catch(error => {
+        if (error)
+          toast.error('Erro ao mudar tempo para retirada!');
+
+        return error;
+      });
+
+      if(response.data) {
+        sessionStorage.setItem('delayToWithdrawal', response.data.delayRemove);
+        toast.success('Tempo para retirada mudado!');
+      }
+    }
   }
 
   useEffect(() => {
@@ -86,7 +126,7 @@ export default function RestaurantOpening() {
           Tempo de entrega estimado
         </label>
         /
-        <div className='actions'>
+        <form onSubmit={updateDeliveryDelay} className='actions'>
           <TextField
             id='expectedTime'
             type='number'
@@ -97,25 +137,10 @@ export default function RestaurantOpening() {
             : null }
           />
 
-          <IconButton onClick={ async () => {
-            const delay = Number(expectedDeliveryTime)
-            if (delay > 0) {
-              const response = await api.put('/change/delay', {
-                delay
-              }).catch(error => {
-                if (error)
-                  toast.error('Erro ao mudar tempo de entrega!')
-              });
-
-              if(response.data) {
-                sessionStorage.setItem('delay', response.data.delay);
-                toast.success('Tempo de entrega mudado!');
-              }
-            }
-          }}>
+          <IconButton type='submit'>
             <SendRounded/>
           </IconButton>
-        </div>
+        </form>
       </section>
 
       <section className='expectedDeliveryTime'>
@@ -123,41 +148,21 @@ export default function RestaurantOpening() {
           Tempo estimado para retirada
         </label>
         /
-        <div className='actions'>
+        <form onSubmit={ updateWithdrawalDelay } className='actions'>
           <TextField
             id='expectedTime'
             type='number'
             label='Em minutos'
-            value={ expectedDeliveryTime }
+            value={ expectedWithdrawalTime }
             onChange={ event => event.target.value >= 0 ? 
-              setExpectedDeliveryTime(event.target.value)
+              setExpectedWithdrawalTime(event.target.value)
             : null }
           />
 
-          <IconButton onClick={ async () => {
-            const delay = Number(expectedWithdrawalTime)
-            if (delay > 0) {
-              const response = await api.put('/change/delay/remove', {
-                delay
-              }).catch(error => {
-                if (error)
-                  toast.error('Erro ao mudar tempo para retirada!');
-
-                return error;
-              });
-
-              console.log("reponse:");
-              console.log(response);
-
-              if(response.data) {
-                sessionStorage.setItem('delay', response.data.delay);
-                toast.success('Tempo para retirada mudado!');
-              }
-            }
-          }}>
+          <IconButton type='submit'>
             <SendRounded/>
           </IconButton>
-        </div>
+        </form>
       </section>
     </div>
   );
