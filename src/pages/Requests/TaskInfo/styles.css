@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 770px) {
   .requests .taskInfo {
     height: fit-content;
     overflow: visible;
