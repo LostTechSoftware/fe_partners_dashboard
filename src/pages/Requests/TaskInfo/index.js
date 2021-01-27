@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import socketio from 'socket.io-client';
 
 import Footer from './Footer';
 import Item from './Item';
 import MainInfo from './MainInfo';
 import api from '../../../services/api'
-import './styles.css';
 import LoadingTask from './LoadingTask';
 import channel from '../../../constants/pusher';
-import socketio from 'socket.io-client';
+import './styles.css';
 
 import { PrintUnderLine } from '../../../Components/Print'
 

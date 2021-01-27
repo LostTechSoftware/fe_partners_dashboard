@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import socketio from 'socket.io-client';
+import Sound from 'react-sound';
+import { toast } from 'react-toastify';
 import SwipeableViews from "react-swipeable-views";
 import {
   AppBar,
   Tabs,
   Tab,
+  Dialog,
+  Slide,
+  IconButton,
 } from '@material-ui/core';
-import { toast } from 'react-toastify';
-import Sound from 'react-sound';
-import socketio from 'socket.io-client';
+import CloseIcon from '@material-ui/icons/CloseRounded';
 
 import api from '../../services/api';
 import MainMenu from '../../Components/MainMenu';
@@ -18,13 +22,21 @@ import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
 import channel from '../../constants/pusher';
 
+import axios from 'axios';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 export default function Requests() {
+  const deviceWidth = window.innerWidth;
   const [ page, setPage ] = useState(0);
   const [ openedTaskId, setOpenedTaskId ] = useState(0);
+  const [ openTaskInfoModal, setOpenTaskInfoModal ] = useState(false);
   
-  const [taskListPreparing, setTaskListPreparing] = useState([])
-  const [taskListNew, setTaskListNew] = useState([])
-  const [taskListDelivery, setTaskListDelivery] = useState([])
+  const [taskListPreparing, setTaskListPreparing] = useState([]);
+  const [taskListNew, setTaskListNew] = useState([]);
+  const [taskListDelivery, setTaskListDelivery] = useState([]);
      
   async function loadRequests(){
     // new taks
@@ -48,6 +60,13 @@ export default function Requests() {
     const response = await api.get('/tasks/new')
 
     setTaskListNew(response.data)
+    console.log('check timing:');
+    console.log(new Date(Date.now()))
+    const timing = axios.get('http://localhost:3333/');
+    console.log('TIME WHEN FINISHED REQUEST:')
+    console.log(new Date(Date.now()))
+    console.log('TIME RETURNED BY REQUEST:')
+    console.log(timing.data)
   }
   
   useEffect(() => {
@@ -62,16 +81,16 @@ export default function Requests() {
       socket.on('cancelattion_status',  () => {
         loadRequests()
         toast.warning('Um pedido foi cancelado!')
-      });    
+      });
+
+      channel.bind('new_order', loadNewRequest);
+      channel.bind('cancelattion_status',  () => {
+        loadRequests()
+        toast.warning('Um pedido foi cancelado!')
+      });
     }
     socket()
   }, []);
-
-  channel.bind('new_order', loadNewRequest);
-  channel.bind('cancelattion_status',  () => {
-    loadRequests()
-    toast.warning('Um pedido foi cancelado!')
-  });
 
   useEffect(() => {
     loadRequests()
@@ -114,27 +133,63 @@ export default function Requests() {
             onChangeIndex={ index => setPage(index) }
           >
             <div className='subPage' value={page} index={0}>
-              <TasksFilter openedTaskId={openedTaskId} setOpenedTaskId={setOpenedTaskId}>
+              <TasksFilter
+                openedTaskId={openedTaskId}
+                setOpenedTaskId={setOpenedTaskId}
+                setOpenTaskInfoModal={setOpenTaskInfoModal}
+              >
                 {taskListNew}
               </TasksFilter>
             </div>
             <div className='subPage' value={page} index={1}>
-              <TasksFilter openedTaskId={openedTaskId} setOpenedTaskId={setOpenedTaskId}>
+              <TasksFilter
+                openedTaskId={openedTaskId}
+                setOpenedTaskId={setOpenedTaskId}
+                setOpenTaskInfoModal={setOpenTaskInfoModal}
+              >
                 {taskListPreparing}
               </TasksFilter>
             </div>
             <div className='subPage' value={page} index={2}>
-              <TasksFilter openedTaskId={openedTaskId} setOpenedTaskId={setOpenedTaskId}>
+              <TasksFilter
+                openedTaskId={openedTaskId}
+                setOpenedTaskId={setOpenedTaskId}
+                setOpenTaskInfoModal={setOpenTaskInfoModal}
+              >
                 {taskListDelivery}
               </TasksFilter>
             </div>
           </SwipeableViews>
         </section>
 
-        <TaskInfo
-          loadRequests={loadRequests}
-          requestId={openedTaskId}
-        />
+        { deviceWidth > 770 ?
+          <TaskInfo
+            loadRequests={loadRequests}
+            requestId={openedTaskId}
+            setOpenTaskInfoModal={setOpenTaskInfoModal}
+          />
+          :
+          <Dialog
+            fullScreen
+            className='page requests requestsModal'
+            open={openTaskInfoModal}
+            onClose={() => setOpenTaskInfoModal(false)}
+            TransitionComponent={Transition}
+          >
+            <IconButton className='closeButton' onClick={() => {
+              setOpenTaskInfoModal(false);
+              setOpenedTaskId(null);
+            }}>
+              <CloseIcon />
+            </IconButton>
+            
+            <TaskInfo
+              loadRequests={loadRequests}
+              requestId={openedTaskId}
+              setOpenTaskInfoModal={setOpenTaskInfoModal}
+            />
+          </Dialog>
+        }
       </div>
     </div>
   )

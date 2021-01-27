@@ -11,14 +11,24 @@ import './styles.css';
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
-export default function TasksFilter({ children = [], openedTaskId, setOpenedTaskId }) {
+export default function TasksFilter({
+  children = [],
+  openedTaskId,
+  setOpenedTaskId,
+  setOpenTaskInfoModal,
+}) {
   return (
     <FormControl className='TasksFilter' component="fieldset">
       <RadioGroup
         aria-label="tasks"
         name="tasks1"
         value={openedTaskId}
-        onChange={event => setOpenedTaskId(event.target.value)}
+        onChange={event => {
+          console.log(event.target.value)
+          setOpenedTaskId(event.target.value);
+          if(event.target.value)
+            setOpenTaskInfoModal(true);
+        }}
       >
         {children.map(request => (
           <FormControlLabel

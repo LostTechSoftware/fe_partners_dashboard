@@ -1,3 +1,26 @@
+/* Mobile only */
+.requestsModal .taskInfo {
+  height: 100% !important;
+  margin-top: 0 !important;
+  width: 100vw !important;
+}
+
+.requestsModal .closeButton {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  top: 6px;
+  right: 6px;
+}
+
+.requestsModal .closeButton svg {
+  height: 100%;
+  width: 100%;
+  fill: #ffe115;
+}
+/* *** */
+
 .requests .taskInfo {
   display: flex;
   flex-direction: column;
