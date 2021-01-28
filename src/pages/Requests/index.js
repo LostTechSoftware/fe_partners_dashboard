@@ -60,13 +60,15 @@ export default function Requests() {
     const response = await api.get('/tasks/new')
 
     setTaskListNew(response.data)
+    console.log(response.data)
     console.log('check timing:');
     console.log(new Date(Date.now()))
-    const timing = axios.get('http://localhost:3333/');
+    // const timing = axios.get('https://backendfood.link/');
+    //não autorizado
     console.log('TIME WHEN FINISHED REQUEST:')
     console.log(new Date(Date.now()))
-    console.log('TIME RETURNED BY REQUEST:')
-    console.log(timing.data)
+    // console.log('TIME RETURNED BY REQUEST:')
+    // console.log(timing.data)
   }
   
   useEffect(() => {
