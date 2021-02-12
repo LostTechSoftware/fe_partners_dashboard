@@ -90,6 +90,13 @@
 
   p {
     padding: 0 !important;
+    widows: 3 !important;
+    orphans: 3 !important;
+  }
+
+  * {
+    widows: 3 !important;
+    orphans: 3 !important;
   }
 }
 
