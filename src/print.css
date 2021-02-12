@@ -12,7 +12,7 @@
   }
 
   html {
-    font-size: 45%;
+    font-size: 45% !important;
   }
 
   .result {
@@ -20,8 +20,8 @@
   }
 
   body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .printUnderLine {
@@ -31,7 +31,7 @@
   }
 
   @page {
-    margin-bottom: 2cm;
+    margin-bottom: 0.5cm;
     overflow: visible !important;
     size: auto;
   }
@@ -50,7 +50,7 @@
   }
 
   .page {
-    height: auto;
+    height: fit-content;
   }
 
   footer .infos {
