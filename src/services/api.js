@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://backendfood.link'
+  baseURL: 'https://backendfood.link'//https://backendfood.link'
 });
 
 api.interceptors.request.use(config => {

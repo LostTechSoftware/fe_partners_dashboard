@@ -22,8 +22,6 @@ import './styles.css';
 import 'react-toastify/dist/ReactToastify.css'
 import channel from '../../constants/pusher';
 
-import axios from 'axios';
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -72,26 +70,31 @@ export default function Requests() {
   }
   
   useEffect(() => {
-    async function socket() {
+    async function SocketFunction() {
       const _id = sessionStorage.getItem('_id')
+      const name = sessionStorage.getItem('restaurantName')
+
       const socket = socketio('https://backendfood.link', {
         query: {
-          user_id: _id
+          user: _id,
+          username: name,
+          restaurant:true
        }
       })
+
       socket.on('new_order', loadNewRequest)
-      socket.on('cancelattion_status',  () => {
-        loadRequests()
-        toast.warning('Um pedido foi cancelado!')
+       socket.on('cancelattion_status',  () => {
+         loadRequests()
+         toast.warning('Um pedido foi cancelado!')
       });
 
-      channel.bind('new_order', loadNewRequest);
-      channel.bind('cancelattion_status',  () => {
-        loadRequests()
-        toast.warning('Um pedido foi cancelado!')
+       channel.bind('new_order', loadNewRequest);
+       channel.bind('cancelattion_status',  () => {
+         loadRequests()
+         toast.warning('Um pedido foi cancelado!')
       });
     }
-    socket()
+    SocketFunction()
   }, []);
 
   useEffect(() => {
@@ -100,7 +103,15 @@ export default function Requests() {
 
   return(
     <div className='page requests'>
-    {!! taskListNew.length
+    <Sound 
+      url="https://serverem.s3.us-east-2.amazonaws.com/old_telephone.mp3" 
+      loop={true} 
+      autoLoad={true}
+      volume={100} 
+      playFromPosition={1000}
+      playStatus={Sound.status.Paused}
+    />
+    {taskListNew.length
      && <Sound 
       url="https://serverem.s3.us-east-2.amazonaws.com/old_telephone.mp3" 
       loop={true} 
