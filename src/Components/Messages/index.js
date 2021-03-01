@@ -63,7 +63,7 @@ export default function Messages({ requestId, setMessages: setM }) {
     async function socket() {
       const _id = sessionStorage.getItem('_id')
       const name = sessionStorage.getItem('restaurantName')
-      const socket = socketio('http://localhost:3001', {
+      const socket = socketio('https://backendfood.link', {
         query: {
           user: _id,
           username: name,
