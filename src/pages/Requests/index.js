@@ -61,7 +61,7 @@ export default function Requests() {
     console.log(response.data)
     console.log('check timing:');
     console.log(new Date(Date.now()))
-    // const timing = axios.get('https://backendfood.link/');
+    // const timing = axios.get('http://localhost:3001/');
     //não autorizado
     console.log('TIME WHEN FINISHED REQUEST:')
     console.log(new Date(Date.now()))
@@ -74,7 +74,7 @@ export default function Requests() {
       const _id = sessionStorage.getItem('_id')
       const name = sessionStorage.getItem('restaurantName')
 
-      const socket = socketio('https://backendfood.link', {
+      const socket = socketio('http://localhost:3001', {
         query: {
           user: _id,
           username: name,

@@ -63,7 +63,7 @@ export default function Messages({ requestId, setMessages: setM }) {
     async function socket() {
       const _id = sessionStorage.getItem('_id')
       const name = sessionStorage.getItem('restaurantName')
-      const socket = socketio('https://backendfood.link', {
+      const socket = socketio('http://localhost:3001', {
         query: {
           user: _id,
           username: name,
@@ -77,12 +77,6 @@ export default function Messages({ requestId, setMessages: setM }) {
     }
     socket()
   }, []);
-
-  channel.bind('message', function response(response) {
-    setM(response.text)
-    setMessages(response.text)
-    setChat(response)
-  });
 
   return (
     <div className='ChatBox'>
