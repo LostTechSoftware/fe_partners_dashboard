@@ -75,7 +75,8 @@ export default function ItensTable({ title, id, products = [], paused }) {
       <Table aria-label='simple table'>
         <TableBody>
         {!!loading === false
-          && (productsRow.map(product => (
+          && (!! productsRow.length
+            && (productsRow.map(product => (
             <React.Fragment key={Math.random()} >
             <TableRow key={ product._id } >
               <TableCell
@@ -119,7 +120,7 @@ export default function ItensTable({ title, id, products = [], paused }) {
               : null
             }
             </ React.Fragment>
-          )))
+          ))))
         }        
       </TableBody>
       </Table>

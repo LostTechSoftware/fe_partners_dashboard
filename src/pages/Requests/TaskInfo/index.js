@@ -23,25 +23,6 @@ export default function TaskInfo({ requestId, loadRequests }) {
     setLoading(false)
   }
 
-  // useEffect(() => {
-  //   async function socket() {
-  //     const _id = sessionStorage.getItem('_id')
-  //     const socket = socketio('https://backendfood.link', {
-  //       query: {
-  //         user_id: _id
-  //      }
-  //     })
-
-  //     console.log(socket)
-  //     socket.on('new_order', () => {
-        
-  //     }));    
-  //   }
-  //   socket()
-  // }, []);
-
-  // channel.bind('new_order', getTaskInfo);
-
   useEffect(() => {
     getTaskInfo()
   }, [requestId])

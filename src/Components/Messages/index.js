@@ -62,9 +62,12 @@ export default function Messages({ requestId, setMessages: setM }) {
   useEffect(() => {
     async function socket() {
       const _id = sessionStorage.getItem('_id')
+      const name = sessionStorage.getItem('restaurantName')
       const socket = socketio('https://backendfood.link', {
         query: {
-          user_id: _id
+          user: _id,
+          username: name,
+          restaurant:true
        }
       })
       socket.on('message', function response(response) {
@@ -74,12 +77,6 @@ export default function Messages({ requestId, setMessages: setM }) {
     }
     socket()
   }, []);
-
-  channel.bind('message', function response(response) {
-    setM(response.text)
-    setMessages(response.text)
-    setChat(response)
-  });
 
   return (
     <div className='ChatBox'>
