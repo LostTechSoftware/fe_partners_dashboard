@@ -23,7 +23,7 @@ export default function ItensTable({ title, id, products = [], paused }) {
   const [ currentEditingProduct, setCurrentEditingProduct] = useState('');
   const [ loading, setLoading ] = useState(false)
 
-  function productToUpdate({ _id, title, price, description, avatar }) {
+  function defineProductToUpdate({ _id, title, price, description, avatar }) {
     setCurrentEditingProduct({
       _id,
       title,
@@ -32,6 +32,18 @@ export default function ItensTable({ title, id, products = [], paused }) {
       avatar,
     });
     setOpenUpdateModal(true);
+  }
+
+  function updateProductOnArray({productId, newTitle, newPrice}) {
+    const productIndex = productsRow.findIndex(e => e._id === productId);
+    let tempProductsRow = productsRow;
+    let tempProductObject = productsRow[productIndex];
+    tempProductObject.title = newTitle;
+    tempProductObject.price = newPrice;
+    tempProductsRow[productIndex] = tempProductObject;
+
+    setProductsRow(tempProductsRow);
+    return 0;
   }
   
   useEffect(() => {
@@ -84,7 +96,7 @@ export default function ItensTable({ title, id, products = [], paused }) {
                 component='th'
                 scope='row'
               >
-                <Button onClick={ () => productToUpdate(product) } >
+                <Button onClick={ () => defineProductToUpdate(product) } >
                   <EditRounded />
                   <p> { product.title } </p>
                 </Button>
@@ -130,6 +142,7 @@ export default function ItensTable({ title, id, products = [], paused }) {
       product={currentEditingProduct}
       openModal={openUpdateModal}
       closeModal={() => setOpenUpdateModal(false)}
+      updateProductOnArray={ updateProductOnArray }
     />
     </>
   );

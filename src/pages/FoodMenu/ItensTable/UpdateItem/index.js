@@ -15,7 +15,8 @@ export default function UpdateItemBox({
     avatar,
   },
   openModal,
-  closeModal
+  closeModal,
+  updateProductOnArray,
 }) {
   const [ OldPrice, setOldPrice] = useState(price);
   const [ editingTitle, setEditingTitle ] = useState(title);
@@ -37,32 +38,38 @@ export default function UpdateItemBox({
   },[ price ]);
 
   useEffect(() => {
-    setEditingDescription(description)
+    setEditingDescription(description);
   },[ description ]);
 
   async function updateItem(event) {
     event.preventDefault();
     setLoading('send')
     try {
-      const data = new FormData()
+      const data = new FormData();
 
-      data.append('title', editingTitle)
-      data.append('price', parseFloat(editingPrice))
-      data.append('description', editingDescription)
-      data.append('promotion', promotion)
-      data.append('OldPrice', OldPrice)
+      data.append('title', editingTitle);
+      data.append('price', parseFloat(editingPrice));
+      data.append('description', editingDescription);
+      data.append('promotion', promotion);
+      data.append('OldPrice', OldPrice);
 
       if(uploadedFile)
-        data.append('avatar', uploadedFile.file)
+        data.append('avatar', uploadedFile.file);
         
       await api.post(`/product/edit/${_id}`, data);
-      toast.success('Produto salvo!');
+      updateProductOnArray({
+        productId: _id,
+        newTitle: editingTitle,
+        newPrice: editingPrice
+      });
       
+      console.log('data');
+      toast.success('Produto salvo!');
     } catch (error) {
       toast.error('Erro ao salvar produto, tente novamente!');
     }
     setLoading('');
-    closeModal()
+    closeModal();
   }
 
   async function deleteItem() {
@@ -73,7 +80,7 @@ export default function UpdateItemBox({
     } catch (error) {
       toast.error('Erro ao deletar produto, tente novamente!');
     }
-    setLoading('')
+    setLoading('');
   }
 
   const handleUpload = files => {
@@ -102,7 +109,6 @@ export default function UpdateItemBox({
       openModal={openModal}
       closeModal={closeModal}
 
-      
       title={editingTitle}
       price={editingPrice}
       description={editingDescription}
