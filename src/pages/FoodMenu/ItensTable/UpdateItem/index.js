@@ -16,7 +16,8 @@ export default function UpdateItemBox({
   },
   openModal,
   closeModal,
-  updateProductOnArray,
+  updateProductOnTable,
+  removeProductFromTable,
 }) {
   const [ OldPrice, setOldPrice] = useState(price);
   const [ editingTitle, setEditingTitle ] = useState(title);
@@ -57,13 +58,11 @@ export default function UpdateItemBox({
         data.append('avatar', uploadedFile.file);
         
       await api.post(`/product/edit/${_id}`, data);
-      updateProductOnArray({
+      updateProductOnTable({
         productId: _id,
         newTitle: editingTitle,
         newPrice: editingPrice
       });
-      
-      console.log('data');
       toast.success('Produto salvo!');
     } catch (error) {
       toast.error('Erro ao salvar produto, tente novamente!');
@@ -76,11 +75,13 @@ export default function UpdateItemBox({
     try {
       setLoading('delete')
       await api.delete(`/delete/product/${_id}`);
+      removeProductFromTable(_id);
       toast.success('Produto deletado!');
     } catch (error) {
       toast.error('Erro ao deletar produto, tente novamente!');
     }
     setLoading('');
+    closeModal();
   }
 
   const handleUpload = files => {

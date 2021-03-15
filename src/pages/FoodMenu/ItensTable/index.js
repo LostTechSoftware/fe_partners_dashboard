@@ -34,14 +34,24 @@ export default function ItensTable({ title, id, products = [], paused }) {
     setOpenUpdateModal(true);
   }
 
-  function updateProductOnArray({productId, newTitle, newPrice}) {
+  function updateProductOnTable({productId, newTitle, newPrice}) {
     const productIndex = productsRow.findIndex(e => e._id === productId);
     let tempProductsRow = productsRow;
     let tempProductObject = productsRow[productIndex];
+    
     tempProductObject.title = newTitle;
     tempProductObject.price = newPrice;
     tempProductsRow[productIndex] = tempProductObject;
 
+    setProductsRow(tempProductsRow);
+  }
+
+  function removeProductFromTable(productId) {
+    const productIndex = productsRow.findIndex(e => e._id === productId);
+    let tempProductsRow = productsRow;
+    tempProductsRow.splice(productIndex, 1);
+
+    console.log(tempProductsRow);
     setProductsRow(tempProductsRow);
     return 0;
   }
@@ -142,7 +152,8 @@ export default function ItensTable({ title, id, products = [], paused }) {
       product={currentEditingProduct}
       openModal={openUpdateModal}
       closeModal={() => setOpenUpdateModal(false)}
-      updateProductOnArray={ updateProductOnArray }
+      updateProductOnTable={ updateProductOnTable }
+      removeProductFromTable={ removeProductFromTable }
     />
     </>
   );
