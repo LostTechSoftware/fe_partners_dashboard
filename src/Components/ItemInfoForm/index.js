@@ -56,7 +56,11 @@ export default function ItemInfoForm({
       open={ openModal }
       onClose={ closeModal }
     >
-      <form encType="multipart/form-data" className={`submitItem ${ update ? 'update' : null }`} onSubmit={ submit }>
+      <form
+        encType='multipart/form-data'
+        className={`submitItem ${ update ? 'update' : null }`}
+        onSubmit={ loading ? e => e.preventDefault() : submit }
+      >
         <Upload
           onUpload={handleUpload}
           file={file}

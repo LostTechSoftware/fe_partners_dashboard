@@ -6,7 +6,15 @@
 #root .mainButton .MuiButton-root,
 .MuiDialog-root .mainButton .MuiButton-root,
 .MuiPopover-root .mainButton .MuiButton-root {
+  transition: 0.3s;
   background-color: #ffe115;
+}
+
+#root .mainButton .Mui-disabled,
+.MuiDialog-root .mainButton .Mui-disabled,
+.MuiPopover-root .mainButton .Mui-disabled {
+  transition: 0.3s;
+  opacity: 0.38;
 }
 .mainButton .MuiButton-root { 
   height: 80px;

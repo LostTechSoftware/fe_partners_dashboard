@@ -6,7 +6,11 @@ import './styles.css'
 export default function MainButton({ children, onClick, type, boxId, loading }) {
   return (
     <div className='mainButton' id={boxId} >
-      <Button onClick={onClick} type={type} >
+      <Button
+        onClick={onClick}
+        type={type}
+        disabled={ loading ? true : false }
+      >
         {loading ? <CircularProgress /> : children}
       </Button>
     </div>
