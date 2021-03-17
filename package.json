@@ -12,7 +12,7 @@
     "axios": "^0.21.1",
     "filesize": "^6.1.0",
     "moment": "^2.29.0",
-    "pusher-js": "^7.0.2",
+    "pusher-js": "^7.0.3",
     "react": "^16.13.1",
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "^16.13.1",
