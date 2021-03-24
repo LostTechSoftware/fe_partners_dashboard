@@ -1,9 +1,5 @@
 import axios from 'axios';
-<<<<<<< HEAD
 import 'dotenv'
-=======
-import 'dotenv/config'
->>>>>>> 538d414dbc5d1f0ed0b5b334535bab820c878343
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_SERVER
