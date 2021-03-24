@@ -10,7 +10,6 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "filesize": "^6.1.0",
@@ -63,6 +62,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier '**/*.{ts,tsx}' --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
