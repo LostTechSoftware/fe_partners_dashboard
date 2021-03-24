@@ -1,7 +1,8 @@
 import axios from 'axios';
+import 'dotenv'
 
 const api = axios.create({
-  baseURL: 'https://backendfood.link'//https://backendfood.link'
+  baseURL: process.env.REACT_APP_SERVER
 });
 
 api.interceptors.request.use(config => {

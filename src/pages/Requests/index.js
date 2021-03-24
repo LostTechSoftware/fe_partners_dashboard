@@ -74,7 +74,7 @@ export default function Requests() {
       const _id = sessionStorage.getItem('_id')
       const name = sessionStorage.getItem('restaurantName')
 
-      const socket = socketio('https://backendfood.link', {
+      const socket = socketio(process.env.REACT_APP_SERVER, {
         query: {
           user: _id,
           username: name,
