@@ -40,7 +40,7 @@ export default function ItemInfoForm({
 
   useEffect(() => {
     async function LoadCategories(){
-      const response = await api.get(`/menu/${sessionStorage.getItem('_id')}`)
+      const response = await api.get(`/menu/restaurant/get`)
       setCategories(response.data.rows.map( r => ({
         title:r.title,
         _id:r._id

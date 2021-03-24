@@ -2,6 +2,7 @@
   "name": "foodzilla",
   "version": "0.1.0",
   "private": true,
+
   "dependencies": {
     "@babel/helper-define-map": "^7.13.12",
     "@babel/helper-skip-transparent-expression-wrappers": "^7.12.1",
@@ -11,8 +12,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^12.8.3",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "filesize": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.0",
     "pusher-js": "^7.0.2",
     "react": "^16.13.1",

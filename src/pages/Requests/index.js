@@ -74,7 +74,11 @@ export default function Requests() {
       const _id = sessionStorage.getItem('_id')
       const name = sessionStorage.getItem('restaurantName')
 
+<<<<<<< HEAD
       const socket = socketio(process.env.REACT_APP_SERVER, {
+=======
+      const socket = socketio(process.env.SERVER, {
+>>>>>>> 538d414dbc5d1f0ed0b5b334535bab820c878343
         query: {
           user: _id,
           username: name,
