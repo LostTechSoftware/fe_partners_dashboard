@@ -10,7 +10,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@sentry/react": "^6.2.5",
     "@sentry/tracing": "^6.2.5",
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^9.3.2",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
@@ -36,7 +36,7 @@
     "use-sound": "^1.0.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^24.0.0",
