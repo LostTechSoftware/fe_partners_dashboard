@@ -13,7 +13,7 @@
     "filesize": "^6.1.0",
     "moment": "^2.29.0",
     "pusher-js": "^7.0.2",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.4",
