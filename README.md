@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="assets/icon.png" alt="Logo" width="80" height="80">
+    <img src="images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">FoodZilla Partners Dashboard</h3>
@@ -60,7 +60,7 @@ Esse é o web dos parceiros da plataforma que integra milhares de outras funcion
 Aqui vemos uma das mais poderosas ferramentas usadas pelo Backend
 
 - [React](https://pt-br.reactjs.org/)
-- [Heroku](https://expo.io)
+- [Heroku](https://heroku.coms)
 
 <!-- GETTING STARTED -->
 
@@ -122,4 +122,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[product-screenshot]: assets/screenshot.png
+[product-screenshot]: images/screenshot.png
