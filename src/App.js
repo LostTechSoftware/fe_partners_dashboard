@@ -1,28 +1,28 @@
-import React from 'react';
-import { ToastContainer } from 'react-toastify';
+import React from "react";
+import { ToastContainer } from "react-toastify";
 
-import Router from './routes';
-import { PrinterHeader, PrinterFooter } from './Components/Print';
+import Router from "./routes";
+import { PrinterHeader, PrinterFooter } from "./Components/Print";
 
-import './global.css';
-import './print.css';
+import "./global.css";
+import "./print.css";
 
 function App() {
   function Reload() {
     setTimeout(function () {
-      document.location.reload()
+      document.location.reload();
     }, 600000);
   }
 
-  if (sessionStorage.getItem('sandbox')) {
-    Reload()
+  if (sessionStorage.getItem("sandbox")) {
+    Reload();
   }
 
   return (
     <div className="App">
       <PrinterHeader />
       <Router />
-      <ToastContainer/>
+      <ToastContainer />
       <PrinterFooter />
     </div>
   );

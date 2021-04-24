@@ -1,52 +1,49 @@
-import React, { useState } from 'react';
-import { Fab } from '@material-ui/core';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import { Fab } from "@material-ui/core";
+import { toast } from "react-toastify";
 import filesize from "filesize";
 
-import {
-  AddRounded,
-} from '@material-ui/icons';
-import 'react-toastify/dist/ReactToastify.css'
+import { AddRounded } from "@material-ui/icons";
+import "react-toastify/dist/ReactToastify.css";
 
-import api from '../../../services/api';
-import ItemInfoForm from '../../../Components/ItemInfoForm';
-import './styles.css';
+import api from "../../../services/api";
+import ItemInfoForm from "../../../Components/ItemInfoForm";
+import "./styles.css";
 
 export default function CreateItem() {
-  const [ openModal, setOpenModal ] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  const [ editingTitle, setEditingTitle ] = useState('');
-  const [ editingPrice, setEditingPrice ] = useState(0);
-  const [ editingDescription, setEditingDescription ] = useState('');
+  const [editingTitle, setEditingTitle] = useState("");
+  const [editingPrice, setEditingPrice] = useState(0);
+  const [editingDescription, setEditingDescription] = useState("");
 
-  const [ loading, setLoading ] = useState('')
-  const [ uploadedFile, setUploadedFile ] = useState(null);
+  const [loading, setLoading] = useState("");
+  const [uploadedFile, setUploadedFile] = useState(null);
 
-  const [ rowId, setRowId ] = useState('')
-  
+  const [rowId, setRowId] = useState("");
+
   async function createItem(event) {
     event.preventDefault();
-    setLoading('send');
+    setLoading("send");
     try {
-      const data = new FormData()
+      const data = new FormData();
 
-      data.append('title', editingTitle)
-      data.append('price', parseFloat(editingPrice))
-      data.append('description', editingDescription)
-      if(uploadedFile)
-        data.append('avatar', uploadedFile.file);
-      
-      await api.post(`/add/product/${rowId}`,data)
-      toast.success('Produto salvo!');
+      data.append("title", editingTitle);
+      data.append("price", parseFloat(editingPrice));
+      data.append("description", editingDescription);
+      if (uploadedFile) data.append("avatar", uploadedFile.file);
+
+      await api.post(`/add/product/${rowId}`, data);
+      toast.success("Produto salvo!");
     } catch (error) {
       console.log(error);
-      toast.error('Erro ao salvar produto, tente novamente!');
+      toast.error("Erro ao salvar produto, tente novamente!");
     }
-    setLoading('');
+    setLoading("");
   }
 
-  const handleUpload = files => {
-    const uploadedFiles = files.map(file => ({
+  const handleUpload = (files) => {
+    const uploadedFiles = files.map((file) => ({
       file,
       name: file.name,
       readableSize: filesize(file.size),
@@ -54,36 +51,34 @@ export default function CreateItem() {
       progress: 0,
       uploaded: false,
       error: false,
-      url: null
+      url: null,
     }));
 
-    setUploadedFile(uploadedFiles[0])
+    setUploadedFile(uploadedFiles[0]);
   };
 
   return (
     <>
-    <Fab onClick={ () => setOpenModal(true) } >
-      <AddRounded />
-    </Fab>
+      <Fab onClick={() => setOpenModal(true)}>
+        <AddRounded />
+      </Fab>
 
-    <ItemInfoForm
-      loading={loading}
-      submit= { createItem }
-      openModal={openModal}
-      closeModal={() => setOpenModal(false)}
-      
-      title={editingTitle}
-      price={editingPrice}
-      description={editingDescription}
-      file={uploadedFile}
-      setRowId={setRowId}
-      rowId={rowId}
-
-      setTitle={setEditingTitle}
-      setPrice={setEditingPrice}
-      setDescription={setEditingDescription}
-      handleUpload={handleUpload}
-    />
+      <ItemInfoForm
+        loading={loading}
+        submit={createItem}
+        openModal={openModal}
+        closeModal={() => setOpenModal(false)}
+        title={editingTitle}
+        price={editingPrice}
+        description={editingDescription}
+        file={uploadedFile}
+        setRowId={setRowId}
+        rowId={rowId}
+        setTitle={setEditingTitle}
+        setPrice={setEditingPrice}
+        setDescription={setEditingDescription}
+        handleUpload={handleUpload}
+      />
     </>
-  )
+  );
 }

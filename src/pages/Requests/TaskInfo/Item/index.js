@@ -1,10 +1,7 @@
-import React from 'react';
-import { 
-  FiberManualRecordRounded,
-  AddRounded,
-} from '@material-ui/icons';
+import React from "react";
+import { FiberManualRecordRounded, AddRounded } from "@material-ui/icons";
 
-import './styles.css';
+import "./styles.css";
 
 export default function Item({
   title,
@@ -16,66 +13,61 @@ export default function Item({
   avatar,
 }) {
   return (
-    <div className='itemBox'>
-      <div className='item' >
-        {avatar ?
-          <img
-            className='thumb'
-            src={avatar}
-            alt='fruity pancakes'
-          /> : null
-        }
+    <div className="itemBox">
+      <div className="item">
+        {avatar ? (
+          <img className="thumb" src={avatar} alt="fruity pancakes" />
+        ) : null}
 
-        <section className='itemInfo' >
-          <p className='title' >{title}</p>
+        <section className="itemInfo">
+          <p className="title">{title}</p>
 
-          <div className='moreInfo'>
+          <div className="moreInfo">
             <p>{quantity}x</p>
-            <p className='price'>
-              {(price * quantity).toLocaleString(
-                'pt-br',
-                {style:'currency', currency:'brl'}
-              )}
+            <p className="price">
+              {(price * quantity).toLocaleString("pt-br", {
+                style: "currency",
+                currency: "brl",
+              })}
             </p>
           </div>
         </section>
       </div>
 
-      <section className='observations'>
-        {description ? 
-          <div className='description'>
+      <section className="observations">
+        {description ? (
+          <div className="description">
             <p> {description} </p>
           </div>
-        : null}
+        ) : null}
 
-        {observation ? 
-          <div className='observation'>
+        {observation ? (
+          <div className="observation">
             <FiberManualRecordRounded />
             <p> {observation} </p>
           </div>
-        : null}
+        ) : null}
 
-        {additionals.map( ad => (
-          ad.additional.map(additional => 
-          <div className='additional' key={additional.id}>
-            {!!additional.quantidade &&
-              <p>{additional.quantidade}</p>
-            }
-            <main>
-              <AddRounded />
-              <p> {additional.title} </p>
-            </main>
-            <p className='price'>
-              {additional.price.toLocaleString(
-                'pt-br',
-                {style: 'currency', currency: 'brl'}
-              )}
-            </p>
-          </div>
-        )))}
+        {additionals.map((ad) =>
+          ad.additional.map((additional) => (
+            <div className="additional" key={additional.id}>
+              {!!additional.quantidade && <p>{additional.quantidade}</p>}
+              <main>
+                <AddRounded />
+                <p> {additional.title} </p>
+              </main>
+              <p className="price">
+                {additional.price.toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "brl",
+                })}
+              </p>
+            </div>
+          ))
+        )}
       </section>
 
-      <div className='underline' />
+      <div className="underline" />
     </div>
-  )
+  );
 }

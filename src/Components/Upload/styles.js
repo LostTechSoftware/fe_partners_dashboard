@@ -1,4 +1,3 @@
-  
 import styled, { css } from "styled-components";
 
 const dragActive = css`
@@ -10,25 +9,25 @@ const dragReject = css`
 `;
 
 export const DropContainer = styled.div.attrs({
-  className: "dropzone"
+  className: "dropzone",
 })`
   border: 1px dashed #ddd;
   border-radius: 4px;
   cursor: pointer;
   transition: height 0.2s ease;
-  ${props => props.isDragActive && dragActive};
-  ${props => props.isDragReject && dragReject};
+  ${(props) => props.isDragActive && dragActive};
+  ${(props) => props.isDragReject && dragReject};
 `;
 
 const messageColors = {
   default: "#999",
   error: "#e57878",
-  success: "#ffe115"
+  success: "#ffe115",
 };
 
 export const UploadMessage = styled.p`
   display: flex;
-  color: ${props => messageColors[props.type || "default"]};
+  color: ${(props) => messageColors[props.type || "default"]};
   justify-content: center;
   align-items: center;
   padding: 15px 0;

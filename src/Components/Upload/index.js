@@ -1,15 +1,13 @@
-  
 import React from "react";
 
 import Dropzone from "react-dropzone";
 
-import File from './File';
+import File from "./File";
 import { DropContainer, UploadMessage } from "./styles";
 
 export default function Upload({ onUpload, file = {} }) {
   const renderDragMessage = (isDragActive, isDragReject) => {
-    if (file)
-      return <File uploadedFile={file} />
+    if (file) return <File uploadedFile={file} />;
 
     if (!isDragActive)
       return <UploadMessage>Adicione uma foto ao produto...</UploadMessage>;

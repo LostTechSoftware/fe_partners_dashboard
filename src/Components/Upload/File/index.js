@@ -14,33 +14,26 @@ const File = ({ uploadedFile, onDelete }) => (
           <span>
             {uploadedFile.readableSize}{" "}
             {!!uploadedFile.url && (
-              <button onClick={() => onDelete(uploadedFile.id)}>
-                Excluir
-              </button>
+              <button onClick={() => onDelete(uploadedFile.id)}>Excluir</button>
             )}
           </span>
         </div>
       </FileInfo>
 
       <div>
-        {!uploadedFile.uploaded &&
-          !uploadedFile.error && (
-            <CircularProgressbar
-              styles={{
-                root: { width: 24 },
-                path: { stroke: "#00ff00" }
-              }}
-              strokeWidth={10}
-              percentage={uploadedFile.progress}
-            />
-          )}
+        {!uploadedFile.uploaded && !uploadedFile.error && (
+          <CircularProgressbar
+            styles={{
+              root: { width: 24 },
+              path: { stroke: "#00ff00" },
+            }}
+            strokeWidth={10}
+            percentage={uploadedFile.progress}
+          />
+        )}
 
         {uploadedFile.url && (
-          <a
-            href={uploadedFile.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={uploadedFile.url} target="_blank" rel="noopener noreferrer">
             <MdLink style={{ marginRight: 8 }} size={24} color="#222" />
           </a>
         )}
