@@ -56,18 +56,46 @@
     "husky": "^5.2.0",
     "lint": "^0.7.0",
     "lint-staged": "^10.5.4",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "@shelf/jest-mongodb": "^1.2.4",
+    "@types/cors": "2.8.6",
+    "@types/express": "4.17.2",
+    "@types/factory-girl": "5.0.4",
+    "@types/jwt-simple": "0.5.33",
+    "@types/lodash": "4.14.149",
+    "@types/mongoose": "5.5.32",
+    "@types/throng": "5.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "babel-preset-expo": "8.3.0",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint-plugin-standard": "4.0.0",
+    "factory-girl": "5.0.4",
+    "jest": "26.6.3",
+    "jest-sonar": "0.2.12",
+    "pretty-quick": "3.1.0",
+    "react-test-renderer": "~16.11.0",
+    "supertest": "4.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "staging": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "eslint:check": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier '**/*.{js,jsx}' --write"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-commit": "lint-staged && madge --circular ./",
+      "pre-push": "lint-staged && madge --circular ./"
     }
   },
   "eslintConfig": {
