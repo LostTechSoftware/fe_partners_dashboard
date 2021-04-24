@@ -80,14 +80,14 @@ Para iniciar o projeto é necessário seguir os passos abaixo:
 
 - heroku-cli
   ```sh
-  sudo snap install --classic heroku
+  npm install -g heroku
   ```
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/LostTechSoftware/bk_clientes
+   git clone https://github.com/LostTechSoftware/fe_partners_dashboard
    ```
 2. Install packages
    ```sh
@@ -95,7 +95,7 @@ Para iniciar o projeto é necessário seguir os passos abaixo:
    ```
 3. Clone environment keys
    ```JS
-   sudo heroku config -a foodzilla-staging-server -s >> .env
+   heroku config -a foodzilla-staging-server -s >> .env
    ```
 
 <!-- USAGE EXAMPLES -->

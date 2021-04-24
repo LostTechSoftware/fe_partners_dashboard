@@ -1,5 +1,5 @@
 {
-  "name": "foodzilla",
+  "name": "Frontend-Partner-Dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -88,7 +88,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "eslint:check": "eslint 'src/**/*.{js,jsx}' --fix",
-    "format": "prettier '**/*.{js,jsx}' --write"
+    "format": "prettier '**/*.{js,jsx}' --write",
+    "commit": "cz"
   },
   "husky": {
     "hooks": {
