@@ -37,6 +37,8 @@
     "use-sound": "^1.0.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -46,8 +48,9 @@
     "@types/react-dom": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
-    "@commitlint/cli": "^12.1.1",
-    "@commitlint/config-conventional": "^12.1.1",
+    "commitizen": "^4.2.3",
+    "cypress": "^7.1.0",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^6.7.2",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.7.0",
@@ -57,8 +60,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "3.0.9",
-    "commitizen": "^4.2.3",
-    "cz-conventional-changelog": "3.3.0",
     "lint": "^0.7.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
@@ -71,7 +72,8 @@
     "eject": "react-scripts eject",
     "eslint:check": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier '**/*.{js,jsx}' --write",
-    "commit": "cz"
+    "commit": "cz",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
