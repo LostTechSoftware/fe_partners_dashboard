@@ -95,7 +95,7 @@ Para iniciar o projeto é necessário seguir os passos abaixo:
    ```
 3. Clone environment keys
    ```JS
-   heroku config -a foodzilla-staging-server -s >> .env
+   heroku config -a foodzilla-partners-staging -s >> .env
    ```
 
 <!-- USAGE EXAMPLES -->

@@ -31,10 +31,10 @@ export default function Money() {
           <section className="totalBalance">
             <span>Balanço nas últimas 24 horas</span>
             <h2>
-              {(transactions.saleDay
-                ? transactions.saleDay
-                : 0
-              ).toLocaleString("pt-br", { style: "currency", currency: "brl" })}
+              {(transactions.saleDay ? transactions.saleDay : 0).toLocaleString(
+                "pt-br",
+                { style: "currency", currency: "brl" }
+              )}
             </h2>
           </section>
 

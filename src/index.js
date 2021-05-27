@@ -3,16 +3,17 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import App from "./App";
+import "dotenv";
 
 Sentry.init({
-  dsn:
-    "https://df41b3737d994e718b149d294f5c4868@o382729.ingest.sentry.io/5724363",
+  dsn: process.env.REACT_APP_SENTRY,
   integrations: [new Integrations.BrowserTracing()],
 
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
+  environment: process.env.REACT_APP_PROD === true ? "PRODUCTION" : "STAGING",
 });
 
 ReactDOM.render(<App />, document.getElementById("root"));
