@@ -6,6 +6,19 @@ import MainButton from "../../Components/MainButton";
 import api from "../../services/api";
 import "./styles.css";
 
+import {
+  ContainerImage,
+  ContainerElements,
+  Button,
+  ButtonText,
+  Image,
+  InputName,
+  InputPassword,
+  LabelName,
+  LabelPassword,
+  Logo,
+} from "./styles";
+
 export default function Login() {
   const history = useHistory();
 
@@ -65,26 +78,42 @@ export default function Login() {
   }
 
   return (
-    <div className="page login">
-      <form onSubmit={tryLogin}>
-        <input
-          type="text"
-          placeholder="E-mail"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
+    <>
+      <ContainerImage>
+        <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Cooking-cuate.png"></Image>
 
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <ContainerElements>
+          <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
+          <LabelName>Email</LabelName>
+          <InputName placeholder="exemplo@email.com"></InputName>
+          <LabelPassword>Senha</LabelPassword>
+          <InputPassword placeholder="Insira sua senha aqui"></InputPassword>
+          <Button>
+            <ButtonText>Logar</ButtonText>
+          </Button>
+        </ContainerElements>
+      </ContainerImage>
+    </>
+    // <div className="page login">
+    //   <form onSubmit={tryLogin}>
+    //     <input
+    //       type="text"
+    //       placeholder="E-mail"
+    //       value={email}
+    //       onChange={(event) => setEmail(event.target.value)}
+    //     />
 
-        <MainButton type="submit" loading={loading}>
-          Logar
-        </MainButton>
-      </form>
-    </div>
+    //     <input
+    //       type="password"
+    //       placeholder="Senha"
+    //       value={password}
+    //       onChange={(event) => setPassword(event.target.value)}
+    //     />
+
+    //     <MainButton type="submit" loading={loading}>
+    //       Logar
+    //     </MainButton>
+    //   </form>
+    // </div>
   );
 }
