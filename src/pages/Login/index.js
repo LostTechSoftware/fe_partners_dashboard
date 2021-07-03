@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MainButton from "../../Components/MainButton";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -11,12 +10,13 @@ import {
   Button,
   ButtonText,
   Image,
-  InputName,
-  InputPassword,
-  LabelName,
-  LabelPassword,
   Logo,
   Form,
+  ForgotPassword,
+  Input,
+  InputName,
+  ContainerInput,
+  Label,
 } from "./styles";
 
 export default function Login() {
@@ -25,6 +25,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+
+  async function ClickForgotPassword() {
+    history.push("/forgotpassword");
+  }
 
   async function tryLogin(event) {
     event.preventDefault();
@@ -84,19 +88,28 @@ export default function Login() {
 
         <Form onSubmit={tryLogin}>
           <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
-          <LabelName>Email</LabelName>
-          <InputName
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="exemplo@email.com"
-            value={email}
-          ></InputName>
-          <LabelPassword>Senha</LabelPassword>
-          <InputPassword
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Insira sua senha aqui"
-          ></InputPassword>
+          <Input>
+            <ContainerInput>
+              <Label>Email</Label>
+              <InputName
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="exemplo@email.com"
+              />
+            </ContainerInput>
+          </Input>
+          <ContainerInput>
+            <Label>Senha</Label>
+            <InputName
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Insira sua senha aqui"
+            />
+          </ContainerInput>
+          <ForgotPassword onClick={ClickForgotPassword}>
+            Esqueci a senha
+          </ForgotPassword>
 
           <Button onSubmit={tryLogin} type="submit" loading={loading}>
             <ButtonText>Logar</ButtonText>
@@ -104,26 +117,5 @@ export default function Login() {
         </Form>
       </ContainerImage>
     </>
-    // <div className="page login">
-    //   <form onSubmit={tryLogin}>
-    //     <input-
-    //       type="text"
-    //       placeholder="E-mail"
-    //       value={email}
-    //       onChange={(event) => setEmail(event.target.value)}
-    //     />
-
-    //     <input
-    //       type="password"
-    //       placeholder="Senha"
-    // value={password}
-    // onChange={(event) => setPassword(event.target.value)}
-    //     />
-
-    //     <MainButton type="submit" loading={loading}>
-    //       Logar
-    //     </MainButton>
-    //   </form>
-    // </div>
   );
 }

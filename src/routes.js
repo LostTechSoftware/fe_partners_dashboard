@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Requests from "./pages/Requests";
 import FoodMenu from "./pages/FoodMenu";
 import Money from "./pages/Money";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -25,7 +26,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
-
+      <Route exact path="/forgotpassword" component={ForgotPassword} />
       <PrivateRoute path="/requests" component={Requests} />
       <PrivateRoute path="/menu" component={FoodMenu} />
       <PrivateRoute path="/money" component={Money} />

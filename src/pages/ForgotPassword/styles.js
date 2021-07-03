@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const ContainerImage = styled.div`
-  display: flex;
-  height: 100%;
-`;
-
 export const Input = styled.div`
   width: 100%;
   display: flex;
@@ -19,11 +14,13 @@ export const Label = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #dddddd;
+  color: #111;
+  margin-bottom: 1%;
 `;
 
 export const ContainerInput = styled.div`
-  width: 90%;
+  display: contents;
+  width: 80%;
   margin-top: 20px;
   ${(props) =>
     props.half &&
@@ -44,7 +41,7 @@ export const InputName = styled.input`
   border: 1px solid #dddddd;
   box-sizing: border-box;
   border-radius: 5px;
-  width: 100%;
+  width: 90%;
   ${(props) =>
     props.half &&
     `
@@ -60,16 +57,46 @@ export const InputName = styled.input`
   padding: 5px;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  height: 100%;
+  @media (max-width: 800px) {
+    display: block;
+    width: 100%;
+    background-image: none;
+    padding: 0px;
+  }
+  background-image: url("https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Forgot+password.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 200px;
+`;
+
+export const DivAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
 export const Logo = styled.img`
-  width: 40%;
+  width: 30%;
   margin-bottom: 10%;
 `;
 
 export const Button = styled.button`
+  @media (max-height: 874px) {
+    width: 90%;
+  }
   background: #ffe115;
   border-radius: 5px;
   width: 90%;
-  height: 5%;
+  height: 8%;
   margin-top: 10%;
   border-width: 0px;
 `;
@@ -80,61 +107,3 @@ export const ButtonText = styled.text`
   font-weight: bold;
   font-size: 25px;
 `;
-
-export const Form = styled.form`
-  @media screen and (max-width: 800px) {
-    width: 100%;
-    padding: 20px;
-    padding-right: 0px;
-  }
-  background-color: #fff;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  padding-right: 10%;
-  width: 40%;
-`;
-
-export const Image = styled.img`
-  height: 85%;
-  width: 50%;
-  object-fit: contain;
-`;
-
-export const InputPassword = styled.input`
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 40%;
-  height: 50px;
-  padding: 10px;
-  type: password;
-`;
-
-export const LabelName = styled.label`
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: #ddd;
-`;
-
-export const LabelPassword = styled.label`
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: #ddd;
-`;
-
-export const ForgotPassword = styled.button`
-  background-color: #fff;
-  border-width: 0;
-  color: #ffe115;
-  display: flex;
-  margin-top: 1%;
-`;
-
-export const DivAlign = styled.div``;
