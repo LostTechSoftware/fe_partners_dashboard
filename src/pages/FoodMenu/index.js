@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { SearchRounded } from "@material-ui/icons";
 
 import api from "../../services/api";
+import {
+  Container,
+  Header,
+  ContainerButtons,
+  ButtonHeader,
+  ButtonText,
+  Selector,
+  SearchBox,
+  ContainerSelect,
+} from "./styles";
 import MainMenu from "../../Components/MainMenu";
-import ItensTable from "./ItensTable";
-import CreateItem from "./CreateItem";
-import "./styles.css";
 
 export default function FoodMenu() {
   const [expectedItensName, setExpectedItensName] = useState("");
@@ -28,48 +34,29 @@ export default function FoodMenu() {
   }, [expectedItensName]);
 
   return (
-    <div className="page foodMenu">
-      <MainMenu currentPage="foodMenu" />
-      <div className="pageContent">
-        <h1>Cardápio</h1>
-        <p className="delayWarning">
-          As alterações de disponibilidade dos itens podem levar até 5 minutos
-          para refletir no aplicativo dos seus consumidores
-        </p>
-        <section className="searchBox">
-          <label htmlFor="expectedItemName">
-            <SearchRounded />
-          </label>
-          <input
-            id="expectedItemName"
-            placeholder="Buscar item do cardápio"
-            value={expectedItensName}
-            onChange={(event) => setExpectedItensName(event.target.value)}
-          />
-        </section>
+    <>
+      <MainMenu currentPage="menu" />
+      <Container>
+        <Header>
+          <ContainerButtons>
+            <ButtonHeader selected={true}>
+              <ButtonText>Entrega</ButtonText>
+            </ButtonHeader>
 
-        <section className="itensList">
-          {itensList.rows ? (
-            itensList.rows.map((row) => (
-              <ItensTable
-                key={row._id}
-                id={row._id}
-                title={row.title}
-                paused={row.paused}
-              />
-            ))
-          ) : (
-            <ItensTable
-              key={1}
-              id={1}
-              title={expectedItensName}
-              products={itensList}
-            />
-          )}
-        </section>
-      </div>
+            <ButtonHeader>
+              <ButtonText>Retirada</ButtonText>
+            </ButtonHeader>
+          </ContainerButtons>
 
-      <CreateItem />
-    </div>
+          <ContainerSelect>
+            <Selector />
+          </ContainerSelect>
+
+          <ContainerSelect>
+            <SearchBox placeholder="Pesquise igredientes ou produtos"></SearchBox>
+          </ContainerSelect>
+        </Header>
+      </Container>
+    </>
   );
 }
