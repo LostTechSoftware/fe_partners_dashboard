@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  background-color: #22222E;
-  padding: calc(var(--deafult-top-padding)/2);
+
+  background-color: #22222e;
+  padding: calc(var(--deafult-top-padding) / 2);
   overflow-y: hidden;
 }
 
@@ -18,10 +18,10 @@
 }
 
 .login form input {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   height: 80px;
   width: 100%;
-  
+
   margin-bottom: 18px;
   padding: 12px;
   border: none;
@@ -59,4 +59,4 @@
   .login form .mainButton {
     max-width: 100%;
   }
-} 
+}

@@ -8,7 +8,6 @@ import "./styles.css";
 
 import {
   ContainerImage,
-  ContainerElements,
   Button,
   ButtonText,
   Image,
@@ -17,6 +16,7 @@ import {
   LabelName,
   LabelPassword,
   Logo,
+  Form,
 } from "./styles";
 
 export default function Login() {
@@ -82,21 +82,31 @@ export default function Login() {
       <ContainerImage>
         <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Cooking-cuate.png"></Image>
 
-        <ContainerElements>
+        <Form onSubmit={tryLogin}>
           <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
           <LabelName>Email</LabelName>
-          <InputName placeholder="exemplo@email.com"></InputName>
+          <InputName
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="exemplo@email.com"
+            value={email}
+          ></InputName>
           <LabelPassword>Senha</LabelPassword>
-          <InputPassword placeholder="Insira sua senha aqui"></InputPassword>
-          <Button>
+          <InputPassword
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Insira sua senha aqui"
+          ></InputPassword>
+
+          <Button onSubmit={tryLogin} type="submit" loading={loading}>
             <ButtonText>Logar</ButtonText>
           </Button>
-        </ContainerElements>
+        </Form>
       </ContainerImage>
     </>
     // <div className="page login">
     //   <form onSubmit={tryLogin}>
-    //     <input
+    //     <input-
     //       type="text"
     //       placeholder="E-mail"
     //       value={email}
@@ -106,8 +116,8 @@ export default function Login() {
     //     <input
     //       type="password"
     //       placeholder="Senha"
-    //       value={password}
-    //       onChange={(event) => setPassword(event.target.value)}
+    // value={password}
+    // onChange={(event) => setPassword(event.target.value)}
     //     />
 
     //     <MainButton type="submit" loading={loading}>

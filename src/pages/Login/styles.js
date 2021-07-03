@@ -5,13 +5,6 @@ export const ContainerImage = styled.div`
   height: 100%;
 `;
 
-export const ContainerElements = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Logo = styled.img`
   width: 30%;
   margin-bottom: 10%;
@@ -29,8 +22,16 @@ export const Button = styled.button`
 export const ButtonText = styled.text`
   color: #fff;
   font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 15px;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
 export const Image = styled.img``;
@@ -42,6 +43,7 @@ export const InputName = styled.input`
   height: 50px;
   padding: 10px;
   margin-bottom: 3%;
+  type: text;
 `;
 
 export const InputPassword = styled.input`
@@ -50,6 +52,7 @@ export const InputPassword = styled.input`
   width: 40%;
   height: 50px;
   padding: 10px;
+  type: password;
 `;
 
 export const LabelName = styled.label`
