@@ -9,12 +9,12 @@ export const useMenu = () => {
 
   const menuOptions = useMemo(() => {
     return [
-      { text: "Pedidos", route: "/requests" },
+      { text: "Pedidos", route: "requests" },
       { text: "Mensagens", route: "" },
       { text: "Mapa", route: "" },
       { text: "Impulsionar", route: "" },
-      { text: "Produtos", route: "/menu" },
-      { text: "Finanças", route: "/money" },
+      { text: "Produtos", route: "menu" },
+      { text: "Finanças", route: "money" },
     ];
   }, []);
 

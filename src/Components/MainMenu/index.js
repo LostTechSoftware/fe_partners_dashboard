@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Settings,
   HelpCircle,
@@ -18,10 +18,8 @@ import {
   ContentMobile,
   ContentHeader,
   MenuOptions,
-  NavTitle,
   Option,
   Link,
-  LogoutContainer,
   Image,
   ContainerButton,
   LinkHeader,
@@ -45,19 +43,7 @@ const Icon = ({ icon, color }) => {
 };
 
 export default function MainMenu({ currentPage }) {
-  const [modalOpen, setModalOpen] = useState(null);
-  const [avatar, setAvatar] = useState("");
   const [isMobile] = useScreenMeasure();
-
-  function isTheCurrentPage(page) {
-    if (page === currentPage) return "onPage";
-    else return null;
-  }
-
-  useEffect(() => {
-    setAvatar(sessionStorage.getItem("avatar"));
-  }, []);
-
   const { isMenuMobileOpened, handleMenuMobileOpen, menuOptions } = useMenu();
 
   return (
@@ -82,13 +68,16 @@ export default function MainMenu({ currentPage }) {
 
                 <MenuOptions>
                   {menuOptions.map((option, index) => (
-                    <Option selected={index === 0} key={index}>
+                    <Option selected={currentPage == option.route} key={index}>
                       <ContainerButton>
                         <Icon
-                          color={index === 0 ? "#fff" : "#000"}
+                          color={currentPage == option.route ? "#fff" : "#000"}
                           icon={option.text}
                         />
-                        <Link selected={index === 0} to={option.route}>
+                        <Link
+                          selected={currentPage == option.route}
+                          to={`/${option.route}`}
+                        >
                           {option.text}
                         </Link>
                       </ContainerButton>
@@ -98,7 +87,7 @@ export default function MainMenu({ currentPage }) {
                   <Option settings>
                     <ContainerButton>
                       <Settings
-                        color={false === 0 ? "#fff" : "#000"}
+                        color={currentPage == "/setting" ? "#fff" : "#000"}
                         size={30}
                       />
                       <Link>Configurações</Link>
@@ -107,10 +96,7 @@ export default function MainMenu({ currentPage }) {
 
                   <Option help>
                     <ContainerButton>
-                      <HelpCircle
-                        color={false === 0 ? "#fff" : "#000"}
-                        size={30}
-                      />
+                      <HelpCircle color={"#000"} size={30} />
                       <LinkBottom href="https://helpcenter.foodzilla.com.br">
                         Ajuda
                       </LinkBottom>
@@ -132,13 +118,16 @@ export default function MainMenu({ currentPage }) {
 
             <MenuOptions>
               {menuOptions.map((option, index) => (
-                <Option selected={index === 0} key={index}>
+                <Option selected={currentPage == option.route} key={index}>
                   <ContainerButton>
                     <Icon
-                      color={index === 0 ? "#fff" : "#000"}
+                      color={currentPage == option.route ? "#fff" : "#000"}
                       icon={option.text}
                     />
-                    <Link selected={index === 0} to={option.route}>
+                    <Link
+                      selected={currentPage == option.route}
+                      to={`/${option.route}`}
+                    >
                       {option.text}
                     </Link>
                   </ContainerButton>
@@ -147,14 +136,17 @@ export default function MainMenu({ currentPage }) {
 
               <Option settings>
                 <ContainerButton>
-                  <Settings color={false === 0 ? "#fff" : "#000"} size={30} />
+                  <Settings
+                    color={currentPage == "/setting" ? "#fff" : "#000"}
+                    size={30}
+                  />
                   <Link>Configurações</Link>
                 </ContainerButton>
               </Option>
 
               <Option help>
                 <ContainerButton>
-                  <HelpCircle color={false === 0 ? "#fff" : "#000"} size={30} />
+                  <HelpCircle color={"#000"} size={30} />
                   <LinkBottom href="https://helpcenter.foodzilla.com.br">
                     Ajuda
                   </LinkBottom>

@@ -29,7 +29,7 @@ export default function FoodMenu() {
 
   return (
     <div className="page foodMenu">
-      <MainMenu currentPage="foodMenu" />
+      <MainMenu currentPage="menu" />
       <div className="pageContent">
         <h1>Cardápio</h1>
         <p className="delayWarning">
