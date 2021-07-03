@@ -1,20 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button, Popover } from "@material-ui/core";
 import {
-  RoomServiceRounded,
-  MonetizationOnRounded,
-  ScheduleRounded,
-  HelpRounded,
-} from "@material-ui/icons";
+  Settings,
+  HelpCircle,
+  MessageCircle,
+  Map,
+  TrendingUp,
+  Menu,
+  DollarSign,
+} from "react-feather";
+import MaterialIcon from "material-icons-react";
 
-import ClipboardIcon from "../../assets/clipboardIcon";
-import RestaurantOpening from "./RestaurantOpening";
-import "./styles.css";
+import {
+  DesktopContainer,
+  DesktopContent,
+  MobileContainer,
+  Top,
+  ContentMobile,
+  ContentHeader,
+  MenuOptions,
+  NavTitle,
+  Option,
+  Link,
+  LogoutContainer,
+  Image,
+  ContainerButton,
+  LinkHeader,
+  LinkBottom,
+} from "./styles";
+import { useMenu } from "./hooks";
+import { Hamburguer } from "../hamburguer";
+import { CaretDoubleLeft } from "../svg/caret-double-left";
+import { useScreenMeasure } from "../../utils/isMobile";
+
+const Icon = ({ icon, color }) => {
+  const icons = {
+    Mensagens: <MessageCircle color={color} size={30} />,
+    Mapa: <Map color={color} size={30} />,
+    Impulsionar: <TrendingUp color={color} size={30} />,
+    Produtos: <Menu color={color} size={30} />,
+    Finanças: <DollarSign color={color} size={30} />,
+    Pedidos: <MaterialIcon icon="ramen_dining" size={30} color={color} />,
+  };
+  return icons[icon] || <p />;
+};
 
 export default function MainMenu({ currentPage }) {
   const [modalOpen, setModalOpen] = useState(null);
   const [avatar, setAvatar] = useState("");
+  const [isMobile] = useScreenMeasure();
 
   function isTheCurrentPage(page) {
     if (page === currentPage) return "onPage";
@@ -25,68 +58,112 @@ export default function MainMenu({ currentPage }) {
     setAvatar(sessionStorage.getItem("avatar"));
   }, []);
 
+  const { isMenuMobileOpened, handleMenuMobileOpen, menuOptions } = useMenu();
+
   return (
-    <div className="mainMenu">
-      <img
-        src={
-          avatar === ""
-            ? "https://foodzilla.com.br/assets/images/favicon.png"
-            : avatar
-        }
-        className="userIcon"
-        alt="user icon"
-      />
+    <>
+      {isMobile ? (
+        <MobileContainer>
+          <Top onClick={handleMenuMobileOpen}>
+            <Hamburguer />
+          </Top>
 
-      <nav>
-        <Link className={isTheCurrentPage("requests")} to="/requests">
-          <ClipboardIcon />
-        </Link>
+          {isMenuMobileOpened && (
+            <>
+              <ContentMobile>
+                <ContentHeader>
+                  <Link to="/">
+                    <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg" />
+                  </Link>
+                  <button type="button" onClick={handleMenuMobileOpen}>
+                    <CaretDoubleLeft />
+                  </button>
+                </ContentHeader>
 
-        <Link className={isTheCurrentPage("foodMenu")} to="/menu">
-          <RoomServiceRounded />
-        </Link>
+                <MenuOptions>
+                  {menuOptions.map((option, index) => (
+                    <Option selected={index === 0} key={index}>
+                      <ContainerButton>
+                        <Icon
+                          color={index === 0 ? "#fff" : "#000"}
+                          icon={option.text}
+                        />
+                        <Link selected={index === 0} to={option.route}>
+                          {option.text}
+                        </Link>
+                      </ContainerButton>
+                    </Option>
+                  ))}
 
-        {/* [] use this route after graph building */}
-        {/* <Link className={ isTheCurrentPage('otherPage') } to='/'>
-          <DonutSmallRounded />
-        </Link> */}
+                  <Option settings>
+                    <ContainerButton>
+                      <Settings
+                        color={false === 0 ? "#fff" : "#000"}
+                        size={30}
+                      />
+                      <Link>Configurações</Link>
+                    </ContainerButton>
+                  </Option>
 
-        <Link className={isTheCurrentPage("money")} to="/money">
-          <MonetizationOnRounded />
-        </Link>
-      </nav>
+                  <Option help>
+                    <ContainerButton>
+                      <HelpCircle
+                        color={false === 0 ? "#fff" : "#000"}
+                        size={30}
+                      />
+                      <LinkBottom href="https://helpcenter.foodzilla.com.br">
+                        Ajuda
+                      </LinkBottom>
+                    </ContainerButton>
+                  </Option>
+                </MenuOptions>
+              </ContentMobile>
+            </>
+          )}
+        </MobileContainer>
+      ) : (
+        <DesktopContainer>
+          <DesktopContent>
+            <ContentHeader>
+              <LinkHeader to="/">
+                <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg" />
+              </LinkHeader>
+            </ContentHeader>
 
-      <section className="actions">
-        {/* help center button */}
-        <a href="https://helpcenter.foodzilla.com.br">
-          <HelpRounded />
-        </a>
+            <MenuOptions>
+              {menuOptions.map((option, index) => (
+                <Option selected={index === 0} key={index}>
+                  <ContainerButton>
+                    <Icon
+                      color={index === 0 ? "#fff" : "#000"}
+                      icon={option.text}
+                    />
+                    <Link selected={index === 0} to={option.route}>
+                      {option.text}
+                    </Link>
+                  </ContainerButton>
+                </Option>
+              ))}
 
-        {/* modal button */}
-        <Button
-          className="button"
-          fullWidth
-          onClick={(event) => setModalOpen(event.currentTarget)}
-        >
-          <ScheduleRounded />
-        </Button>
-      </section>
+              <Option settings>
+                <ContainerButton>
+                  <Settings color={false === 0 ? "#fff" : "#000"} size={30} />
+                  <Link>Configurações</Link>
+                </ContainerButton>
+              </Option>
 
-      <Popover
-        open={Boolean(modalOpen)}
-        anchorEl={modalOpen}
-        onClose={(event) => setModalOpen(null)}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-      >
-        <RestaurantOpening />
-      </Popover>
-    </div>
+              <Option help>
+                <ContainerButton>
+                  <HelpCircle color={false === 0 ? "#fff" : "#000"} size={30} />
+                  <LinkBottom href="https://helpcenter.foodzilla.com.br">
+                    Ajuda
+                  </LinkBottom>
+                </ContainerButton>
+              </Option>
+            </MenuOptions>
+          </DesktopContent>
+        </DesktopContainer>
+      )}
+    </>
   );
 }
