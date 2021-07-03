@@ -29,23 +29,47 @@ import AddProduct from "./AddProduct";
 import { useMenu } from "./hooks";
 import { useScreenMeasure } from "../../utils/isMobile";
 import { LoadingSkeleton } from "../../Components/LoadingSkeleton";
+import AddCategory from "./AddCategory";
+import AddAdditional from "./AddAdditional";
+import EditCategory from "./EditCategory";
 
 export default function FoodMenu() {
   const [isMobile] = useScreenMeasure();
   const [
-    modalIsOpened,
-    setModalIsOpened,
+    setAddCategory,
+    setAddProduct,
     remove,
     setRemove,
     loading,
-    setLoading,
+    addProduct,
+    addCategory,
+    addAdditional,
+    setAddAdditional,
+    isMenuMobileOpened,
+    handleMenuMobileOpen,
+    editCategory,
+    setEditCategory,
+    ClickAdd,
   ] = useMenu();
 
   return (
     <>
       <div className="page foodMenu">
-        <MainMenu currentPage="menu" />
-        <Container disableScroll={modalIsOpened}>
+        <MainMenu
+          isMenuMobileOpened={isMenuMobileOpened}
+          onClick={handleMenuMobileOpen}
+          currentPage="menu"
+        />
+        <Container
+          isMobile={isMobile}
+          disableScroll={
+            addProduct ||
+            addCategory ||
+            isMenuMobileOpened ||
+            editCategory ||
+            addAdditional
+          }
+        >
           <Header>
             <ContainerButtons>
               <ButtonHeader onClick={() => setRemove(false)} selected={!remove}>
@@ -71,7 +95,7 @@ export default function FoodMenu() {
 
           <ContainerPadding>
             <ButtonsHeaderContainer>
-              <ButtonContainer background>
+              <ButtonContainer onClick={() => setAddCategory(true)} background>
                 <Plus size={30} />
                 <TextButton background>
                   {isMobile ? "Adicionar" : "Adicionar categoria"}
@@ -100,7 +124,7 @@ export default function FoodMenu() {
                 <Title>Hamburgueres</Title>
               )}
               <RightComponent>
-                <ButtonEdit>
+                <ButtonEdit onClick={() => setEditCategory(true)}>
                   <Edit2 />
                   <TitleButton>
                     {isMobile ? "Editar" : "Editar categoria"}
@@ -116,11 +140,20 @@ export default function FoodMenu() {
               </RightComponent>
             </RowsProduct>
 
-            <Product action={() => setModalIsOpened(true)} />
+            <Product action={() => setAddProduct(true)} />
           </ContainerPadding>
 
-          {modalIsOpened && (
-            <AddProduct cancel={() => setModalIsOpened(false)} />
+          {addProduct && <AddProduct cancel={() => setAddProduct(false)} />}
+
+          {addCategory && <AddCategory cancel={() => setAddCategory(false)} />}
+
+          {addAdditional && <AddAdditional cancel={ClickAdd} />}
+
+          {editCategory && (
+            <EditCategory
+              cancel={() => setEditCategory(false)}
+              ClickAdd={ClickAdd}
+            />
           )}
         </Container>
       </div>

@@ -4,9 +4,22 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export const DesktopContainer = styled.aside`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 20%;
+
+  ${(props) =>
+    !props.isMobile &&
+    `
+  @media screen and (max-width: 1140px) {
+    width: 25%;
+  }
+
+  @media screen and (max-width: 905px) {
+    width: 30%;
+  }
+  `};
+
   height: 100vh;
-  position: sticky;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -20,6 +33,7 @@ export const DesktopContent = styled.div`
   width: 100%;
   height: 100%;
   background: #fcfcfc;
+  overflow-y: scroll;
 `;
 
 export const MobileContainer = styled.div`
@@ -30,7 +44,7 @@ export const MobileContainer = styled.div`
 
 export const Top = styled.div`
   width: 40px;
-  height: 40px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,14 +103,12 @@ export const Option = styled.div`
   ${(props) =>
     props.settings &&
     `
-  position:absolute;
-  bottom:65px
+  margin-top: 20%;
   `}
   ${(props) =>
     props.help &&
     `
-  position:absolute;
-  bottom:20px
+    margin-top: 5%%;
   `}
   ${(props) =>
     props.selected &&

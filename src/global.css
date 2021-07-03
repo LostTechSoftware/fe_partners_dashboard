@@ -68,6 +68,7 @@ textarea {
   --deafult-top-padding: 48px;
   display: flex;
   height: 100vh;
+  flex-direction: column;
 }
 @media screen and (max-width: 800px) {
   .page {

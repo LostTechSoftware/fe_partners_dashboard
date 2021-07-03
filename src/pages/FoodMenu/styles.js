@@ -2,8 +2,32 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100%;
-  width: 100%;
-  ${(props) => props.disableScroll && `overflow:hidden`}
+  width: 80%;
+  position: absolute;
+  right: 0;
+
+  ${(props) =>
+    !props.isMobile &&
+    `
+    @media screen and (max-width: 1140px) {
+      width: 75%;
+    }
+
+    @media screen and (max-width: 905px) {
+      width: 70%;
+    }
+  `};
+
+  ${(props) =>
+    props.isMobile &&
+    `
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: relative;
+  `};
+
+  ${(props) => props.disableScroll && `overflow: hidden;`};
 `;
 
 export const Header = styled.div`
@@ -121,6 +145,7 @@ export const ButtonContainer = styled.div`
   background-color: #fff;
   color: #ffe115;
   margin-left: 5px;
+  cursor: pointer;
   ${(props) =>
     props.background &&
     `
@@ -197,6 +222,7 @@ export const ButtonEdit = styled.div`
   display: flex;
   align-items: center;
   color: #ddd;
+  cursor: pointer;
 `;
 
 export const ButtonPause = styled.div`
@@ -214,4 +240,61 @@ export const TitleButton = styled.p`
   color: #ddd;
   margin-left: 5px;
   ${(props) => props.yellow && `color: #ffe115;`};
+`;
+
+export const InputContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ContainerEdit = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 20px;
+`;
+
+export const ContainerFlex = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  margin-top: 20px;
+`;
+
+export const LabelEdit = styled.p`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 140.62%;
+
+  display: flex;
+  align-items: center;
+
+  color: #dddddd;
+`;
+
+export const MinorInput = styled.input`
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+
+  text-align: center;
+
+  color: rgba(0, 0, 0, 0.8);
+
+  width: 40px;
+  height: 30px;
 `;

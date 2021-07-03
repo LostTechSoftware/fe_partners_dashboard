@@ -42,15 +42,16 @@ const Icon = ({ icon, color }) => {
   return icons[icon] || <p />;
 };
 
-export default function MainMenu({ currentPage }) {
+export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
   const [isMobile] = useScreenMeasure();
-  const { isMenuMobileOpened, handleMenuMobileOpen, menuOptions } = useMenu();
-
+  const { menuOptions } = useMenu();
+  {
+  }
   return (
     <>
       {isMobile ? (
         <MobileContainer>
-          <Top onClick={handleMenuMobileOpen}>
+          <Top onClick={onClick}>
             <Hamburguer />
           </Top>
 
@@ -61,7 +62,7 @@ export default function MainMenu({ currentPage }) {
                   <Link to="/">
                     <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg" />
                   </Link>
-                  <button type="button" onClick={handleMenuMobileOpen}>
+                  <button type="button" onClick={onClick}>
                     <CaretDoubleLeft />
                   </button>
                 </ContentHeader>
@@ -108,7 +109,7 @@ export default function MainMenu({ currentPage }) {
           )}
         </MobileContainer>
       ) : (
-        <DesktopContainer>
+        <DesktopContainer isMobile={isMobile}>
           <DesktopContent>
             <ContentHeader>
               <LinkHeader to="/">

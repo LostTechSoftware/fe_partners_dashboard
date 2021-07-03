@@ -1,53 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  background: white;
-  right: 0;
-  width: 40%;
-  ${(props) =>
-    props.isMobile &&
-    `
-    width: 100%;
-  `}
-
-  @media screen and (min-height: 800px) {
-    bottom: 0;
-  }
-
-  position: absolute;
-  top: 0;
-  transition: 400ms ease;
-  overflow-y: scroll;
-`;
-
-export const ClickOut = styled.div`
-  left: 0;
-  width: 60%;
-  ${(props) =>
-    props.isMobile &&
-    `
-    display: none;
-  `}
-
-  @media screen and (min-height: 800px) {
-    bottom: 0;
-  }
-
-  position: absolute;
-  top: 0;
-  transition: 400ms ease;
-`;
-
-export const Title = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 21px;
-  text-align: center;
-  margin-top: 20px;
-`;
-
 export const InputName = styled.input`
   border: 1px solid #dddddd;
   box-sizing: border-box;
@@ -59,6 +11,7 @@ export const InputName = styled.input`
     `
     width: 90%;
   `}
+
   height: 35px;
 
   font-family: "Roboto", sans-serif;
@@ -149,6 +102,12 @@ export const ContainerInput = styled.div`
     justify-content: space-between;
     flex-wrap: wrap
   `}
+
+  ${(props) =>
+    props.zeroMargin &&
+    `
+    margin:0
+  `}
 `;
 
 export const Selector = styled.select`
@@ -156,7 +115,7 @@ export const Selector = styled.select`
   border: 1px solid #dddddd;
   box-sizing: border-box;
   border-radius: 5px;
-  width: 90%;
+  width: ${(props) => (props.full ? "100%" : "90%")};
   height: 35px;
 `;
 
@@ -211,68 +170,6 @@ export const Separator = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px 5%;
-`;
-
-export const BottomContainer = styled.div`
-  position: absolute;
-  right: 0;
-
-  @media screen and (min-height: 874px) {
-    ${(props) =>
-      !props.isMobile &&
-      `
-      bottom: 0;
-    `}
-  }
-
-  display: flex;
-  background: #fff;
-  width: 40%;
-
-  ${(props) =>
-    props.isMobile &&
-    `
-  width: 100%;
-  `}
-  height: 75px;
-  align-items: center;
-  justify-content: space-around;
-`;
-
-export const BottomButton = styled.div`
-  background: #ffe115;
-  border-radius: 5px;
-  width: 45%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  ${(props) =>
-    props.outline &&
-    ` border: 1px solid #FFE115;
-      box-sizing: border-box;
-      background: #fff;
-      border-radius: 5px;
-    `}
-`;
-
-export const BottomLabel = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 21px;
-
-  text-align: center;
-
-  color: #ffffff;
-  ${(props) =>
-    props.outline &&
-    ` 
-    color:#ffe115
-  `}
 `;
 
 export const GridDays = styled.div`

@@ -1,5 +1,5 @@
 import React from "react";
-import { Plus } from "react-feather";
+import { Plus, Pause, Play } from "react-feather";
 import { useProduct } from "./hooks";
 
 import {
@@ -12,6 +12,8 @@ import {
   ProductOldPrice,
   AddProductButton,
   Text,
+  ButtonContainer,
+  Button,
 } from "./styles";
 import { LoadingSkeleton } from "../../../Components/LoadingSkeleton";
 
@@ -33,18 +35,30 @@ const Loading = ({ repeat = 1 }) => {
 };
 
 function Product({ action }) {
-  const [products, loading] = useProduct();
+  const [products, loading, pause] = useProduct();
 
   return (
     <Container>
       {loading ? (
         <Loading repeat={10} />
       ) : (
-        products.map((product) => (
-          <ProductContainer onClick={action}>
-            <ProductImage url="https://veja.abril.com.br/wp-content/uploads/2020/09/Whooper.jpg" />
-            <ProductTitle>Hamburguer de Siri com Cheddar</ProductTitle>
-            <ProductBottom>
+        products.map((product, index) => (
+          <ProductContainer>
+            <ProductImage url="https://thumbs.dreamstime.com/b/hamburguer-isolado-no-fundo-branco-62255931.jpg">
+              {index == 0 || index == 4 ? (
+                <Play onClick={pause} />
+              ) : (
+                <Pause onClick={pause} />
+              )}
+
+              <ButtonContainer>
+                <Button onClick={action} />
+              </ButtonContainer>
+            </ProductImage>
+            <ProductTitle onClick={action}>
+              Hamburguer de Siri com Cheddar
+            </ProductTitle>
+            <ProductBottom onClick={action}>
               <ProductPrice>R$ 19,99</ProductPrice>
               <ProductOldPrice>R$ 40,00</ProductOldPrice>
             </ProductBottom>

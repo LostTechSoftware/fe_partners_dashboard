@@ -1,12 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import api from "../../services/api";
 
 export const useMenu = () => {
   const [expectedItensName, setExpectedItensName] = useState("");
-  const [modalIsOpened, setModalIsOpened] = useState(false);
+  const [addProduct, setAddProduct] = useState(false);
+  const [addCategory, setAddCategory] = useState(false);
+  const [addAdditional, setAddAdditional] = useState(false);
+  const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);
+  const [editCategory, setEditCategory] = useState(false);
+
   const [itensList, setItensList] = useState([]);
   const [remove, setRemove] = useState(false);
+
+  const handleMenuMobileOpen = useCallback(() => {
+    setIsMenuMobileOpened(!isMenuMobileOpened);
+  }, [isMenuMobileOpened]);
+
+  const ClickAdd = () => {
+    setEditCategory(!editCategory);
+    setAddAdditional(!addAdditional);
+  };
 
   useEffect(() => {
     async function getItens() {
@@ -31,11 +45,19 @@ export const useMenu = () => {
   }, 6000);
 
   return [
-    modalIsOpened,
-    setModalIsOpened,
+    setAddCategory,
+    setAddProduct,
     remove,
     setRemove,
     loading,
-    setLoading,
+    addProduct,
+    addCategory,
+    addAdditional,
+    setAddAdditional,
+    isMenuMobileOpened,
+    handleMenuMobileOpen,
+    editCategory,
+    setEditCategory,
+    ClickAdd,
   ];
 };

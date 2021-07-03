@@ -33,6 +33,7 @@ export const Container = styled.div`
 export const ImageUploaded = styled.img`
   width: 300px;
   height: 300px;
+  border: 1px dashed #dddddd;
 `;
 
 export const ContainerRoot = styled.div`
