@@ -5,7 +5,7 @@ import { isAuthenticated } from "./services/auth";
 
 import Login from "./pages/Login";
 import Requests from "./pages/Requests";
-import FoodMenu from "./pages/FoodMenu";
+import Menu from "./pages/FoodMenu";
 import Money from "./pages/Money";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -27,7 +27,7 @@ const Router = () => (
       <Route exact path="/" component={Login} />
 
       <PrivateRoute path="/requests" component={Requests} />
-      <PrivateRoute path="/menu" component={FoodMenu} />
+      <PrivateRoute path="/menu" component={Menu} />
       <PrivateRoute path="/money" component={Money} />
     </Switch>
   </BrowserRouter>
