@@ -35,28 +35,30 @@ export default function FoodMenu() {
 
   return (
     <>
-      <MainMenu currentPage="menu" />
-      <Container>
-        <Header>
-          <ContainerButtons>
-            <ButtonHeader selected={true}>
-              <ButtonText>Entrega</ButtonText>
-            </ButtonHeader>
+      <div className="page foodMenu">
+        <MainMenu currentPage="menu" />
+        <Container>
+          <Header>
+            <ContainerButtons>
+              <ButtonHeader selected={true}>
+                <ButtonText>Entrega</ButtonText>
+              </ButtonHeader>
 
-            <ButtonHeader>
-              <ButtonText>Retirada</ButtonText>
-            </ButtonHeader>
-          </ContainerButtons>
+              <ButtonHeader>
+                <ButtonText>Retirada</ButtonText>
+              </ButtonHeader>
+            </ContainerButtons>
 
-          <ContainerSelect>
-            <Selector />
-          </ContainerSelect>
+            <ContainerSelect>
+              <Selector />
+            </ContainerSelect>
 
-          <ContainerSelect>
-            <SearchBox placeholder="Pesquise igredientes ou produtos"></SearchBox>
-          </ContainerSelect>
-        </Header>
-      </Container>
+            <ContainerSelect>
+              <SearchBox placeholder="Pesquise igredientes ou produtos"></SearchBox>
+            </ContainerSelect>
+          </Header>
+        </Container>
+      </div>
     </>
   );
 }
