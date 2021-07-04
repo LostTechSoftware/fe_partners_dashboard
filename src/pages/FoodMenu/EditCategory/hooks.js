@@ -1,12 +1,23 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import api from "../../../services/api";
 
-export const useEditCategory = () => {
+export const useEditCategory = ({ rowId, setAdditionals }) => {
   const [popUp, setPopUp] = useState(false);
-  const additionals = [1, 2, 3, 4];
 
   const openPopUp = () => {
     setPopUp(true);
   };
 
-  return [additionals, openPopUp, popUp];
+  useEffect(() => {
+    async function getAdditinals() {
+      const { data } = await api.get(`/row/get/${rowId}`);
+
+      const { additional } = data;
+      setAdditionals(additional);
+    }
+    getAdditinals();
+  }, []);
+
+  return [openPopUp];
 };

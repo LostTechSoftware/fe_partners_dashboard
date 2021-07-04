@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, Plus, Sliders, Edit2, Pause } from "react-feather";
+import { Search, Plus, Sliders } from "react-feather";
 
 import {
   Container,
@@ -16,22 +16,16 @@ import {
   ButtonsHeaderContainer,
   ButtonContainer,
   TextButton,
-  RowsProduct,
-  Title,
-  RightComponent,
-  ButtonEdit,
-  ButtonPause,
-  TitleButton,
+  Option,
 } from "./styles";
 import MainMenu from "../../Components/MainMenu";
-import Product from "./Product";
 import AddProduct from "./AddProduct";
 import { useMenu } from "./hooks";
 import { useScreenMeasure } from "../../utils/isMobile";
-import { LoadingSkeleton } from "../../Components/LoadingSkeleton";
 import AddCategory from "./AddCategory";
 import AddAdditional from "./AddAdditional";
 import EditCategory from "./EditCategory";
+import Rows from "./Rows";
 
 export default function FoodMenu() {
   const [isMobile] = useScreenMeasure();
@@ -40,16 +34,27 @@ export default function FoodMenu() {
     setAddProduct,
     remove,
     setRemove,
-    loading,
     addProduct,
     addCategory,
     addAdditional,
-    setAddAdditional,
     isMenuMobileOpened,
     handleMenuMobileOpen,
     editCategory,
     setEditCategory,
     ClickAdd,
+    rows,
+    loading,
+    selectedProduct,
+    setSelectedProduct,
+    reload,
+    setReload,
+    selectedRows,
+    setSelectedRow,
+    selectedAdditonal,
+    uploadedFiles,
+    setUploadedFile,
+    additionals,
+    setAdditionals,
   ] = useMenu();
 
   return (
@@ -82,7 +87,9 @@ export default function FoodMenu() {
             </ContainerButtons>
 
             <ContainerSelect>
-              <Selector />
+              <Selector>
+                <Option>Todas as categorias</Option>
+              </Selector>
             </ContainerSelect>
 
             <ContainerSearch>
@@ -110,49 +117,51 @@ export default function FoodMenu() {
               </ButtonContainer>
             </ButtonsHeaderContainer>
 
-            <RowsProduct>
-              {loading ? (
-                <LoadingSkeleton
-                  isLoading={loading}
-                  hasHeading
-                  containerHeight="30px"
-                  containerWidth={isMobile ? "70%" : "33%"}
-                >
-                  Hamburgueres
-                </LoadingSkeleton>
-              ) : (
-                <Title>Hamburgueres</Title>
-              )}
-              <RightComponent>
-                <ButtonEdit onClick={() => setEditCategory(true)}>
-                  <Edit2 />
-                  <TitleButton>
-                    {isMobile ? "Editar" : "Editar categoria"}
-                  </TitleButton>
-                </ButtonEdit>
-
-                <ButtonPause>
-                  <Pause />
-                  <TitleButton yellow>
-                    {isMobile ? "Pausar" : "Pausar categoria"}
-                  </TitleButton>
-                </ButtonPause>
-              </RightComponent>
-            </RowsProduct>
-
-            <Product action={() => setAddProduct(true)} />
+            {rows.map((row) => (
+              <Rows
+                setEditCategory={setEditCategory}
+                row={row}
+                reload={reload}
+                setReload={setReload}
+                loading={loading}
+                setAddProduct={setAddProduct}
+                selectedProduct={selectedProduct}
+                setSelectedProduct={setSelectedProduct}
+                setSelectedRow={setSelectedRow}
+              />
+            ))}
           </ContainerPadding>
 
-          {addProduct && <AddProduct cancel={() => setAddProduct(false)} />}
+          {addProduct && (
+            <AddProduct
+              reload={reload}
+              setReload={setReload}
+              product={selectedProduct}
+              rows={rows}
+              cancel={() => setAddProduct(false)}
+            />
+          )}
 
           {addCategory && <AddCategory cancel={() => setAddCategory(false)} />}
 
-          {addAdditional && <AddAdditional cancel={ClickAdd} />}
+          {addAdditional && (
+            <AddAdditional
+              uploadedFiles={uploadedFiles}
+              setUploadedFile={setUploadedFile}
+              selectedAdditonal={selectedAdditonal}
+              cancel={ClickAdd}
+              rows={additionals}
+            />
+          )}
 
           {editCategory && (
             <EditCategory
+              selectedRows={selectedRows}
+              setSelectedRow={setSelectedRow}
               cancel={() => setEditCategory(false)}
               ClickAdd={ClickAdd}
+              additionals={additionals}
+              setAdditionals={setAdditionals}
             />
           )}
         </Container>

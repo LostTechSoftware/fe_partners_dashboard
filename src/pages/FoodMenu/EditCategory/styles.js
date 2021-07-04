@@ -86,12 +86,14 @@ export const Additional = styled.div`
   }
 
   @media screen and (min-width: 1170px) {
-    width: 170px;
+    width: 200px;
   }
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 
   margin: 10px;
 `;
@@ -116,6 +118,7 @@ export const TitleAdditional = styled.p`
   font-style: normal;
   font-weight: 300;
   font-size: 12px;
+  text-align: center;
   line-height: 14px;
 
   color: #000000;

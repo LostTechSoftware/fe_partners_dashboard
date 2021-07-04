@@ -36,7 +36,7 @@ export const ProductContainer = styled.div`
 export const ProductImage = styled.div`
   width: 100%;
   height: 60%;
-  background-size: contain;
+  background-size: cover;
   border-radius: 5px;
 
   @media screen and (max-width: 425px) {
@@ -71,6 +71,7 @@ export const ProductTitle = styled.p`
   font-size: 15px;
   line-height: 18px;
   text-align: center;
+  margin-top: 15px;
 
   @media screen and (max-width: 425px) {
     margin-top: 10px;
@@ -79,7 +80,7 @@ export const ProductTitle = styled.p`
 
 export const ProductBottom = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.center ? "center" : "space-between")};
   align-items: center;
   padding: 0 15px;
   margin-top: 10px;

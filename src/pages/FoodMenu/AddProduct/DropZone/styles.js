@@ -4,7 +4,7 @@ export const Section = styled.section`
   background: #fff;
   width: 300px;
   height: 300px;
-  border: 1px dashed ${(props) => (props.error ? "red" : "#dddddd")};
+  border: 3px dashed ${(props) => (props.error ? "red" : "#ddd")};
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -21,6 +21,12 @@ export const Text = styled.text`
   line-height: 14px;
 
   color: #dddddd;
+
+  ${(props) =>
+    props.margin &&
+    `
+    margin-left: 20px;
+  `}
 `;
 
 export const Container = styled.div`
@@ -31,11 +37,22 @@ export const Container = styled.div`
 `;
 
 export const ImageUploaded = styled.img`
-  width: 300px;
-  height: 300px;
-  border: 1px dashed #dddddd;
+  width: 296px;
+  height: 296px;
 `;
 
 export const ContainerRoot = styled.div`
   width: 100%;
 `;
+
+export const ContainerHeader = styled.div`
+  width: 300px;
+  display: flex;
+  align-items: center;
+  align-items: center;
+  justify-content: flex-start;
+  color: #ddd;
+  cursor: pointer;
+`;
+
+export const ContainerDragAndDrop = styled.div``;

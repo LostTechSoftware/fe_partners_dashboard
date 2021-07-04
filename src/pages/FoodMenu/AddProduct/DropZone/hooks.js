@@ -1,8 +1,8 @@
 import { useState } from "react";
 import filesize from "filesize";
+import api from "../../../../services/api";
 
-export const useDropZone = () => {
-  const [uploadedFiles, setUploadedFile] = useState(null);
+export const useDropZone = ({ setUploadedFile }) => {
   const [error, setError] = useState(false);
 
   const handleUpload = (files) => {
@@ -18,10 +18,9 @@ export const useDropZone = () => {
       error: false,
       url: null,
     }));
-    console.log("sucesso");
-    console.log(uploadedFiles[0].preview);
+
     setUploadedFile(uploadedFiles[0]);
   };
 
-  return [uploadedFiles, handleUpload, setError, error];
+  return [handleUpload, setError, error];
 };

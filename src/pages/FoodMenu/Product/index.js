@@ -34,8 +34,8 @@ const Loading = ({ repeat = 1 }) => {
   return Array.from({ length: repeat }, () => renderLoading());
 };
 
-function Product({ action }) {
-  const [products, loading, pause] = useProduct();
+function Product({ action, rowId, reload, setReload }) {
+  const [products, loading, pause] = useProduct({ rowId, reload, setReload });
 
   return (
     <Container>
@@ -44,23 +44,44 @@ function Product({ action }) {
       ) : (
         products.map((product, index) => (
           <ProductContainer>
-            <ProductImage url="https://thumbs.dreamstime.com/b/hamburguer-isolado-no-fundo-branco-62255931.jpg">
-              {index == 0 || index == 4 ? (
-                <Play onClick={pause} />
+            <ProductImage
+              url={
+                product.avatar
+                  ? product.avatar
+                  : "https://serverem.s3.us-east-2.amazonaws.com/conjunto-de-mao-desenhada-bebidas-doodle_6997-2435.jpg"
+              }
+            >
+              {product.paused ? (
+                <Play onClick={() => pause(product._id, index)} />
               ) : (
-                <Pause onClick={pause} />
+                <Pause onClick={() => pause(product._id, index)} />
               )}
 
               <ButtonContainer>
-                <Button onClick={action} />
+                <Button onClick={() => action(product)} />
               </ButtonContainer>
             </ProductImage>
-            <ProductTitle onClick={action}>
-              Hamburguer de Siri com Cheddar
+            <ProductTitle onClick={() => action(product)}>
+              {product.title}
             </ProductTitle>
-            <ProductBottom onClick={action}>
-              <ProductPrice>R$ 19,99</ProductPrice>
-              <ProductOldPrice>R$ 40,00</ProductOldPrice>
+            <ProductBottom
+              center={!product.OldPrice}
+              onClick={() => action(product)}
+            >
+              <ProductPrice>
+                {product.price.toLocaleString("pt-br", {
+                  currency: "brl",
+                  style: "currency",
+                })}
+              </ProductPrice>
+              {product.OldPrice && (
+                <ProductOldPrice>
+                  {product.OldPrice.toLocaleString("pt-br", {
+                    currency: "brl",
+                    style: "currency",
+                  })}
+                </ProductOldPrice>
+              )}
             </ProductBottom>
           </ProductContainer>
         ))

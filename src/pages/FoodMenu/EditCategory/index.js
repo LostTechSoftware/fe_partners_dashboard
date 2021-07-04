@@ -29,13 +29,22 @@ import { useEditCategory } from "./hooks";
 import PopUpNewCategory from "./PopUpNewCategory";
 import PopUpReorder from "./PopUpReorder";
 
-function EditCategory({ cancel, ClickAdd }) {
+function EditCategory({
+  cancel,
+  ClickAdd,
+  selectedRows,
+  additionals,
+  setAdditionals,
+}) {
   const [isMobile] = useScreenMeasure();
-  const [additionals, openPopUp, popUp] = useEditCategory();
+  const [openPopUp] = useEditCategory({
+    rowId: selectedRows._id,
+    setAdditionals,
+  });
 
   return (
     <Modal cancel={cancel} title="Hamburgueres">
-      {false ? (
+      {additionals.length ? (
         <Container>
           <ContainerPadding>
             <ButtonsHeaderContainer>
@@ -52,43 +61,58 @@ function EditCategory({ cancel, ClickAdd }) {
               </ButtonContainer>
             </ButtonsHeaderContainer>
 
-            <RowsProduct>
-              {false ? (
-                <LoadingSkeleton
-                  isLoading={false}
-                  hasHeading
-                  containerHeight="30px"
-                  containerWidth={isMobile ? "70%" : "33%"}
-                >
-                  Bebidas
-                </LoadingSkeleton>
-              ) : (
-                <Title>Bebidas</Title>
-              )}
-              <RightComponent>
-                <ButtonEdit>
-                  <Edit2 />
-                  <TitleButton>Editar</TitleButton>
-                </ButtonEdit>
-              </RightComponent>
-            </RowsProduct>
+            {additionals.map((additional) => (
+              <>
+                <RowsProduct>
+                  {false ? (
+                    <LoadingSkeleton
+                      isLoading={false}
+                      hasHeading
+                      containerHeight="30px"
+                      containerWidth={isMobile ? "70%" : "33%"}
+                    >
+                      {additional.title}
+                    </LoadingSkeleton>
+                  ) : (
+                    <Title>{additional.title}</Title>
+                  )}
+                  <RightComponent>
+                    <ButtonEdit>
+                      <Edit2 />
+                      <TitleButton>Editar</TitleButton>
+                    </ButtonEdit>
+                  </RightComponent>
+                </RowsProduct>
 
-            <ContainerAdditional>
-              {additionals.map((a) => (
-                <Additional onClick={ClickAdd}>
-                  <AdditionalAvatar src="https://ogimg.infoglobo.com.br/in/24503607-661-09d/FT1086A/73064201_Rio-de-Janeiro-RJ-18-11-2017Refrigerantes-em-lata-Coca-cola-original-coca-cola-zero-coca.jpg" />
-                  <ContainerTitle>
-                    <TitleAdditional>Coca-cola</TitleAdditional>
-                    <Price>R$ 5,00</Price>
-                  </ContainerTitle>
-                </Additional>
-              ))}
+                <ContainerAdditional>
+                  {additional.additional.map((a) => (
+                    <Additional onClick={() => ClickAdd(a)}>
+                      <AdditionalAvatar
+                        src={
+                          a.avatar
+                            ? a.avatar
+                            : "https://serverem.s3.us-east-2.amazonaws.com/conjunto-de-mao-desenhada-bebidas-doodle_6997-2435.jpg"
+                        }
+                      />
+                      <ContainerTitle>
+                        <TitleAdditional>{a.title}</TitleAdditional>
+                        <Price>
+                          {a.price.toLocaleString("pt-br", {
+                            currency: "brl",
+                            style: "currency",
+                          })}
+                        </Price>
+                      </ContainerTitle>
+                    </Additional>
+                  ))}
 
-              <AddAdditional onClick={ClickAdd}>
-                <Plus />
-                <Text>Adicionar</Text>
-              </AddAdditional>
-            </ContainerAdditional>
+                  <AddAdditional onClick={ClickAdd}>
+                    <Plus />
+                    <Text>Adicionar</Text>
+                  </AddAdditional>
+                </ContainerAdditional>
+              </>
+            ))}
           </ContainerPadding>
         </Container>
       ) : (
@@ -103,7 +127,7 @@ function EditCategory({ cancel, ClickAdd }) {
       )}
 
       {/* <PopUpNewCategory /> */}
-      <PopUpReorder />
+      {/* <PopUpReorder /> */}
     </Modal>
   );
 }

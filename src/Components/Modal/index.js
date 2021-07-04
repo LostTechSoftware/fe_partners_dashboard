@@ -11,12 +11,22 @@ import {
 } from "./styles";
 import "./styles.css";
 
-function Modal({ cancel, children, displayBottom = false, title }) {
+function Modal({
+  cancel,
+  children,
+  displayBottom = false,
+  title,
+  buttonsDisabled = false,
+  onClick = () => console.log("Action não configurada"),
+}) {
   const [isMobile] = useScreenMeasure();
 
   return (
     <>
-      <ClickOut onClick={cancel} />
+      <ClickOut
+        disabled={buttonsDisabled}
+        onClick={!buttonsDisabled && cancel}
+      />
       <Container className="animationModal" isMobile={isMobile}>
         <Title>{title}</Title>
 
@@ -28,7 +38,7 @@ function Modal({ cancel, children, displayBottom = false, title }) {
               <BottomLabel outline>Voltar</BottomLabel>
             </BottomButton>
 
-            <BottomButton>
+            <BottomButton onClick={onClick}>
               <BottomLabel>Continuar</BottomLabel>
             </BottomButton>
           </BottomContainer>
@@ -37,12 +47,21 @@ function Modal({ cancel, children, displayBottom = false, title }) {
 
       {!isMobile && displayBottom && (
         <BottomContainer className="animationModal" isMobile={isMobile}>
-          <BottomButton onClick={cancel} outline>
-            <BottomLabel outline>Voltar</BottomLabel>
+          <BottomButton
+            disabled={buttonsDisabled}
+            onClick={!buttonsDisabled && cancel}
+            outline
+          >
+            <BottomLabel disabled={buttonsDisabled} outline>
+              Voltar
+            </BottomLabel>
           </BottomButton>
 
-          <BottomButton>
-            <BottomLabel>Continuar</BottomLabel>
+          <BottomButton
+            disabled={buttonsDisabled}
+            onClick={!buttonsDisabled && onClick}
+          >
+            <BottomLabel disabled={buttonsDisabled}>Continuar</BottomLabel>
           </BottomButton>
         </BottomContainer>
       )}

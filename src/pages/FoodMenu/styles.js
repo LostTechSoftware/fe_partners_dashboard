@@ -85,6 +85,8 @@ export const Selector = styled.select`
   border-radius: 5px;
   width: 170px;
   height: 35px;
+  font-family: "Roboto", sans-serif;
+  padding: 5px;
 `;
 
 export const Input = styled.input`
@@ -229,6 +231,7 @@ export const ButtonPause = styled.div`
   display: flex;
   align-items: center;
   color: #ffe115;
+  cursor: pointer;
 `;
 
 export const TitleButton = styled.p`
@@ -297,4 +300,14 @@ export const MinorInput = styled.input`
 
   width: 40px;
   height: 30px;
+`;
+
+export const Option = styled.option`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #000000;
 `;

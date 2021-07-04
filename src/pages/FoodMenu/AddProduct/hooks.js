@@ -1,7 +1,184 @@
-export const useAddProduct = () => {
+import { useState, useEffect } from "react";
+import api from "../../../services/api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export const useAddProduct = ({ product, setReload, rows }) => {
+  const [price, setPrice] = useState("");
+  const [name, setName] = useState(product.title ? product.title : "");
+  const [description, setDescription] = useState(
+    product.description ? product.description : ""
+  );
+  const [promotion, setPromotion] = useState(
+    product.promotion ? product.promotion : false
+  );
+  const [promotionalPrice, setPromotionalPrice] = useState(
+    product.price ? product.price : ""
+  );
+  const [daysActive, setDaysActive] = useState({
+    segunda: { active: false },
+    terca: { active: false },
+    quarta: { active: false },
+    quinta: { active: false },
+    sexta: { active: false },
+    sabado: { active: false },
+    domingo: { active: false },
+  });
+  const [clicks, setClicks] = useState(0);
+  const [uploadedFiles, setUploadedFile] = useState(null);
+  const [rowSelected, setRowSelected] = useState(rows[0]._id);
+  const [loading, setLoading] = useState(false);
+
+  const deleteProductAvatar = async () => {
+    try {
+      setLoading(true);
+      toast.info("Salvando suas informações, aguarde");
+
+      await api.delete(`/product/delete/avatar/${product._id}`);
+
+      toast.success("Imagem removida!");
+      setReload(true);
+    } catch {
+      toast.error("Erro ao salvar produto, tente novamente!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  async function updateOrCreateItem() {
+    try {
+      if (!price || !name || !description)
+        return toast.error("Preencha todas as informações com *");
+
+      setLoading(true);
+      toast.info("Salvando suas informações, aguarde");
+      if (!product._id) {
+        try {
+          const data = new FormData();
+
+          data.append("title", name);
+          data.append("price", parseFloat(promotionalPrice));
+          data.append("description", description);
+          data.append("daysActive", JSON.stringify(daysActive));
+          data.append("promotion", promotion);
+          data.append("OldPrice", price);
+
+          if (uploadedFiles) data.append("avatar", uploadedFiles.file);
+
+          await api.post(`/add/product/${rowSelected}`, data);
+          setReload(true);
+          toast.success("Produto salvo!");
+        } catch {
+          toast.error("Erro ao salvar produto, tente novamente!");
+        } finally {
+          setLoading(false);
+        }
+        return;
+      }
+      const data = new FormData();
+
+      data.append("title", name);
+      data.append("price", parseFloat(promotionalPrice));
+      data.append("description", description);
+      data.append("daysActive", JSON.stringify(daysActive));
+      data.append("promotion", promotion);
+      data.append("OldPrice", price);
+
+      if (uploadedFiles) data.append("avatar", uploadedFiles.file);
+
+      await api.post(`/product/edit/${product._id}`, data);
+
+      setReload(true);
+
+      toast.success("Produto salvo!");
+    } catch {
+      toast.error("Erro ao salvar produto, tente novamente!");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const selectDay = (day, product) => {
+    if (day === "segunda") product.segunda = true;
+
+    if (day === "terca") product.terca = true;
+
+    if (day === "quarta") product.quarta = true;
+
+    if (day === "quinta") product.quinta = true;
+
+    if (day === "sexta") product.sexta = true;
+
+    if (day === "sabado") product.sabado = true;
+
+    if (day === "domingo") product.domingo = true;
+
+    const updated = daysActive;
+
+    daysActive[day].active = !daysActive[day].active;
+    setDaysActive(updated);
+    setClicks(clicks + 1);
+
+    return daysActive;
+  };
+
+  useEffect(() => {
+    const getSelected = () => {
+      if (product.segunda) {
+        const updated = daysActive;
+
+        daysActive["segunda"].active = !daysActive["segunda"].active;
+        setDaysActive(updated);
+      }
+      if (product.terca) {
+        const updated = daysActive;
+
+        daysActive["terca"].active = !daysActive["terca"].active;
+        setDaysActive(updated);
+      }
+      if (product.quarta) {
+        const updated = daysActive;
+
+        daysActive["quarta"].active = !daysActive["quarta"].active;
+        setDaysActive(updated);
+      }
+      if (product.quinta) {
+        const updated = daysActive;
+
+        daysActive["quinta"].active = !daysActive["quinta"].active;
+        setDaysActive(updated);
+      }
+      if (product.sexta) {
+        const updated = daysActive;
+
+        daysActive["sexta"].active = !daysActive["sexta"].active;
+        setDaysActive(updated);
+      }
+      if (product.sabado) {
+        const updated = daysActive;
+
+        daysActive["sabado"].active = !daysActive["sabado"].active;
+        setDaysActive(updated);
+      }
+      if (product.domingo) {
+        const updated = daysActive;
+
+        daysActive["domingo"].active = !daysActive["domingo"].active;
+        setDaysActive(updated);
+      }
+    };
+    getSelected();
+  }, []);
+
+  useEffect(() => {
+    if (product.OldPrice) setPrice(product.OldPrice);
+
+    if (product.price) setPrice(product.price);
+  }, [product]);
+
   const days = [
     "segunda",
-    "terça",
+    "terca",
     "quarta",
     "quinta",
     "sexta",
@@ -9,5 +186,26 @@ export const useAddProduct = () => {
     "domingo",
   ];
 
-  return [days];
+  return {
+    days,
+    name,
+    setName,
+    description,
+    setDescription,
+    price,
+    setPrice,
+    promotion,
+    setPromotion,
+    promotionalPrice,
+    setPromotionalPrice,
+    selectDay,
+    daysActive,
+    uploadedFiles,
+    setUploadedFile,
+    updateOrCreateItem,
+    rowSelected,
+    deleteProductAvatar,
+    setRowSelected,
+    loading,
+  };
 };

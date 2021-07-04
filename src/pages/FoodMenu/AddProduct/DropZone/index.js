@@ -1,6 +1,6 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
-import { Image } from "react-feather";
+import { Image, Trash2 } from "react-feather";
 import { useDropZone as hooks } from "./hooks";
 
 import {
@@ -9,10 +9,21 @@ import {
   Container,
   ImageUploaded,
   ContainerRoot,
+  ContainerTrash,
+  ContainerHeader,
+  ContainerDragAndDrop,
 } from "./styles";
 
-function DropZone() {
-  const [uploadedFiles, handleUpload, setError, error] = hooks();
+function DropZone({
+  avatar,
+  uploadedFiles,
+  setUploadedFile,
+  deleteProductAvatar,
+}) {
+  const [handleUpload, setError, error] = hooks({
+    uploadedFiles,
+    setUploadedFile,
+  });
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     maxFiles: 1,
@@ -22,26 +33,40 @@ function DropZone() {
   });
 
   return (
-    <Section error={error}>
-      <ContainerRoot {...getRootProps()}>
-        <input {...getInputProps()} />
-        <Container>
-          {uploadedFiles ? (
-            <ImageUploaded src={uploadedFiles.preview} />
-          ) : (
-            <>
-              <Image size={80} />
-              <Text>
-                {error
-                  ? "Só é aceito PNG, JPG, JPEG, WEBAP, GIF"
-                  : "Arraste sua imagem para cá"}
-              </Text>
-              {!error && <Text>ou clique aqui</Text>}
-            </>
-          )}
-        </Container>
-      </ContainerRoot>
-    </Section>
+    <>
+      <ContainerDragAndDrop>
+        <ContainerHeader
+          onClick={
+            uploadedFiles ? () => setUploadedFile(null) : deleteProductAvatar
+          }
+        >
+          <Trash2 />
+          <Text margin>Remover imagem</Text>
+        </ContainerHeader>
+        <Section error={error}>
+          <ContainerRoot {...getRootProps()}>
+            <input {...getInputProps()} />
+            <Container>
+              {uploadedFiles || avatar ? (
+                <ImageUploaded
+                  src={uploadedFiles ? uploadedFiles.preview : avatar}
+                />
+              ) : (
+                <>
+                  <Image size={80} />
+                  <Text>
+                    {error
+                      ? "Só é aceito PNG, JPG, JPEG, WEBAP, GIF"
+                      : "Arraste sua imagem para cá"}
+                  </Text>
+                  {!error && <Text>ou clique aqui</Text>}
+                </>
+              )}
+            </Container>
+          </ContainerRoot>
+        </Section>
+      </ContainerDragAndDrop>
+    </>
   );
 }
 

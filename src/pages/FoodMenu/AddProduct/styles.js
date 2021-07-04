@@ -113,6 +113,14 @@ export const ContainerInput = styled.div`
 export const Selector = styled.select`
   background: #ffffff;
   border: 1px solid #dddddd;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: rgba(0, 0, 0, 0.8);
+
   box-sizing: border-box;
   border-radius: 5px;
   width: ${(props) => (props.full ? "100%" : "90%")};
@@ -188,7 +196,7 @@ export const BoxDay = styled.div`
   border-radius: 5px;
 
   ${(props) =>
-    props.selected &&
+    !props.selected &&
     `
   border: 1px solid #FFE115;
   box-sizing: border-box;
@@ -200,6 +208,8 @@ export const BoxDay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 
   @media screen and (max-width: 800px) {
     width: 100px;
@@ -215,7 +225,7 @@ export const DayName = styled.p`
   line-height: 14px;
   text-transform: capitalize;
 
-  color: ${(props) => (props.selected ? "#ffe115" : "#fff")};
+  color: ${(props) => (!props.selected ? "#ffe115" : "#fff")};
 `;
 
 export const ContainerCenter = styled.div`

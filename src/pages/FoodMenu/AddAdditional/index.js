@@ -14,25 +14,51 @@ import {
   LabelCheckBox,
 } from "../AddProduct/styles";
 import DropZone from "../AddProduct/DropZone";
+import { useAddAdditinal } from "./hooks";
+import { Option } from "../styles";
 
-function AddAdditional({ cancel }) {
+function AddAdditional({
+  cancel,
+  selectedAdditonal,
+  uploadedFiles,
+  setUploadedFile,
+  rows,
+}) {
+  const [name, setName, price, setPrice] = useAddAdditinal({
+    selectedAdditonal,
+    uploadedFiles,
+    setUploadedFile,
+  });
+
   return (
     <Modal cancel={cancel} displayBottom title="Novo adicional">
       <Container>
-        <DropZone />
+        <DropZone
+          uploadedFiles={uploadedFiles}
+          setUploadedFile={setUploadedFile}
+          avatar={selectedAdditonal.avatar}
+        />
 
         <Input>
           <ContainerInput>
             <Label>Nome</Label>
-            <InputName placeholder="Queijo parmesão" />
-            <CaractersCount>0/20</CaractersCount>
+            <InputName
+              onChange={(event) => setName(event.target.value)}
+              value={name}
+              placeholder="Queijo parmesão"
+            />
+            <CaractersCount>{name.length}/20</CaractersCount>
           </ContainerInput>
         </Input>
 
         <Input>
           <ContainerInput>
             <Label>Categoria de adicionais</Label>
-            <Selector full />
+            <Selector value={rows[0]} full>
+              {rows.map((row) => (
+                <Option value={row._id}>{row.title}</Option>
+              ))}
+            </Selector>
           </ContainerInput>
         </Input>
 
@@ -40,12 +66,18 @@ function AddAdditional({ cancel }) {
           <ContainerInput flex>
             <ContainerCheckBox>
               <LabelCheckBox>Gratuito</LabelCheckBox>
-              <Checkbox color="primary" />
+              <Checkbox value={!price} color="primary" />
             </ContainerCheckBox>
 
             <ContainerInput zeroMargin half>
               <Label>Preço</Label>
-              <InputName half type="number" placeholder="R$ 0,00" />
+              <InputName
+                half
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+                type="number"
+                placeholder="R$ 0,00"
+              />
             </ContainerInput>
           </ContainerInput>
         </Input>

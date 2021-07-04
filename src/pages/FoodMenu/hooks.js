@@ -9,15 +9,24 @@ export const useMenu = () => {
   const [addAdditional, setAddAdditional] = useState(false);
   const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);
   const [editCategory, setEditCategory] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState({});
+  const [reload, setReload] = useState(false);
+  const [selectedRows, setSelectedRow] = useState({});
+  const [selectedAdditonal, setSelectedAdditonal] = useState({});
+  const [uploadedFiles, setUploadedFile] = useState(null);
+  const [additionals, setAdditionals] = useState([]);
 
   const [itensList, setItensList] = useState([]);
+  const [rows, setRows] = useState([]);
   const [remove, setRemove] = useState(false);
 
   const handleMenuMobileOpen = useCallback(() => {
     setIsMenuMobileOpened(!isMenuMobileOpened);
   }, [isMenuMobileOpened]);
 
-  const ClickAdd = () => {
+  const ClickAdd = (additional) => {
+    if (additional._id) setSelectedAdditonal(additional);
     setEditCategory(!editCategory);
     setAddAdditional(!addAdditional);
   };
@@ -25,9 +34,11 @@ export const useMenu = () => {
   useEffect(() => {
     async function getItens() {
       if (!expectedItensName) {
-        const response = await api.get(`/menu/restaurant/get`);
+        const { data } = await api.get(`/menu/restaurant/get`);
 
-        setItensList(response.data);
+        const { rows } = data;
+        setRows(rows);
+        setLoading(false);
       } else {
         const response = await api.get(`/search/${expectedItensName}`);
 
@@ -38,26 +49,31 @@ export const useMenu = () => {
     getItens();
   }, [expectedItensName]);
 
-  const [loading, setLoading] = useState(true);
-
-  setTimeout(() => {
-    setLoading(false);
-  }, 6000);
-
   return [
     setAddCategory,
     setAddProduct,
     remove,
     setRemove,
-    loading,
     addProduct,
     addCategory,
     addAdditional,
-    setAddAdditional,
     isMenuMobileOpened,
     handleMenuMobileOpen,
     editCategory,
     setEditCategory,
     ClickAdd,
+    rows,
+    loading,
+    selectedProduct,
+    setSelectedProduct,
+    reload,
+    setReload,
+    selectedRows,
+    setSelectedRow,
+    selectedAdditonal,
+    uploadedFiles,
+    setUploadedFile,
+    additionals,
+    setAdditionals,
   ];
 };
