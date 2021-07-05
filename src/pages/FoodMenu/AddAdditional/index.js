@@ -16,6 +16,7 @@ import {
 import DropZone from "../AddProduct/DropZone";
 import { useAddAdditinal } from "./hooks";
 import { Option } from "../styles";
+import "./checkbox.css";
 
 function AddAdditional({
   cancel,
@@ -23,15 +24,33 @@ function AddAdditional({
   uploadedFiles,
   setUploadedFile,
   rows,
+  selectedRows,
 }) {
-  const [name, setName, price, setPrice] = useAddAdditinal({
+  const [
+    name,
+    setName,
+    price,
+    setPrice,
+    updateOrCreateItem,
+    loading,
+    rowId,
+    setRowId,
+  ] = useAddAdditinal({
     selectedAdditonal,
     uploadedFiles,
     setUploadedFile,
+    selectedRows,
+    rows,
   });
 
   return (
-    <Modal cancel={cancel} displayBottom title="Novo adicional">
+    <Modal
+      cancel={cancel}
+      onClick={updateOrCreateItem}
+      buttonsDisabled={loading}
+      displayBottom
+      title="Novo adicional"
+    >
       <Container>
         <DropZone
           uploadedFiles={uploadedFiles}
@@ -41,7 +60,7 @@ function AddAdditional({
 
         <Input>
           <ContainerInput>
-            <Label>Nome</Label>
+            <Label>Nome *</Label>
             <InputName
               onChange={(event) => setName(event.target.value)}
               value={name}
@@ -53,8 +72,12 @@ function AddAdditional({
 
         <Input>
           <ContainerInput>
-            <Label>Categoria de adicionais</Label>
-            <Selector value={rows[0]} full>
+            <Label>Categoria de adicionais *</Label>
+            <Selector
+              onChange={(event) => setRowId(event.target.value)}
+              value={rowId}
+              full
+            >
               {rows.map((row) => (
                 <Option value={row._id}>{row.title}</Option>
               ))}
@@ -66,11 +89,22 @@ function AddAdditional({
           <ContainerInput flex>
             <ContainerCheckBox>
               <LabelCheckBox>Gratuito</LabelCheckBox>
-              <Checkbox value={!price} color="primary" />
+              <label className="container">
+                {!price ? (
+                  <input
+                    onChange={() => setPrice(0)}
+                    type="checkbox"
+                    defaultChecked="checked"
+                  />
+                ) : (
+                  <input onChange={() => setPrice(0)} type="checkbox" />
+                )}
+                <span className="checkmark" />
+              </label>
             </ContainerCheckBox>
 
             <ContainerInput zeroMargin half>
-              <Label>Preço</Label>
+              <Label>Preço *</Label>
               <InputName
                 half
                 value={price}

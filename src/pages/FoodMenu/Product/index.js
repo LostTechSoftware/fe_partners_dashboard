@@ -34,8 +34,23 @@ const Loading = ({ repeat = 1 }) => {
   return Array.from({ length: repeat }, () => renderLoading());
 };
 
-function Product({ action, rowId, reload, setReload }) {
-  const [products, loading, pause] = useProduct({ rowId, reload, setReload });
+function Product({
+  action,
+  rowId,
+  reload,
+  setReload,
+  defaultProducts = [],
+  defaultLoading = false,
+  search = false,
+}) {
+  const [products, loading, pause] = useProduct({
+    rowId,
+    reload,
+    setReload,
+    defaultProducts,
+    search,
+    defaultLoading,
+  });
 
   return (
     <Container>
@@ -48,7 +63,7 @@ function Product({ action, rowId, reload, setReload }) {
               url={
                 product.avatar
                   ? product.avatar
-                  : "https://serverem.s3.us-east-2.amazonaws.com/conjunto-de-mao-desenhada-bebidas-doodle_6997-2435.jpg"
+                  : "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle.jpg"
               }
             >
               {product.paused ? (

@@ -1,22 +1,22 @@
 import React from "react";
-import { Plus } from "react-feather";
 
 import PopUp from "../../../../Components/PopUp";
 import DNDComponent from "../../../../Components/DNDComponent";
 
-import { ContainerButton, Text, Button } from "./styles";
+import { useReorder } from "./hooks";
 
-function PopUpReorder() {
+function PopUpReorder({ rows, show, close, setReload }) {
+  const [setItems, ReorderRows] = useReorder({ rows, setReload });
+
   return (
-    <PopUp show={true} oneButton buttonLabel="Salvar alterações">
-      <DNDComponent>
-        <ContainerButton>
-          <Button>
-            <Plus size={60} />
-            <Text>Adicionar categoria</Text>
-          </Button>
-        </ContainerButton>
-      </DNDComponent>
+    <PopUp
+      title={"Reorganizar categorias"}
+      show={show}
+      close={close}
+      buttonLabel="Salvar alterações"
+      onClick={ReorderRows}
+    >
+      <DNDComponent defaultItens={rows} setItem={setItems} />
     </PopUp>
   );
 }

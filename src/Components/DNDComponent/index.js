@@ -1,6 +1,6 @@
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { Menu, Trash2 } from "react-feather";
+import { Menu, Trash } from "react-feather";
 import { useDNDComponent } from "./hooks";
 import { ContainerFlex, Title } from "./styles";
 
@@ -20,7 +20,7 @@ export default function DNDComponent({ defaultItens, setItem, children }) {
             style={getListStyle(snapshot.isDraggingOver)}
           >
             {itens.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
+              <Draggable key={item._id} draggableId={item._id} index={index}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -31,7 +31,7 @@ export default function DNDComponent({ defaultItens, setItem, children }) {
                     <ContainerFlex>
                       <Menu />
                       <Title>{item.title}</Title>
-                      <Trash2 />
+                      <Trash />
                     </ContainerFlex>
                   </div>
                 )}

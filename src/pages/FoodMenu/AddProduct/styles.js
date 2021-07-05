@@ -86,7 +86,7 @@ export const CaractersCount = styled.div`
 
 export const ContainerInput = styled.div`
   width: 90%;
-  margin-top: 20px;
+  ${(props) => !props.zeroMargin && `margin-top: 20px;`}
 
   ${(props) =>
     props.half &&
@@ -152,6 +152,10 @@ export const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 21px;
+
+  @media screen and (max-width: 800px) {
+    font-size: 15px;
+  }
 `;
 
 export const LabelCheckBox = styled.p`
@@ -177,7 +181,7 @@ export const Separator = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 5%;
+  padding: 20px 5% 0px 5%;
 `;
 
 export const GridDays = styled.div`

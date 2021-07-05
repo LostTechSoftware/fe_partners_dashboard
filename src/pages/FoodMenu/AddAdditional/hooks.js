@@ -3,30 +3,43 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../../services/api";
 
-export const useAddAdditinal = ({ selectedAdditonal, uploadedFiles }) => {
-  const [name, setName] = useState(selectedAdditonal.title);
+export const useAddAdditinal = ({
+  selectedAdditonal,
+  uploadedFiles,
+  selectedRows,
+  rows,
+}) => {
+  const [name, setName] = useState(
+    selectedAdditonal.title ? selectedAdditonal.title : ""
+  );
   const [price, setPrice] = useState(
     selectedAdditonal.price ? selectedAdditonal.price : 0
   );
   const [loading, setLoading] = useState(false);
+  const [rowId, setRowId] = useState(rows[0]);
 
   async function updateOrCreateItem() {
     try {
+      setLoading(true);
+      if (price < 0) {
+        setLoading(false);
+
+        return toast.error("O preço não pode ser menor que zero");
+      }
       if (!price || !name)
         return toast.error("Preencha todas as informações com *");
 
-      setLoading(true);
       toast.info("Salvando suas informações, aguarde");
-      if (!selectedAdditonal._id) {
+      if (selectedRows._id) {
         try {
           const data = new FormData();
 
           data.append("title", name);
-          data.append("OldPrice", price);
+          data.append("price", price);
 
           if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
-          await api.post(`/add/product/${selectedAdditonal}`, data);
+          await api.post(`/additional/${selectedRows._id}`, data);
           toast.success("Produto salvo!");
         } catch {
           toast.error("Erro ao salvar produto, tente novamente!");
@@ -35,17 +48,17 @@ export const useAddAdditinal = ({ selectedAdditonal, uploadedFiles }) => {
         }
         return;
       }
-      const data = new FormData();
+      // const data = new FormData();
 
-      data.append("title", name);
+      // data.append("title", name);
 
-      data.append("OldPrice", price);
+      // data.append("price", price);
 
-      if (uploadedFiles) data.append("avatar", uploadedFiles.file);
+      // if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
-      await api.post(`/product/edit/${selectedAdditonal}`, data);
+      // await api.post(`/product/edit/${selectedAdditonal}`, data);
 
-      toast.success("Produto salvo!");
+      // toast.success("Produto salvo!");
     } catch {
       toast.error("Erro ao salvar produto, tente novamente!");
     } finally {
@@ -53,5 +66,14 @@ export const useAddAdditinal = ({ selectedAdditonal, uploadedFiles }) => {
     }
   }
 
-  return [name, setName, price, setPrice];
+  return [
+    name,
+    setName,
+    price,
+    setPrice,
+    updateOrCreateItem,
+    loading,
+    rowId,
+    setRowId,
+  ];
 };

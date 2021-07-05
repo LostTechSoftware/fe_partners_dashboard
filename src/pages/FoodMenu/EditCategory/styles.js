@@ -64,9 +64,7 @@ export const ContainerAdditional = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 1638px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 
 export const Additional = styled.div`
@@ -122,6 +120,8 @@ export const TitleAdditional = styled.p`
   line-height: 14px;
 
   color: #000000;
+
+  width: 90%;
 `;
 
 export const Price = styled.p`
@@ -147,7 +147,7 @@ export const AddAdditional = styled.div`
   }
 
   @media screen and (min-width: 1170px) {
-    width: 170px;
+    width: 200px;
   }
 
   margin: 10px;

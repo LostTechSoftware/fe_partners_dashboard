@@ -3,7 +3,6 @@ import { useEffect, useState, useCallback } from "react";
 import api from "../../services/api";
 
 export const useMenu = () => {
-  const [expectedItensName, setExpectedItensName] = useState("");
   const [addProduct, setAddProduct] = useState(false);
   const [addCategory, setAddCategory] = useState(false);
   const [addAdditional, setAddAdditional] = useState(false);
@@ -16,8 +15,9 @@ export const useMenu = () => {
   const [selectedAdditonal, setSelectedAdditonal] = useState({});
   const [uploadedFiles, setUploadedFile] = useState(null);
   const [additionals, setAdditionals] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [text, setText] = useState("");
 
-  const [itensList, setItensList] = useState([]);
   const [rows, setRows] = useState([]);
   const [remove, setRemove] = useState(false);
 
@@ -25,29 +25,70 @@ export const useMenu = () => {
     setIsMenuMobileOpened(!isMenuMobileOpened);
   }, [isMenuMobileOpened]);
 
-  const ClickAdd = (additional) => {
-    if (additional._id) setSelectedAdditonal(additional);
+  const ClickAdd = (additional, index, additionalRow) => {
+    if (additionalRow && additionalRow._id) {
+      additionalRow.index = index;
+      setSelectedRow(additionalRow);
+    }
+    if (additional && additional._id) setSelectedAdditonal(additional);
     setEditCategory(!editCategory);
     setAddAdditional(!addAdditional);
   };
 
-  useEffect(() => {
-    async function getItens() {
-      if (!expectedItensName) {
-        const { data } = await api.get(`/menu/restaurant/get`);
+  const search = async (text) => {
+    setText(text);
+    if (!text) return;
+    const { data } = await api.get(`/search/${text}`);
 
-        const { rows } = data;
-        setRows(rows);
-        setLoading(false);
-      } else {
-        const response = await api.get(`/search/${expectedItensName}`);
+    setProducts(data);
+  };
 
-        setItensList(response.data);
+  async function getItens() {
+    const { data } = await api.get(`/menu/restaurant/get`);
+
+    const { rows: rowsResponse } = data;
+    setRows(rowsResponse);
+
+    setLoading(false);
+  }
+
+  const changeAvaliablyAllProduct = async (pause) => {
+    setLoading(true);
+
+    for (var i = 0; i < products.length; i++) {
+      const { _id, paused } = products[i];
+
+      if (!pause == paused) {
+        const { data } = await api.post(`/product/pause/${_id}`);
+
+        const updatedProducts = products;
+
+        updatedProducts[i].paused = data.paused;
+
+        if (data.paused !== pause) {
+          const { data } = await api.post(`/product/pause/${_id}`);
+
+          const updatedProducts = products;
+
+          updatedProducts[i].paused = data.paused;
+        }
+
+        setProducts(updatedProducts);
       }
     }
 
+    setLoading(false);
+  };
+
+  const action = (product) => {
+    setAddProduct(true);
+    if (product._id) setSelectedProduct(product);
+  };
+
+  useEffect(() => {
+    if (rows.length && !reload) return;
     getItens();
-  }, [expectedItensName]);
+  }, [reload]);
 
   return [
     setAddCategory,
@@ -75,5 +116,11 @@ export const useMenu = () => {
     setUploadedFile,
     additionals,
     setAdditionals,
+    search,
+    products,
+    setProducts,
+    action,
+    text,
+    changeAvaliablyAllProduct,
   ];
 };

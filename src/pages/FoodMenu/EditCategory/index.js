@@ -29,39 +29,71 @@ import { useEditCategory } from "./hooks";
 import PopUpNewCategory from "./PopUpNewCategory";
 import PopUpReorder from "./PopUpReorder";
 
+const renderLoading = () => {
+  return (
+    <Additional>
+      <LoadingSkeleton
+        isLoading
+        hasHeading
+        containerHeight="100%"
+        containerWidth="100%"
+      />
+    </Additional>
+  );
+};
+
+const Loading = ({ repeat = 1 }) => {
+  return Array.from({ length: repeat }, () => renderLoading());
+};
+
 function EditCategory({
   cancel,
   ClickAdd,
   selectedRows,
   additionals,
   setAdditionals,
+  rows,
+  setReload: setReloadRows,
 }) {
   const [isMobile] = useScreenMeasure();
-  const [openPopUp] = useEditCategory({
+  const [
+    openPopUp1,
+    openPopUp2,
+    popUp1,
+    popUp2,
+    selectedRowAdditional,
+    setSelectedRowAdditional,
+    selectedIndex,
+    setSelectedIndex,
+    loading,
+    setReload,
+  ] = useEditCategory({
     rowId: selectedRows._id,
     setAdditionals,
+    additionals,
+    setReloadRows,
   });
 
   return (
-    <Modal cancel={cancel} title="Hamburgueres">
+    <Modal width={50} cancel={cancel} title="Hamburgueres">
       {additionals.length ? (
         <Container>
           <ContainerPadding>
             <ButtonsHeaderContainer>
-              <ButtonContainer onClick={openPopUp} background>
+              <ButtonContainer onClick={openPopUp1} background>
                 <Plus size={30} />
                 <TextButton background>
                   {isMobile ? "Novo" : "Nova categoria"}
                 </TextButton>
               </ButtonContainer>
 
-              <ButtonContainer>
+              <ButtonContainer onClick={openPopUp2}>
                 <Sliders />
                 <TextButton>Reorganizar </TextButton>
               </ButtonContainer>
             </ButtonsHeaderContainer>
 
-            {additionals.map((additional) => (
+            {additionals.map((additional, index) => (
               <>
                 <RowsProduct>
                   {false ? (
@@ -77,7 +109,13 @@ function EditCategory({
                     <Title>{additional.title}</Title>
                   )}
                   <RightComponent>
-                    <ButtonEdit>
+                    <ButtonEdit
+                      onClick={() => {
+                        setSelectedRowAdditional(additional);
+                        openPopUp1();
+                        setSelectedIndex(index);
+                      }}
+                    >
                       <Edit2 />
                       <TitleButton>Editar</TitleButton>
                     </ButtonEdit>
@@ -85,31 +123,39 @@ function EditCategory({
                 </RowsProduct>
 
                 <ContainerAdditional>
-                  {additional.additional.map((a) => (
-                    <Additional onClick={() => ClickAdd(a)}>
-                      <AdditionalAvatar
-                        src={
-                          a.avatar
-                            ? a.avatar
-                            : "https://serverem.s3.us-east-2.amazonaws.com/conjunto-de-mao-desenhada-bebidas-doodle_6997-2435.jpg"
-                        }
-                      />
-                      <ContainerTitle>
-                        <TitleAdditional>{a.title}</TitleAdditional>
-                        <Price>
-                          {a.price.toLocaleString("pt-br", {
-                            currency: "brl",
-                            style: "currency",
-                          })}
-                        </Price>
-                      </ContainerTitle>
-                    </Additional>
-                  ))}
+                  {loading ? (
+                    <Loading repeat={6} />
+                  ) : (
+                    <>
+                      {additional.additional.map((a) => (
+                        <Additional onClick={() => ClickAdd(a)}>
+                          <AdditionalAvatar
+                            src={
+                              a.avatar
+                                ? a.avatar
+                                : "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle+2.jpg"
+                            }
+                          />
+                          <ContainerTitle>
+                            <TitleAdditional>{a.title}</TitleAdditional>
+                            <Price>
+                              {a.price.toLocaleString("pt-br", {
+                                currency: "brl",
+                                style: "currency",
+                              })}
+                            </Price>
+                          </ContainerTitle>
+                        </Additional>
+                      ))}
 
-                  <AddAdditional onClick={ClickAdd}>
-                    <Plus />
-                    <Text>Adicionar</Text>
-                  </AddAdditional>
+                      <AddAdditional
+                        onClick={() => ClickAdd(null, index, additional)}
+                      >
+                        <Plus />
+                        <Text>Adicionar</Text>
+                      </AddAdditional>
+                    </>
+                  )}
                 </ContainerAdditional>
               </>
             ))}
@@ -119,15 +165,29 @@ function EditCategory({
         <ContainerCenter>
           <TitleEmpty>Essa categoria não possui nenhum adicional</TitleEmpty>
 
-          <ButtonContainer onClick={openPopUp} full background>
+          <ButtonContainer onClick={openPopUp1} full background>
             <Plus size={30} />
             <TextButton background>Nova categoria de adicionais</TextButton>
           </ButtonContainer>
         </ContainerCenter>
       )}
 
-      {/* <PopUpNewCategory /> */}
-      {/* <PopUpReorder /> */}
+      <PopUpNewCategory
+        selectedRowAdditional={selectedRowAdditional}
+        close={openPopUp1}
+        show={popUp1}
+        setReload={setReload}
+        additionals={additionals}
+        setAdditionals={setAdditionals}
+        index={selectedIndex}
+        selectedRows={selectedRows}
+      />
+      <PopUpReorder
+        setReload={setReloadRows}
+        rows={rows}
+        show={popUp2}
+        close={openPopUp2}
+      />
     </Modal>
   );
 }

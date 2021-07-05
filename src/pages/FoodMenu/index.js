@@ -1,5 +1,5 @@
 import React from "react";
-import { Search, Plus, Sliders } from "react-feather";
+import { Search, Plus, Sliders, Play, Pause } from "react-feather";
 
 import {
   Container,
@@ -17,7 +17,11 @@ import {
   ButtonContainer,
   TextButton,
   Option,
+  RightComponent,
+  ButtonPause,
+  TitleButton,
 } from "./styles";
+
 import MainMenu from "../../Components/MainMenu";
 import AddProduct from "./AddProduct";
 import { useMenu } from "./hooks";
@@ -26,6 +30,7 @@ import AddCategory from "./AddCategory";
 import AddAdditional from "./AddAdditional";
 import EditCategory from "./EditCategory";
 import Rows from "./Rows";
+import Product from "./Product";
 
 export default function FoodMenu() {
   const [isMobile] = useScreenMeasure();
@@ -55,6 +60,12 @@ export default function FoodMenu() {
     setUploadedFile,
     additionals,
     setAdditionals,
+    search,
+    products,
+    setProducts,
+    action,
+    text,
+    changeAvaliablyAllProduct,
   ] = useMenu();
 
   return (
@@ -95,41 +106,73 @@ export default function FoodMenu() {
             <ContainerSearch>
               <SearchBox>
                 <Search />
-                <Input placeholder="Pesquise igredientes ou produtos" />
+                <Input
+                  onChange={(event) => search(event.target.value)}
+                  placeholder="Pesquise igredientes ou produtos"
+                />
               </SearchBox>
             </ContainerSearch>
           </Header>
 
           <ContainerPadding>
-            <ButtonsHeaderContainer>
-              <ButtonContainer onClick={() => setAddCategory(true)} background>
-                <Plus size={30} />
-                <TextButton background>
-                  {isMobile ? "Adicionar" : "Adicionar categoria"}
-                </TextButton>
-              </ButtonContainer>
+            {!text && (
+              <ButtonsHeaderContainer>
+                <ButtonContainer
+                  onClick={() => setAddCategory(true)}
+                  background
+                >
+                  <Plus size={30} />
+                  <TextButton background>
+                    {isMobile ? "Adicionar" : "Adicionar categoria"}
+                  </TextButton>
+                </ButtonContainer>
 
-              <ButtonContainer>
-                <Sliders />
-                <TextButton>
-                  {isMobile ? "Reorganizar" : "Reorganizar categorias"}
-                </TextButton>
-              </ButtonContainer>
-            </ButtonsHeaderContainer>
+                <ButtonContainer>
+                  <Sliders />
+                  <TextButton>
+                    {isMobile ? "Reorganizar" : "Reorganizar categorias"}
+                  </TextButton>
+                </ButtonContainer>
+              </ButtonsHeaderContainer>
+            )}
+            {!text ? (
+              rows.map((row) => (
+                <Rows
+                  setEditCategory={setEditCategory}
+                  row={row}
+                  reload={reload}
+                  setReload={setReload}
+                  loading={loading}
+                  setAddProduct={setAddProduct}
+                  selectedProduct={selectedProduct}
+                  setSelectedProduct={setSelectedProduct}
+                  setSelectedRow={setSelectedRow}
+                />
+              ))
+            ) : (
+              <>
+                <RightComponent>
+                  <ButtonPause onClick={() => changeAvaliablyAllProduct(true)}>
+                    <Pause />
+                    <TitleButton yellow>Pausar tudo</TitleButton>
+                  </ButtonPause>
 
-            {rows.map((row) => (
-              <Rows
-                setEditCategory={setEditCategory}
-                row={row}
-                reload={reload}
-                setReload={setReload}
-                loading={loading}
-                setAddProduct={setAddProduct}
-                selectedProduct={selectedProduct}
-                setSelectedProduct={setSelectedProduct}
-                setSelectedRow={setSelectedRow}
-              />
-            ))}
+                  <ButtonPause onClick={() => changeAvaliablyAllProduct(false)}>
+                    <Play />
+                    <TitleButton yellow>Retomar tudo</TitleButton>
+                  </ButtonPause>
+                </RightComponent>
+
+                <Product
+                  reload={reload}
+                  setReload={setReload}
+                  action={action}
+                  search={text}
+                  defaultLoading={loading}
+                  defaultProducts={products}
+                />
+              </>
+            )}
           </ContainerPadding>
 
           {addProduct && (
@@ -151,6 +194,7 @@ export default function FoodMenu() {
               selectedAdditonal={selectedAdditonal}
               cancel={ClickAdd}
               rows={additionals}
+              selectedRows={selectedRows}
             />
           )}
 
@@ -160,7 +204,9 @@ export default function FoodMenu() {
               setSelectedRow={setSelectedRow}
               cancel={() => setEditCategory(false)}
               ClickAdd={ClickAdd}
+              rows={rows}
               additionals={additionals}
+              setReload={setReload}
               setAdditionals={setAdditionals}
             />
           )}

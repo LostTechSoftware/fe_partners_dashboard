@@ -1,5 +1,4 @@
 import React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import {
   InputContainer,
@@ -16,15 +15,53 @@ import {
   InputName,
   CaractersCount,
 } from "../../AddProduct/styles";
+import { useNewCategory } from "./hooks";
+import "./checkbox.css";
 
-function PopUpNewCategory() {
+function PopUpNewCategory({
+  show,
+  close,
+  selectedRowAdditional,
+  setAdditionals,
+  additionals,
+  index,
+  setReload,
+  selectedRows,
+}) {
+  const [
+    name,
+    setName,
+    mandatory,
+    setMandatory,
+    max,
+    setMax,
+    updateOrCreateItem,
+    loading,
+  ] = useNewCategory({
+    selectedRowAdditional,
+    setAdditionals,
+    additionals,
+    index,
+    setReload,
+    selectedRows,
+  });
+
   return (
-    <PopUp show={true}>
+    <PopUp
+      buttonsDisabled={loading}
+      close={close}
+      show={show}
+      onClick={updateOrCreateItem}
+    >
       <InputContainer>
         <ContainerInput>
           <Label>Nome</Label>
-          <InputName placeholder="Ex: Massa" />
-          <CaractersCount>0/20</CaractersCount>
+          <InputName
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Ex: Massa"
+          />
+          <CaractersCount>{name.length}/20</CaractersCount>
         </ContainerInput>
       </InputContainer>
 
@@ -33,12 +70,31 @@ function PopUpNewCategory() {
       <ContainerEdit>
         <ContainerFlex>
           <LabelEdit>Obrigatório</LabelEdit>
-          <Checkbox color="primary" />
+          <label className="container">
+            {mandatory ? (
+              <input
+                onChange={() => setMandatory(!mandatory)}
+                type="checkbox"
+                defaultChecked="checked"
+              />
+            ) : (
+              <input
+                onChange={() => setMandatory(!mandatory)}
+                type="checkbox"
+                defaultChecked="checked"
+              />
+            )}
+            <span className="checkmark" />
+          </label>
         </ContainerFlex>
 
         <ContainerFlex>
           <LabelEdit>Maxímo</LabelEdit>
-          <MinorInput type="number" value={0} />
+          <MinorInput
+            value={max}
+            onChange={(event) => setMax(event.target.value)}
+            type="number"
+          />
         </ContainerFlex>
       </ContainerEdit>
     </PopUp>

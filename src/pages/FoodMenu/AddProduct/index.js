@@ -1,5 +1,4 @@
 import React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import {
   ContainerDropZone,
@@ -24,6 +23,8 @@ import Modal from "../../../Components/Modal";
 import Dropzone from "./DropZone";
 import { useAddProduct } from "./hooks";
 import { Option } from "../styles";
+import "./checkbox.css";
+import "./styles.css";
 
 function AddProduct({
   cancel,
@@ -54,6 +55,8 @@ function AddProduct({
     setRowSelected,
     loading,
     deleteProductAvatar,
+    showDays,
+    setShowDays,
   } = useAddProduct({ product, updateProductOnTable, reload, setReload, rows });
 
   return (
@@ -140,47 +143,82 @@ function AddProduct({
 
         <ContainerCheckBox>
           <LabelCheckBox>{promotion ? "Ativada" : "Desativada"}</LabelCheckBox>
-          <Checkbox
-            onChange={(event) => setPromotion(event.target.value)}
-            color="primary"
-          />
+          <label className="container">
+            {promotion ? (
+              <input
+                onChange={() => setPromotion(!promotion)}
+                type="checkbox"
+                defaultChecked="checked"
+              />
+            ) : (
+              <input
+                onChange={() => setPromotion(!promotion)}
+                type="checkbox"
+              />
+            )}
+            <span className="checkmark" />
+          </label>
         </ContainerCheckBox>
       </Separator>
 
-      <Input>
-        <ContainerInput flex>
-          <ContainerInput half>
-            <Label>Preço promocional</Label>
-            <InputName
-              half
-              pattern="[0-9]*"
-              data-politespace
-              data-grouplength="2"
-              data-delimiter=","
-              data-reverse
-              onChange={(event) => setPromotionalPrice(event.target.value)}
-              value={promotionalPrice}
-              type="number"
-              placeholder="R$ 0,00"
-            />
-          </ContainerInput>
+      {promotion && (
+        <Input className="animationPromotion">
+          <ContainerInput zeroMargin flex>
+            <ContainerInput half>
+              <Label>Preço promocional</Label>
+              <InputName
+                half
+                pattern="[0-9]*"
+                data-politespace
+                data-grouplength="2"
+                data-delimiter=","
+                data-reverse
+                onChange={(event) => setPromotionalPrice(event.target.value)}
+                value={promotionalPrice}
+                type="number"
+                placeholder="R$ 0,00"
+              />
+            </ContainerInput>
 
-          <ContainerInput half>
-            <Label>Duração</Label>
-            <Selector />
+            <ContainerInput half>
+              <Label>Duração</Label>
+              <Selector />
+            </ContainerInput>
           </ContainerInput>
-        </ContainerInput>
-      </Input>
+        </Input>
+      )}
 
-      <GridDays>
-        {days.map((day) => (
-          <ContainerCenter onClick={() => selectDay(day, product)}>
-            <BoxDay selected={daysActive[day].active}>
-              <DayName selected={daysActive[day].active}>{day}</DayName>
-            </BoxDay>
-          </ContainerCenter>
-        ))}
-      </GridDays>
+      <Separator>
+        <SubTitle>Agendar disponibilidade</SubTitle>
+
+        <ContainerCheckBox>
+          <LabelCheckBox>{promotion ? "Ativada" : "Desativada"}</LabelCheckBox>
+          <label className="container">
+            {showDays ? (
+              <input
+                onChange={() => setShowDays(!showDays)}
+                type="checkbox"
+                defaultChecked="checked"
+              />
+            ) : (
+              <input onChange={() => setShowDays(!showDays)} type="checkbox" />
+            )}
+            <span className="checkmark" />
+          </label>
+        </ContainerCheckBox>
+      </Separator>
+
+      {showDays && (
+        <GridDays className="animationPromotion">
+          {days.map((day) => (
+            <ContainerCenter onClick={() => selectDay(day, product)}>
+              <BoxDay selected={daysActive[day].active}>
+                <DayName selected={daysActive[day].active}>{day}</DayName>
+              </BoxDay>
+            </ContainerCenter>
+          ))}
+        </GridDays>
+      )}
     </Modal>
   );
 }

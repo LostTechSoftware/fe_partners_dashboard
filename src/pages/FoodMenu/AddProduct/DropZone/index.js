@@ -1,6 +1,6 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
-import { Image, Trash2 } from "react-feather";
+import { Image, Trash } from "react-feather";
 import { useDropZone as hooks } from "./hooks";
 
 import {
@@ -40,7 +40,7 @@ function DropZone({
             uploadedFiles ? () => setUploadedFile(null) : deleteProductAvatar
           }
         >
-          <Trash2 />
+          <Trash />
           <Text margin>Remover imagem</Text>
         </ContainerHeader>
         <Section error={error}>

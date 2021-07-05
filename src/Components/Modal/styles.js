@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: white;
   right: 0;
-  width: 40%;
+  width: ${(props) => props.width}%;
+  box-shadow: 5px 5px 15px 5px #00000057;
   ${(props) =>
     props.isMobile &&
     `
@@ -11,12 +12,12 @@ export const Container = styled.div`
     height: 100%;
   `}
 
+  bottom: 0;
+  padding-bottom: 80px;
+
   ${(props) =>
     !props.isMobile &&
     `
-    @media screen and (min-height: 800px) {
-      bottom: 0;
-    }
   
     @media screen and (max-width: 1220px) {
       width: 50%;
@@ -41,16 +42,14 @@ export const Container = styled.div`
 
 export const ClickOut = styled.div`
   left: 0;
-  width: 60%;
+  width: ${(props) => props.width}%;
   ${(props) =>
     props.isMobile &&
     `
     display: none;
   `}
 
-  @media screen and (min-height: 800px) {
-    bottom: 0;
-  }
+  bottom: 0;
 
   position: absolute;
   top: 0;
@@ -71,23 +70,38 @@ export const BottomContainer = styled.div`
   position: absolute;
   right: 0;
 
-  @media screen and (min-height: 874px) {
-    ${(props) =>
-      !props.isMobile &&
-      `
+  ${(props) =>
+    !props.isMobile &&
+    `
       bottom: 0;
     `}
-  }
 
   display: flex;
   background: #fff;
-  width: 40%;
+  width: ${(props) => props.width}%;
 
   ${(props) =>
     props.isMobile &&
     `
   width: 100%;
   `}
+
+  ${(props) =>
+    !props.isMobile &&
+    `
+    @media screen and (max-width: 1220px) {
+      width: 50%;
+    }
+  
+    @media screen and (max-width: 1020px) {
+      width: 60%;
+    }
+  
+    @media screen and (max-width: 900px) {
+      width: 70%;
+    }
+  `}
+
   height: 75px;
   align-items: center;
   justify-content: space-around;

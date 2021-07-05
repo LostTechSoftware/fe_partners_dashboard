@@ -16,6 +16,8 @@ function Modal({
   children,
   displayBottom = false,
   title,
+  width = 40,
+  height = 100,
   buttonsDisabled = false,
   onClick = () => console.log("Action não configurada"),
 }) {
@@ -24,16 +26,27 @@ function Modal({
   return (
     <>
       <ClickOut
+        width={100 - width}
+        height={height}
         disabled={buttonsDisabled}
         onClick={!buttonsDisabled && cancel}
       />
-      <Container className="animationModal" isMobile={isMobile}>
+      <Container
+        width={width}
+        height={height}
+        className="animationModal"
+        isMobile={isMobile}
+      >
         <Title>{title}</Title>
 
         {children}
 
         {isMobile && displayBottom && (
-          <BottomContainer className="animationModal" isMobile={isMobile}>
+          <BottomContainer
+            width={width}
+            className="animationModal"
+            isMobile={isMobile}
+          >
             <BottomButton onClick={cancel} outline>
               <BottomLabel outline>Voltar</BottomLabel>
             </BottomButton>
@@ -46,7 +59,11 @@ function Modal({
       </Container>
 
       {!isMobile && displayBottom && (
-        <BottomContainer className="animationModal" isMobile={isMobile}>
+        <BottomContainer
+          width={width}
+          className="animationModal"
+          isMobile={isMobile}
+        >
           <BottomButton
             disabled={buttonsDisabled}
             onClick={!buttonsDisabled && cancel}

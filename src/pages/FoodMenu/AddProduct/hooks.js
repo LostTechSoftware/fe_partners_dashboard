@@ -28,6 +28,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
   const [uploadedFiles, setUploadedFile] = useState(null);
   const [rowSelected, setRowSelected] = useState(rows[0]._id);
   const [loading, setLoading] = useState(false);
+  const [showDays, setShowDays] = useState(false);
 
   const deleteProductAvatar = async () => {
     try {
@@ -62,6 +63,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           data.append("daysActive", JSON.stringify(daysActive));
           data.append("promotion", promotion);
           data.append("OldPrice", price);
+          data.append("schedule", showDays);
 
           if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
@@ -83,6 +85,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       data.append("daysActive", JSON.stringify(daysActive));
       data.append("promotion", promotion);
       data.append("OldPrice", price);
+      data.append("schedule", showDays);
 
       if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
@@ -207,5 +210,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     deleteProductAvatar,
     setRowSelected,
     loading,
+    showDays,
+    setShowDays,
   };
 };

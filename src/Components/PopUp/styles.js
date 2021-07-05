@@ -83,6 +83,14 @@ export const BottomButton = styled.div`
       background: #fff;
       border-radius: 5px;
     `}
+
+  ${(props) =>
+    props.disabled &&
+    `   box-sizing: border-box;
+          border: 0;
+          background: #ddd;
+          border-radius: 5px;
+        `}
 `;
 
 export const BottomLabel = styled.p`
@@ -98,6 +106,12 @@ export const BottomLabel = styled.p`
   ${(props) =>
     props.outline &&
     ` 
-    color:#ffe115
+    color:#ffe115;
+  `}
+
+  ${(props) =>
+    props.disabled &&
+    ` 
+    color:#fff;
   `}
 `;
