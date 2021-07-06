@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap");
 
 * {
   padding: 0;
@@ -9,7 +9,9 @@
   box-sizing: border-box;
 }
 
-body, #root, .App {
+body,
+#root,
+.App {
   height: 100vh;
 }
 html {
@@ -18,13 +20,14 @@ html {
 
 /* text */
 body,
-.price, #root .productsRowHeader h2,
+.price,
+#root .productsRowHeader h2,
 #root .MuiTabs-flexContainer span,
 #root .MuiButton-root,
 .MuiDialog-root .mainButton .MuiButton-root,
 .MuiPopover-root .mainButton .MuiButton-root {
-  font-family: -apple-system, 'Lobster', 'pacifico', 
-  'Open Sans Condensed', 'Roboto', 'Ubuntu', sans-serif;
+  font-family: -apple-system, "Lobster", "pacifico", "Open Sans Condensed",
+    "Roboto", "Ubuntu", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -34,18 +37,21 @@ h1 {
 }
 h2 {
   font-size: 2.9rem;
-  color: #1F1F21;
+  color: #1f1f21;
 }
-p, input, textarea {
-  font-family: -apple-system, 'Roboto', 'Ubuntu', sans-serif;
+p,
+input,
+textarea {
+  font-family: -apple-system, "Roboto", "Ubuntu", sans-serif;
   font-size: 2.3rem;
-  color: #1F1F21;
+  color: #1f1f21;
 }
 span {
   font-size: 1.9rem;
   color: #6d6d6d;
 }
-p, span {
+p,
+span {
   font-weight: 400;
 }
 /* *** */
@@ -53,15 +59,23 @@ p, span {
 button {
   cursor: pointer;
 }
-input, textarea {
+input,
+textarea {
   border: none;
 }
 
 .page {
   --deafult-top-padding: 48px;
   display: flex;
-  height: 100%;
-  box-shadow: 8px 8px 41px -3px rgba(122,122,122,0.61);
+  height: 100vh;
+}
+@media screen and (max-width: 800px) {
+  .page {
+    --deafult-top-padding: 48px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
 }
 
 .print {
