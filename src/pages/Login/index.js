@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
-import "./styles.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import {
   ContainerImage,
@@ -21,17 +21,23 @@ import {
 
 export default function Login() {
   const history = useHistory();
-
+  const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+  const recaptchaRef = createRef();
 
   async function ClickForgotPassword() {
     history.push("/forgotpassword");
   }
 
+  function onChange(value) {
+    setToken(value);
+  }
+
   async function tryLogin(event) {
     event.preventDefault();
+    recaptchaRef.current.execute();
     setLoading(true);
     try {
       const response = await api.post("/restaurant/authenticate", {
@@ -107,6 +113,12 @@ export default function Login() {
               placeholder="Insira sua senha aqui"
             />
           </ContainerInput>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey="6Lf77XkbAAAAAKRYz0QM-nmwIT4yengo3mKp2eES"
+            onChange={onChange}
+            size="invisible"
+          />
           <ForgotPassword onClick={ClickForgotPassword}>
             Esqueci a senha
           </ForgotPassword>

@@ -21,9 +21,11 @@
     "pusher-js": "^7.0.2",
     "react": "^16.13.1",
     "react-circular-progressbar": "^2.0.3",
+    "react-code-input": "^3.10.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.4",
     "react-feather": "^2.0.9",
+    "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.2.0",
     "react-number-format": "^4.4.4",
     "react-pusher": "^0.2.0",
@@ -69,8 +71,7 @@
     "eject": "react-scripts eject",
     "eslint:check": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier '**/*.{js,jsx}' --write",
-    "commit": "cz",
-    "cypress:open": "cypress open"
+    "commit": "cz"
   },
   "eslintConfig": {
     "extends": "react-app"
