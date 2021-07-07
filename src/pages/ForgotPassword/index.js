@@ -3,7 +3,11 @@ import "react-toastify/dist/ReactToastify.css";
 import ReactCodeInput from "react-code-input";
 import api from "../../services/api";
 import { toast } from "react-toastify";
-import { props } from "../../utils/propsCodeInput";
+import {
+  styledCodeInput,
+  styledMobileCodeInput,
+} from "../../utils/propsCodeInput";
+import { useScreenMeasure } from "../../utils/isMobile";
 
 import {
   Container,
@@ -19,9 +23,11 @@ import {
 export default function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [codeInput, setCodeInput] = useState(false);
+  const [codeInput, setCodeInput] = useState(true);
   const [isValidCode, setIsValidCode] = useState(false);
   const [token, setToken] = useState("");
+  const [isMobile] = useScreenMeasure();
+  const codeInputStyle = isMobile ? styledMobileCodeInput : styledCodeInput;
 
   useEffect(() => {
     if (!/^\d+$/g.test(token) || token.length !== 6)
@@ -58,7 +64,7 @@ export default function ForgotPassword() {
               isValid={isValidCode}
               type="text"
               fields={6}
-              {...props}
+              {...codeInputStyle}
             />
           ) : (
             <InputName
