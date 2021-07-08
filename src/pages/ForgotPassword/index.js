@@ -18,6 +18,7 @@ import {
   ContainerInput,
   Label,
   InputName,
+  LabelCodeInput,
 } from "./styles";
 
 export default function ForgotPassword() {
@@ -53,25 +54,32 @@ export default function ForgotPassword() {
     <Container>
       <DivAlign>
         <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
-        <Label>Qual seu email ?</Label>
         <ContainerInput>
           {codeInput ? (
-            <ReactCodeInput
-              value={token}
-              onChange={(event) => {
-                setToken(event);
-              }}
-              isValid={isValidCode}
-              type="text"
-              fields={6}
-              {...codeInputStyle}
-            />
+            <>
+              <LabelCodeInput>
+                Insira o código de verificação que enviamos para o seu email
+              </LabelCodeInput>
+              <ReactCodeInput
+                value={token}
+                onChange={(event) => {
+                  setToken(event);
+                }}
+                isValid={isValidCode}
+                type="text"
+                fields={6}
+                {...codeInputStyle}
+              />
+            </>
           ) : (
-            <InputName
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
+            <>
+              <Label>Qual seu email ?</Label>
+              <InputName
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </>
           )}
         </ContainerInput>
         <Button onClick={onClickForgotPassword}>

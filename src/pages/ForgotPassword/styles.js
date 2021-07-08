@@ -18,6 +18,16 @@ export const Label = styled.div`
   margin-bottom: 1%;
 `;
 
+export const LabelCodeInput = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #111;
+  margin-bottom: 1%;
+`;
+
 export const ContainerInput = styled.div`
   display: contents;
   width: 80%;
