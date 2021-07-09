@@ -80,10 +80,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       const dataEdit = new FormData();
 
       dataEdit.append("title", name);
-      dataEdit.append(
-        "price",
-        parseFloat(promotionalPrice ? promotionalPrice : price)
-      );
+      dataEdit.append("price", parseFloat(promotionalPrice || price));
       dataEdit.append("description", description);
       dataEdit.append("daysActive", JSON.stringify(daysActive));
       dataEdit.append("promotion", promotion);
@@ -145,7 +142,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       if (product.quarta) {
         const updated = daysActive;
 
-        daysActive["quarta"].active = !daysActive["quarta"].active;
+        daysActive.quarta.active = !daysActive["quarta"].active;
         setDaysActive(updated);
       }
       if (product.quinta) {

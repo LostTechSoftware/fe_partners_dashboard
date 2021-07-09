@@ -9,7 +9,7 @@ export const useProduct = ({
   search,
   defaultLoading,
 }) => {
-  const [loading, setLoading] = useState(search ? false : true);
+  const [loading, setLoading] = useState(!search);
   const [products, setProducts] = useState(defaultProducts);
 
   async function pause(productId, index) {
