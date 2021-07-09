@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "../../../Components/Modal";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import { Container } from "./styles";
 import {

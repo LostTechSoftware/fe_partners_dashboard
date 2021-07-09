@@ -1,6 +1,5 @@
 import { useState } from "react";
 import filesize from "filesize";
-import api from "../../../../services/api";
 
 export const useDropZone = ({ setUploadedFile }) => {
   const [error, setError] = useState(false);

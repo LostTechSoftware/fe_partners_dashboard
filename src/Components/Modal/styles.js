@@ -9,31 +9,29 @@ export const Container = styled.div`
   box-shadow: 5px 5px 15px 5px #00000057;
   ${(props) =>
     props.isMobile &&
-    `
-    width: 100%;
-    height: 100%;
-  `}
+    css`
+      width: 100%;
+      height: 100%;
+    `}
 
   bottom: 0;
   padding-bottom: 80px;
 
   ${(props) =>
     !props.isMobile &&
-    `
-  
-    @media screen and (max-width: 1220px) {
-      width: 50%;
-    }
-  
-    @media screen and (max-width: 1020px) {
-      width: 60%;
-    }
-  
-    @media screen and (max-width: 900px) {
-      width: 70%;
-    }
-  
-  `}
+    css`
+      @media screen and (max-width: 1220px) {
+        width: 50%;
+      }
+
+      @media screen and (max-width: 1020px) {
+        width: 60%;
+      }
+
+      @media screen and (max-width: 900px) {
+        width: 70%;
+      }
+    `}
 
   position: absolute;
   top: 0;
@@ -47,9 +45,9 @@ export const ClickOut = styled.div`
   width: ${(props) => props.width}%;
   ${(props) =>
     props.isMobile &&
-    `
-    display: none;
-  `}
+    css`
+      display: none;
+    `}
 
   bottom: 0;
 
@@ -74,7 +72,7 @@ export const BottomContainer = styled.div`
 
   ${(props) =>
     !props.isMobile &&
-    `
+    css`
       bottom: 0;
     `}
 
@@ -84,25 +82,25 @@ export const BottomContainer = styled.div`
 
   ${(props) =>
     props.isMobile &&
-    `
-  width: 100%;
-  `}
+    css`
+      width: 100%;
+    `}
 
   ${(props) =>
     !props.isMobile &&
-    `
-    @media screen and (max-width: 1220px) {
-      width: 50%;
-    }
-  
-    @media screen and (max-width: 1020px) {
-      width: 60%;
-    }
-  
-    @media screen and (max-width: 900px) {
-      width: 70%;
-    }
-  `}
+    css`
+      @media screen and (max-width: 1220px) {
+        width: 50%;
+      }
+
+      @media screen and (max-width: 1020px) {
+        width: 60%;
+      }
+
+      @media screen and (max-width: 900px) {
+        width: 70%;
+      }
+    `}
 
   height: 75px;
   align-items: center;
@@ -121,7 +119,8 @@ export const BottomButton = styled.div`
 
   ${(props) =>
     props.outline &&
-    ` border: 1px solid #FFE115;
+    css`
+      border: 1px solid #ffe115;
       box-sizing: border-box;
       background: ${Themes().background};
       border-radius: 5px;
@@ -129,11 +128,12 @@ export const BottomButton = styled.div`
 
   ${(props) =>
     props.disabled &&
-    `   box-sizing: border-box;
-        border: 0;
-        background: #ddd;
-        border-radius: 5px;
-      `}
+    css`
+      box-sizing: border-box;
+      border: 0;
+      background: #ddd;
+      border-radius: 5px;
+    `}
 `;
 
 export const BottomLabel = styled.p`
@@ -148,15 +148,15 @@ export const BottomLabel = styled.p`
   color: #ffffff;
   ${(props) =>
     props.outline &&
-    ` 
-    color:#ffe115
-  `}
+    css`
+      color: #ffe115;
+    `}
 
   ${(props) =>
     props.disabled &&
-    ` 
-    color:#fff
-  `}
+    css`
+      color: #fff;
+    `}
 `;
 
 export const Row = styled.div`

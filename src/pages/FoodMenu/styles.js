@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Themes } from "../../utils/themes";
 
 export const Container = styled.div`
@@ -10,26 +10,30 @@ export const Container = styled.div`
 
   ${(props) =>
     !props.isMobile &&
-    `
-    @media screen and (max-width: 1140px) {
-      width: 75%;
-    }
+    css`
+      @media screen and (max-width: 1140px) {
+        width: 75%;
+      }
 
-    @media screen and (max-width: 905px) {
-      width: 70%;
-    }
-  `};
+      @media screen and (max-width: 905px) {
+        width: 70%;
+      }
+    `};
 
   ${(props) =>
     props.isMobile &&
-    `
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    position: relative;
-  `};
+    css`
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      position: relative;
+    `};
 
-  ${(props) => props.disableScroll && `overflow: hidden;`};
+  ${(props) =>
+    props.disableScroll &&
+    css`
+      overflow: hidden;
+    `};
 `;
 
 export const Header = styled.div`
@@ -71,8 +75,9 @@ export const ButtonHeader = styled.div`
 
   ${(props) =>
     props.selected &&
-    `  border-bottom: 5px solid #ffe115;
-  `}
+    css`
+      border-bottom: 5px solid #ffe115;
+    `}
 `;
 
 export const ButtonText = styled.p`
@@ -157,11 +162,11 @@ export const ButtonContainer = styled.div`
   cursor: pointer;
   ${(props) =>
     props.background &&
-    `
-  background-color: #ffe115;
-  color: #fff;
-  margin-left: 0;
-  `}
+    css`
+      background-color: #ffe115;
+      color: #fff;
+      margin-left: 0;
+    `}
   width: 215px;
   height: 50px;
   border-radius: 5px;
@@ -179,9 +184,9 @@ export const TextButton = styled.p`
   font-family: "Roboto", sans-serif;
   ${(props) =>
     props.background &&
-    `
-    color:#fff;
-    margin-left: 15px;
+    css`
+      color: #fff;
+      margin-left: 15px;
     `}
 `;
 

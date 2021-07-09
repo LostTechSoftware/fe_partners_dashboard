@@ -81,7 +81,6 @@ function PopUpNewCategory({
               <input
                 onChange={() => setMandatory(!mandatory)}
                 type="checkbox"
-                defaultChecked="checked"
               />
             )}
             <span className="checkmark" />

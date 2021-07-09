@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Themes } from "../../utils/themes";
 
 export const Container = styled.div`
@@ -14,7 +14,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${(props) => !props.display && `display:none`}
+  ${(props) =>
+    !props.display &&
+    css`
+      display: none;
+    `}
 `;
 
 export const Title = styled.p`
@@ -79,7 +83,8 @@ export const BottomButton = styled.div`
 
   ${(props) =>
     props.outline &&
-    ` border: 1px solid #FFE115;
+    css`
+      border: 1px solid #ffe115;
       box-sizing: border-box;
       background: ${Themes().background};
       border-radius: 5px;
@@ -87,11 +92,12 @@ export const BottomButton = styled.div`
 
   ${(props) =>
     props.disabled &&
-    `   box-sizing: border-box;
-          border: 0;
-          background: #ddd;
-          border-radius: 5px;
-        `}
+    css`
+      box-sizing: border-box;
+      border: 0;
+      background: #ddd;
+      border-radius: 5px;
+    `}
 `;
 
 export const BottomLabel = styled.p`
@@ -106,13 +112,13 @@ export const BottomLabel = styled.p`
   color: #ffffff;
   ${(props) =>
     props.outline &&
-    ` 
-    color:#ffe115;
-  `}
+    css`
+      color: #ffe115;
+    `}
 
   ${(props) =>
     props.disabled &&
-    ` 
-    color:#fff;
-  `}
+    css`
+      color: #fff;
+    `}
 `;

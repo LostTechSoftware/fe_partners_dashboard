@@ -37,10 +37,10 @@ export const useMenu = () => {
     setAddAdditional(!addAdditional);
   };
 
-  const search = async (text) => {
-    setText(text);
-    if (!text) return;
-    const { data } = await api.get(`/search/${text}`);
+  const search = async (textReceived) => {
+    setText(textReceived);
+    if (!textReceived) return;
+    const { data } = await api.get(`/search/${textReceived}`);
 
     setProducts(data);
   };
@@ -62,21 +62,25 @@ export const useMenu = () => {
       const { _id, paused } = products[i];
 
       if (!pause == paused) {
-        const { data } = await api.post(`/product/pause/${_id}`);
+        const { data: dataProductPause1 } = await api.post(
+          `/product/pause/${_id}`
+        );
 
         const updatedProducts = products;
 
-        updatedProducts[i].paused = data.paused;
+        updatedProducts[i].paused = dataProductPause1.paused;
 
-        if (data.paused !== pause) {
-          const { data } = await api.post(`/product/pause/${_id}`);
+        if (dataProductPause1.paused !== pause) {
+          const { data: dataProductPause2 } = await api.post(
+            `/product/pause/${_id}`
+          );
 
-          const updatedProducts = products;
+          const updatedProducts2 = products;
 
-          updatedProducts[i].paused = data.paused;
+          updatedProducts2[i].paused = dataProductPause2.paused;
         }
 
-        setProducts(updatedProducts);
+        setProducts(updatedProducts2);
       }
     }
 

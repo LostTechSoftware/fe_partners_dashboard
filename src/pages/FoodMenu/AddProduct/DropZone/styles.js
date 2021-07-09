@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Section = styled.section`
   background: #fff;
@@ -24,9 +24,9 @@ export const Text = styled.text`
 
   ${(props) =>
     props.margin &&
-    `
-    margin-left: 20px;
-  `}
+    css`
+      margin-left: 20px;
+    `}
 `;
 
 export const Container = styled.div`

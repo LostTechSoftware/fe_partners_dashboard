@@ -9,7 +9,6 @@ import {
   Container,
   ImageUploaded,
   ContainerRoot,
-  ContainerTrash,
   ContainerHeader,
   ContainerDragAndDrop,
 } from "./styles";

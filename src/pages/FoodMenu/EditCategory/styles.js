@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Themes } from "../../../utils/themes";
 
 export const Container = styled.div``;
@@ -10,11 +10,11 @@ export const ButtonContainer = styled.div`
   cursor: pointer;
   ${(props) =>
     props.background &&
-    `
-  background-color: #ffe115;
-  color: #fff;
-  margin-left: 0;
-  `}
+    css`
+      background-color: #ffe115;
+      color: #fff;
+      margin-left: 0;
+    `}
   width: 215px;
   height: 50px;
   border-radius: 5px;
@@ -24,12 +24,12 @@ export const ButtonContainer = styled.div`
 
   ${(props) =>
     props.full &&
-    `
-    width:80%;
-    margin-top: 10px;
+    css`
+      width: 80%;
+      margin-top: 10px;
 
-    justify-content: center;
-  `}
+      justify-content: center;
+    `}
 `;
 
 export const TextButton = styled.p`
@@ -41,9 +41,9 @@ export const TextButton = styled.p`
   font-family: "Roboto", sans-serif;
   ${(props) =>
     props.background &&
-    `
-    color:#fff;
-    margin-left: 15px;
+    css`
+      color: #fff;
+      margin-left: 15px;
     `}
 `;
 

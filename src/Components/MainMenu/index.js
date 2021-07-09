@@ -46,8 +46,7 @@ const Icon = ({ icon, color }) => {
 export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
   const [isMobile] = useScreenMeasure();
   const { menuOptions } = useMenu();
-  {
-  }
+
   return (
     <>
       {isMobile ? (

@@ -21,12 +21,12 @@ export default function DNDComponent({ defaultItens = [], setItem, children }) {
           >
             {itens.map((item, index) => (
               <Draggable key={item._id} draggableId={item._id} index={index}>
-                {(provided, snapshot) => (
+                {(provided1) => (
                   <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={getItemStyle(provided.draggableProps.style)}
+                    ref={provided1.innerRef}
+                    {...provided1.draggableProps}
+                    {...provided1.dragHandleProps}
+                    style={getItemStyle(provided1.draggableProps.style)}
                   >
                     <ContainerFlex>
                       <Menu />
@@ -37,7 +37,7 @@ export default function DNDComponent({ defaultItens = [], setItem, children }) {
                 )}
               </Draggable>
             ))}
-            {provided.placeholder}
+            {provided1.placeholder}
             {children}
           </div>
         )}

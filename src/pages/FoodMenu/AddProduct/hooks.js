@@ -80,22 +80,22 @@ export const useAddProduct = ({ product, setReload, rows }) => {
         }
         return;
       }
-      const data = new FormData();
+      const dataEdit = new FormData();
 
-      data.append("title", name);
-      data.append(
+      dataEdit.append("title", name);
+      dataEdit.append(
         "price",
         parseFloat(promotionalPrice ? promotionalPrice : price)
       );
-      data.append("description", description);
-      data.append("daysActive", JSON.stringify(daysActive));
-      data.append("promotion", promotion);
-      data.append("OldPrice", price);
-      data.append("schedule", showDays);
+      dataEdit.append("description", description);
+      dataEdit.append("daysActive", JSON.stringify(daysActive));
+      dataEdit.append("promotion", promotion);
+      dataEdit.append("OldPrice", price);
+      dataEdit.append("schedule", showDays);
 
-      if (uploadedFiles) data.append("avatar", uploadedFiles.file);
+      if (uploadedFiles) dataEdit.append("avatar", uploadedFiles.file);
 
-      await api.post(`/product/edit/${product._id}`, data);
+      await api.post(`/product/edit/${product._id}`, dataEdit);
 
       setReload(true);
 
@@ -107,20 +107,20 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     }
   }
 
-  const selectDay = (day, product) => {
-    if (day === "segunda") product.segunda = true;
+  const selectDay = (day, productReceived) => {
+    if (day === "segunda") productReceived.segunda = true;
 
-    if (day === "terca") product.terca = true;
+    if (day === "terca") productReceived.terca = true;
 
-    if (day === "quarta") product.quarta = true;
+    if (day === "quarta") productReceived.quarta = true;
 
-    if (day === "quinta") product.quinta = true;
+    if (day === "quinta") productReceived.quinta = true;
 
-    if (day === "sexta") product.sexta = true;
+    if (day === "sexta") productReceived.sexta = true;
 
-    if (day === "sabado") product.sabado = true;
+    if (day === "sabado") productReceived.sabado = true;
 
-    if (day === "domingo") product.domingo = true;
+    if (day === "domingo") productReceived.domingo = true;
 
     const updated = daysActive;
 

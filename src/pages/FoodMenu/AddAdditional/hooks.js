@@ -9,12 +9,8 @@ export const useAddAdditinal = ({
   selectedRows,
   rows,
 }) => {
-  const [name, setName] = useState(
-    selectedAdditonal.title ? selectedAdditonal.title : ""
-  );
-  const [price, setPrice] = useState(
-    selectedAdditonal.price ? selectedAdditonal.price : 0
-  );
+  const [name, setName] = useState(selectedAdditonal.title || "");
+  const [price, setPrice] = useState(selectedAdditonal.price || 0);
   const [loading, setLoading] = useState(false);
   const [rowId, setRowId] = useState(rows[0]);
 
@@ -47,17 +43,17 @@ export const useAddAdditinal = ({
         }
         return;
       }
-      const data = new FormData();
+      const dataEdit = new FormData();
 
-      data.append("title", name);
+      dataEdit.append("title", name);
 
-      data.append("price", price);
+      dataEdit.append("price", price);
 
-      if (uploadedFiles) data.append("avatar", uploadedFiles.file);
+      if (uploadedFiles) dataEdit.append("avatar", uploadedFiles.file);
 
       await api.post(
         `/edit/additional/${selectedRows._id}/${selectedAdditonal._id}`,
-        data
+        dataEdit
       );
 
       toast.success("Adicional salvo!");

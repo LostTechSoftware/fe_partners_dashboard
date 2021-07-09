@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Themes } from "../../../utils/themes";
 
 export const InputName = styled.input`
@@ -10,9 +10,9 @@ export const InputName = styled.input`
 
   ${(props) =>
     props.half &&
-    `
-    width: 90%;
-  `}
+    css`
+      width: 90%;
+    `}
 
   height: 35px;
 
@@ -90,28 +90,32 @@ export const CaractersCount = styled.div`
 
 export const ContainerInput = styled.div`
   width: 90%;
-  ${(props) => !props.zeroMargin && `margin-top: 20px;`}
+  ${(props) =>
+    !props.zeroMargin &&
+    css`
+      margin-top: 20px;
+    `}
 
   ${(props) =>
     props.half &&
-    `
-    width: 50%;
-  `}
+    css`
+      width: 50%;
+    `}
 
   ${(props) =>
     props.flex &&
-    `
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap
-  `}
+    css`
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    `}
 
   ${(props) =>
     props.zeroMargin &&
-    `
-    margin:0
-  `}
+    css`
+      margin: 0;
+    `}
 `;
 
 export const Selector = styled.select`
@@ -205,11 +209,11 @@ export const BoxDay = styled.div`
 
   ${(props) =>
     !props.selected &&
-    `
-  border: 1px solid #FFE115;
-  box-sizing: border-box;
-  background: #fff;
-  `}
+    css`
+      border: 1px solid #ffe115;
+      box-sizing: border-box;
+      background: #fff;
+    `}
 
   margin: 20px;
 

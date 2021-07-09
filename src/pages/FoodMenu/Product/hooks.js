@@ -41,9 +41,9 @@ export const useProduct = ({
 
         const { data } = await api.get(`/row/get/${rowId}`);
 
-        const { products } = data;
+        const { products: productsResponse } = data;
 
-        setProducts(products);
+        setProducts(productsResponse);
         setLoading(false);
       } catch (error) {
         setLoading(false);

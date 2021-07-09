@@ -1,5 +1,5 @@
 import React from "react";
-import { Plus, Sliders, Edit2 } from "react-feather";
+import { Plus, Edit2 } from "react-feather";
 
 import Modal from "../../../Components/Modal";
 import { useScreenMeasure } from "../../../utils/isMobile";
@@ -27,7 +27,6 @@ import {
 import { RowsProduct, Title, ButtonEdit, TitleButton } from "../styles";
 import { useEditCategory } from "./hooks";
 import PopUpNewCategory from "./PopUpNewCategory";
-import PopUpReorder from "./PopUpReorder";
 
 const renderLoading = () => {
   return (
