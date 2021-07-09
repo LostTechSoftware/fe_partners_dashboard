@@ -80,7 +80,7 @@ function Rows({
                     ? "Pausando"
                     : isMobile
                     ? "Pausar"
-                    : "Pausar categoria"}
+                      : "Pausar categoria"}
                 </TitleButton>
               </>
             )}
