@@ -142,7 +142,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       if (product.quarta) {
         const updated = daysActive;
 
-        daysActive.quarta.active = !daysActive["quarta"].active;
+        daysActive.quarta.active = !daysActive.quarta.active;
         setDaysActive(updated);
       }
       if (product.quinta) {
