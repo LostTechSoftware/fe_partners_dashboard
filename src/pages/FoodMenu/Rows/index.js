@@ -68,8 +68,8 @@ function Rows({
                   {loadingAction
                     ? "Retomando"
                     : isMobile
-                      ? "Retomar"
-                      : "Retomar categoria"}
+                    ? "Retomar"
+                    : "Retomar categoria"}
                 </TitleButton>
               </>
             ) : (

@@ -18,10 +18,12 @@ export const useNewCategory = ({
 
   useEffect(() => {
     if (selectedRowAdditional.title) setName(selectedRowAdditional.title);
-    if (selectedRowAdditional.mandatory)
+    if (selectedRowAdditional.mandatory) {
       setMandatory(selectedRowAdditional.mandatory);
-    if (selectedRowAdditional.numberSelect)
+    }
+    if (selectedRowAdditional.numberSelect) {
       setMax(selectedRowAdditional.numberSelect);
+    }
   }, [selectedRowAdditional]);
 
   const updateOrCreateItem = async () => {
