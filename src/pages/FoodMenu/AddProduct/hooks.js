@@ -154,7 +154,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       if (product.sexta) {
         const updated = daysActive;
 
-        daysActive["sexta"].active = !daysActive["sexta"].active;
+        daysActive.sexta.active = !daysActive["sexta"].active;
         setDaysActive(updated);
       }
       if (product.sabado) {
