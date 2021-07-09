@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Requests from "./pages/Requests";
 import Menu from "./pages/FoodMenu";
 import Money from "./pages/Money";
+import Message from "./pages/Messages";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -27,6 +28,7 @@ const Router = () => (
       <Route exact path="/" component={Login} />
 
       <PrivateRoute path="/requests" component={Requests} />
+      <PrivateRoute path="/messages" component={Message} />
       <PrivateRoute path="/menu" component={Menu} />
       <PrivateRoute path="/money" component={Money} />
     </Switch>
