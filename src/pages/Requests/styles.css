@@ -2,8 +2,12 @@
   display: flex;
   width: 100%;
 
-  background-color: #F7F7F9;
-  box-shadow: 8px 8px 41px -3px rgba(122,122,122,0.61);
+  background-color: #f7f7f9;
+  box-shadow: 8px 8px 41px -3px rgba(122, 122, 122, 0.61);
+}
+
+div::-webkit-scrollbar {
+  display: none;
 }
 
 .requests .pageContent .taskList {
@@ -13,11 +17,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
 }
 ::-webkit-scrollbar {
   width: 6px;
-  background: #F4F4F4;
+  background: #f4f4f4;
 }
 ::-webkit-scrollbar-thumb {
   background: #dad7d7;
@@ -25,11 +29,11 @@
 
 /* Material UI tab navigation */
 .requests .taskList .MuiAppBar-root {
-  box-shadow: 2px 2px 20px 0px rgba(122,122,122,0.1);
+  box-shadow: 2px 2px 20px 0px rgba(122, 122, 122, 0.1);
 }
 .requests .taskList .MuiTabs-root {
   border-radius: 18px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .requests .taskList .MuiTabs-indicator {
   height: 100%;
@@ -41,7 +45,7 @@
   width: auto;
   z-index: 4;
   color: #000000;
-  
+
   font-size: 2.1rem;
   text-transform: capitalize;
   font-weight: 600;
@@ -49,7 +53,7 @@
 }
 .requests .taskList .Mui-selected .MuiTab-wrapper {
   transition: 0.4s;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 /* *** */
 
@@ -57,7 +61,7 @@
   .requests .pageContent .taskList {
     max-width: 610px;
   }
-} 
+}
 
 @media screen and (max-width: 1262px) {
   .requests .pageContent .taskList {
