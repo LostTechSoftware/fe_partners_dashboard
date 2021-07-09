@@ -69,7 +69,7 @@ function Rows({
                     ? "Retomando"
                     : isMobile
                     ? "Retomar"
-                    : "Retomar categoria"}
+                      : "Retomar categoria"}
                 </TitleButton>
               </>
             ) : (
