@@ -166,7 +166,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       if (product.sabado) {
         const updated = daysActive;
 
-        daysActive["sabado"].active = !daysActive["sabado"].active;
+        daysActive.sabado.active = !daysActive["sabado"].active;
         setDaysActive(updated);
       }
       if (product.domingo) {
