@@ -72,7 +72,7 @@
 .hamburger-inner-isDark,
 .hamburger-inner-isDark::before,
 .hamburger-inner-isDark::after {
-  background-color: #01163e;
+  background-color: #fff;
 }
 
 .hamburger-inner::before,

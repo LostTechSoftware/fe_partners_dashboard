@@ -1,12 +1,6 @@
-import { useState, useCallback, useMemo } from "react";
+import { useMemo } from "react";
 
 export const useMenu = () => {
-  const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);
-
-  const handleMenuMobileOpen = useCallback(() => {
-    setIsMenuMobileOpened(!isMenuMobileOpened);
-  }, [isMenuMobileOpened]);
-
   const menuOptions = useMemo(() => {
     return [
       { text: "Pedidos", route: "requests" },
@@ -19,8 +13,6 @@ export const useMenu = () => {
   }, []);
 
   return {
-    isMenuMobileOpened,
-    handleMenuMobileOpen,
     menuOptions,
   };
 };
