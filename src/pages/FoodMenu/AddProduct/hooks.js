@@ -85,7 +85,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       dataEdit.append("title", name);
       dataEdit.append(
         "price",
-        parseFloat(promotionalPrice ? promotionalPrice : price)
+            parseFloat(promotionalPrice || price)
       );
       dataEdit.append("description", description);
       dataEdit.append("daysActive", JSON.stringify(daysActive));
