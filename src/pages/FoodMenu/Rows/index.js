@@ -79,7 +79,7 @@ function Rows({
                   {loadingAction
                     ? "Pausando"
                     : isMobile
-                    ? "Pausar"
+                      ? "Pausar"
                       : "Pausar categoria"}
                 </TitleButton>
               </>
