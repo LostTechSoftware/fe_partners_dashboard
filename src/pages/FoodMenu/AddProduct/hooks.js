@@ -60,7 +60,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           data.append("title", name);
           data.append(
             "price",
-            parseFloat(promotionalPrice ? promotionalPrice : price)
+            parseFloat(promotionalPrice || price)
           );
           data.append("description", description);
           data.append("daysActive", JSON.stringify(daysActive));
@@ -142,7 +142,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       if (product.terca) {
         const updated = daysActive;
 
-        daysActive["terca"].active = !daysActive["terca"].active;
+        daysActive.terca.active = !daysActive["terca"].active;
         setDaysActive(updated);
       }
       if (product.quarta) {
@@ -166,7 +166,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       if (product.sabado) {
         const updated = daysActive;
 
-        daysActive["sabado"].active = !daysActive["sabado"].active;
+        daysActive.sabado.active = !daysActive["sabado"].active;
         setDaysActive(updated);
       }
       if (product.domingo) {
