@@ -7,8 +7,9 @@ export const Themes = () => {
     light: Light,
   };
 
-  if (obj[localStorage.getItem("theme")])
+  if (obj[localStorage.getItem("theme")]) {
     return obj[localStorage.getItem("theme")];
+  }
 
   return Light;
 };

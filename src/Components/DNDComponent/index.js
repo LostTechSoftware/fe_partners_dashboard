@@ -37,7 +37,7 @@ export default function DNDComponent({ defaultItens = [], setItem, children }) {
                 )}
               </Draggable>
             ))}
-            {provided1.placeholder}
+            {provided.placeholder}
             {children}
           </div>
         )}

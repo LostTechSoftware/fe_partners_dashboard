@@ -69,7 +69,7 @@ function Rows({
                     ? "Retomando"
                     : isMobile
                     ? "Retomar"
-                      : "Retomar categoria"}
+                    : "Retomar categoria"}
                 </TitleButton>
               </>
             ) : (
@@ -79,8 +79,8 @@ function Rows({
                   {loadingAction
                     ? "Pausando"
                     : isMobile
-                      ? "Pausar"
-                      : "Pausar categoria"}
+                    ? "Pausar"
+                    : "Pausar categoria"}
                 </TitleButton>
               </>
             )}

@@ -10,11 +10,11 @@ export const useReorder = ({ rows, setReload }) => {
     try {
       setTimeout(setReload(true), 5000);
 
-      if (!items)
+      if (!items) {
         return toast.error(
           "Faça alguma edição para que possamos salvar, ou cancele"
         );
-
+      }
       await api.post("/reorder/rows", { rows: items });
 
       toast.success("Categorias reordenadas");

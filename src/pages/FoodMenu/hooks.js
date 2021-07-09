@@ -80,7 +80,7 @@ export const useMenu = () => {
           updatedProducts2[i].paused = dataProductPause2.paused;
         }
 
-        setProducts(updatedProducts2);
+        setProducts(updatedProducts);
       }
     }
 

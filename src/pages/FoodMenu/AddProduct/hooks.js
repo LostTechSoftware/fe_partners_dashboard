@@ -58,10 +58,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           const data = new FormData();
 
           data.append("title", name);
-          data.append(
-            "price",
-            parseFloat(promotionalPrice || price)
-          );
+          data.append("price", parseFloat(promotionalPrice || price));
           data.append("description", description);
           data.append("daysActive", JSON.stringify(daysActive));
           data.append("promotion", promotion);
