@@ -31,6 +31,7 @@ import AddAdditional from "./AddAdditional";
 import EditCategory from "./EditCategory";
 import Rows from "./Rows";
 import Product from "./Product";
+import PopUpReorder from "./EditCategory/PopUpReorder";
 
 export default function FoodMenu() {
   const [isMobile] = useScreenMeasure();
@@ -62,10 +63,13 @@ export default function FoodMenu() {
     setAdditionals,
     search,
     products,
-    setProducts,
     action,
     text,
     changeAvaliablyAllProduct,
+    openPopUp2,
+    popUp2,
+    defaultRows,
+    setRows,
   ] = useMenu();
 
   return (
@@ -83,7 +87,8 @@ export default function FoodMenu() {
             addCategory ||
             isMenuMobileOpened ||
             editCategory ||
-            addAdditional
+            addAdditional ||
+            popUp2
           }
         >
           <Header>
@@ -96,10 +101,19 @@ export default function FoodMenu() {
                 <ButtonText>Retirada</ButtonText>
               </ButtonHeader>
             </ContainerButtons>
-
             <ContainerSelect>
-              <Selector>
-                <Option>Todas as categorias</Option>
+              <Selector
+                onChange={(event) => {
+                  if (event.target.value === "all") return setRows(defaultRows);
+                  setReload(true);
+                  setRows([JSON.parse(event.target.value)]);
+                  setTimeout(setReload(false), 1000);
+                }}
+              >
+                <Option value={"all"}>Todas as categorias</Option>
+                {defaultRows.map((row) => (
+                  <Option value={JSON.stringify(row)}>{row.title}</Option>
+                ))}
               </Selector>
             </ContainerSelect>
 
@@ -127,7 +141,7 @@ export default function FoodMenu() {
                   </TextButton>
                 </ButtonContainer>
 
-                <ButtonContainer>
+                <ButtonContainer onClick={() => openPopUp2()}>
                   <Sliders />
                   <TextButton>
                     {isMobile ? "Reorganizar" : "Reorganizar categorias"}
@@ -206,10 +220,16 @@ export default function FoodMenu() {
               ClickAdd={ClickAdd}
               rows={rows}
               additionals={additionals}
-              setReload={setReload}
               setAdditionals={setAdditionals}
             />
           )}
+
+          <PopUpReorder
+            setReload={setReload}
+            rows={rows}
+            show={popUp2}
+            close={openPopUp2}
+          />
         </Container>
       </div>
     </>

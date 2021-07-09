@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const useDNDComponent = ({ defaultItens = [], setItem }) => {
+export const useDNDComponent = ({ defaultItens, setItem }) => {
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -9,7 +9,11 @@ export const useDNDComponent = ({ defaultItens = [], setItem }) => {
     return result;
   };
 
-  const [itens, setItems] = useState(defaultItens);
+  const [itens, setItems] = useState([]);
+
+  useEffect(() => {
+    if (itens) return setItems(defaultItens);
+  }, [defaultItens]);
 
   const grid = 8;
 
@@ -18,14 +22,13 @@ export const useDNDComponent = ({ defaultItens = [], setItem }) => {
     padding: grid * 2,
     margin: `0 0 ${grid}px 0`,
 
-    background: "#fff",
-
     ...draggableStyle,
   });
 
   const getListStyle = () => ({
     padding: grid,
-    width: 250,
+    width: "100%",
+    height: "100%",
   });
 
   const onDragEnd = (result) => {

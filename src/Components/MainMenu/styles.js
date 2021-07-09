@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { Themes } from "../../utils/themes";
 
 export const DesktopContainer = styled.aside`
   display: flex;
@@ -32,7 +33,7 @@ export const DesktopContainer = styled.aside`
 export const DesktopContent = styled.div`
   width: 100%;
   height: 100%;
-  background: #fcfcfc;
+  background: ${Themes().menuBars};
   overflow-y: scroll;
 `;
 
@@ -40,6 +41,7 @@ export const MobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 17px 21px;
+  background: ${Themes().menuBars};
 `;
 
 export const Top = styled.div`
@@ -50,7 +52,7 @@ export const Top = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: #fcfcfc;
+  background: ${Themes().menuBars};
 `;
 
 export const ContentMobile = styled.div`
@@ -63,7 +65,7 @@ export const ContentMobile = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: #fcfcfc;
+  background-color: ${Themes().menuBars};
   position: absolute;
   inset: 0;
   cursor: default;
@@ -128,7 +130,7 @@ export const Link = styled(ReactRouterLink)`
   text-decoration: none;
 
   margin-left: 35px;
-  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
 
 export const LinkBottom = styled.a`
@@ -141,7 +143,7 @@ export const LinkBottom = styled.a`
   text-decoration: none;
 
   margin-left: 35px;
-  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
 
 export const LinkHeader = styled(ReactRouterLink)`
@@ -153,7 +155,7 @@ export const LinkHeader = styled(ReactRouterLink)`
   font-weight: 500;
   text-decoration: none;
 
-  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
 
 export const Image = styled.img`

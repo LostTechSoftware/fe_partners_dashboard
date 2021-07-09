@@ -58,7 +58,10 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           const data = new FormData();
 
           data.append("title", name);
-          data.append("price", parseFloat(promotionalPrice));
+          data.append(
+            "price",
+            parseFloat(promotionalPrice ? promotionalPrice : price)
+          );
           data.append("description", description);
           data.append("daysActive", JSON.stringify(daysActive));
           data.append("promotion", promotion);
@@ -80,7 +83,10 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       const data = new FormData();
 
       data.append("title", name);
-      data.append("price", parseFloat(promotionalPrice));
+      data.append(
+        "price",
+        parseFloat(promotionalPrice ? promotionalPrice : price)
+      );
       data.append("description", description);
       data.append("daysActive", JSON.stringify(daysActive));
       data.append("promotion", promotion);
@@ -189,6 +195,19 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     "domingo",
   ];
 
+  const deleteItem = async () => {
+    try {
+      setReload(false);
+      await api.delete(`/delete/product/${product._id}`);
+      setReload(true);
+      toast.success("Produto deletado!");
+    } catch {
+      toast.error("Erro ao deletar produto, tente novamente!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     days,
     name,
@@ -212,5 +231,6 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     loading,
     showDays,
     setShowDays,
+    deleteItem,
   };
 };

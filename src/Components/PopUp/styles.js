@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Themes } from "../../utils/themes";
 
 export const Container = styled.div`
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.1));
@@ -26,11 +27,11 @@ export const Title = styled.p`
   display: flex;
   align-items: center;
 
-  color: #000000;
+  color: ${Themes().gray};
 `;
 
 export const PopUpContainer = styled.div`
-  background: #ffffff;
+  background: ${Themes().background};
   border-radius: 5px;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -50,7 +51,7 @@ export const BottomContainer = styled.div`
   bottom: 0;
 
   display: flex;
-  background: #fff;
+  background: ${Themes().background};
   width: 100%;
 
   @media screen and (max-width: 800px) {
@@ -80,7 +81,7 @@ export const BottomButton = styled.div`
     props.outline &&
     ` border: 1px solid #FFE115;
       box-sizing: border-box;
-      background: #fff;
+      background: ${Themes().background};
       border-radius: 5px;
     `}
 

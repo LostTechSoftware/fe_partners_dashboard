@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Themes } from "../../utils/themes";
 
 export const ContainerFlex = styled.div`
   color: #ddd;
@@ -17,5 +18,5 @@ export const Title = styled.p`
   font-size: 15px;
   line-height: 18px;
 
-  color: #000000;
+  color: ${Themes().wordColors};
 `;

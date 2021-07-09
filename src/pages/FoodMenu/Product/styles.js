@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Themes } from "../../../utils/themes";
 
 export const Container = styled.div`
   flex-wrap: wrap;
@@ -72,6 +73,7 @@ export const ProductTitle = styled.p`
   line-height: 18px;
   text-align: center;
   margin-top: 15px;
+  color: ${Themes().wordColors};
 
   @media screen and (max-width: 425px) {
     margin-top: 10px;

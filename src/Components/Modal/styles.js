@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Themes } from "../../utils/themes";
+import { Trash } from "react-feather";
 
 export const Container = styled.div`
-  background: white;
+  background: ${Themes().background};
   right: 0;
   width: ${(props) => props.width}%;
   box-shadow: 5px 5px 15px 5px #00000057;
@@ -63,7 +65,7 @@ export const Title = styled.p`
   font-size: 18px;
   line-height: 21px;
   text-align: center;
-  margin-top: 20px;
+  color: ${Themes().wordColors};
 `;
 
 export const BottomContainer = styled.div`
@@ -77,7 +79,7 @@ export const BottomContainer = styled.div`
     `}
 
   display: flex;
-  background: #fff;
+  background: ${Themes().background};
   width: ${(props) => props.width}%;
 
   ${(props) =>
@@ -121,7 +123,7 @@ export const BottomButton = styled.div`
     props.outline &&
     ` border: 1px solid #FFE115;
       box-sizing: border-box;
-      background: #fff;
+      background: ${Themes().background};
       border-radius: 5px;
     `}
 
@@ -155,4 +157,23 @@ export const BottomLabel = styled.p`
     ` 
     color:#fff
   `}
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 100px;
+  align-items: center;
+  margin-top: 20px;
+
+  ${({ showTrash }) =>
+    !showTrash &&
+    css`
+      justify-content: center;
+    `}
+`;
+
+export const TrashComponent = styled(Trash)`
+  cursor: pointer;
 `;

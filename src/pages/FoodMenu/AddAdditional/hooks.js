@@ -26,11 +26,10 @@ export const useAddAdditinal = ({
 
         return toast.error("O preço não pode ser menor que zero");
       }
-      if (!price || !name)
-        return toast.error("Preencha todas as informações com *");
+      if (!name) return toast.error("Preencha todas as informações com *");
 
       toast.info("Salvando suas informações, aguarde");
-      if (selectedRows._id) {
+      if (!selectedAdditonal._id) {
         try {
           const data = new FormData();
 
@@ -40,27 +39,30 @@ export const useAddAdditinal = ({
           if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
           await api.post(`/additional/${selectedRows._id}`, data);
-          toast.success("Produto salvo!");
+          toast.success("Adicinal salvo!");
         } catch {
-          toast.error("Erro ao salvar produto, tente novamente!");
+          toast.error("Erro ao salvar Adicinal, tente novamente!");
         } finally {
           setLoading(false);
         }
         return;
       }
-      // const data = new FormData();
+      const data = new FormData();
 
-      // data.append("title", name);
+      data.append("title", name);
 
-      // data.append("price", price);
+      data.append("price", price);
 
-      // if (uploadedFiles) data.append("avatar", uploadedFiles.file);
+      if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
-      // await api.post(`/product/edit/${selectedAdditonal}`, data);
+      await api.post(
+        `/edit/additional/${selectedRows._id}/${selectedAdditonal._id}`,
+        data
+      );
 
-      // toast.success("Produto salvo!");
+      toast.success("Adicional salvo!");
     } catch {
-      toast.error("Erro ao salvar produto, tente novamente!");
+      toast.error("Erro ao salvar Adicinal, tente novamente!");
     } finally {
       setLoading(false);
     }

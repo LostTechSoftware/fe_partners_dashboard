@@ -4,7 +4,7 @@ import { Menu, Trash } from "react-feather";
 import { useDNDComponent } from "./hooks";
 import { ContainerFlex, Title } from "./styles";
 
-export default function DNDComponent({ defaultItens, setItem, children }) {
+export default function DNDComponent({ defaultItens = [], setItem, children }) {
   const [getItemStyle, getListStyle, itens, onDragEnd] = useDNDComponent({
     defaultItens,
     setItem,

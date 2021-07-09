@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { Themes } from "../../../utils/themes";
 
 export const Container = styled.div``;
 
 export const ButtonContainer = styled.div`
-  background-color: #fff;
+  background-color: ${Themes().background};
   color: #ffe115;
   margin-left: 5px;
   cursor: pointer;
@@ -68,7 +69,7 @@ export const ContainerAdditional = styled.div`
 `;
 
 export const Additional = styled.div`
-  border: 1px solid #dddddd;
+  border: 1px solid ${Themes().gray};
   box-sizing: border-box;
   border-radius: 5px;
 
@@ -119,7 +120,7 @@ export const TitleAdditional = styled.p`
   text-align: center;
   line-height: 14px;
 
-  color: #000000;
+  color: ${Themes().wordColors};
 
   width: 90%;
 `;
@@ -131,7 +132,7 @@ export const Price = styled.p`
   font-size: 12px;
   line-height: 14px;
 
-  color: #dddddd;
+  color: ${Themes().gray};
 `;
 
 export const AddAdditional = styled.div`
@@ -187,5 +188,5 @@ export const TitleEmpty = styled.p`
   font-size: 15px;
   line-height: 18px;
 
-  color: #dddddd;
+  color: ${Themes().gray};
 `;

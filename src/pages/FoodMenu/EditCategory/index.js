@@ -52,15 +52,12 @@ function EditCategory({
   selectedRows,
   additionals,
   setAdditionals,
-  rows,
   setReload: setReloadRows,
 }) {
   const [isMobile] = useScreenMeasure();
   const [
     openPopUp1,
-    openPopUp2,
     popUp1,
-    popUp2,
     selectedRowAdditional,
     setSelectedRowAdditional,
     selectedIndex,
@@ -85,11 +82,6 @@ function EditCategory({
                 <TextButton background>
                   {isMobile ? "Novo" : "Nova categoria"}
                 </TextButton>
-              </ButtonContainer>
-
-              <ButtonContainer onClick={openPopUp2}>
-                <Sliders />
-                <TextButton>Reorganizar </TextButton>
               </ButtonContainer>
             </ButtonsHeaderContainer>
 
@@ -181,12 +173,6 @@ function EditCategory({
         setAdditionals={setAdditionals}
         index={selectedIndex}
         selectedRows={selectedRows}
-      />
-      <PopUpReorder
-        setReload={setReloadRows}
-        rows={rows}
-        show={popUp2}
-        close={openPopUp2}
       />
     </Modal>
   );

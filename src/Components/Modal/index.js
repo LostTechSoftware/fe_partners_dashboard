@@ -1,5 +1,6 @@
 import React from "react";
 import { useScreenMeasure } from "../../utils/isMobile";
+import { Themes } from "../../utils/themes";
 
 import {
   Container,
@@ -8,6 +9,8 @@ import {
   BottomButton,
   BottomLabel,
   ClickOut,
+  Row,
+  TrashComponent,
 } from "./styles";
 import "./styles.css";
 
@@ -19,6 +22,8 @@ function Modal({
   width = 40,
   height = 100,
   buttonsDisabled = false,
+  showTrash = false,
+  onClickTrash = () => console.log("Action não configurada"),
   onClick = () => console.log("Action não configurada"),
 }) {
   const [isMobile] = useScreenMeasure();
@@ -37,7 +42,16 @@ function Modal({
         className="animationModal"
         isMobile={isMobile}
       >
-        <Title>{title}</Title>
+        <Row showTrash={showTrash}>
+          <Title>{title}</Title>
+
+          {showTrash && (
+            <TrashComponent
+              onClick={onClickTrash}
+              color={Themes().wordColors}
+            />
+          )}
+        </Row>
 
         {children}
 

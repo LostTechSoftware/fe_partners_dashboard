@@ -4,7 +4,6 @@ import api from "../../../services/api";
 
 export const useEditCategory = ({ rowId, setAdditionals, additionals }) => {
   const [popUp1, setPopUp1] = useState(false);
-  const [popUp2, setPopUp2] = useState(false);
   const [selectedRowAdditional, setSelectedRowAdditional] = useState({});
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -14,20 +13,17 @@ export const useEditCategory = ({ rowId, setAdditionals, additionals }) => {
     setPopUp1(!popUp1);
   };
 
-  const openPopUp2 = () => {
-    setPopUp2(!popUp2);
-  };
-
   async function getAdditinals() {
     setLoading(true);
-    const { data } = await api.get(`/row/get/${rowId}`);
+    const response = await api.get(`/row/get/${rowId}`);
+    const { data } = response;
+
+    if (!data) return setLoading(false);
 
     const { additional } = data;
     setAdditionals(additional);
     setLoading(false);
   }
-
-  console.log(rowId);
 
   useEffect(() => {
     getAdditinals();
@@ -40,9 +36,7 @@ export const useEditCategory = ({ rowId, setAdditionals, additionals }) => {
 
   return [
     openPopUp1,
-    openPopUp2,
     popUp1,
-    popUp2,
     selectedRowAdditional,
     setSelectedRowAdditional,
     selectedIndex,

@@ -9,7 +9,12 @@ export const Hamburguer = ({ isActive }) => {
         type="button"
       >
         <span className="hamburger-box">
-          <span className="hamburger-inner"></span>
+          <span
+            className={`hamburger-inner ${
+              localStorage.getItem("theme") === "dark" &&
+              "hamburger-inner-isDark"
+            }`}
+          ></span>
         </span>
       </button>
     </>

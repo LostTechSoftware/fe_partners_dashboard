@@ -17,8 +17,10 @@ export const useMenu = () => {
   const [additionals, setAdditionals] = useState([]);
   const [products, setProducts] = useState([]);
   const [text, setText] = useState("");
+  const [popUp2, setPopUp2] = useState(false);
 
   const [rows, setRows] = useState([]);
+  const [defaultRows, setDefaultRows] = useState([]);
   const [remove, setRemove] = useState(false);
 
   const handleMenuMobileOpen = useCallback(() => {
@@ -47,8 +49,9 @@ export const useMenu = () => {
     const { data } = await api.get(`/menu/restaurant/get`);
 
     const { rows: rowsResponse } = data;
-    setRows(rowsResponse);
 
+    setRows(rowsResponse);
+    setDefaultRows(rowsResponse);
     setLoading(false);
   }
 
@@ -78,6 +81,10 @@ export const useMenu = () => {
     }
 
     setLoading(false);
+  };
+
+  const openPopUp2 = () => {
+    setPopUp2(!popUp2);
   };
 
   const action = (product) => {
@@ -118,9 +125,12 @@ export const useMenu = () => {
     setAdditionals,
     search,
     products,
-    setProducts,
     action,
     text,
     changeAvaliablyAllProduct,
+    openPopUp2,
+    popUp2,
+    defaultRows,
+    setRows,
   ];
 };

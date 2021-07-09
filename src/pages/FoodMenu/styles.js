@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { Themes } from "../../utils/themes";
 
 export const Container = styled.div`
   height: 100%;
   width: 80%;
   position: absolute;
   right: 0;
+  background: ${Themes().background};
 
   ${(props) =>
     !props.isMobile &&
@@ -35,6 +37,7 @@ export const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background: ${Themes().menuBars};
 
   @media screen and (max-width: 980px) {
     justify-content: space-around;
@@ -63,7 +66,7 @@ export const ButtonHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 5px solid #fff;
+  border-bottom: 5px solid ${Themes().menuBars};
   cursor: pointer;
 
   ${(props) =>
@@ -76,6 +79,7 @@ export const ButtonText = styled.p`
   font-weight: 300;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
+  color: ${Themes().wordColors};
 `;
 
 export const Selector = styled.select`
@@ -87,6 +91,8 @@ export const Selector = styled.select`
   height: 35px;
   font-family: "Roboto", sans-serif;
   padding: 5px;
+  background: ${Themes().menuBars};
+  color: ${Themes().wordColors};
 `;
 
 export const Input = styled.input`
@@ -99,15 +105,15 @@ export const Input = styled.input`
   font-size: 15px;
   line-height: 140.62%;
 
-  color: #dddddd;
+  color: ${Themes().gray};
 `;
 
 export const SearchBox = styled.div`
-  background-color: #fcfcfc;
+  background-color: ${Themes().menuBars};
   border-radius: 5px;
   width: 300px;
   height: 43px;
-  color: #ddd;
+  color: ${Themes().gray};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -137,6 +143,7 @@ export const ContainerSearch = styled.div`
 
 export const ContainerPadding = styled.div`
   padding: 30px;
+  background: ${Themes().background};
 `;
 
 export const ButtonsHeaderContainer = styled.div`
@@ -144,7 +151,7 @@ export const ButtonsHeaderContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  background-color: #fff;
+  background-color: ${Themes().background};
   color: #ffe115;
   margin-left: 5px;
   cursor: pointer;
@@ -191,13 +198,14 @@ export const Title = styled.p`
   font-weight: 300;
   font-size: 15px;
   line-height: 18px;
+  color: ${Themes().wordColors};
 `;
 
 export const RightComponent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 20%;
+  width: 22%;
 
   @media screen and (max-width: 1490px) {
     width: 25%;
@@ -223,7 +231,7 @@ export const RightComponent = styled.div`
 export const ButtonEdit = styled.div`
   display: flex;
   align-items: center;
-  color: #ddd;
+  color: ${Themes().gray};
   cursor: pointer;
 `;
 
@@ -240,7 +248,7 @@ export const TitleButton = styled.p`
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #ddd;
+  color: ${Themes().gray};
   margin-left: 5px;
   ${(props) => props.yellow && `color: #ffe115;`};
 `;
@@ -280,11 +288,11 @@ export const LabelEdit = styled.p`
   display: flex;
   align-items: center;
 
-  color: #dddddd;
+  color: ${Themes().gray};
 `;
 
 export const MinorInput = styled.input`
-  border: 1px solid #dddddd;
+  border: 1px solid ${Themes().gray};
   box-sizing: border-box;
   border-radius: 5px;
 
@@ -309,5 +317,5 @@ export const Option = styled.option`
   font-size: 12px;
   line-height: 14px;
 
-  color: #000000;
+  color: ${Themes().wordColors};
 `;

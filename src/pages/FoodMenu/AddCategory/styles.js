@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Themes } from "../../../utils/themes";
 
 export const Container = styled.div`
   margin-top: 20px;
@@ -7,6 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: ${Themes().background};
 `;
 
 export const Label = styled.p`
@@ -16,12 +18,12 @@ export const Label = styled.p`
   font-size: 15px;
   line-height: 18px;
 
-  color: #000000;
+  color: ${Themes().wordColors};
 `;
 
 export const Input = styled.input`
-  background: #ffffff;
-  border: 1px solid #dddddd;
+  background: ${Themes().background};
+  border: 1px solid ${Themes().gray};
   border-radius: 5px;
 
   font-family: "Roboto", sans-serif;
@@ -31,7 +33,7 @@ export const Input = styled.input`
   line-height: 140.62%;
 
   padding: 5px;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
 
   width: 70%;
   height: 60px;

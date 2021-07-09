@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { Themes } from "../../../utils/themes";
 
 export const InputName = styled.input`
-  border: 1px solid #dddddd;
+  border: 1px solid ${Themes().gray};
+  background: ${Themes().background};
   box-sizing: border-box;
   border-radius: 5px;
   width: 100%;
@@ -20,18 +22,20 @@ export const InputName = styled.input`
   font-size: 12px;
   line-height: 14px;
 
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
 
   padding: 5px;
 `;
 
 export const InputPrice = styled.input`
-  border: 1px solid #dddddd;
+  border: 1px solid ${Themes().gray};
   box-sizing: border-box;
   border-radius: 5px;
   width: 50%;
 
   height: 35px;
+
+  background: ${Themes().background};
 
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -39,7 +43,7 @@ export const InputPrice = styled.input`
   font-size: 12px;
   line-height: 14px;
 
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
 
   padding: 5px;
 `;
@@ -68,7 +72,7 @@ export const Label = styled.div`
   font-size: 12px;
   line-height: 14px;
 
-  color: #dddddd;
+  color: ${Themes().gray};
 `;
 
 export const CaractersCount = styled.div`
@@ -80,7 +84,7 @@ export const CaractersCount = styled.div`
 
   text-align: right;
 
-  color: #dddddd;
+  color: ${Themes().gray};
   width: 100%;
 `;
 
@@ -111,7 +115,7 @@ export const ContainerInput = styled.div`
 `;
 
 export const Selector = styled.select`
-  background: #ffffff;
+  background: ${Themes().background};
   border: 1px solid #dddddd;
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -119,7 +123,7 @@ export const Selector = styled.select`
   font-size: 12px;
   line-height: 14px;
 
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
 
   box-sizing: border-box;
   border-radius: 5px;
@@ -130,8 +134,8 @@ export const Selector = styled.select`
 export const TextArea = styled.textarea`
   width: 100%;
   height: 92px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
+  background: ${Themes().background};
+  border: 1px solid ${Themes().gray};
   box-sizing: border-box;
   border-radius: 5px;
 
@@ -167,7 +171,7 @@ export const LabelCheckBox = styled.p`
 
   margin-right: 10px;
 
-  color: #ddd;
+  color: ${Themes().gray};
 `;
 
 export const ContainerCheckBox = styled.div`

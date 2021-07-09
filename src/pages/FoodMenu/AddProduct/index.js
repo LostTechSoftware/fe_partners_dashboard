@@ -57,6 +57,7 @@ function AddProduct({
     deleteProductAvatar,
     showDays,
     setShowDays,
+    deleteItem,
   } = useAddProduct({ product, updateProductOnTable, reload, setReload, rows });
 
   return (
@@ -66,6 +67,8 @@ function AddProduct({
       displayBottom
       title="Adicionar produto"
       buttonsDisabled={loading}
+      showTrash={!!product}
+      onClickTrash={deleteItem}
     >
       <ContainerDropZone>
         <Dropzone
