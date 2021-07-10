@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Themes } from "../../utils/themes";
 
 export const Input = styled.div`
   width: 100%;
@@ -14,7 +15,7 @@ export const Label = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #111;
+  color: ${Themes().wordColors};
   margin-bottom: 1%;
 `;
 
@@ -37,8 +38,8 @@ export const LabelCodeInput = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
-  color: #111;
   margin-bottom: 1%;
+  color: ${Themes().wordColors};
 `;
 
 export const LabelPassword = styled.div`
@@ -49,6 +50,7 @@ export const LabelPassword = styled.div`
   line-height: 14px;
   color: #111;
   margin-bottom: 1%;
+  color: ${Themes().wordColors};
 `;
 
 export const ContainerInput = styled.div`
@@ -86,8 +88,9 @@ export const InputName = styled.input`
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
   padding: 5px;
+  background: ${Themes().background};
 `;
 
 export const Container = styled.div`
@@ -107,6 +110,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: flex-end;
   padding: 200px;
+  background-color: ${Themes().background};
 `;
 
 export const DivAlign = styled.div`
@@ -160,9 +164,10 @@ export const PasswordInput1 = styled.input`
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
   padding: 5px;
   margin-bottom: 2%;
+  background: ${Themes().background};
 `;
 
 export const PasswordInput2 = styled.input`
@@ -181,6 +186,7 @@ export const PasswordInput2 = styled.input`
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
   padding: 5px;
+  background: ${Themes().background};
 `;

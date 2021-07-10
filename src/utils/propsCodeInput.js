@@ -1,3 +1,4 @@
+import { Themes } from "../utils/themes";
 const styledCodeInput = {
   inputStyle: {
     fontFamily: "roboto",
@@ -9,6 +10,7 @@ const styledCodeInput = {
     textAlign: "center",
     color: "#ffe115",
     border: "1px solid #ffe115",
+    backgroundColor: `${Themes().background}`,
   },
   inputStyleInvalid: {
     fontFamily: "roboto",
@@ -20,6 +22,7 @@ const styledCodeInput = {
     textAlign: "center",
     color: "#E74C3C",
     border: "1px solid #E74C3C",
+    backgroundColor: `${Themes().background}`,
   },
 };
 const styledMobileCodeInput = {
@@ -33,6 +36,7 @@ const styledMobileCodeInput = {
     textAlign: "center",
     color: "#ffe115",
     border: "1px solid #ffe115",
+    backgroundColor: `${Themes().background}`,
   },
   inputStyleInvalid: {
     fontFamily: "roboto",
@@ -44,6 +48,7 @@ const styledMobileCodeInput = {
     textAlign: "center",
     color: "#E74C3C",
     border: "1px solid #E74C3C",
+    backgroundColor: `${Themes().background}`,
   },
 };
 export { styledCodeInput, styledMobileCodeInput };

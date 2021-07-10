@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
+import { Themes } from "../../utils/themes";
+
 export const ContainerImage = styled.div`
   display: flex;
   height: 100%;
+  background: ${Themes().background};
 `;
 
 export const Input = styled.div`
@@ -56,8 +59,9 @@ export const InputName = styled.input`
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
   padding: 5px;
+  background: ${Themes().background};
 `;
 
 export const Logo = styled.img`
@@ -86,8 +90,6 @@ export const Form = styled.form`
     width: 100%;
     padding-right: 0px;
   }
-  background-color: #fff;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,6 +102,10 @@ export const Form = styled.form`
 `;
 
 export const Image = styled.img`
+  @media screen and (max-width: 800px) {
+    width: 0%;
+    padding-right: 0px;
+  }
   height: 85%;
   width: 50%;
   object-fit: contain;
@@ -129,7 +135,7 @@ export const LabelPassword = styled.label`
 `;
 
 export const ForgotPassword = styled.button`
-  background-color: #fff;
+  background: ${Themes().background};
   border-width: 0;
   color: #ffe115;
   display: flex;

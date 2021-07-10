@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Themes } from "../../utils/themes";
 
 import {
   ContainerImage,
@@ -93,7 +94,7 @@ export default function Login() {
         <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Cooking-cuate.png"></Image>
 
         <Form onSubmit={tryLogin}>
-          <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
+          <Logo src={Themes().logo}></Logo>
           <Input>
             <ContainerInput>
               <Label>Email</Label>
