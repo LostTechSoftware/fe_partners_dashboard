@@ -18,7 +18,30 @@ export const Label = styled.div`
   margin-bottom: 1%;
 `;
 
+export const LabelInvalid = styled.div`
+  @media (max-width: 800px) {
+    font-size: 11px;
+  }
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #e74c3c;
+  margin-bottom: 1%;
+`;
+
 export const LabelCodeInput = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #111;
+  margin-bottom: 1%;
+`;
+
+export const LabelPassword = styled.div`
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -95,6 +118,9 @@ export const DivAlign = styled.div`
 `;
 
 export const Logo = styled.img`
+  @media (max-width: 800px) {
+    width: 40%;
+  }
   width: 30%;
   margin-bottom: 10%;
 `;
@@ -103,7 +129,7 @@ export const Button = styled.button`
   @media (max-height: 874px) {
     width: 90%;
   }
-  background: #ffe115;
+  background: ${(props) => (props.disabled ? "#ddd" : "#ffe115")};
   border-radius: 5px;
   width: 90%;
   height: 8%;
@@ -116,4 +142,45 @@ export const ButtonText = styled.text`
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   font-size: 25px;
+`;
+
+export const PasswordInput1 = styled.input`
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 90%;
+  ${(props) =>
+    props.half &&
+    `
+    width: 90%;
+  `}
+  height: 35px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 5px;
+  margin-bottom: 2%;
+`;
+
+export const PasswordInput2 = styled.input`
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 90%;
+  ${(props) =>
+    props.half &&
+    `
+    width: 90%;
+  `}
+  height: 35px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 5px;
 `;

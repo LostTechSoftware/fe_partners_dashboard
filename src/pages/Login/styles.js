@@ -84,7 +84,6 @@ export const ButtonText = styled.text`
 export const Form = styled.form`
   @media screen and (max-width: 800px) {
     width: 100%;
-    padding: 20px;
     padding-right: 0px;
   }
   background-color: #fff;

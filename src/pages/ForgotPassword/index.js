@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-import ReactCodeInput from "react-code-input";
-import api from "../../services/api";
-import { toast } from "react-toastify";
-import {
-  styledCodeInput,
-  styledMobileCodeInput,
-} from "../../utils/propsCodeInput";
-import { useScreenMeasure } from "../../utils/isMobile";
+
+import { RenderComponents } from "./RenderComponents";
 
 import {
   Container,
@@ -16,73 +10,78 @@ import {
   Logo,
   DivAlign,
   ContainerInput,
-  Label,
-  InputName,
-  LabelCodeInput,
+  LabelInvalid,
 } from "./styles";
 
+import { ForgotPasswordHooks } from "./hooks";
+
 export default function ForgotPassword() {
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [codeInput, setCodeInput] = useState(true);
-  const [isValidCode, setIsValidCode] = useState(false);
-  const [token, setToken] = useState("");
-  const [isMobile] = useScreenMeasure();
-  const codeInputStyle = isMobile ? styledMobileCodeInput : styledCodeInput;
-
-  useEffect(() => {
-    if (!/^\d+$/g.test(token) || token.length !== 6)
-      return setIsValidCode(false);
-    if (/^\d+$/g.test(token) && token.length === 6) return setIsValidCode(true);
-  }, [token]);
-
-  async function onClickForgotPassword(event) {
-    event.preventDefault();
-    setLoading(true);
-    try {
-      await api.post("/restaurant/forgot_password", {
-        email,
-      });
-      setCodeInput(true);
-    } catch (error) {
-      setLoading(false);
-      toast.error("Parceiro não encontrado em nosso sistema");
-    }
-  }
-
+  const [
+    loading,
+    setLoading,
+    email,
+    setEmail,
+    showCodeInput,
+    setShowCodeInput,
+    isValidCode,
+    setIsValidCode,
+    token,
+    setToken,
+    password,
+    setPassword,
+    newPassword1,
+    setNewPassword1,
+    newPassword2,
+    setNewPassword2,
+    equalPassword1,
+    setEqualPassword1,
+    showResetPassword,
+    setShowResetPassword,
+    history,
+    onClick,
+    resetPassword,
+    forgotPassword,
+    disabledEmail,
+    disabledToken,
+    disabledPassword,
+    passwordIsValid,
+    validateEqualPassword,
+  ] = ForgotPasswordHooks();
   return (
     <Container>
       <DivAlign>
         <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
         <ContainerInput>
-          {codeInput ? (
-            <>
-              <LabelCodeInput>
-                Insira o código de verificação que enviamos para o seu email
-              </LabelCodeInput>
-              <ReactCodeInput
-                value={token}
-                onChange={(event) => {
-                  setToken(event);
-                }}
-                isValid={isValidCode}
-                type="text"
-                fields={6}
-                {...codeInputStyle}
-              />
-            </>
-          ) : (
-            <>
-              <Label>Qual seu email ?</Label>
-              <InputName
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </>
+          {!passwordIsValid && (
+            <LabelInvalid>
+              A senha precisa conter 8 caracteres, maiúscula, minúscula e
+              números
+            </LabelInvalid>
           )}
+          {!equalPassword1 && (
+            <LabelInvalid>As senhas não coincidem</LabelInvalid>
+          )}
+          <RenderComponents
+            newPassword1={newPassword1}
+            newPassword2={newPassword2}
+            setNewPassword1={setNewPassword1}
+            setNewPassword2={setNewPassword2}
+            token={token}
+            setToken={setToken}
+            isValidCode={isValidCode}
+            email={email}
+            setEmail={setEmail}
+            showResetPassword={showResetPassword}
+            showCodeInput={showCodeInput}
+            validateEqualPassword={validateEqualPassword}
+            passwordIsValid={passwordIsValid}
+          />
         </ContainerInput>
-        <Button onClick={onClickForgotPassword}>
+
+        <Button
+          disabled={disabledEmail || !equalPassword1 || !passwordIsValid}
+          onClick={onClick}
+        >
           <ButtonText>Continuar</ButtonText>
         </Button>
       </DivAlign>
