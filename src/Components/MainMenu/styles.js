@@ -1,12 +1,26 @@
 import styled from "styled-components";
 import { Link as ReactRouterLink } from "react-router-dom";
+import { Themes } from "../../utils/themes";
 
 export const DesktopContainer = styled.aside`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 20%;
+
+  ${(props) =>
+    !props.isMobile &&
+    `
+  @media screen and (max-width: 1140px) {
+    width: 25%;
+  }
+
+  @media screen and (max-width: 905px) {
+    width: 30%;
+  }
+  `};
+
   height: 100vh;
-  position: sticky;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -19,24 +33,26 @@ export const DesktopContainer = styled.aside`
 export const DesktopContent = styled.div`
   width: 100%;
   height: 100%;
-  background: #fcfcfc;
+  background: ${Themes().menuBars};
+  overflow-y: scroll;
 `;
 
 export const MobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 17px 21px;
+  background: ${Themes().menuBars};
 `;
 
 export const Top = styled.div`
   width: 40px;
-  height: 40px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: #fcfcfc;
+  background: ${Themes().menuBars};
 `;
 
 export const ContentMobile = styled.div`
@@ -49,7 +65,7 @@ export const ContentMobile = styled.div`
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: #fcfcfc;
+  background-color: ${Themes().menuBars};
   position: absolute;
   inset: 0;
   cursor: default;
@@ -89,14 +105,12 @@ export const Option = styled.div`
   ${(props) =>
     props.settings &&
     `
-  position:absolute;
-  bottom:65px
+  margin-top: 20%;
   `}
   ${(props) =>
     props.help &&
     `
-  position:absolute;
-  bottom:20px
+    margin-top: 5%%;
   `}
   ${(props) =>
     props.selected &&
@@ -116,7 +130,7 @@ export const Link = styled(ReactRouterLink)`
   text-decoration: none;
 
   margin-left: 35px;
-  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
 
 export const LinkBottom = styled.a`
@@ -129,7 +143,7 @@ export const LinkBottom = styled.a`
   text-decoration: none;
 
   margin-left: 35px;
-  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
 
 export const LinkHeader = styled(ReactRouterLink)`
@@ -141,7 +155,7 @@ export const LinkHeader = styled(ReactRouterLink)`
   font-weight: 500;
   text-decoration: none;
 
-  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
 
 export const Image = styled.img`
