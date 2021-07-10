@@ -18,7 +18,6 @@ export const useTasks = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
   const [removeOption, setRemoveOption] = useState(false);
-  const [offline, setOffline] = useState(false);
   const [status, setStatus] = useState("");
   const [color, setColor] = useState("#2ECC71");
   const [showChange, setShowChange] = useState(false);
@@ -35,13 +34,11 @@ export const useTasks = () => {
   };
 
   window.addEventListener("offline", function (e) {
-    setOffline(true);
     setStatus("Conectando");
     setColor("#FFE115");
   });
 
   window.addEventListener("online", function (e) {
-    setOffline(false);
     setStatus("Aberto");
     setColor("#2ECC71");
   });
