@@ -69,7 +69,7 @@ export const Input = styled.input`
   font-size: 15px;
   line-height: 140.62%;
 
-  color: ${Themes().gray};
+  color: ${Themes().wordColors};
 `;
 
 export const SearchBox = styled.div`

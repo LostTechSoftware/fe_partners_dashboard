@@ -76,13 +76,15 @@ export const useMessage = () => {
       });
     }
     SocketFunction();
+    getMessages();
 
     GetOrders();
-  }, []);
 
-  useEffect(() => {
-    getMessages();
-  }, [selectedMessage]);
+    if (!search) return setOrders(initialOrders);
+
+    const arr = fuse.search(search);
+    setOrders(arr.map((a) => a.item));
+  }, [selectedMessage, search]);
 
   const sendMessage = async (event) => {
     event && event.preventDefault();
@@ -100,13 +102,6 @@ export const useMessage = () => {
       }
     }
   };
-
-  useEffect(() => {
-    if (!search) return setOrders(initialOrders);
-
-    const arr = fuse.search(search);
-    setOrders(arr.map((a) => a.item));
-  }, [search]);
 
   return [
     isMenuMobileOpened,
