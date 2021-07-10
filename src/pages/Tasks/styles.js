@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Themes } from "../../utils/themes";
+import { ArrowLeft } from "react-feather";
 
 export const Container = styled.div`
   height: 100%;
@@ -46,8 +47,14 @@ export const OrdersList = styled.div`
 
   overflow-y: auto;
   overflow-x: hidden;
-  ${({ showMessageDetails }) =>
-    showMessageDetails &&
+  ${({ toggleMenu }) =>
+    toggleMenu &&
+    css`
+      display: none;
+    `}
+
+  ${({ showOrderDetails }) =>
+    showOrderDetails &&
     css`
       @media screen and (max-width: 800px) {
         display: none;
@@ -65,16 +72,23 @@ export const OrderDetails = styled.div`
 
   padding: 20px;
 
-  ${({ showMessageDetails }) =>
-    !showMessageDetails &&
+  overflow-y: scroll;
+
+  ${({ toggleMenu }) =>
+    toggleMenu &&
     css`
-      @media screen and (max-width: 800px) {
-        display: none;
-      }
+      width: 100%;
     `}
 
   @media screen and (max-width: 800px) {
     width: 100%;
+    padding-bottom: 80%;
+
+    ${({ showOrderDetails }) =>
+      !showOrderDetails &&
+      css`
+        display: none;
+      `}
   }
 `;
 
@@ -111,6 +125,8 @@ export const Tab = styled.div`
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
+
+  cursor: pointer;
 
   color: ${Themes().wordColors};
 
@@ -168,7 +184,9 @@ export const Header = styled.div`
   width: 100%;
 `;
 
-export const BasicInfo = styled.div``;
+export const BasicInfo = styled.div`
+  margin-left: 20px;
+`;
 
 export const Title = styled.p`
   color: ${Themes().wordColors};
@@ -177,6 +195,8 @@ export const Title = styled.p`
   font-size: 18px;
   line-height: 21px;
   font-family: "Roboto", sans-serif;
+
+  max-width: 75%;
 `;
 
 export const Subtitle = styled.p`
@@ -219,8 +239,16 @@ export const StatusContent = styled.div`
   flex-direction: column;
 
   position: absolute;
-  right: 10px;
-  top: 10px;
+
+  @media screen and (min-width: 800px) {
+    right: 20px;
+    top: 20px;
+  }
+
+  @media screen and (max-width: 800px) {
+    right: 20px;
+    bottom: 10px;
+  }
 `;
 
 export const Status = styled.p`
@@ -232,7 +260,7 @@ export const Status = styled.p`
 
   text-align: center;
 
-  color: #2ecc71;
+  color: ${({ color }) => color};
 
   margin-top: 5px;
 `;
@@ -331,6 +359,8 @@ export const UserAvatar = styled.img`
   height: 75px;
   border-radius: 100%;
 
+  background: #ffe115;
+
   @media screen and (max-width: 920px) {
     display: none;
   }
@@ -339,7 +369,8 @@ export const UserAvatar = styled.img`
 export const ContainerBasicInfo = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+
+  width: 100%;
 `;
 
 export const TextArea = styled.input`
@@ -379,7 +410,15 @@ export const ContainerPrint = styled.div`
   flex-direction: row;
   align-items: center;
 
-  margin-right: 100px;
+  margin-right: 20px;
+
+  cursor: pointer;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+
+  width: 50%;
 
   > p {
     font-family: "Roboto", sans-serif;
@@ -392,4 +431,112 @@ export const ContainerPrint = styled.div`
   }
 `;
 
-export const ContainerTitle = styled.div``;
+export const ContainerTitle = styled.div`
+  color: #ffe115;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Back = styled(ArrowLeft)`
+  @media screen and (min-width: 800px) {
+    display: none;
+  }
+
+  margin-right: 20px;
+
+  cursor: pointer;
+`;
+
+export const ContentIcons = styled.div`
+  diplay: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const Row = styled.div`
+  width: 50%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  ${({ zeroMargin }) =>
+    !zeroMargin &&
+    css`
+      border-right: 1px solid ${Themes().gray};
+    `}
+
+  height: 100%;
+`;
+
+export const ContentChanges = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+`;
+
+export const TitleChange = styled.p`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: ${Themes().wordColors};
+`;
+
+export const SubTitleChange = styled.p`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 25px;
+
+  text-align: center;
+
+  color: ${Themes().gray};
+`;
+
+export const ButtonChange = styled.div`
+  background: #ffe115;
+  height: 40px;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 25px;
+  cursor: pointer;
+
+  ${({ outline }) =>
+    outline &&
+    css`
+      background: ${Themes().background};
+      border: 1px solid #ffe115;
+    `}
+
+  > p {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    ${({ outline }) =>
+      outline &&
+      css`
+        color: #ffe115;
+      `}
+  }
+`;

@@ -14,8 +14,49 @@ export const useTasks = () => {
   const [click, setClick] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [reason, setReason] = useState("");
+  const [showOrderDetails, setShowOrderDetails] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
+  const [removeOption, setRemoveOption] = useState(false);
+  const [offline, setOffline] = useState(false);
+  const [status, setStatus] = useState("");
+  const [color, setColor] = useState("#2ECC71");
+  const [showChange, setShowChange] = useState(false);
   const _id = sessionStorage.getItem("_id");
   const name = sessionStorage.getItem("restaurantName");
+
+  const Reload = async () => {
+    const { data } = await api.get("/opened");
+    setRestaurantIsOpen(data.opened);
+    setRemoveOption(data.removeOption);
+
+    if (restaurantIsOpen) setStatus("Aberto");
+    if (!restaurantIsOpen) setStatus("Fechado");
+  };
+
+  window.addEventListener("offline", function (e) {
+    setOffline(true);
+    setStatus("Conectando");
+    setColor("#FFE115");
+  });
+
+  window.addEventListener("online", function (e) {
+    setOffline(false);
+    setStatus("Aberto");
+    setColor("#2ECC71");
+  });
+
+  async function ChangeStatus(toClose, remove = true, delivery = true) {
+    if (!toClose) return setShowChange(false);
+
+    try {
+      await api.post("/close", { open: delivery, removeOption: remove });
+      toast.success("Status atualizado");
+      Reload();
+    } catch {
+      toast.error("Erro ao atualizar status");
+    }
+  }
 
   async function Collapse() {
     const obj = selectedOrders;
@@ -26,45 +67,54 @@ export const useTasks = () => {
     setClick(click + 1);
   }
 
-  async function GetOrders() {
+  const GetOrders = async () => {
     setOrders([]);
     setLoading(true);
     const { data } = await api.get("/tasks/new");
     setNewOrders(data);
 
-    // new taks
     if (screen === 0) {
       const response0 = await api.get("/tasks/new");
       setOrders(response0.data);
     }
-    // preparing tasks
     if (screen === 1) {
       const response1 = await api.get("/tasks/preparing");
       setOrders(response1.data);
     }
-    // delivery tasks
     if (screen === 2) {
       const response2 = await api.get("/tasks/delivery");
       setOrders(response2.data);
     }
 
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
-    // async function SocketFunction() {
-    //   const socket = socketio(process.env.REACT_APP_SERVER, {
-    //     query: {
-    //       user: _id,
-    //       username: name,
-    //       restaurant: true,
-    //     },
-    //   });
+    async function SocketFunction() {
+      const socket = socketio(process.env.REACT_APP_SERVER, {
+        query: {
+          user: _id,
+          username: name,
+          restaurant: true,
+        },
+      });
 
-    //   socket.on("new_order", GetOrders);
-    // }
-    // SocketFunction();
+      socket.on("new_order", GetOrders);
+      socket.on("open", Reload);
+    }
+    SocketFunction();
+
+    if (restaurantIsOpen) {
+      setStatus("Aberto");
+      setColor("#2ECC71");
+    }
+    if (!restaurantIsOpen) {
+      setStatus("Fechado");
+      setColor("#E74C3C");
+    }
+
     GetOrders();
+    Reload();
   }, [screen]);
 
   async function SendReason() {
@@ -102,5 +152,16 @@ export const useTasks = () => {
     setShowPopup,
     reason,
     setReason,
+    showOrderDetails,
+    setShowOrderDetails,
+    toggleMenu,
+    setToggleMenu,
+    restaurantIsOpen,
+    removeOption,
+    status,
+    color,
+    ChangeStatus,
+    showChange,
+    setShowChange,
   ];
 };

@@ -43,11 +43,11 @@ function FooterComponent({ order, setShowPopup }) {
               </Value>
             </Row>
 
-            {order.coupm ? (
+            {order.coupom ? (
               <Row margin>
                 <Label>Cupom</Label>
                 <Value>
-                  {order.coupm.toLocaleString("pt-br", {
+                  {order.coupom.toLocaleString("pt-br", {
                     currency: "brl",
                     style: "currency",
                   })}
@@ -100,11 +100,11 @@ function FooterComponent({ order, setShowPopup }) {
               </Value>
             </Row>
 
-            {order.coupm ? (
+            {order.coupom ? (
               <Row margin>
                 <Label>Cupom</Label>
                 <Value>
-                  {order.coupm.toLocaleString("pt-br", {
+                  {order.coupom.toLocaleString("pt-br", {
                     currency: "brl",
                     style: "currency",
                   })}
@@ -127,7 +127,7 @@ function FooterComponent({ order, setShowPopup }) {
         </ContainerButtons>
       );
     default:
-      return <p />;
+      return null;
   }
 }
 

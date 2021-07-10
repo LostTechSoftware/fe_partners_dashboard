@@ -3,12 +3,17 @@ import { Themes } from "../../../utils/themes";
 
 export const ContainerButtons = styled.div`
   display: flex;
-  backgound: red;
   flex-direction: row;
   justify-content: space-between;
   padding: 30px;
 
   width: 100%;
+
+  background: ${Themes().background};
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const Button = styled.div`
@@ -24,6 +29,10 @@ export const Button = styled.div`
   flex-direction: column;
 
   cursor: pointer;
+
+  @media screen and (max-width: 800px) {
+    margin-top: 10px;
+  }
 
   ${({ half }) =>
     half &&
@@ -82,7 +91,7 @@ export const Label = styled.p`
 
   color: ${Themes().wordColors};
 
-  width: 150px;
+  width: 50%;
 `;
 
 export const Value = styled.p`
@@ -94,7 +103,7 @@ export const Value = styled.p`
 
   color: ${Themes().gray};
 
-  width: 100px;
+  width: 50%;
   text-align: end;
 `;
 
@@ -104,4 +113,9 @@ export const ContainerSend = styled.div`
   flex-direction: column;
 
   width: 40%;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `;

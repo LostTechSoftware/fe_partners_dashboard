@@ -2,6 +2,7 @@ import React from "react";
 import { Home, ChevronDown, Printer } from "react-feather";
 import Sound from "react-sound";
 import moment from "moment";
+import MaterialIcon from "material-icons-react";
 import "moment/locale/pt-br";
 
 import { useScreenMeasure } from "../../utils/isMobile";
@@ -38,12 +39,20 @@ import {
   ContainerPopUp,
   ContainerPrint,
   ContainerTitle,
+  Back,
+  ContentIcons,
+  ContentChanges,
+  Row,
+  TitleChange,
+  SubTitleChange,
+  ButtonChange,
 } from "./styles";
 import MainMenu from "../../Components/MainMenu";
 import "./styles.css";
 import { LoadingSkeleton } from "../../Components/LoadingSkeleton";
 import FooterComponent from "./FooterComponent";
 import PopUp from "../../Components/PopUp";
+import Changes from "./Changes";
 
 const renderLoading = () => {
   return (
@@ -79,6 +88,17 @@ export default function Tasks() {
     setShowPopup,
     reason,
     setReason,
+    showOrderDetails,
+    setShowOrderDetails,
+    toggleMenu,
+    setToggleMenu,
+    restaurantIsOpen,
+    removeOption,
+    status,
+    color,
+    ChangeStatus,
+    showChange,
+    setShowChange,
   ] = useTasks();
   const [isMobile] = useScreenMeasure();
 
@@ -109,9 +129,11 @@ export default function Tasks() {
         isMenuMobileOpened={isMenuMobileOpened}
         onClick={handleMenuMobileOpen}
         currentPage="requests"
+        setToggleMenu={setToggleMenu}
+        toggleMenu={toggleMenu}
       />
       <Container isMobile={isMobile}>
-        <OrdersList showMessageDetails>
+        <OrdersList toggleMenu={toggleMenu} showOrderDetails={showOrderDetails}>
           <AppBar>
             <Tabs>
               <Tab onClick={() => setScreen(0)} selected={screen === 0}>
@@ -131,7 +153,10 @@ export default function Tasks() {
           {orders.map((order) => (
             <OrderComponent
               key={order._id}
-              onClick={() => setSelectedOrders(order)}
+              onClick={() => {
+                setSelectedOrders(order);
+                setShowOrderDetails(true);
+              }}
             >
               <OrderCode>#{order.token}</OrderCode>
               <Value>
@@ -144,7 +169,10 @@ export default function Tasks() {
           ))}
         </OrdersList>
 
-        <OrderDetails showMessageDetails>
+        <OrderDetails
+          toggleMenu={toggleMenu}
+          showOrderDetails={showOrderDetails}
+        >
           {selectedOrders && (
             <>
               <Header>
@@ -155,6 +183,10 @@ export default function Tasks() {
                     />
                     <BasicInfo>
                       <ContainerTitle>
+                        <Back
+                          size={35}
+                          onClick={() => setShowOrderDetails(false)}
+                        />
                         <Title>Pedido número #{selectedOrders.token}</Title>
                       </ContainerTitle>
                       <Subtitle>{selectedOrders.user.name}</Subtitle>
@@ -167,7 +199,13 @@ export default function Tasks() {
                   </ContainerBasicInfo>
                 ) : (
                   <BasicInfo>
-                    <Title>Pedido número #{selectedOrders.token}</Title>
+                    <ContainerTitle>
+                      <Back
+                        size={35}
+                        onClick={() => setShowOrderDetails(false)}
+                      />
+                      <Title>Pedido número #{selectedOrders.token}</Title>
+                    </ContainerTitle>
                     <Subtitle>
                       {selectedOrders.removeOption ? "Retirada" : "Entrega"}
                     </Subtitle>
@@ -176,7 +214,7 @@ export default function Tasks() {
                     </Hour>
                   </BasicInfo>
                 )}
-                <ContainerPrint>
+                <ContainerPrint onClick={() => window.print()}>
                   <Printer />
                   <p>Imprimir pedido</p>
                 </ContainerPrint>
@@ -246,10 +284,6 @@ export default function Tasks() {
               ))}
             </>
           )}
-          <StatusContent>
-            <Home size={35} />
-            <Status>Aberto</Status>
-          </StatusContent>
 
           <PopUp
             title="Por que rejeitou o pedido?"
@@ -268,10 +302,63 @@ export default function Tasks() {
               />
             </ContainerPopUp>
           </PopUp>
+
+          <Footer>
+            <FooterComponent
+              setShowPopup={setShowPopup}
+              order={selectedOrders}
+            />
+          </Footer>
         </OrderDetails>
-        <Footer>
-          <FooterComponent setShowPopup={setShowPopup} order={selectedOrders} />
-        </Footer>
+        {(!showOrderDetails || !isMobile) && (
+          <StatusContent onClick={() => setShowChange(true)}>
+            <ContentIcons>
+              <Home size={35} status color="#ddd" />
+              <MaterialIcon icon="delivery_dining" size={30} color="#ddd" />
+            </ContentIcons>
+
+            <Status color={color}>{status}</Status>
+          </StatusContent>
+        )}
+
+        <Changes
+          show={showChange}
+          width="500px"
+          height="200px"
+          close={() => ChangeStatus()}
+        >
+          <ContentChanges>
+            <Row>
+              <TitleChange>Entrega</TitleChange>
+              <SubTitleChange>
+                {restaurantIsOpen ? "Aberto" : "Fechado"}
+              </SubTitleChange>
+              <ButtonChange
+                onClick={() =>
+                  ChangeStatus(true, removeOption, !restaurantIsOpen)
+                }
+              >
+                <p>{`${
+                  !restaurantIsOpen ? "Abrir" : "Fechar"
+                } para entrega`}</p>
+              </ButtonChange>
+            </Row>
+            <Row zeroMargin>
+              <TitleChange>Retirada</TitleChange>
+              <SubTitleChange>
+                {removeOption ? "Aberto" : "Fechado"}
+              </SubTitleChange>
+              <ButtonChange
+                outline
+                onClick={() =>
+                  ChangeStatus(true, !removeOption, restaurantIsOpen)
+                }
+              >
+                <p>{`${!removeOption ? "Abrir" : "Fechar"} para retirada`}</p>
+              </ButtonChange>
+            </Row>
+          </ContentChanges>
+        </Changes>
       </Container>
     </div>
   );
