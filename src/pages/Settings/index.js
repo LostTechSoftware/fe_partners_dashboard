@@ -15,7 +15,7 @@ import {
   ContainerSkip,
 } from "./styles";
 
-function Settings({ children, path = "profile" }) {
+function Settings({ children, path = "profile", disableScroll }) {
   const [isMobile] = useScreenMeasure();
   const [
     isMenuMobileOpened,
@@ -31,7 +31,7 @@ function Settings({ children, path = "profile" }) {
         onClick={handleMenuMobileOpen}
         currentPage="settings"
       />
-      <Container isMobile={isMobile}>
+      <Container disableScroll={disableScroll} isMobile={isMobile}>
         <Header>
           <Logo src={sessionStorage.getItem("avatar")} />
           <ContainerButtons>

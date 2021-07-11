@@ -63,7 +63,11 @@ function Access() {
           </Card>
         ))}
 
-        <AddProductButton onClick={() => setShowModal(true)}>
+        <AddProductButton
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
           <Plus size={70} color="#ffe115" />
           <Text>Adicionar pessoa</Text>
         </AddProductButton>
