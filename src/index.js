@@ -17,7 +17,7 @@ Sentry.init({
   environment: process.env.REACT_APP_PROD === true ? "PRODUCTION" : "STAGING",
 });
 
-//setup firebase
+// setup firebase
 setupFirebase();
 
 ReactDOM.render(<App />, document.getElementById("root"));
