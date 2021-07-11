@@ -24,6 +24,7 @@ import {
   ContainerButton,
   LinkHeader,
   LinkBottom,
+  Toggled,
 } from "./styles";
 import { useMenu } from "./hooks";
 import { Hamburguer } from "../hamburguer";
@@ -43,7 +44,13 @@ const Icon = ({ icon, color }) => {
   return icons[icon] || <p />;
 };
 
-export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
+export default function MainMenu({
+  currentPage,
+  isMenuMobileOpened,
+  onClick,
+  toggleMenu = false,
+  setToggleMenu = () => console.log("Ooops, venha trabalhar conosco dev"),
+}) {
   const [isMobile] = useScreenMeasure();
   const { menuOptions } = useMenu();
 
@@ -127,7 +134,11 @@ export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
 
             <MenuOptions>
               {menuOptions.map((option, index) => (
-                <Option selected={currentPage == option.route} key={index}>
+                <Option
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                  selected={currentPage == option.route}
+                  key={index}
+                >
                   <ContainerButton>
                     <Icon
                       color={
@@ -143,6 +154,11 @@ export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
                     >
                       {option.text}
                     </Link>
+                    {option.route === "requests" && toggleMenu && (
+                      <Toggled onClick={() => setToggleMenu(!toggleMenu)}>
+                        <CaretDoubleLeft />
+                      </Toggled>
+                    )}
                   </ContainerButton>
                 </Option>
               ))}
