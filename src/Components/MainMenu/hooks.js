@@ -1,6 +1,8 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export const useMenu = () => {
+  const [toggled, setToggled] = useState(false);
+
   const menuOptions = useMemo(() => {
     return [
       { text: "Pedidos", route: "requests" },
@@ -14,5 +16,7 @@ export const useMenu = () => {
 
   return {
     menuOptions,
+    toggled,
+    setToggled,
   };
 };
