@@ -18,7 +18,7 @@ Sentry.init({
 });
 
 //setup firebase
-setupFirebase(process.env.REACT_APP_SENTRY);
+setupFirebase();
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
