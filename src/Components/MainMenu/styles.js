@@ -1,6 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Themes } from "../../utils/themes";
+import {
+  Settings,
+  HelpCircle,
+  MessageCircle,
+  Map,
+  TrendingUp,
+  Menu,
+  DollarSign,
+  ChevronDown,
+} from "react-feather";
 
 export const DesktopContainer = styled.aside`
   display: flex;
@@ -173,4 +183,50 @@ export const ContainerButton = styled.div`
   align-self: stretch;
   flex-grow: 0;
   padding: 0 25px;
+`;
+
+export const RotateSubMenuToggleArrow = styled(ChevronDown)`
+  ${({ toggled }) =>
+    !toggled &&
+    css`
+      transform: rotate(90deg);
+    `}
+`;
+
+export const ToggleSubMenu = styled.div`
+  margin: 0px 10px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const subOptionDefaultStyles = css`
+  border-left: 2px solid rgb(224, 224, 224, 0.8);
+  color: #414141;
+`;
+
+const subOptionActiveStyles = css`
+  border-left: 4px solid #ddd;
+  color: #ddd;
+`;
+export const SubOption = styled.ul`
+  display: ${(props) => (props.isSubMenuToggled ? "flex" : "none")};
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 30px;
+
+  > li {
+    ${(props) =>
+      props.active ? subOptionActiveStyles : subOptionDefaultStyles}
+    padding: 12px 16px;
+
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+  }
 `;

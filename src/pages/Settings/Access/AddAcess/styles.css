@@ -1,0 +1,13 @@
+.animationPromotion {
+  animation: animatetop 0.9s;
+}
+@keyframes animatetop {
+  from {
+    top: 50px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}

@@ -45,6 +45,10 @@ export const Header = styled.div`
   align-items: center;
 
   padding: 0 20px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const ContainerButtons = styled.div`

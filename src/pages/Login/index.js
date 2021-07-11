@@ -22,43 +22,16 @@ export default function Login() {
         password,
       });
 
-      const { token } = response.data;
-      const {
-        _id,
-        name,
-        avatar,
-        telephone,
-        uf,
-        city,
-        street,
-        Number,
-        delay,
-        delayRemove,
-      } = response.data.user;
-      const restaurantLocation = JSON.stringify(
-        response.data.user.location.coordinates
-      );
+      const { token, user } = response.data;
+      const { avatar } = user;
 
       sessionStorage.setItem("token", token);
-      sessionStorage.setItem("_id", _id);
       sessionStorage.setItem("avatar", avatar);
-      sessionStorage.setItem("restaurantName", name);
-      sessionStorage.setItem("restaurantLocation", restaurantLocation);
-      sessionStorage.setItem("delay", delay);
-      sessionStorage.setItem("delayToWithdrawal", delayRemove);
-
-      sessionStorage.setItem("restaurantPhone", telephone);
-      sessionStorage.setItem(
-        "restaurantAddress",
-        `Rua ${street} nº${Number}, ${city} - ${uf}`
-      );
-
-      console.log("USER:");
-      console.log(response.data.user);
 
       setLoading(false);
       history.push("/requests");
     } catch (error) {
+      console.log(error);
       setLoading(false);
       toast.error("usúario ou senha incorretos, tente novamente!");
     }

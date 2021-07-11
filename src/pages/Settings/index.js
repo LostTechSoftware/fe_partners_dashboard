@@ -15,10 +15,14 @@ import {
   ContainerSkip,
 } from "./styles";
 
-function Settings({ children }) {
+function Settings({ children, path = "profile" }) {
   const [isMobile] = useScreenMeasure();
-  const [isMenuMobileOpened, setIsMenuMobileOpened, handleMenuMobileOpen] =
-    useSettings();
+  const [
+    isMenuMobileOpened,
+    setIsMenuMobileOpened,
+    handleMenuMobileOpen,
+    history,
+  ] = useSettings();
 
   return (
     <div className="page foodMenu">
@@ -29,25 +33,42 @@ function Settings({ children }) {
       />
       <Container isMobile={isMobile}>
         <Header>
-          <Logo src="https://pbs.twimg.com/profile_images/1402367254067568641/LTLk2lAL_400x400.jpg" />
+          <Logo src={sessionStorage.getItem("avatar")} />
           <ContainerButtons>
-            <ButtonHeader selected>
+            <ButtonHeader
+              onClick={() => history.push("/settings/profile")}
+              selected={path === "profile"}
+            >
               <ButtonText>Perfil</ButtonText>
             </ButtonHeader>
 
-            <ButtonHeader>
+            <ButtonHeader
+              onClick={() => history.push("/settings/access")}
+              selected={path === "access"}
+            >
               <ButtonText>Acessos</ButtonText>
             </ButtonHeader>
 
-            <ButtonHeader>
+            <ButtonHeader
+              onClick={() => history.push("/settings/payments")}
+              selected={path === "payments"}
+            >
               <ButtonText>Pagamentos</ButtonText>
             </ButtonHeader>
 
-            <ButtonHeader>
+            <ButtonHeader
+              onClick={() => history.push("/settings/partners")}
+              selected={path === "partners"}
+            >
               <ButtonText>Configurações do estabelecimento</ButtonText>
             </ButtonHeader>
           </ContainerButtons>
-          <ContainerSkip>
+          <ContainerSkip
+            onClick={() => {
+              sessionStorage.clear();
+              history.push("/");
+            }}
+          >
             <LogOut color="#ddd" size={30} />
             <Skip>Sair da conta</Skip>
           </ContainerSkip>
