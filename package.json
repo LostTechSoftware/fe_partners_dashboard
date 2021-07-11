@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/helper-define-map": "^7.13.12",
     "@babel/helper-skip-transparent-expression-wrappers": "^7.12.1",
+    "@firebase/messaging": "^0.7.14",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -16,6 +17,7 @@
     "filesize": "^6.1.0",
     "fuse.js": "^6.4.6",
     "js-search": "^2.0.0",
+    "firebase": "^8.7.1",
     "jsonwebtoken": "^8.5.1",
     "madge": "^4.0.2",
     "material-icons-react": "^1.0.4",
