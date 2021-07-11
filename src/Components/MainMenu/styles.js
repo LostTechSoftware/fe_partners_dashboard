@@ -115,12 +115,12 @@ export const Option = styled.div`
   ${(props) =>
     props.settings &&
     `
-  margin-top: 20%;
+  margin-top: 100%;
   `}
   ${(props) =>
     props.help &&
     `
-    margin-top: 5%%;
+    margin-top: 5%;
   `}
   ${(props) =>
     props.selected &&
@@ -229,4 +229,13 @@ export const SubOption = styled.ul`
     font-weight: 600;
     font-size: 16px;
   }
+`;
+
+export const Toggled = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  cursor: pointer;
 `;
