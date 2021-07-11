@@ -5,8 +5,8 @@ export const useMenu = () => {
     return [
       { text: "Pedidos", route: "requests" },
       { text: "Mensagens", route: "" },
-      { text: "Mapa", route: "" },
-      { text: "Impulsionar", route: "" },
+      // { text: "Mapa", route: "" },
+      // { text: "Impulsionar", route: "" },
       { text: "Produtos", route: "menu" },
       { text: "Finanças", route: "money" },
     ];
