@@ -147,15 +147,15 @@ export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
                 </Option>
               ))}
 
-              <Option settings>
+              <Option selected={currentPage == "settings"} settings>
                 <ContainerButton>
                   <Settings
                     color={
-                      currentPage == "/setting" ? "#fff" : Themes().wordColors
+                      currentPage == "settings" ? "#fff" : Themes().wordColors
                     }
                     size={30}
                   />
-                  <Link>Configurações</Link>
+                  <Link to="/settings">Configurações</Link>
                 </ContainerButton>
               </Option>
 
