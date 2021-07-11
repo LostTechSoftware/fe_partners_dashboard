@@ -5,8 +5,6 @@ export const useMenu = () => {
     return [
       { text: "Pedidos", route: "requests" },
       { text: "Mensagens", route: "messages" },
-      { text: "Mapa", route: "" },
-      { text: "Impulsionar", route: "" },
       // { text: "Mapa", route: "" },
       // { text: "Impulsionar", route: "" },
       { text: "Produtos", route: "menu" },
