@@ -10,6 +10,7 @@ import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
 import Partners from "./pages/Settings/Partners";
+import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -35,6 +36,7 @@ const Router = () => (
       <PrivateRoute path="/settings/payments" component={Payments} />
       <PrivateRoute path="/settings/partners" component={Partners} />
 
+      <PrivateRoute path="/messages" component={Message} />
       <PrivateRoute path="/requests" component={Tasks} />
       <PrivateRoute path="/menu" component={Menu} />
 

@@ -6,7 +6,7 @@ export const useMenu = () => {
   const menuOptions = useMemo(() => {
     return [
       { text: "Pedidos", route: "requests" },
-      { text: "Mensagens", route: "" },
+      { text: "Mensagens", route: "messages" },
       // { text: "Mapa", route: "" },
       // { text: "Impulsionar", route: "" },
       { text: "Produtos", route: "menu" },
