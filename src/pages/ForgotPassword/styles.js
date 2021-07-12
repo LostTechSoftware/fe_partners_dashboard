@@ -125,7 +125,7 @@ export const Logo = styled.img`
   @media (max-width: 800px) {
     width: 40%;
   }
-  width: 30%;
+  width: ${({ width }) => width};
   margin-bottom: 10%;
 `;
 

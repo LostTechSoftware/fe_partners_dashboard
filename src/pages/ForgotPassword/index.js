@@ -47,10 +47,14 @@ export default function ForgotPassword() {
     passwordIsValid,
     validateEqualPassword,
   ] = ForgotPasswordHooks();
+
   return (
     <Container>
       <DivAlign>
-        <Logo src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg"></Logo>
+        <Logo
+          src={Themes().logo}
+          width={localStorage.getItem("theme") !== "dark" ? "40%" : "1000px"}
+        />
         <ContainerInput>
           {!passwordIsValid && (
             <LabelInvalid>
@@ -77,7 +81,6 @@ export default function ForgotPassword() {
             passwordIsValid={passwordIsValid}
           />
         </ContainerInput>
-
         <Button
           disabled={disabledEmail || !equalPassword1 || !passwordIsValid}
           onClick={onClick}
