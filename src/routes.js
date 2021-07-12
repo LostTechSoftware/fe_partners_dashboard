@@ -6,6 +6,10 @@ import { isAuthenticated } from "./services/auth";
 import Login from "./pages/Login";
 import Menu from "./pages/FoodMenu";
 import Money from "./pages/Money";
+import Profile from "./pages/Settings/Profile";
+import Access from "./pages/Settings/Access";
+import Payments from "./pages/Settings/Payments";
+import Partners from "./pages/Settings/Partners";
 import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 
@@ -27,9 +31,15 @@ const Router = () => (
     <Switch>
       <Route exact path="/" component={Login} />
 
+      <PrivateRoute path="/settings/profile" component={Profile} />
+      <PrivateRoute path="/settings/access" component={Access} />
+      <PrivateRoute path="/settings/payments" component={Payments} />
+      <PrivateRoute path="/settings/partners" component={Partners} />
+
       <PrivateRoute path="/messages" component={Message} />
       <PrivateRoute path="/requests" component={Tasks} />
       <PrivateRoute path="/menu" component={Menu} />
+
       <PrivateRoute path="/money" component={Money} />
     </Switch>
   </BrowserRouter>

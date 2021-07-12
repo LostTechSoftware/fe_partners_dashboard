@@ -85,7 +85,7 @@ export const OrderDetails = styled.div`
     padding-bottom: 80%;
 
     ${({ showOrderDetails }) =>
-    !showOrderDetails &&
+      !showOrderDetails &&
       css`
         display: none;
       `}
