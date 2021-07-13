@@ -203,7 +203,7 @@ export const Footer = styled.form`
 
 export const InputMessage = styled.input`
   width: 90%;
-  color: ${Themes().gray};
+  color: ${Themes().wordColors};
   background: transparent;
 
   font-family: "Roboto", sans-serif;

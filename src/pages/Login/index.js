@@ -1,63 +1,82 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
+import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-import MainButton from "../../Components/MainButton";
-import api from "../../services/api";
-import "./styles.css";
+import ReCAPTCHA from "react-google-recaptcha";
+import { Themes } from "../../utils/themes";
+
+import {
+  ContainerImage,
+  Button,
+  ButtonText,
+  Image,
+  Logo,
+  Form,
+  ForgotPassword,
+  Input,
+  InputName,
+  ContainerInput,
+  Label,
+} from "./styles";
+
+import { LoginHooks } from "./hooks";
 
 export default function Login() {
-  const history = useHistory();
-
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [password, setPassword] = useState("");
-
-  async function tryLogin(event) {
-    event.preventDefault();
-    setLoading(true);
-    try {
-      const response = await api.post("/restaurant/authenticate", {
-        email,
-        password,
-      });
-
-      const { token, user } = response.data;
-      const { avatar } = user;
-
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("avatar", avatar);
-
-      setLoading(false);
-      history.push("/requests");
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-      toast.error("usúario ou senha incorretos, tente novamente!");
-    }
-  }
+  const [
+    history,
+    token,
+    setToken,
+    email,
+    setEmail,
+    loading,
+    setLoading,
+    password,
+    setPassword,
+    recaptchaRef,
+    ClickForgotPassword,
+    onChange,
+    tryLogin,
+  ] = LoginHooks();
 
   return (
-    <div className="page login">
-      <form onSubmit={tryLogin}>
-        <input
-          type="text"
-          placeholder="E-mail"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
+    <>
+      <ContainerImage>
+        <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Cooking-cuate.png"></Image>
 
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <Form onSubmit={tryLogin}>
+          <Logo src={Themes().logo}></Logo>
+          <Input>
+            <ContainerInput>
+              <Label>Email</Label>
+              <InputName
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="exemplo@email.com"
+              />
+            </ContainerInput>
+          </Input>
+          <ContainerInput>
+            <Label>Senha</Label>
+            <InputName
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Insira sua senha aqui"
+            />
+          </ContainerInput>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey="6Lf77XkbAAAAAKRYz0QM-nmwIT4yengo3mKp2eES"
+            onChange={onChange}
+            size="invisible"
+          />
+          <ForgotPassword>
+            <p onClick={ClickForgotPassword}>Esqueci a senha</p>
+          </ForgotPassword>
 
-        <MainButton type="submit" loading={loading}>
-          Logar
-        </MainButton>
-      </form>
-    </div>
+          <Button onSubmit={tryLogin} type="submit" loading={loading}>
+            <ButtonText>Logar</ButtonText>
+          </Button>
+        </Form>
+      </ContainerImage>
+    </>
   );
 }

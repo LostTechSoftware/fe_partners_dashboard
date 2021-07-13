@@ -7,10 +7,12 @@ import Login from "./pages/Login";
 import Menu from "./pages/FoodMenu";
 import Money from "./pages/Money";
 import Message from "./pages/Messages";
+import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
 import Partners from "./pages/Settings/Partners";
+import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -30,14 +32,14 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
-
-      <PrivateRoute path="/messages" component={Message} />
+      <Route exact path="/forgotpassword" component={ForgotPassword} />
 
       <PrivateRoute path="/settings/profile" component={Profile} />
       <PrivateRoute path="/settings/access" component={Access} />
       <PrivateRoute path="/settings/payments" component={Payments} />
       <PrivateRoute path="/settings/partners" component={Partners} />
 
+      <PrivateRoute path="/messages" component={Message} />
       <PrivateRoute path="/requests" component={Tasks} />
       <PrivateRoute path="/menu" component={Menu} />
 
