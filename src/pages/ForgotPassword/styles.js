@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Themes } from "../../utils/themes";
 
 export const Input = styled.div`
