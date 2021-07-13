@@ -64,7 +64,7 @@ export const ContainerInput = styled.div`
   `}
   ${(props) =>
     props.flex &&
-    `
+    css`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
