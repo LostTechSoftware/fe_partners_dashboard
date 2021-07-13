@@ -5,20 +5,15 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
 export const ForgotPasswordHooks = () => {
-  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [showCodeInput, setShowCodeInput] = useState(false);
   const [isValidCode, setIsValidCode] = useState(false);
   const [token, setToken] = useState("");
   const [disabledEmail, setDisabledEmail] = useState(false);
-  const [disabledToken, setDisabledToken] = useState(false);
-  const [disabledPassword, setDisabledPassword] = useState(false);
-  const [password, setPassword] = useState("");
   const [newPassword1, setNewPassword1] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
   const [equalPassword1, setEqualPassword1] = useState(false);
   const [showResetPassword, setShowResetPassword] = useState(false);
-  const [emailIsValid, setEmailIsValid] = useState(false);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const history = useHistory();
 
@@ -66,7 +61,6 @@ export const ForgotPasswordHooks = () => {
 
   async function resetPassword() {
     if (!newPassword1) return toast.error("A senha não pode ser vazia");
-    setLoading(true);
     try {
       await api.post("/restaurant/reset_password", {
         email,
@@ -76,52 +70,36 @@ export const ForgotPasswordHooks = () => {
       toast.success("Sua senha foi alterada com sucesso !");
       history.push("/");
     } catch (error) {
-      setLoading(false);
       toast.error("Houve um erro ao alterar sua senha");
     }
   }
 
   async function forgotPassword() {
-    setLoading(true);
     try {
       await api.post("/restaurant/forgot_password", {
         email,
       });
       setShowCodeInput(true);
     } catch (error) {
-      setLoading(false);
       toast.error("Parceiro não encontrado em nosso sistema");
     }
   }
 
   return [
-    loading,
-    setLoading,
     email,
     setEmail,
     showCodeInput,
-    setShowCodeInput,
     isValidCode,
-    setIsValidCode,
     token,
     setToken,
-    password,
-    setPassword,
     newPassword1,
     setNewPassword1,
     newPassword2,
     setNewPassword2,
     equalPassword1,
-    setEqualPassword1,
     showResetPassword,
-    setShowResetPassword,
-    history,
     onClick,
-    resetPassword,
-    forgotPassword,
     disabledEmail,
-    disabledToken,
-    disabledPassword,
     passwordIsValid,
     validateEqualPassword,
   ];

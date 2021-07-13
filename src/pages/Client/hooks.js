@@ -3,11 +3,9 @@ import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-import ReCAPTCHA from "react-google-recaptcha";
 
 export const LoginHooks = () => {
   const history = useHistory();
-  const [token, setToken] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
@@ -15,10 +13,6 @@ export const LoginHooks = () => {
 
   async function ClickForgotPassword() {
     history.push("/forgotpassword");
-  }
-
-  function onChange(value) {
-    setToken(value);
   }
 
   async function tryLogin(event) {
@@ -74,18 +68,13 @@ export const LoginHooks = () => {
   }
 
   return [
-    history,
-    token,
-    setToken,
     email,
     setEmail,
     loading,
-    setLoading,
     password,
     setPassword,
     recaptchaRef,
     ClickForgotPassword,
-    onChange,
     tryLogin,
   ];
 };

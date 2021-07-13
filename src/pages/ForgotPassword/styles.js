@@ -1,6 +1,27 @@
 import styled, { css } from "styled-components";
 import { Themes } from "../../utils/themes";
 
+export const DefaultInputResponsivity = styled.input`
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 90%;
+  ${(props) =>
+    props.half &&
+    `
+  width: 90%;
+`}
+  height: 35px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: ${Themes().wordColors};
+  padding: 5px;
+  background: ${Themes().background};
+`;
+
 export const Input = styled.div`
   width: 100%;
   display: flex;
@@ -65,33 +86,14 @@ export const ContainerInput = styled.div`
   ${(props) =>
     props.flex &&
     css`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap
-  `}
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    `}
 `;
 
-export const InputName = styled.input`
-  border: 1px solid #dddddd;
-  box-sizing: border-box;
-  border-radius: 5px;
-  width: 90%;
-  ${(props) =>
-    props.half &&
-    `
-    width: 90%;
-  `}
-  height: 35px;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-  color: ${Themes().wordColors};
-  padding: 5px;
-  background: ${Themes().background};
-`;
+export const InputName = styled(DefaultInputResponsivity)``;
 
 export const Container = styled.div`
   display: flex;
@@ -161,45 +163,8 @@ export const ButtonText = styled.text`
   font-size: 25px;
 `;
 
-export const PasswordInput1 = styled.input`
-  border: 1px solid #dddddd;
-  box-sizing: border-box;
-  border-radius: 5px;
-  width: 90%;
-  ${(props) =>
-    props.half &&
-    `
-    width: 90%;
-  `}
-  height: 35px;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-  color: ${Themes().wordColors};
-  padding: 5px;
+export const PasswordInput1 = styled(DefaultInputResponsivity)`
   margin-bottom: 2%;
-  background: ${Themes().background};
 `;
 
-export const PasswordInput2 = styled.input`
-  border: 1px solid #dddddd;
-  box-sizing: border-box;
-  border-radius: 5px;
-  width: 90%;
-  ${(props) =>
-    props.half &&
-    `
-    width: 90%;
-  `}
-  height: 35px;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-  color: ${Themes().wordColors};
-  padding: 5px;
-  background: ${Themes().background};
-`;
+export const PasswordInput2 = styled(DefaultInputResponsivity)``;
