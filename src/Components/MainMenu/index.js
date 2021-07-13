@@ -7,6 +7,7 @@ import {
   TrendingUp,
   Menu,
   DollarSign,
+  ChevronDown,
 } from "react-feather";
 import MaterialIcon from "material-icons-react";
 
@@ -24,6 +25,10 @@ import {
   ContainerButton,
   LinkHeader,
   LinkBottom,
+  ToggleSubMenu,
+  SubOption,
+  RotateSubMenuToggleArrow,
+  Toggled,
 } from "./styles";
 import { useMenu } from "./hooks";
 import { Hamburguer } from "../hamburguer";
@@ -43,9 +48,15 @@ const Icon = ({ icon, color }) => {
   return icons[icon] || <p />;
 };
 
-export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
+export default function MainMenu({
+  currentPage,
+  isMenuMobileOpened,
+  onClick,
+  toggleMenu = false,
+  setToggleMenu = () => console.log("Ooops, venha trabalhar conosco dev"),
+}) {
   const [isMobile] = useScreenMeasure();
-  const { menuOptions } = useMenu();
+  const { menuOptions, toggled, setToggled } = useMenu();
 
   return (
     <>
@@ -93,14 +104,37 @@ export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
                     <ContainerButton>
                       <Settings
                         color={
-                          currentPage == "/setting"
+                          currentPage == "/settings"
                             ? "#fff"
                             : Themes().wordColors
                         }
                         size={30}
                       />
                       <Link>Configurações</Link>
+                      <ToggleSubMenu
+                        onClick={() => setToggled(!toggled)}
+                        isSubMenuToggled={toggled}
+                      >
+                        <RotateSubMenuToggleArrow
+                          color={Themes().gray}
+                          toggled={toggled}
+                        />
+                      </ToggleSubMenu>
                     </ContainerButton>
+                    <SubOption isSubMenuToggled={toggled}>
+                      <li>
+                        <Link to={"/settings/profile"}>Perfil</Link>
+                      </li>
+                      <li>
+                        <Link to={"/settings/access"}>Acessos</Link>
+                      </li>
+                      <li>
+                        <Link to={"/settings/payments"}>Pagamentos</Link>
+                      </li>
+                      <li>
+                        <Link to={"/settings/partners"}>Estabelecimento</Link>
+                      </li>
+                    </SubOption>
                   </Option>
 
                   <Option help>
@@ -127,7 +161,11 @@ export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
 
             <MenuOptions>
               {menuOptions.map((option, index) => (
-                <Option selected={currentPage == option.route} key={index}>
+                <Option
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                  selected={currentPage == option.route}
+                  key={index}
+                >
                   <ContainerButton>
                     <Icon
                       color={
@@ -143,19 +181,29 @@ export default function MainMenu({ currentPage, isMenuMobileOpened, onClick }) {
                     >
                       {option.text}
                     </Link>
+                    {option.route === "requests" && toggleMenu && (
+                      <Toggled onClick={() => setToggleMenu(!toggleMenu)}>
+                        <CaretDoubleLeft />
+                      </Toggled>
+                    )}
                   </ContainerButton>
                 </Option>
               ))}
 
-              <Option settings>
+              <Option selected={currentPage == "settings"} settings>
                 <ContainerButton>
                   <Settings
                     color={
-                      currentPage == "/setting" ? "#fff" : Themes().wordColors
+                      currentPage == "settings" ? "#fff" : Themes().wordColors
                     }
                     size={30}
                   />
-                  <Link>Configurações</Link>
+                  <Link
+                    selected={currentPage == "settings"}
+                    to="/settings/profile"
+                  >
+                    Configurações
+                  </Link>
                 </ContainerButton>
               </Option>
 

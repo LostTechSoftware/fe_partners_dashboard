@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import App from "./App";
 import "dotenv";
+import { setupFirebase } from "./services/firebase";
 
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY,
@@ -15,6 +16,9 @@ Sentry.init({
   tracesSampleRate: 1.0,
   environment: process.env.REACT_APP_PROD === true ? "PRODUCTION" : "STAGING",
 });
+
+// setup firebase
+setupFirebase();
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

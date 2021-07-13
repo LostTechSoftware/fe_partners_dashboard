@@ -53,7 +53,7 @@ export default function ForgotPassword() {
       <DivAlign>
         <Logo
           src={Themes().logo}
-          width={localStorage.getItem("theme") !== "dark" ? "40%" : "1000px"}
+          width={localStorage.getItem("theme") !== "dark" ? "40%" : "326px"}
         />
         <ContainerInput>
           {!passwordIsValid && (

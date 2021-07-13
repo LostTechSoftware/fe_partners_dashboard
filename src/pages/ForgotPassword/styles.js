@@ -119,6 +119,19 @@ export const DivAlign = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 50%;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+  @media (max-width: 1455px) {
+    width: 60%;
+  }
+  @media (max-width: 1280px) {
+    width: 70%;
+  }
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
 `;
 
 export const Logo = styled.img`
@@ -136,7 +149,7 @@ export const Button = styled.button`
   background: ${(props) => (props.disabled ? "#ddd" : "#ffe115")};
   border-radius: 5px;
   width: 90%;
-  height: 8%;
+  height: 50px;
   margin-top: 10%;
   border-width: 0px;
 `;

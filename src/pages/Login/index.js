@@ -68,8 +68,8 @@ export default function Login() {
             onChange={onChange}
             size="invisible"
           />
-          <ForgotPassword onClick={ClickForgotPassword}>
-            Esqueci a senha
+          <ForgotPassword>
+            <p onClick={ClickForgotPassword}>Esqueci a senha</p>
           </ForgotPassword>
 
           <Button onSubmit={tryLogin} type="submit" loading={loading}>

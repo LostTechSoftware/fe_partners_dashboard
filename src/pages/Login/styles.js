@@ -73,7 +73,7 @@ export const Button = styled.button`
   background: #ffe115;
   border-radius: 5px;
   width: 90%;
-  height: 5%;
+  height: 50px;
   margin-top: 10%;
   border-width: 0px;
 `;
@@ -134,12 +134,22 @@ export const LabelPassword = styled.label`
   color: #ddd;
 `;
 
-export const ForgotPassword = styled.button`
+export const ForgotPassword = styled.div`
   background: ${Themes().background};
   border-width: 0;
-  color: #ffe115;
   display: flex;
   margin-top: 1%;
+  width: 100%;
+  padding: 0 25px;
+  display: flex;
+  justify-content: flex-end;
+
+  > p {
+    font-size: 14px;
+    color: #ffe115;
+    font-family: "Roboto", sans-serif;
+    cursor: pointer;
+  }
 `;
 
 export const DivAlign = styled.div``;
