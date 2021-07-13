@@ -12,7 +12,6 @@ import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
 import Partners from "./pages/Settings/Partners";
-import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

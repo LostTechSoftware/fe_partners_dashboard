@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Themes } from "../../utils/themes";
 
 export const Input = styled.div`
@@ -65,11 +65,11 @@ export const ContainerInput = styled.div`
   ${(props) =>
     props.flex &&
     css`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap
-  `}
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    `}
 `;
 
 export const InputName = styled.input`
