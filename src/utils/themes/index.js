@@ -11,5 +11,5 @@ export const Themes = () => {
     return obj[localStorage.getItem("theme")];
   }
 
-  return Light;
+  return Dark;
 };

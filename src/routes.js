@@ -3,9 +3,10 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import { isAuthenticated } from "./services/auth";
 
-import Login from "./pages/Login";
+import Login from "./pages/Client";
 import Menu from "./pages/FoodMenu";
 import Money from "./pages/Money";
+import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
@@ -30,6 +31,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
+      <Route exact path="/forgotpassword" component={ForgotPassword} />
 
       <PrivateRoute path="/settings/profile" component={Profile} />
       <PrivateRoute path="/settings/access" component={Access} />
