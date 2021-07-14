@@ -10,7 +10,7 @@ export const useMenu = () => {
       // { text: "Mapa", route: "" },
       // { text: "Impulsionar", route: "" },
       { text: "Produtos", route: "menu" },
-      { text: "Finanças", route: "money" },
+      { text: "Finanças", route: "finance" },
     ];
   }, []);
 

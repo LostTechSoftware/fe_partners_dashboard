@@ -8,4 +8,5 @@ export const Dark = {
   messageBars: "#1A1A1A",
   messageComponent: "#1A1A1A",
   shadowStatus: "rgba(255, 255, 255, 0.1)",
+  financeBackground: "#1A1A1A",
 };

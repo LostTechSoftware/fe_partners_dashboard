@@ -4,14 +4,14 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./services/auth";
 
 import Login from "./pages/Login";
-import Menu from "./pages/FoodMenu";
-import Money from "./pages/Money";
+import Menu from "./pages/Gulp";
 import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
 import Partners from "./pages/Settings/Partners";
 import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
+import Finance from "./pages/Finance";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -40,7 +40,7 @@ const Router = () => (
       <PrivateRoute path="/requests" component={Tasks} />
       <PrivateRoute path="/menu" component={Menu} />
 
-      <PrivateRoute path="/money" component={Money} />
+      <PrivateRoute path="/finance" component={Finance} />
     </Switch>
   </BrowserRouter>
 );
