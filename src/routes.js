@@ -5,6 +5,8 @@ import { isAuthenticated } from "./services/auth";
 
 import Login from "./pages/Login";
 import Menu from "./pages/Gulp";
+import Login from "./pages/Client";
+import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
@@ -30,6 +32,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Login} />
+      <Route exact path="/forgotpassword" component={ForgotPassword} />
 
       <PrivateRoute path="/settings/profile" component={Profile} />
       <PrivateRoute path="/settings/access" component={Access} />
