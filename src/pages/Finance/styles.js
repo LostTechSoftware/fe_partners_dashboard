@@ -49,6 +49,14 @@ export const Content = styled.div`
   border-radius: 0px 0px 5px 5px;
   width: 48%;
 
+  ${({ align }) =>
+    align &&
+    css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    `}}
+
   ${(props) =>
     props.full &&
     css`
@@ -71,6 +79,7 @@ export const ContentHeader = styled.div`
   background: ${Themes().background};
   border-radius: 5px 5px 0px 0px;
   border-bottom: 1px solid ${Themes().gray};
+  width: 100%;
 `;
 
 export const ContainerButtons = styled.div`
@@ -285,4 +294,60 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const TitleContent = styled.p`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: ${Themes().wordColors};
+
+  margin: 40px;
+`;
+
+export const Input = styled.input`
+  width: 90%;
+  height: 40px;
+
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  background: ${Themes().background};
+
+  text-align: center;
+
+  color: ${Themes().wordColors};
+
+  margin: 40px;
+`;
+
+export const ButtonContent = styled.div`
+  background: #ffe115;
+  height: 50px;
+  width: 200px;
+  left: 388px;
+  top: 632px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px;
+
+  > p {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 140.62%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #ffffff;
+  }
 `;

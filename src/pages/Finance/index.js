@@ -28,6 +28,9 @@ import {
   RowMonthDetails,
   Button,
   ButtonContainer,
+  TitleContent,
+  Input,
+  ButtonContent,
 } from "./styles";
 
 function Finance() {
@@ -40,6 +43,13 @@ function Finance() {
     options,
     selectedWeekly,
     setSelectedWeekly,
+    seriesDay,
+    optionsDays,
+    goal,
+    objective,
+    setObjective,
+    createGoal,
+    porcentage,
   ] = useFinance();
 
   return (
@@ -82,8 +92,8 @@ function Finance() {
               />
             ) : (
               <Chart
-                options={options}
-                series={series.series}
+                options={optionsDays}
+                series={seriesDay.series}
                 type="bar"
                 height={250}
                 width={"100%"}
@@ -93,50 +103,80 @@ function Finance() {
         </Content>
 
         <Row>
-          <Content>
+          <Content align={!goal}>
             <ContentHeader>
               <RowTitle>
-                <Title>Sua meta</Title>
+                <Title>{goal ? "Sua meta" : "Definir meta"}</Title>
 
                 {/* <Change>Alterar</Change> */}
               </RowTitle>
             </ContentHeader>
+            {goal ? (
+              <RowContent>
+                <ProgressContent>
+                  <CircularProgressbar
+                    value={porcentage}
+                    text={`${porcentage}%`}
+                    styles={buildStyles({
+                      // Text size
+                      textSize: "25px",
 
-            <RowContent>
-              <ProgressContent>
-                <CircularProgressbar
-                  value={66}
-                  text={`${66}%`}
-                  styles={buildStyles({
-                    // Text size
-                    textSize: "25px",
+                      // Colors
+                      pathColor: `#ffe115`,
+                      textColor: Themes().wordColors,
+                      trailColor: Themes().financeBackground,
+                    })}
+                  />
+                </ProgressContent>
 
-                    // Colors
-                    pathColor: `#ffe115`,
-                    textColor: Themes().wordColors,
-                    trailColor: Themes().financeBackground,
-                  })}
+                <ContentGoal>
+                  <Goal>
+                    <Value>
+                      {goal.objective.toLocaleString("pt-br", {
+                        currency: "brl",
+                        style: "currency",
+                      })}
+                    </Value>
+                    <Label>Meta</Label>
+                  </Goal>
+                  <RowGoal>
+                    <Goal>
+                      <Value small>
+                        {goal.inTheMoment.toLocaleString("pt-br", {
+                          currency: "brl",
+                          style: "currency",
+                        })}
+                      </Value>
+                      <Label small>Ganhos</Label>
+                    </Goal>
+
+                    <Goal>
+                      <Value small>
+                        {goal.salesInTheMoment.toLocaleString("pt-br", {
+                          currency: "brl",
+                          style: "currency",
+                        })}
+                      </Value>
+                      <Label small>Vendas</Label>
+                    </Goal>
+                  </RowGoal>
+                </ContentGoal>
+              </RowContent>
+            ) : (
+              <>
+                <TitleContent>
+                  Defina uma meta para medir seu desempenho
+                </TitleContent>
+                <Input
+                  type="number"
+                  onChange={(event) => setObjective(event.target.value)}
+                  value={objective}
                 />
-              </ProgressContent>
-
-              <ContentGoal>
-                <Goal>
-                  <Value>R$ 4.600,00</Value>
-                  <Label>Meta</Label>
-                </Goal>
-                <RowGoal>
-                  <Goal>
-                    <Value small>R$ 2.300,00</Value>
-                    <Label small>Ganhos</Label>
-                  </Goal>
-
-                  <Goal>
-                    <Value small>180</Value>
-                    <Label small>Vendas</Label>
-                  </Goal>
-                </RowGoal>
-              </ContentGoal>
-            </RowContent>
+                <ButtonContent onClick={createGoal}>
+                  <p>Definir meta</p>
+                </ButtonContent>
+              </>
+            )}
           </Content>
 
           <Content>
