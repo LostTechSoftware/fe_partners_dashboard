@@ -245,7 +245,7 @@ function Finance() {
                 {monthInfo && monthInfo.otherRates.length
                   ? monthInfo.otherRates
                     .map((info) => info.rateValue)
-                      .reduce(reducer)
+                    .reduce(reducer)
                     .toLocaleString("pt-br", {
                         currency: "brl",
                       style: "currency",
