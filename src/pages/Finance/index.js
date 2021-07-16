@@ -249,7 +249,7 @@ function Finance() {
                     .toLocaleString("pt-br", {
                         currency: "brl",
                       style: "currency",
-                      })
+                    })
                   : (0).toLocaleString("pt-br", {
                       currency: "brl",
                       style: "currency",
