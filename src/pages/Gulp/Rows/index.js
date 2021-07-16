@@ -24,12 +24,17 @@ function Rows({
   setReload,
   setSelectedRow,
 }) {
-  const [rowBasicInfo, rowPaused, changeRowAvaliably, loadingAction, action] =
-    useRows({
-      row,
-      setSelectedProduct,
-      setAddProduct,
-    });
+  const [
+    rowBasicInfo,
+    rowPaused,
+    changeRowAvaliably,
+    loadingAction,
+    action,
+  ] = useRows({
+    row,
+    setSelectedProduct,
+    setAddProduct,
+  });
   const [isMobile] = useScreenMeasure();
 
   return (
