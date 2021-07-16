@@ -153,7 +153,7 @@ export const useFinance = () => {
       setCategories(
         data.map((days) =>
           moment(`${days.referenceMonth + 1}/01`).format("MMMM")
-      );
+        )
       );
 
       const { data: byDays } = await api.get("/partner/finance/sales/day");
