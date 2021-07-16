@@ -253,7 +253,7 @@ function Finance() {
                   : (0).toLocaleString("pt-br", {
                       currency: "brl",
                       style: "currency",
-                    })}
+                  })}
               </p>
             </RowMonthDetails>
 
