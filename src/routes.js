@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
+import Menu from "./pages/Gulp";
 import Login from "./pages/Client";
-import Menu from "./pages/FoodMenu";
-import Money from "./pages/Money";
 import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
@@ -11,6 +10,8 @@ import Payments from "./pages/Settings/Payments";
 import Partners from "./pages/Settings/Partners";
 import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
+import Finance from "./pages/Finance";
+
 import { getLevel } from "./services/getLevel";
 
 export default function Router() {
@@ -79,7 +80,7 @@ export default function Router() {
         <SubAcessRoutes path="/requests" component={Tasks} />
         <SubAcessRoutes path="/menu" component={Menu} />
 
-        <MasterRoutes path="/money" component={Money} />
+        <MasterRoutes path="/finance" component={Finance} />
       </Switch>
     </BrowserRouter>
   );

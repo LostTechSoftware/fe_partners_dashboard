@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getLevel } from "../../services/getLevel";
 import { useHistory } from "react-router-dom";
 
@@ -25,7 +25,7 @@ export const useMenu = () => {
           // { text: "Mapa", route: "" },
           // { text: "Impulsionar", route: "" },
           { text: "Produtos", route: "menu" },
-          { text: "Finanças", route: "money" },
+          { text: "Finanças", route: "finance" },
         ]);
       }
 
@@ -36,7 +36,7 @@ export const useMenu = () => {
           // { text: "Mapa", route: "" },
           // { text: "Impulsionar", route: "" },
           { text: "Produtos", route: "menu" },
-          // { text: "Finanças", route: "money" },
+          // { text: "Finanças", route: "finance" },
         ]);
       }
     };
