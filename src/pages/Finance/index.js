@@ -43,7 +43,6 @@ function Finance() {
   const [
     handleMenuMobileOpen,
     isMenuMobileOpened,
-    setIsMenuMobileOpened,
     series,
     options,
     selectedWeekly,

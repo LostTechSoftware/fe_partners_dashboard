@@ -199,7 +199,6 @@ export const useFinance = () => {
   return [
     handleMenuMobileOpen,
     isMenuMobileOpened,
-    setIsMenuMobileOpened,
     series,
     options,
     selectedWeekly,
