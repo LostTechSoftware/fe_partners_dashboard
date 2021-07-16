@@ -30,7 +30,7 @@ export default function Router() {
     <Route
       {...rest}
       render={(props) =>
-        level < 1 ? (
+        level == 0 ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
