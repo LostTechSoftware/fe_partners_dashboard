@@ -137,9 +137,16 @@ export const useFinance = () => {
   };
 
   async function createGoal() {
+    toast.info("Aguarde, estamos preparando tudo");
+
+    if (objective <= 100)
+      return toast.error("Ops, defina metas maiores de R$100,00");
+
     const { data } = await api.post("/partner/finance/goal", { objective });
 
     setGoal(data);
+
+    toast.success("Meta criada!");
   }
 
   useEffect(() => {
@@ -148,7 +155,7 @@ export const useFinance = () => {
 
       const newSeries = series;
 
-      newSeries.series[0].data = data.map((days) => days.sales);
+      newSeries.series[0].data = data.map((month) => Math.round(month.sales));
       setSeries(newSeries);
       setCategories(
         data.map((days) =>
@@ -160,14 +167,18 @@ export const useFinance = () => {
 
       const newSeriesDay = seriesDay;
 
-      newSeriesDay.series[0].data = byDays.map((days) => days.sales);
+      newSeriesDay.series[0].data = byDays.map((days) =>
+        Math.round(days.sales)
+      );
       setSeriesDay(newSeriesDay);
       setCategoriesDays(byDays.map((days) => days.dayName));
 
       const { data: goalData } = await api.get("/partner/finance/goal");
 
       setGoal(goalData);
-      setPorcentage((goalData.inTheMoment / goalData.objective) * 100);
+      if (goalData) {
+        setPorcentage((goalData.inTheMoment / goalData.objective) * 100);
+      }
 
       const { data: dataMonthInfo } = await api.get("/partner/finance/info");
 
@@ -186,7 +197,9 @@ export const useFinance = () => {
 
   async function antecipatePayment() {
     try {
-      const { data } = await api
+      toast.info("Aguarde, estamos preparando tudo");
+
+      await api
         .post("/antecipate/payment")
         .catch((error) => toast.error(error.response.data));
 
