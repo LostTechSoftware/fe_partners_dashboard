@@ -21,18 +21,13 @@ import { LoginHooks } from "./hooks";
 
 export default function Login() {
   const [
-    history,
-    token,
-    setToken,
     email,
     setEmail,
     loading,
-    setLoading,
     password,
     setPassword,
     recaptchaRef,
     ClickForgotPassword,
-    onChange,
     tryLogin,
   ] = LoginHooks();
 
@@ -65,7 +60,6 @@ export default function Login() {
           <ReCAPTCHA
             ref={recaptchaRef}
             sitekey="6Lf77XkbAAAAAKRYz0QM-nmwIT4yengo3mKp2eES"
-            onChange={onChange}
             size="invisible"
           />
           <ForgotPassword>

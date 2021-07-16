@@ -5,7 +5,6 @@ import {
   styledMobileCodeInput,
 } from "../../../utils/propsCodeInput";
 import { useScreenMeasure } from "../../../utils/isMobile";
-import { ForgotPasswordHooks } from "../hooks";
 
 import {
   Label,
