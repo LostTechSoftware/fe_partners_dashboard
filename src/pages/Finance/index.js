@@ -247,7 +247,7 @@ function Finance() {
                     .map((info) => info.rateValue)
                     .reduce(reducer)
                     .toLocaleString("pt-br", {
-                        currency: "brl",
+                      currency: "brl",
                       style: "currency",
                     })
                   : (0).toLocaleString("pt-br", {
