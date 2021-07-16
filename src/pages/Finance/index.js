@@ -248,7 +248,7 @@ function Finance() {
                       .reduce(reducer)
                       .toLocaleString("pt-br", {
                         currency: "brl",
-                        style: "currency",
+                      style: "currency",
                       })
                   : (0).toLocaleString("pt-br", {
                       currency: "brl",
