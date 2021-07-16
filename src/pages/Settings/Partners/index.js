@@ -31,20 +31,20 @@ function Partners() {
       <Container>
         <SettingsComponents defaultValue={true} showCheckBox={false} title="">
           <Row>
-            <Label>Tempo de retirada</Label>
+            <Label>Tempo de retirada (em mins)</Label>
             <Input
               value={withdrawalDelay}
               onChange={(event) => updateWithdrawalDelay(event.target.value)}
-              placeholder="00:00"
+              placeholder="00"
             />
           </Row>
 
           <Row>
-            <Label>Tempo de entrega</Label>
+            <Label>Tempo de entrega (em mins)</Label>
             <Input
               value={deliveryDelay}
               onChange={(event) => updateDeliveryDelay(event.target.value)}
-              placeholder="00:00"
+              placeholder="00"
             />
           </Row>
         </SettingsComponents>

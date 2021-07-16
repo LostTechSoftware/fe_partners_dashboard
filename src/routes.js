@@ -21,7 +21,9 @@ export default function Router() {
     async function getLevelResponse() {
       const levelResponse = await getLevel();
 
-      setLevel(levelResponse);
+      if ([0, 1, 2].includes(levelResponse)) {
+        setLevel(levelResponse);
+      }
     }
     getLevelResponse();
   }, []);
