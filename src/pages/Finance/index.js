@@ -123,8 +123,8 @@ function Finance() {
               <RowContent>
                 <ProgressContent>
                   <CircularProgressbar
-                    value={porcentage}
-                    text={`${porcentage}%`}
+                    value={Math.round(porcentage)}
+                    text={`${Math.round(porcentage)}%`}
                     styles={buildStyles({
                       // Text size
                       textSize: "25px",
@@ -159,12 +159,7 @@ function Finance() {
                     </Goal>
 
                     <Goal>
-                      <Value small>
-                        {goal.salesInTheMoment.toLocaleString("pt-br", {
-                          currency: "brl",
-                          style: "currency",
-                        })}
-                      </Value>
+                      <Value small>{goal.salesInTheMoment}</Value>
                       <Label small>Vendas</Label>
                     </Goal>
                   </RowGoal>
