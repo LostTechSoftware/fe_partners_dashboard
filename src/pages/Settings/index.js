@@ -17,12 +17,7 @@ import {
 
 function Settings({ children, path = "profile", disableScroll }) {
   const [isMobile] = useScreenMeasure();
-  const [
-    isMenuMobileOpened,
-    setIsMenuMobileOpened,
-    handleMenuMobileOpen,
-    history,
-  ] = useSettings();
+  const [isMenuMobileOpened, handleMenuMobileOpen, history] = useSettings();
 
   return (
     <div className="page foodMenu">
