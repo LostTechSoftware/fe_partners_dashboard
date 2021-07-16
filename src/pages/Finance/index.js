@@ -31,6 +31,11 @@ import {
   TitleContent,
   Input,
   ButtonContent,
+  ContainerGrid,
+  Product,
+  Image,
+  TitleProduct,
+  Sales,
 } from "./styles";
 
 function Finance() {
@@ -50,6 +55,10 @@ function Finance() {
     setObjective,
     createGoal,
     porcentage,
+    monthInfo,
+    reducer,
+    antecipatePayment,
+    products,
   ] = useFinance();
 
   return (
@@ -60,7 +69,7 @@ function Finance() {
         currentPage="finance"
       />
       <Container isMobile={isMobile}>
-        <Content full>
+        <Content mobileNotDisplay full>
           <ContentHeader>
             <ContainerButtons>
               <ButtonHeader
@@ -188,31 +197,68 @@ function Finance() {
 
             <RowMonthDetails>
               <h1>Valor ganho</h1>
-              <p>R$ 2300,00</p>
+              <p>
+                {monthInfo &&
+                  monthInfo.sales.toLocaleString("pt-br", {
+                    currency: "brl",
+                    style: "currency",
+                  })}
+              </p>
             </RowMonthDetails>
 
             <RowMonthDetails>
               <h1>Comissão do FoodZilla</h1>
-              <p>R$ 2300,00</p>
+              <p>
+                {monthInfo &&
+                  monthInfo.feeFoodZilla.toLocaleString("pt-br", {
+                    currency: "brl",
+                    style: "currency",
+                  })}
+              </p>
             </RowMonthDetails>
 
             <RowMonthDetails>
               <h1>Cupons</h1>
-              <p>R$ 2300,00</p>
+              <p>
+                {monthInfo &&
+                  monthInfo.couponsSales.toLocaleString("pt-br", {
+                    currency: "brl",
+                    style: "currency",
+                  })}
+              </p>
             </RowMonthDetails>
 
             <RowMonthDetails>
               <h1>Anúncios</h1>
-              <p>R$ 2300,00</p>
+              <p>
+                {monthInfo &&
+                  monthInfo.boosterInvestiments.toLocaleString("pt-br", {
+                    currency: "brl",
+                    style: "currency",
+                  })}
+              </p>
             </RowMonthDetails>
 
             <RowMonthDetails>
               <h1>Outras taxas</h1>
-              <p>R$ 2300,00</p>
+              <p>
+                {monthInfo && monthInfo.otherRates.length
+                  ? monthInfo.otherRates
+                      .map((info) => info.rateValue)
+                      .reduce(reducer)
+                      .toLocaleString("pt-br", {
+                        currency: "brl",
+                        style: "currency",
+                      })
+                  : (0).toLocaleString("pt-br", {
+                      currency: "brl",
+                      style: "currency",
+                    })}
+              </p>
             </RowMonthDetails>
 
             <ButtonContainer>
-              <Button>
+              <Button onClick={antecipatePayment}>
                 <p>Adiantar pagamento</p>
               </Button>
             </ButtonContainer>
@@ -225,6 +271,22 @@ function Finance() {
               <Title>Produtos mais vendidos</Title>
             </RowTitle>
           </ContentHeader>
+
+          <ContainerGrid>
+            {products.map((product) => (
+              <Product>
+                <Image
+                  src={
+                    product.avatar
+                      ? product.avatar
+                      : "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle.jpg"
+                  }
+                />
+                <TitleProduct>{product.title}</TitleProduct>
+                <Sales>x{product.ordersCount}</Sales>
+              </Product>
+            ))}
+          </ContainerGrid>
         </Content>
       </Container>
     </div>

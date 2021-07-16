@@ -1,6 +1,8 @@
+import { useEffect, useState, useCallback } from "react";
 import moment from "moment";
 import "moment/locale/pt";
-import { useEffect, useState, useCallback } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import api from "../../services/api";
 import { Themes } from "../../utils/themes";
@@ -10,7 +12,7 @@ export const useFinance = () => {
   const [series, setSeries] = useState({
     series: [
       {
-        data: [1500, 1000, 500, 100, 200, 300, 1500, 500, 100, 200],
+        data: [],
       },
     ],
   });
@@ -27,6 +29,10 @@ export const useFinance = () => {
   const [goal, setGoal] = useState("");
   const [objective, setObjective] = useState(0);
   const [porcentage, setPorcentage] = useState(0);
+  const [monthInfo, setMonthInfo] = useState("");
+  const [products, setProducts] = useState([]);
+
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   const Colors = (length) => {
     return Array.from({ length }, () => Themes().wordColors);
@@ -145,7 +151,9 @@ export const useFinance = () => {
       newSeries.series[0].data = data.map((days) => days.sales);
       setSeries(newSeries);
       setCategories(
-        data.map((days) => moment(days.referenceMonth).format("MM"))
+        data.map((days) =>
+          moment(`${days.referenceMonth + 1}/01`).format("MMMM")
+        )
       );
 
       const { data: byDays } = await api.get("/partner/finance/sales/day");
@@ -160,13 +168,33 @@ export const useFinance = () => {
 
       setGoal(goalData);
       setPorcentage((goalData.inTheMoment / goalData.objective) * 100);
+
+      const { data: dataMonthInfo } = await api.get("/partner/finance/info");
+
+      setMonthInfo(dataMonthInfo);
+
+      const { data: dataProducts } = await api.get("/partner/finance/products");
+
+      setProducts(dataProducts);
     }
     getDatas();
-  }, []);
+  }, [series, seriesDay]);
 
   const handleMenuMobileOpen = useCallback(() => {
     setIsMenuMobileOpened(!isMenuMobileOpened);
   }, [isMenuMobileOpened]);
+
+  async function antecipatePayment() {
+    try {
+      const { data } = await api
+        .post("/antecipate/payment")
+        .catch((error) => toast.error(error.response.data));
+
+      toast.error("Pagamento adiantado e enviado no seu email");
+    } catch {
+      toast.error("Erro ao adiantar pagamento");
+    }
+  }
 
   return [
     handleMenuMobileOpen,
@@ -183,5 +211,9 @@ export const useFinance = () => {
     setObjective,
     createGoal,
     porcentage,
+    monthInfo,
+    reducer,
+    antecipatePayment,
+    products,
   ];
 };

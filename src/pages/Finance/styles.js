@@ -71,6 +71,14 @@ export const Content = styled.div`
       }
     `};
 
+    ${({ mobileNotDisplay }) =>
+      mobileNotDisplay &&
+      css`
+        @media screen and (max-width: 800px) {
+          display: none;
+        }
+      `}
+
   margin-top: 25px;
 `;
 
@@ -196,6 +204,10 @@ export const ContentGoal = styled.div`
     padding: 20px;
     width: 100%;
   }
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const Goal = styled.div`
@@ -274,6 +286,8 @@ export const Button = styled.div`
   justify-content: center;
   align-items: center;
 
+  cursor: pointer;
+
   > p {
     font-style: normal;
     font-weight: bold;
@@ -349,5 +363,73 @@ export const ButtonContent = styled.div`
     text-align: center;
 
     color: #ffffff;
+  }
+`;
+
+export const ContainerGrid = styled.div`
+  height: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    height: 500px;
+  }
+
+  background: ${Themes().background};
+`;
+
+export const Product = styled.div`
+  width: 400px;
+  height: 70px;
+
+  border: 1px solid ${Themes().gray};
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+
+  @media screen and (min-width: 800px) {
+    margin-right: 50px;
+    margin-bottom: 50px;
+  }
+`;
+
+export const Image = styled.img`
+  width: 70px;
+  height: 99%;
+
+  border-radius: 5px;
+`;
+
+export const TitleProduct = styled.p`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: ${Themes().wordColors};
+
+  @media screen and (max-width: 400px) {
+    font-size: 15px;
+  }
+`;
+
+export const Sales = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: ${Themes().gray};
+
+  @media screen and (max-width: 400px) {
+    font-size: 15px;
   }
 `;
