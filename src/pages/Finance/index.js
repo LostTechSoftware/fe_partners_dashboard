@@ -243,16 +243,16 @@ function Finance() {
               <p>
                 {monthInfo && monthInfo.otherRates.length
                   ? monthInfo.otherRates
-                      .map((info) => info.rateValue)
-                      .reduce(reducer)
-                      .toLocaleString("pt-br", {
-                        currency: "brl",
-                        style: "currency",
-                      })
+                    .map((info) => info.rateValue)
+                    .reduce(reducer)
+                    .toLocaleString("pt-br", {
+                      currency: "brl",
+                      style: "currency",
+                    })
                   : (0).toLocaleString("pt-br", {
                       currency: "brl",
                       style: "currency",
-                    })}
+                  })}
               </p>
             </RowMonthDetails>
 

@@ -221,7 +221,7 @@ export const SubOption = styled.ul`
 
   > li {
     ${(props) =>
-      props.active ? subOptionActiveStyles : subOptionDefaultStyles}
+    props.active ? subOptionActiveStyles : subOptionDefaultStyles}
     padding: 12px 16px;
 
     font-family: "Montserrat", sans-serif;

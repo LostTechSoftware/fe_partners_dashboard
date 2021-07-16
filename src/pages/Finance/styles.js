@@ -72,7 +72,7 @@ export const Content = styled.div`
     `};
 
     ${({ mobileNotDisplay }) =>
-      mobileNotDisplay &&
+    mobileNotDisplay &&
       css`
         @media screen and (max-width: 800px) {
           display: none;
