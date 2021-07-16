@@ -8,5 +8,5 @@ export const Light = {
   messageBars: "rgba(221, 221, 221, 0.3)",
   messageComponent: "rgba(255, 225, 21, 0.5)",
   shadowStatus: "rgba(0, 0, 0, 0.1)",
-  financeBackground: "#fefefe",
+  financeBackground: "#F5F5F5",
 };
