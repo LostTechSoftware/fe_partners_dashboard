@@ -56,9 +56,6 @@ export const LoginHooks = () => {
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
 
-      console.log("USER:");
-      console.log(response.data.user);
-
       setLoading(false);
       history.push("/requests");
     } catch (error) {

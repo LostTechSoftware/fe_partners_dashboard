@@ -160,10 +160,13 @@ export default function Tasks() {
             >
               <OrderCode>#{order.token}</OrderCode>
               <Value>
-                {(screen === 0 ? order.realPrice : order.price).toLocaleString(
-                  "pt-br",
-                  { style: "currency", currency: "brl" }
-                )}
+                {(screen === 0
+                  ? order.realPrice
+                  : order.price
+                ).toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "brl",
+                })}
               </Value>
             </OrderComponent>
           ))}
@@ -233,10 +236,12 @@ export default function Tasks() {
                       <ProductText>{product.title}</ProductText>
                       <ProductText>{product.quantidade}x</ProductText>
                       <ProductText>
-                        {(product.quantidade * product.price).toLocaleString(
-                          "pt-br",
-                          { currency: "brl", style: "currency" }
-                        )}
+                        {(
+                          product.quantidade * product.price
+                        ).toLocaleString("pt-br", {
+                          currency: "brl",
+                          style: "currency",
+                        })}
                       </ProductText>
                     </ContainerText>
 

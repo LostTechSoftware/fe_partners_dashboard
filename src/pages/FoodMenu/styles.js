@@ -29,6 +29,10 @@ export const Container = styled.div`
       position: relative;
     `};
 
+  @media screen and (max-width: 800px) {
+    overflow-y: scroll;
+  }
+
   ${(props) =>
     props.disableScroll &&
     css`

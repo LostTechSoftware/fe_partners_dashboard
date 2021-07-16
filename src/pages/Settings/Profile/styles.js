@@ -25,10 +25,9 @@ export const GridInputs = styled.div`
 `;
 
 export const InputName = styled.div`
-  border: 1px solid ${Themes().gray};
+  border-bottom: 1px solid ${Themes().gray};
   background: ${Themes().background};
   box-sizing: border-box;
-  border-radius: 5px;
   width: 100%;
 
   font-family: "Roboto", sans-serif;
@@ -39,7 +38,7 @@ export const InputName = styled.div`
 
   color: ${Themes().wordColors};
 
-  padding: 15px;
+  padding: 15px 0px;
 
   height: 48px;
 `;

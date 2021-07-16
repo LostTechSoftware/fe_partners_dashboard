@@ -6,8 +6,13 @@ import { usePayments } from "./hooks";
 import { Container, Content, Title, Grid, Label, Row, Text } from "./styles";
 
 function Payments() {
-  const [creditCards, debitCards, online, UpdateOrCreatePayment, setOnline] =
-    usePayments();
+  const [
+    creditCards,
+    debitCards,
+    online,
+    UpdateOrCreatePayment,
+    setOnline,
+  ] = usePayments();
 
   return (
     <Settings path="payments">
