@@ -14,7 +14,6 @@ import {
 
 function Profile() {
   const [restaurant] = useProfile();
-  console.log(restaurant);
 
   return (
     <Settings path="profile">

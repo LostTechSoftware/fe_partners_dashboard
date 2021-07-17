@@ -37,13 +37,14 @@ export const LoginHooks = () => {
         Number,
         delay,
         delayRemove,
+        restaurant,
       } = response.data.user;
       const restaurantLocation = JSON.stringify(
         response.data.user.location.coordinates
       );
 
       sessionStorage.setItem("token", token);
-      sessionStorage.setItem("_id", _id);
+      sessionStorage.setItem("_id", restaurant || _id);
       sessionStorage.setItem("avatar", avatar);
       sessionStorage.setItem("restaurantName", name);
       sessionStorage.setItem("restaurantLocation", restaurantLocation);
@@ -55,9 +56,6 @@ export const LoginHooks = () => {
         "restaurantAddress",
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
-
-      console.log("USER:");
-      console.log(response.data.user);
 
       setLoading(false);
       history.push("/requests");

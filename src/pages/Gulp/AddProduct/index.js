@@ -65,7 +65,9 @@ function AddProduct({
       cancel={cancel}
       onClick={updateOrCreateItem}
       displayBottom
-      title="Adicionar produto"
+      title={
+        !!(product && product._id) ? "Editar produto" : "Adicionar produto"
+      }
       buttonsDisabled={loading}
       showTrash={!!product}
       onClickTrash={deleteItem}

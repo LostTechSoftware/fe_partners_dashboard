@@ -46,10 +46,7 @@ function Modal({
           <Title>{title}</Title>
 
           {showTrash && (
-            <TrashComponent
-              onClick={onClickTrash}
-              color={Themes().wordColors}
-            />
+            <TrashComponent onClick={onClickTrash} color={Themes().gray} />
           )}
         </Row>
 

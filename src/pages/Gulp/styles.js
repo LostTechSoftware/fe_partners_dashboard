@@ -30,6 +30,14 @@ export const Container = styled.div`
     `};
 
   ${(props) =>
+    !props.disableScroll &&
+    css`
+      @media screen and (max-width: 800px) {
+        overflow-y: scroll;
+      }
+    `};
+
+  ${(props) =>
     props.disableScroll &&
     css`
       overflow: hidden;

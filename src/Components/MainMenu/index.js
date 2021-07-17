@@ -7,7 +7,7 @@ import {
   TrendingUp,
   Menu,
   DollarSign,
-  ChevronDown,
+  LogOut,
 } from "react-feather";
 import MaterialIcon from "material-icons-react";
 
@@ -29,6 +29,7 @@ import {
   SubOption,
   RotateSubMenuToggleArrow,
   Toggled,
+  Skip,
 } from "./styles";
 import { useMenu } from "./hooks";
 import { Hamburguer } from "../hamburguer";
@@ -56,7 +57,7 @@ export default function MainMenu({
   setToggleMenu = () => console.log("Ooops, venha trabalhar conosco dev"),
 }) {
   const [isMobile] = useScreenMeasure();
-  const { menuOptions, toggled, setToggled } = useMenu();
+  const { menuOptions, toggled, setToggled, level, logout } = useMenu();
 
   return (
     <>
@@ -100,42 +101,51 @@ export default function MainMenu({
                     </Option>
                   ))}
 
-                  <Option settings>
-                    <ContainerButton>
-                      <Settings
-                        color={
-                          currentPage == "/settings"
-                            ? "#fff"
-                            : Themes().wordColors
-                        }
-                        size={30}
-                      />
-                      <Link>Configurações</Link>
-                      <ToggleSubMenu
-                        onClick={() => setToggled(!toggled)}
-                        isSubMenuToggled={toggled}
-                      >
-                        <RotateSubMenuToggleArrow
-                          color={Themes().gray}
-                          toggled={toggled}
+                  {level === 0 ? (
+                    <Option settings>
+                      <ContainerButton>
+                        <Settings
+                          color={
+                            currentPage == "/settings"
+                              ? "#fff"
+                              : Themes().wordColors
+                          }
+                          size={30}
                         />
-                      </ToggleSubMenu>
-                    </ContainerButton>
-                    <SubOption isSubMenuToggled={toggled}>
-                      <li>
-                        <Link to={"/settings/profile"}>Perfil</Link>
-                      </li>
-                      <li>
-                        <Link to={"/settings/access"}>Acessos</Link>
-                      </li>
-                      <li>
-                        <Link to={"/settings/payments"}>Pagamentos</Link>
-                      </li>
-                      <li>
-                        <Link to={"/settings/partners"}>Estabelecimento</Link>
-                      </li>
-                    </SubOption>
-                  </Option>
+                        <Link>Configurações</Link>
+                        <ToggleSubMenu
+                          onClick={() => setToggled(!toggled)}
+                          isSubMenuToggled={toggled}
+                        >
+                          <RotateSubMenuToggleArrow
+                            color={Themes().gray}
+                            toggled={toggled}
+                          />
+                        </ToggleSubMenu>
+                      </ContainerButton>
+                      <SubOption isSubMenuToggled={toggled}>
+                        <li>
+                          <Link to={"/settings/profile"}>Perfil</Link>
+                        </li>
+                        <li>
+                          <Link to={"/settings/access"}>Acessos</Link>
+                        </li>
+                        <li>
+                          <Link to={"/settings/payments"}>Pagamentos</Link>
+                        </li>
+                        <li>
+                          <Link to={"/settings/partners"}>Estabelecimento</Link>
+                        </li>
+                      </SubOption>
+                    </Option>
+                  ) : (
+                    <Option settings>
+                      <ContainerButton onClick={logout}>
+                        <LogOut color={Themes().wordColors} size={30} />
+                        <Skip>Sair</Skip>
+                      </ContainerButton>
+                    </Option>
+                  )}
 
                   <Option help>
                     <ContainerButton>
@@ -190,22 +200,31 @@ export default function MainMenu({
                 </Option>
               ))}
 
-              <Option selected={currentPage == "settings"} settings>
-                <ContainerButton>
-                  <Settings
-                    color={
-                      currentPage == "settings" ? "#fff" : Themes().wordColors
-                    }
-                    size={30}
-                  />
-                  <Link
-                    selected={currentPage == "settings"}
-                    to="/settings/profile"
-                  >
-                    Configurações
-                  </Link>
-                </ContainerButton>
-              </Option>
+              {level === 0 ? (
+                <Option selected={currentPage == "settings"} settings>
+                  <ContainerButton>
+                    <Settings
+                      color={
+                        currentPage == "settings" ? "#fff" : Themes().wordColors
+                      }
+                      size={30}
+                    />
+                    <Link
+                      selected={currentPage == "settings"}
+                      to="/settings/profile"
+                    >
+                      Configurações
+                    </Link>
+                  </ContainerButton>
+                </Option>
+              ) : (
+                <Option settings>
+                  <ContainerButton onClick={logout}>
+                    <LogOut color={Themes().wordColors} size={30} />
+                    <Skip>Sair</Skip>
+                  </ContainerButton>
+                </Option>
+              )}
 
               <Option help>
                 <ContainerButton>

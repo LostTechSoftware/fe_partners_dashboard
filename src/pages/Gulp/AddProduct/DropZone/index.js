@@ -39,8 +39,12 @@ function DropZone({
             uploadedFiles ? () => setUploadedFile(null) : deleteProductAvatar
           }
         >
-          <Trash />
-          <Text margin>Remover imagem</Text>
+          {(avatar || uploadedFiles) && (
+            <>
+              <Trash />
+              <Text margin>Remover imagem</Text>
+            </>
+          )}
         </ContainerHeader>
         <Section error={error}>
           <ContainerRoot {...getRootProps()}>
