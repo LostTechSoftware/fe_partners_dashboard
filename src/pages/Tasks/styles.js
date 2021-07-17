@@ -240,6 +240,8 @@ export const StatusContent = styled.div`
 
   position: absolute;
 
+  cursor: pointer;
+
   @media screen and (min-width: 800px) {
     right: 20px;
     top: 20px;
@@ -403,8 +405,11 @@ export const ContainerPopUp = styled.div`
   align-items: center;
 `;
 
-export const ContainerPrint = styled.div`
+export const ContainerPrint = styled.button`
   color: ${Themes().gray};
+
+  background: transparent;
+  border: none;
 
   display: flex;
   flex-direction: row;
@@ -413,10 +418,6 @@ export const ContainerPrint = styled.div`
   margin-right: 20px;
 
   cursor: pointer;
-
-  @media screen and (max-width: 800px) {
-    display: none;
-  }
 
   width: 50%;
 

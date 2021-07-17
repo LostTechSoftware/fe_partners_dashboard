@@ -1,5 +1,4 @@
 import React from "react";
-import { Themes } from "../../utils/themes";
 
 export const CaretDoubleLeft = () => (
   <svg
