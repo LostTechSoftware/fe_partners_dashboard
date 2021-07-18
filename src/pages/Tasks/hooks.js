@@ -86,21 +86,20 @@ export const useTasks = () => {
     setLoading(false);
   };
 
+  async function SocketFunction() {
+    const socket = socketio(process.env.REACT_APP_SERVER, {
+      query: {
+        user: _id,
+        username: name,
+        restaurant: true,
+      },
+    });
+
+    socket.on("new_order", GetOrders);
+    socket.on("open", Reload);
+  }
+
   useEffect(() => {
-    async function SocketFunction() {
-      const socket = socketio(process.env.REACT_APP_SERVER, {
-        query: {
-          user: _id,
-          username: name,
-          restaurant: true,
-        },
-      });
-
-      socket.on("new_order", GetOrders);
-      socket.on("open", Reload);
-    }
-    SocketFunction();
-
     if (restaurantIsOpen) {
       setStatus("Aberto");
       setColor("#2ECC71");
@@ -110,6 +109,7 @@ export const useTasks = () => {
       setColor("#E74C3C");
     }
 
+    SocketFunction();
     GetOrders();
     Reload();
   }, [screen]);

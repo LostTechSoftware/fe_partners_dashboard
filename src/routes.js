@@ -13,6 +13,7 @@ import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
 
 import { getLevel } from "./services/getLevel";
+import Localization from "./pages/Localization";
 
 export default function Router() {
   const [level, setLevel] = useState(2);
@@ -81,6 +82,7 @@ export default function Router() {
         <SubAcessRoutes path="/messages" component={Message} />
         <SubAcessRoutes path="/requests" component={Tasks} />
         <SubAcessRoutes path="/menu" component={Menu} />
+        <SubAcessRoutes path="/maps" component={Localization} />
 
         <MasterRoutes path="/finance" component={Finance} />
       </Switch>

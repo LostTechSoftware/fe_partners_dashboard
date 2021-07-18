@@ -5,7 +5,7 @@
   "engines": {
     "node": "<=14.15.0",
     "npm": "<=7.19.0",
-    "yarn":"<=1.22.10"
+    "yarn": "<=1.22.10"
   },
   "os": [
     "linux"
@@ -17,6 +17,7 @@
     "@material-ui/core": "4.11.0",
     "@material-ui/icons": "4.9.1",
     "@material-ui/lab": "4.0.0-alpha.56",
+    "@react-google-maps/api": "^2.2.0",
     "@sentry/react": "6.2.5",
     "@sentry/tracing": "6.2.5",
     "apexcharts": "3.27.2",
@@ -26,6 +27,7 @@
     "filesize": "6.1.0",
     "firebase": "8.7.1",
     "fuse.js": "6.4.6",
+    "google-map-react": "^2.1.10",
     "madge": "4.0.2",
     "material-icons-react": "1.0.4",
     "moment": "2.29.0",
@@ -38,6 +40,7 @@
     "react-dom": "16.13.1",
     "react-dropzone": "11.3.4",
     "react-feather": "2.0.9",
+    "react-google-maps": "^9.4.5",
     "react-google-recaptcha": "2.1.0",
     "react-icons": "4.2.0",
     "react-notification-badge": "1.5.1",

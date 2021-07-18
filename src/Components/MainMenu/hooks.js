@@ -22,7 +22,7 @@ export const useMenu = () => {
         return setMenuOptions([
           { text: "Pedidos", route: "requests" },
           { text: "Mensagens", route: "messages" },
-          // { text: "Mapa", route: "" },
+          { text: "Mapa", route: "maps" },
           // { text: "Impulsionar", route: "" },
           { text: "Produtos", route: "menu" },
           { text: "Finanças", route: "finance" },
@@ -33,7 +33,7 @@ export const useMenu = () => {
         return setMenuOptions([
           { text: "Pedidos", route: "requests" },
           { text: "Mensagens", route: "messages" },
-          // { text: "Mapa", route: "" },
+          { text: "Mapa", route: "maps" },
           // { text: "Impulsionar", route: "" },
           { text: "Produtos", route: "menu" },
           // { text: "Finanças", route: "finance" },
