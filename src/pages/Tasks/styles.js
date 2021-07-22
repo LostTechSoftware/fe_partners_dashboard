@@ -225,50 +225,6 @@ export const Hour = styled.p`
   margin-top: 10px;
 `;
 
-export const StatusContent = styled.div`
-  background: ${Themes().background};
-  color: ${Themes().gray};
-
-  box-shadow: 1px 1px 10px ${Themes().shadowStatus};
-  border-radius: 5px;
-
-  width: 100px;
-  height: 80px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  position: absolute;
-
-  cursor: pointer;
-
-  @media screen and (min-width: 800px) {
-    right: 20px;
-    top: 20px;
-  }
-
-  @media screen and (max-width: 800px) {
-    right: 20px;
-    bottom: 10px;
-  }
-`;
-
-export const Status = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-
-  text-align: center;
-
-  color: ${({ color }) => color};
-
-  margin-top: 5px;
-`;
-
 export const ProductContainer = styled.div`
   border: 1px solid ${Themes().gray};
   border-radius: 5px;
@@ -553,14 +509,88 @@ export const ContentBasicInfo = styled.div`
 `;
 
 export const HeaderStatus = styled.div`
-  background: red;
   position: absolute;
   top: 0;
   width: 100%;
+
+  background: ${Themes().background};
+
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
   height: 75px;
 
   @media screen and (max-width: 800px) {
     display: none;
   }
+`;
+
+export const LeftContent = styled.div``;
+
+export const RightContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 290px;
+`;
+
+export const TitleStatus = styled.p`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: ${Themes().wordColors};
+`;
+
+export const Status = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #dddddd;
+`;
+
+export const ButtonStatus = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #ffe115;
+
+  cursor: pointer;
+`;
+
+export const ContentTime = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 75px;
+
+  justify-content: center;
+`;
+
+export const RowTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+`;
+
+export const TimeText = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #dddddd;
 `;

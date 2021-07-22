@@ -10,4 +10,5 @@ export const Light = {
   messageComponent: "rgba(255, 225, 21, 0.5)",
   shadowStatus: "rgba(0, 0, 0, 0.1)",
   financeBackground: "#F5F5F5",
+  skeleton: "linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%)",
 };

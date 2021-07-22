@@ -152,12 +152,5 @@ export const useTasks = () => {
     setShowOrderDetails,
     toggleMenu,
     setToggleMenu,
-    restaurantIsOpen,
-    removeOption,
-    status,
-    color,
-    ChangeStatus,
-    showChange,
-    setShowChange,
   ];
 };
