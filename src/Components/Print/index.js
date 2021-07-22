@@ -31,7 +31,7 @@ export const Print = React.forwardRef((props, ref) => {
       <Content>
         <h1>Cliente</h1>
         <p>Nome: {order.user.name}</p>
-        {!order.removeOption && (
+        {!order.removeOption && order.address && (
           <>
             <p>
               Endereço: {order.address.street}, {order.address.Number}

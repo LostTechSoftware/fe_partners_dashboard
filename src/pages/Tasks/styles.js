@@ -554,7 +554,7 @@ export const Status = styled.p`
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
-
+  margin: 4px 0;
   color: #dddddd;
 `;
 

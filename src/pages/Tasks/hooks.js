@@ -17,7 +17,7 @@ export const useTasks = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
   const [removeOption, setRemoveOption] = useState(false);
-  const [status, setStatus] = useState("");
+  const [connecting, setConnecting] = useState(false);
   const [color, setColor] = useState("#2ECC71");
   const [showChange, setShowChange] = useState(false);
   const _id = sessionStorage.getItem("_id");
@@ -27,19 +27,14 @@ export const useTasks = () => {
     const { data } = await api.get("/opened");
     setRestaurantIsOpen(data.opened);
     setRemoveOption(data.removeOption);
-
-    if (restaurantIsOpen) setStatus("Aberto");
-    if (!restaurantIsOpen) setStatus("Fechado");
   };
 
   window.addEventListener("offline", function (e) {
-    setStatus("Conectando");
-    setColor("#FFE115");
+    setConnecting(true);
   });
 
   window.addEventListener("online", function (e) {
-    setStatus("Aberto");
-    setColor("#2ECC71");
+    setConnecting(false);
   });
 
   async function ChangeStatus(toClose, remove = true, delivery = true) {
@@ -99,15 +94,6 @@ export const useTasks = () => {
       socket.on("open", Reload);
     }
     SocketFunction();
-
-    if (restaurantIsOpen) {
-      setStatus("Aberto");
-      setColor("#2ECC71");
-    }
-    if (!restaurantIsOpen) {
-      setStatus("Fechado");
-      setColor("#E74C3C");
-    }
 
     GetOrders();
     Reload();
