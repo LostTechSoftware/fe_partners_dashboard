@@ -49,7 +49,9 @@ export const Button = styled.div`
     `}
 `;
 
-export const ContainerPrice = styled.div``;
+export const ContainerPrice = styled.div`
+  width: 50%;
+`;
 
 export const Row = styled.div`
   display: flex;

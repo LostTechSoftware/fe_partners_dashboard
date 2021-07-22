@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Home, ChevronDown, Printer } from "react-feather";
 import Sound from "react-sound";
 import moment from "moment";
 import MaterialIcon from "material-icons-react";
 import "moment/locale/pt-br";
+import ReactToPrint from "react-to-print";
 
 import { useScreenMeasure } from "../../utils/isMobile";
 import { useTasks } from "./hooks";
@@ -55,6 +56,7 @@ import { LoadingSkeleton } from "../../Components/LoadingSkeleton";
 import FooterComponent from "./FooterComponent";
 import PopUp from "../../Components/PopUp";
 import Changes from "./Changes";
+import { Print } from "../../Components/Print";
 
 const renderLoading = () => {
   return (
@@ -103,6 +105,7 @@ export default function Tasks() {
     setShowChange,
   ] = useTasks();
   const [isMobile] = useScreenMeasure();
+  const componentRef = useRef();
 
   return (
     <div className="page foodMenu">
@@ -301,6 +304,7 @@ export default function Tasks() {
             show={showPopup}
             width="500px"
             height="350px"
+            mobileHeight="350px"
             oneButton
             buttonLabel="Confirmar"
             onClick={SendReason}
