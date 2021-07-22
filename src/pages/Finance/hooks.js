@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import moment from "moment";
 import "moment/locale/pt";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../Components/Toast";
 
 import api from "../../services/api";
 import { Themes } from "../../utils/themes";

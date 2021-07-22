@@ -43,7 +43,7 @@ export const OrdersList = styled.div`
     width: 100%;
   }
 
-  padding: 20px;
+  padding: 95px 20px 20px 20px;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -70,7 +70,7 @@ export const OrderDetails = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 20px;
+  padding: 95px 20px 20px 20px;
 
   overflow-y: scroll;
 
@@ -185,7 +185,9 @@ export const Header = styled.div`
 `;
 
 export const BasicInfo = styled.div`
-  margin-left: 20px;
+  @media screen and (min-width: 920px) {
+    margin-left: 20px;
+  }
 `;
 
 export const Title = styled.p`
@@ -410,15 +412,11 @@ export const ContainerPrint = styled.div`
   flex-direction: row;
   align-items: center;
 
-  margin-right: 20px;
-
   cursor: pointer;
 
   @media screen and (max-width: 800px) {
     display: none;
   }
-
-  width: 50%;
 
   > p {
     font-family: "Roboto", sans-serif;
@@ -538,5 +536,26 @@ export const ButtonChange = styled.div`
       css`
         color: #ffe115;
       `}
+  }
+`;
+
+export const ContentBasicInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+export const HeaderStatus = styled.div`
+  background: red;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  height: 75px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
   }
 `;

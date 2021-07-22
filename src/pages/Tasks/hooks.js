@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import api from "../../services/api";
 import socketio from "socket.io-client";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../Components/Toast";
 
 export const useTasks = () => {
   const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);

@@ -46,6 +46,8 @@ import {
   TitleChange,
   SubTitleChange,
   ButtonChange,
+  ContentBasicInfo,
+  HeaderStatus,
 } from "./styles";
 import MainMenu from "../../Components/MainMenu";
 import "./styles.css";
@@ -184,21 +186,28 @@ export default function Tasks() {
                     <UserAvatar
                       src={`https://avatars.dicebear.com/api/micah/${selectedOrders.user.name}.svg`}
                     />
-                    <BasicInfo>
-                      <ContainerTitle>
-                        <Back
-                          size={35}
-                          onClick={() => setShowOrderDetails(false)}
-                        />
-                        <Title>Pedido número #{selectedOrders.token}</Title>
-                      </ContainerTitle>
-                      <Subtitle>{selectedOrders.user.name}</Subtitle>
-                      <Hour>
-                        {selectedOrders.address
-                          ? selectedOrders.address.street
-                          : "Retirada"}
-                      </Hour>
-                    </BasicInfo>
+                    <ContentBasicInfo>
+                      <BasicInfo>
+                        <ContainerTitle>
+                          <Back
+                            size={35}
+                            onClick={() => setShowOrderDetails(false)}
+                          />
+                          <Title>Pedido número #{selectedOrders.token}</Title>
+                        </ContainerTitle>
+                        <Subtitle>{selectedOrders.user.name}</Subtitle>
+                        <Hour>
+                          {selectedOrders.address
+                            ? selectedOrders.address.street
+                            : "Retirada"}
+                        </Hour>
+                      </BasicInfo>
+
+                      <ContainerPrint onClick={() => window.print()}>
+                        <Printer />
+                        <p>Imprimir pedido</p>
+                      </ContainerPrint>
+                    </ContentBasicInfo>
                   </ContainerBasicInfo>
                 ) : (
                   <BasicInfo>
@@ -217,10 +226,6 @@ export default function Tasks() {
                     </Hour>
                   </BasicInfo>
                 )}
-                <ContainerPrint onClick={() => window.print()}>
-                  <Printer />
-                  <p>Imprimir pedido</p>
-                </ContainerPrint>
               </Header>
               {selectedOrders.products.map((product) => (
                 <>
@@ -316,16 +321,6 @@ export default function Tasks() {
             />
           </Footer>
         </OrderDetails>
-        {(!showOrderDetails || !isMobile) && (
-          <StatusContent onClick={() => setShowChange(true)}>
-            <ContentIcons>
-              <Home size={35} status color="#ddd" />
-              <MaterialIcon icon="delivery_dining" size={30} color="#ddd" />
-            </ContentIcons>
-
-            <Status color={color}>{status}</Status>
-          </StatusContent>
-        )}
 
         <Changes
           show={showChange}
@@ -365,6 +360,8 @@ export default function Tasks() {
             </Row>
           </ContentChanges>
         </Changes>
+
+        <HeaderStatus></HeaderStatus>
       </Container>
     </div>
   );
