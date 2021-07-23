@@ -9,7 +9,6 @@ import {
   DollarSign,
   LogOut,
 } from "react-feather";
-import MaterialIcon from "material-icons-react";
 
 import {
   DesktopContainer,

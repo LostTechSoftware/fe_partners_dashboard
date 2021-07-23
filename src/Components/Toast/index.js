@@ -23,25 +23,15 @@ const defaultToast = (message) =>
     progress: undefined,
   });
 
+const sendToast = (message) =>
+  localStorage.getItem("theme") === "dark"
+    ? dark(message)
+    : defaultToast(message);
+
 export const toast = {
-  info: (message) =>
-    localStorage.getItem("theme") === "dark"
-      ? dark(message)
-      : defaultToast(message),
-  error: (message) =>
-    localStorage.getItem("theme") === "dark"
-      ? dark(message)
-      : defaultToast(message),
-  warning: (message) =>
-    localStorage.getItem("theme") === "dark"
-      ? dark(message)
-      : defaultToast(message),
-  message: (message) =>
-    localStorage.getItem("theme") === "dark"
-      ? dark(message)
-      : defaultToast(message),
-  success: (message) =>
-    localStorage.getItem("theme") === "dark"
-      ? dark(message)
-      : defaultToast(message),
+  info: sendToast,
+  error: sendToast,
+  warning: sendToast,
+  message: sendToast,
+  success: sendToast,
 };
