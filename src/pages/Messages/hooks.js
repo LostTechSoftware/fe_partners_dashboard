@@ -33,6 +33,7 @@ export const useMessage = () => {
     // ignoreFieldNorm: false,
     keys: ["token"],
   };
+
   const fuse = new Fuse(orders, options);
 
   const handleMenuMobileOpen = useCallback(() => {
@@ -51,9 +52,14 @@ export const useMessage = () => {
     const { data } = await api.get(`/chat/${selectedMessage._id}`);
 
     if (!data) return;
+    const newData = data.text.reverse()[0];
+
+    if (newData.chatInfo.id === restaurantId) {
+      play();
+    }
 
     setChat(data);
-    setMessages(data.text.reverse());
+    setMessages(data.text);
   }
 
   useEffect(() => {
@@ -70,14 +76,11 @@ export const useMessage = () => {
       });
 
       socket.on("new_order", GetOrders);
-      socket.on("message", () => {
-        getMessages();
-        play();
-      });
+      socket.on("message", getMessages);
     }
+
     SocketFunction();
     getMessages();
-
     GetOrders();
 
     if (!search) return setOrders(initialOrders);
