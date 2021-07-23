@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import Message from "./pages/Messages";
@@ -12,22 +12,11 @@ import Partners from "./pages/Settings/Partners";
 import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
 
-import { getLevel } from "./services/getLevel";
 import Localization from "./pages/Localization";
+import AuthContext from "./contexts/acessLevel";
 
 export default function Router() {
-  const [level, setLevel] = useState(2);
-
-  useEffect(() => {
-    async function getLevelResponse() {
-      const levelResponse = await getLevel();
-
-      if ([0, 1, 2].includes(levelResponse)) {
-        setLevel(levelResponse);
-      }
-    }
-    getLevelResponse();
-  }, []);
+  const { level } = useContext(AuthContext);
 
   const RootRoutes = ({ component: Component, ...rest }) => (
     <Route

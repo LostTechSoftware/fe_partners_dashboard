@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import api from "../../services/api";
 import socketio from "socket.io-client";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../Components/Toast";
 
 export const useTasks = () => {
   const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);
@@ -18,9 +17,7 @@ export const useTasks = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
   const [removeOption, setRemoveOption] = useState(false);
-  const [status, setStatus] = useState("");
-  const [color, setColor] = useState("#2ECC71");
-  const [showChange, setShowChange] = useState(false);
+  const [connecting, setConnecting] = useState(false);
   const _id = sessionStorage.getItem("_id");
   const name = sessionStorage.getItem("restaurantName");
 
@@ -28,37 +25,34 @@ export const useTasks = () => {
     const { data } = await api.get("/opened");
     setRestaurantIsOpen(data.opened);
     setRemoveOption(data.removeOption);
-
-    if (restaurantIsOpen) setStatus("Aberto");
-    if (!restaurantIsOpen) setStatus("Fechado");
   };
 
-  window.addEventListener("offline", function (e) {
-    setStatus("Conectando");
-    setColor("#FFE115");
+  window.addEventListener("offline", () => {
+    setConnecting(true);
   });
 
-  window.addEventListener("online", function (e) {
-    setStatus("Aberto");
-    setColor("#2ECC71");
+  window.addEventListener("online", () => {
+    setConnecting(false);
   });
 
-  async function ChangeStatus(toClose, remove = true, delivery = true) {
-    if (!toClose) return setShowChange(false);
-
+  async function ChangeStatus(remove = true, delivery = true) {
     try {
       await api.post("/close", { open: delivery, removeOption: remove });
       toast.success("Status atualizado");
       Reload();
-    } catch {
+    } catch (error) {
       toast.error("Erro ao atualizar status");
     }
   }
 
-  async function Collapse() {
+  async function Collapse(productId) {
     const obj = selectedOrders;
 
-    obj.showAdditionals = !obj.showAdditionals;
+    const index = obj.products.findIndex(
+      (product) => product._id === productId
+    );
+
+    obj.products[index].showAdditionals = !obj.products[index].showAdditionals;
 
     setSelectedOrders(obj);
     setClick(click + 1);
@@ -99,20 +93,18 @@ export const useTasks = () => {
     socket.on("open", Reload);
   }
 
-  useEffect(() => {
-    if (restaurantIsOpen) {
-      setStatus("Aberto");
-      setColor("#2ECC71");
-    }
-    if (!restaurantIsOpen) {
-      setStatus("Fechado");
-      setColor("#E74C3C");
-    }
+  async function Reconect() {
+    if (connecting) return toast.error("Conectando");
 
+    toast.success("Conectado");
+  }
+
+  useEffect(() => {
     SocketFunction();
     GetOrders();
     Reload();
-  }, [screen]);
+    Reconect();
+  }, [screen, connecting]);
 
   async function SendReason() {
     setLoading(true);
@@ -155,10 +147,7 @@ export const useTasks = () => {
     setToggleMenu,
     restaurantIsOpen,
     removeOption,
-    status,
-    color,
     ChangeStatus,
-    showChange,
-    setShowChange,
+    connecting,
   ];
 };

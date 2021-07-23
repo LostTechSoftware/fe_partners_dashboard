@@ -1,38 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "../../../Components/Toast";
-
 import api from "../../../services/api";
 
-export const usePartnerSettings = () => {
-  const [settings, setSettings] = useState("");
-  const [withdrawalDelay, setWithdrawalDelay] = useState(0);
-  const [deliveryDelay, setDeliveryDelay] = useState(0);
-  const [click, setClick] = useState(0);
+export const useHeader = () => {
+  const [showTimePopUp, setShowTimePopUp] = useState(false);
+  const [showTimeRemovePopUp, setShowTimeRemovePopUp] = useState(false);
+  const [showOpenedPopUp, setShowOpenedPopUp] = useState(false);
 
-  async function updateSettingsFee(newValue, key) {
-    const newObj = settings;
-
-    newObj[key] = newValue;
-
-    setSettings(newObj);
-    setClick(click + 1);
-
-    await api.post("/partner/settings", { ...settings });
-  }
+  const [timeRemove, setTimeRemove] = useState(0);
+  const [timeDelivery, setTimeDelivery] = useState(0);
 
   useEffect(() => {
     async function GetSettings() {
       const { data } = await api.get("/partner/settings");
 
-      setSettings(data);
-      setDeliveryDelay(data.delay);
-      setWithdrawalDelay(data.delayRemove);
+      setTimeDelivery(data.delay);
+      setTimeRemove(data.delayRemove);
     }
     GetSettings();
   }, []);
 
   async function updateDeliveryDelay(delayDelivery) {
-    setDeliveryDelay(delayDelivery);
+    setTimeDelivery(delayDelivery);
 
     if (delayDelivery > 0) {
       const response = await api
@@ -50,7 +39,7 @@ export const usePartnerSettings = () => {
   }
 
   async function updateWithdrawalDelay(delayRemove) {
-    setWithdrawalDelay(delayRemove);
+    setTimeRemove(delayRemove);
 
     if (delayRemove > 0) {
       const response = await api
@@ -64,18 +53,22 @@ export const usePartnerSettings = () => {
         });
 
       if (response.data) {
-        setWithdrawalDelay(response.data.delayRemove);
+        setTimeRemove(response.data.delayRemove);
         sessionStorage.setItem("delayToWithdrawal", response.data.delayRemove);
       }
     }
   }
 
   return [
+    showTimePopUp,
+    setShowTimePopUp,
+    showTimeRemovePopUp,
+    setShowTimeRemovePopUp,
+    showOpenedPopUp,
+    setShowOpenedPopUp,
+    timeRemove,
+    timeDelivery,
     updateDeliveryDelay,
     updateWithdrawalDelay,
-    settings,
-    withdrawalDelay,
-    deliveryDelay,
-    updateSettingsFee,
   ];
 };

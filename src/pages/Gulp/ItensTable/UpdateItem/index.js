@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 import filesize from "filesize";
 
 import api from "../../../../services/api";
 import ItemInfoForm from "../../../../Components/ItemInfoForm";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function UpdateItemBox({
   product: { _id, title, price, description, avatar },

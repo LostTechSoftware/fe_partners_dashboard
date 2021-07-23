@@ -14,7 +14,7 @@
     "@babel/helper-define-map": "7.13.12",
     "@babel/helper-skip-transparent-expression-wrappers": "7.12.1",
     "@firebase/messaging": "0.7.14",
-    "@material-ui/core": "4.11.0",
+    "@material-ui/core": "4.12.2",
     "@material-ui/icons": "4.9.1",
     "@material-ui/lab": "4.0.0-alpha.56",
     "@react-google-maps/api": "^2.2.0",

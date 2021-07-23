@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../../../Components/Toast";
 
 export const useNewCategory = ({
   selectedRowAdditional,

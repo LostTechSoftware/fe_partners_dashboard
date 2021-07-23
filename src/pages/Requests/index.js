@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import socketio from "socket.io-client";
 import Sound from "react-sound";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 import SwipeableViews from "react-swipeable-views";
 import {
   AppBar,
@@ -19,7 +19,6 @@ import TasksFilter from "./TasksFilter";
 import TaskInfo from "./TaskInfo";
 
 import "./styles.css";
-import "react-toastify/dist/ReactToastify.css";
 import channel from "../../constants/pusher";
 
 const Transition = React.forwardRef(function Transition(props, ref) {

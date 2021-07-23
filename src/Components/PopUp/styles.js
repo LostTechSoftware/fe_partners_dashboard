@@ -22,16 +22,17 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.p`
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto;
   font-style: normal;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 140.62%;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 21px;
 
-  display: flex;
-  align-items: center;
+  text-align: center;
 
-  color: ${Themes().gray};
+  color: #000000;
+
+  color: ${Themes().wordColors};
 `;
 
 export const PopUpContainer = styled.div`
@@ -60,6 +61,7 @@ export const BottomContainer = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 90%;
+    position: relative;
   }
 
   @media screen and (min-width: 800px) {
@@ -80,6 +82,10 @@ export const BottomButton = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 
   ${(props) =>
     props.outline &&
