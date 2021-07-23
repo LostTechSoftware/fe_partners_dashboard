@@ -40,4 +40,8 @@ export const toast = {
     localStorage.getItem("theme") === "dark"
       ? dark(message)
       : defaultToast(message),
+  success: (message) =>
+    localStorage.getItem("theme") === "dark"
+      ? dark(message)
+      : defaultToast(message),
 };

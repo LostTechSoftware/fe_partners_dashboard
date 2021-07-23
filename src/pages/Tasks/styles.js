@@ -36,22 +36,20 @@ export const OrdersList = styled.div`
   height: 100%;
   width: 40%;
   background: ${Themes().messageBars};
-  display: flex;
+  display: ${({ toggleMenu }) => (toggleMenu ? "none" : "flex")};
+
   flex-direction: column;
   align-items: center;
+
   @media screen and (max-width: 800px) {
     width: 100%;
+    padding: 20px;
   }
 
   padding: 95px 20px 20px 20px;
 
   overflow-y: auto;
   overflow-x: hidden;
-  ${({ toggleMenu }) =>
-    toggleMenu &&
-    css`
-      display: none;
-    `}
 
   ${({ showOrderDetails }) =>
     showOrderDetails &&
@@ -70,7 +68,7 @@ export const OrderDetails = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 95px 20px 20px 20px;
+  padding: 95px 20px 150px 20px;
 
   overflow-y: scroll;
 
@@ -82,7 +80,7 @@ export const OrderDetails = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 100%;
-    padding-bottom: 80%;
+    padding: 0px 20px 20px 20px;
 
     ${({ showOrderDetails }) =>
       !showOrderDetails &&
@@ -130,7 +128,7 @@ export const Tab = styled.div`
 
   color: ${Themes().wordColors};
 
-  height: 100%;
+  height: 50px;
 
   ${({ selected }) =>
     selected &&
@@ -199,6 +197,10 @@ export const Title = styled.p`
   font-family: "Roboto", sans-serif;
 
   max-width: 75%;
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -258,12 +260,24 @@ export const ProductText = styled.p`
   line-height: 21px;
 
   color: ${Themes().wordColors};
+
+  margin-left: 10%;
+  width: 300px;
+
+  @media screen and (max-width: 800px) {
+    margin-left: 5px;
+    width: 40%;
+
+    font-size: 12px;
+  }
 `;
 
 export const Collapsable = styled.div`
   border-left: 1px solid ${Themes().gray};
   border-right: 1px solid ${Themes().gray};
   border-bottom: 1px solid ${Themes().gray};
+
+  background: ${Themes().background};
 
   border-radius: 5px;
   width: 100%;
@@ -275,7 +289,6 @@ export const ContainerText = styled.div`
   align-items: center;
 
   width: 90%;
-  justify-content: space-around;
 `;
 
 export const Additional = styled.div`
@@ -306,12 +319,13 @@ export const Footer = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 100%;
+    position: relative;
   }
 `;
 
 export const LoadingContainer = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const UserAvatar = styled.img`

@@ -18,8 +18,6 @@ export const useTasks = () => {
   const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
   const [removeOption, setRemoveOption] = useState(false);
   const [connecting, setConnecting] = useState(false);
-  const [color, setColor] = useState("#2ECC71");
-  const [showChange, setShowChange] = useState(false);
   const _id = sessionStorage.getItem("_id");
   const name = sessionStorage.getItem("restaurantName");
 
@@ -29,30 +27,32 @@ export const useTasks = () => {
     setRemoveOption(data.removeOption);
   };
 
-  window.addEventListener("offline", function (e) {
+  window.addEventListener("offline", () => {
     setConnecting(true);
   });
 
-  window.addEventListener("online", function (e) {
+  window.addEventListener("online", () => {
     setConnecting(false);
   });
 
-  async function ChangeStatus(toClose, remove = true, delivery = true) {
-    if (!toClose) return setShowChange(false);
-
+  async function ChangeStatus(remove = true, delivery = true) {
     try {
       await api.post("/close", { open: delivery, removeOption: remove });
       toast.success("Status atualizado");
       Reload();
-    } catch {
+    } catch (error) {
       toast.error("Erro ao atualizar status");
     }
   }
 
-  async function Collapse() {
+  async function Collapse(productId) {
     const obj = selectedOrders;
 
-    obj.showAdditionals = !obj.showAdditionals;
+    const index = obj.products.findIndex(
+      (product) => product._id === productId
+    );
+
+    obj.products[index].showAdditionals = !obj.products[index].showAdditionals;
 
     setSelectedOrders(obj);
     setClick(click + 1);
@@ -80,24 +80,31 @@ export const useTasks = () => {
     setLoading(false);
   };
 
+  async function SocketFunction() {
+    const socket = socketio(process.env.REACT_APP_SERVER, {
+      query: {
+        user: _id,
+        username: name,
+        restaurant: true,
+      },
+    });
+
+    socket.on("new_order", GetOrders);
+    socket.on("open", Reload);
+  }
+
+  async function Reconect() {
+    if (connecting) return toast.error("Conectando");
+
+    toast.success("Conectado");
+  }
+
   useEffect(() => {
-    async function SocketFunction() {
-      const socket = socketio(process.env.REACT_APP_SERVER, {
-        query: {
-          user: _id,
-          username: name,
-          restaurant: true,
-        },
-      });
-
-      socket.on("new_order", GetOrders);
-      socket.on("open", Reload);
-    }
     SocketFunction();
-
     GetOrders();
     Reload();
-  }, [screen]);
+    Reconect();
+  }, [screen, connecting]);
 
   async function SendReason() {
     setLoading(true);
@@ -138,5 +145,9 @@ export const useTasks = () => {
     setShowOrderDetails,
     toggleMenu,
     setToggleMenu,
+    restaurantIsOpen,
+    removeOption,
+    ChangeStatus,
+    connecting,
   ];
 };

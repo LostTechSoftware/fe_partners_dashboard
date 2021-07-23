@@ -11,23 +11,23 @@ import {
   RowTime,
   TimeText,
 } from "../styles";
-import { Row, Label } from "./styles";
+import { Row, Label, Input, Content } from "./styles";
 import PopUp from "../../../Components/PopUp";
 import CustomizedSwitches from "../../../Components/Checkbox";
 import { useHeader } from "./hooks";
 
-function Header() {
+function Header({ opened, remove, ChangeStatus, connecting }) {
   const [
-    opened,
-    setOpened,
-    remove,
-    setRemove,
     showTimePopUp,
     setShowTimePopUp,
     showTimeRemovePopUp,
     setShowTimeRemovePopUp,
     showOpenedPopUp,
     setShowOpenedPopUp,
+    timeRemove,
+    timeDelivery,
+    updateDeliveryDelay,
+    updateWithdrawalDelay,
   ] = useHeader();
 
   return (
@@ -35,7 +35,14 @@ function Header() {
       <HeaderStatus>
         <LeftContent>
           <TitleStatus>Status do estabelecimento</TitleStatus>
-          <Status>Aberto para entrega e retirada</Status>
+          <Status>
+            {connecting && "Conectando"}
+            {!connecting && (remove || opened) && "Aberto para "}
+            {!connecting && !opened && !remove && "Fechado "}
+            {!connecting && opened && "entrega "}
+            {!connecting && opened && remove && "e "}
+            {!connecting && remove && "retirada"}
+          </Status>
           <ButtonStatus onClick={() => setShowOpenedPopUp(!showOpenedPopUp)}>
             Alterar
           </ButtonStatus>
@@ -44,15 +51,19 @@ function Header() {
           <ContentTime>
             <TitleStatus>Tempo de retirada</TitleStatus>
             <RowTime>
-              <TimeText>10 min</TimeText>
-              <ButtonStatus>Alterar</ButtonStatus>
+              <TimeText>{timeRemove} min</TimeText>
+              <ButtonStatus
+                onClick={() => setShowTimeRemovePopUp(!showTimeRemovePopUp)}
+              >
+                Alterar
+              </ButtonStatus>
             </RowTime>
           </ContentTime>
 
           <ContentTime>
             <TitleStatus>Tempo de entrega</TitleStatus>
             <RowTime>
-              <TimeText>10 min</TimeText>
+              <TimeText>{timeDelivery} min</TimeText>
               <ButtonStatus onClick={() => setShowTimePopUp(!showTimePopUp)}>
                 Alterar
               </ButtonStatus>
@@ -73,7 +84,7 @@ function Header() {
         <Row>
           <Label>Entrega</Label>
           <CustomizedSwitches
-            onChange={() => setOpened(!opened)}
+            onChange={() => ChangeStatus(remove, !opened)}
             checked={opened}
             width={80}
             height={35}
@@ -84,7 +95,7 @@ function Header() {
         <Row>
           <Label>Retirada</Label>
           <CustomizedSwitches
-            onChange={() => setRemove(!remove)}
+            onChange={() => ChangeStatus(!remove, opened)}
             checked={remove}
             width={80}
             height={35}
@@ -100,14 +111,41 @@ function Header() {
         mobileHeight="280px"
         close={() => setShowTimePopUp(!showTimePopUp)}
         title="Tempo de entrega"
-      ></PopUp>
+      >
+        <Content>
+          <Input
+            placeholder="0 min"
+            type="number"
+            maxLength="3"
+            onChange={(event) =>
+              updateDeliveryDelay(event.target.value.slice(0, 3))
+            }
+            value={timeDelivery}
+          />
+        </Content>
+      </PopUp>
 
-      {/* <PopUp
-      show={true}
-      title="Tempo de retirada"
-      width="600px"
-      height="280px"
-    ></PopUp> */}
+      <PopUp
+        show={showTimeRemovePopUp}
+        showDefault={false}
+        width="600px"
+        height="280px"
+        mobileHeight="280px"
+        close={() => setShowTimeRemovePopUp(!showTimeRemovePopUp)}
+        title="Tempo de retirada"
+      >
+        <Content>
+          <Input
+            placeholder="0 min"
+            type="number"
+            maxLength="3"
+            onChange={(event) =>
+              updateWithdrawalDelay(event.target.value.slice(0, 3))
+            }
+            value={timeRemove}
+          />
+        </Content>
+      </PopUp>
     </>
   );
 }

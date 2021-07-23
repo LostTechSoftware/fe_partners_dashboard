@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import ReactToPrint from "react-to-print";
+import { Collapse as CollapseComponent } from "@material-ui/core";
 
 import { ChevronDown, Printer } from "react-feather";
 import moment from "moment";
@@ -124,9 +125,9 @@ function OrderDetailsComponent({
 
                 {product.additional.length ? (
                   <ChevronDown
-                    onClick={Collapse}
+                    onClick={() => Collapse(product._id)}
                     className={
-                      selectedOrders.showAdditionals
+                      product.showAdditionals
                         ? "arrow-transform-normal"
                         : "arrow-transform"
                     }
@@ -134,31 +135,37 @@ function OrderDetailsComponent({
                   />
                 ) : null}
               </ProductContainer>
-              {product.additional.length && selectedOrders.showAdditionals ? (
+              {product.additional.length ? (
                 <Collapsable>
-                  {product.additional.additional.map((additional) => (
-                    <Additional>
-                      <AdditionalImage
-                        src={
-                          additional.avatar ||
-                          "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle.jpg"
-                        }
-                      />
+                  <CollapseComponent
+                    in={product.showAdditionals}
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    {product.additional.additional.map((additional) => (
+                      <Additional>
+                        <AdditionalImage
+                          src={
+                            additional.avatar ||
+                            "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle.jpg"
+                          }
+                        />
 
-                      <ContainerText>
-                        <ProductText>{additional.title}</ProductText>
-                        <ProductText>{additional.quantidade}x</ProductText>
-                        <ProductText>
-                          {(
-                            additional.quantidade * additional.price
-                          ).toLocaleString("pt-br", {
-                            currency: "brl",
-                            style: "currency",
-                          })}
-                        </ProductText>
-                      </ContainerText>
-                    </Additional>
-                  ))}
+                        <ContainerText>
+                          <ProductText>{additional.title}</ProductText>
+                          <ProductText>{additional.quantidade}x</ProductText>
+                          <ProductText>
+                            {(
+                              additional.quantidade * additional.price
+                            ).toLocaleString("pt-br", {
+                              currency: "brl",
+                              style: "currency",
+                            })}
+                          </ProductText>
+                        </ContainerText>
+                      </Additional>
+                    ))}
+                  </CollapseComponent>
                 </Collapsable>
               ) : null}
             </>

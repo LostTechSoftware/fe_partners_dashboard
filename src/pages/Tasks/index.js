@@ -31,6 +31,10 @@ export default function Tasks() {
     setShowOrderDetails,
     toggleMenu,
     setToggleMenu,
+    restaurantIsOpen,
+    removeOption,
+    ChangeStatus,
+    connecting,
   ] = useTasks();
   const [isMobile] = useScreenMeasure();
 
@@ -45,11 +49,7 @@ export default function Tasks() {
         toggleMenu={toggleMenu}
       />
       <Container isMobile={isMobile}>
-        <OrdersList
-          className="animationModal"
-          toggleMenu={toggleMenu}
-          showOrderDetails={showOrderDetails}
-        >
+        <OrdersList toggleMenu={toggleMenu} showOrderDetails={showOrderDetails}>
           <OrderListComponent
             setScreen={setScreen}
             screen={screen}
@@ -62,7 +62,7 @@ export default function Tasks() {
         </OrdersList>
 
         <OrderDetails
-          setShowOrderDetails={setShowOrderDetails}
+          showOrderDetails={showOrderDetails}
           toggleMenu={toggleMenu}
         >
           <OrderDetailsComponent
@@ -77,7 +77,12 @@ export default function Tasks() {
           />
         </OrderDetails>
 
-        <Header />
+        <Header
+          connecting={connecting}
+          opened={restaurantIsOpen}
+          remove={removeOption}
+          ChangeStatus={ChangeStatus}
+        />
       </Container>
     </div>
   );
