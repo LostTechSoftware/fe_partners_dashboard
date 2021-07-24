@@ -226,7 +226,7 @@ export const SubOption = styled.ul`
 `;
 
 export const Toggled = styled.div`
-  width: 100%;
+  width: 40%;
 
   display: flex;
   flex-direction: row-reverse;

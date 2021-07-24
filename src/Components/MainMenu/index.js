@@ -9,7 +9,6 @@ import {
   DollarSign,
   LogOut,
 } from "react-feather";
-import MaterialIcon from "material-icons-react";
 
 import {
   DesktopContainer,
@@ -37,6 +36,7 @@ import { Hamburguer } from "../hamburguer";
 import { CaretDoubleLeft } from "../svg/caret-double-left";
 import { useScreenMeasure } from "../../utils/isMobile";
 import { Themes } from "../../utils/themes";
+import { TasksIcon } from "../../assets/tasks";
 
 const Icon = ({ icon, color }) => {
   const icons = {
@@ -45,7 +45,7 @@ const Icon = ({ icon, color }) => {
     Impulsionar: <TrendingUp color={color} size={30} />,
     Produtos: <Menu color={color} size={30} />,
     Finanças: <DollarSign color={color} size={30} />,
-    Pedidos: <MaterialIcon icon="ramen_dining" size={30} color={color} />,
+    Pedidos: <TasksIcon color={color} />,
   };
   return icons[icon] || <p />;
 };

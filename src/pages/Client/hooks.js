@@ -1,10 +1,11 @@
-import { useState, createRef, useEffect } from "react";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, createRef, useContext } from "react";
 import api from "../../services/api";
-import { toast } from "react-toastify";
+import { toast } from "../../Components/Toast";
 import { useHistory } from "react-router-dom";
+import AuthContext from "../../contexts/acessLevel";
 
 export const LoginHooks = () => {
+  const { setLevel } = useContext(AuthContext);
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -65,6 +66,7 @@ export const LoginHooks = () => {
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
 
+      setLevel(await getLevel());
       history.push("/requests");
     } catch (error) {
       toast.error("Usúario ou senha incorretos, tente novamente!");

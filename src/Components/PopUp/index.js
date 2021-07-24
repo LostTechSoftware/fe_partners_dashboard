@@ -20,8 +20,11 @@ function PopUp({
   height = "50%",
   mobileWidth = "90%",
   mobileHeight = "90%",
-  oneButton = false,
+  showBack = true,
+  showDefault = true,
   buttonsDisabled = false,
+  oneButton = false,
+  clickOutside = false,
   buttonLabel = "Continuar",
   outlineButtonLabel = "Voltar",
   onClick = () => console.log("Action não configurada"),
@@ -29,7 +32,7 @@ function PopUp({
   const [isMobile] = useScreenMeasure();
 
   return (
-    <Container display={show}>
+    <Container onClick={clickOutside && close} display={show}>
       <PopUpContainer
         width={isMobile ? mobileWidth : width}
         height={isMobile ? mobileHeight : height}
@@ -39,7 +42,7 @@ function PopUp({
         {children}
 
         <BottomContainer isMobile={isMobile}>
-          {!oneButton && (
+          {(!oneButton || showBack) && (
             <BottomButton
               disabled={buttonsDisabled}
               onClick={!buttonsDisabled && close}
@@ -51,12 +54,16 @@ function PopUp({
             </BottomButton>
           )}
 
-          <BottomButton
-            disabled={buttonsDisabled}
-            onClick={!buttonsDisabled && onClick}
-          >
-            <BottomLabel disabled={buttonsDisabled}>{buttonLabel}</BottomLabel>
-          </BottomButton>
+          {showDefault && (
+            <BottomButton
+              disabled={buttonsDisabled}
+              onClick={!buttonsDisabled && onClick}
+            >
+              <BottomLabel disabled={buttonsDisabled}>
+                {buttonLabel}
+              </BottomLabel>
+            </BottomButton>
+          )}
         </BottomContainer>
       </PopUpContainer>
     </Container>
