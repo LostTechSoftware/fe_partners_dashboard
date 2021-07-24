@@ -5,11 +5,14 @@ import Router from "./routes";
 
 import "./global.css";
 import "./print.css";
+import { OpenedProvider } from "./contexts/opened";
 
 function App() {
   return (
     <div className="App">
-      <Router />
+      <OpenedProvider>
+        <Router />
+      </OpenedProvider>
       <ToastContainer />
     </div>
   );

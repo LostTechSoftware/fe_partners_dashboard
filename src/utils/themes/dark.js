@@ -10,4 +10,6 @@ export const Dark = {
   messageComponent: "#1A1A1A",
   shadowStatus: "rgba(255, 255, 255, 0.1)",
   financeBackground: "#1A1A1A",
+  image404:
+    "https://foodzilla-images.s3.us-east-2.amazonaws.com/Error+dark.png",
 };

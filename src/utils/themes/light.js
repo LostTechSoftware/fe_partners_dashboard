@@ -10,4 +10,5 @@ export const Light = {
   messageComponent: "rgba(255, 225, 21, 0.5)",
   shadowStatus: "rgba(0, 0, 0, 0.1)",
   financeBackground: "#F5F5F5",
+  image404: "https://foodzilla-images.s3.us-east-2.amazonaws.com/Error.png",
 };

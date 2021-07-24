@@ -5,21 +5,23 @@ export const DefaultInputResponsivity = styled.input`
   border: 1px solid #dddddd;
   box-sizing: border-box;
   border-radius: 5px;
-  width: 90%;
-  ${(props) =>
-    props.half &&
-    `
-  width: 90%;
-`}
-  height: 35px;
+  width: 60%;
+  height: 60px;
+
+  padding: 20px;
+
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
   color: ${Themes().wordColors};
-  padding: 5px;
+
   background: ${Themes().background};
+
+  @media (max-height: 800px) {
+    width: 90%;
+  }
 `;
 
 export const Input = styled.div`
@@ -76,13 +78,9 @@ export const LabelPassword = styled.div`
 
 export const ContainerInput = styled.div`
   display: contents;
-  width: 80%;
+  width: 60%;
   margin-top: 20px;
-  ${(props) =>
-    props.half &&
-    `
-    width: 50%;
-  `}
+
   ${(props) =>
     props.flex &&
     css`
@@ -98,12 +96,14 @@ export const InputName = styled(DefaultInputResponsivity)``;
 export const Container = styled.div`
   display: flex;
   height: 100%;
+
   @media (max-width: 800px) {
     display: block;
     width: 100%;
     background-image: none;
     padding: 0px;
   }
+
   background-image: url("https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Forgot+password.png");
   background-repeat: no-repeat;
   width: 100%;
@@ -111,7 +111,7 @@ export const Container = styled.div`
   background-size: contain;
   flex-direction: column;
   align-items: flex-end;
-  padding: 200px;
+
   background-color: ${Themes().background};
 `;
 
@@ -122,16 +122,8 @@ export const DivAlign = styled.div`
   align-items: center;
   height: 100%;
   width: 50%;
+
   @media (max-width: 800px) {
-    width: 100%;
-  }
-  @media (max-width: 1455px) {
-    width: 60%;
-  }
-  @media (max-width: 1280px) {
-    width: 70%;
-  }
-  @media (max-width: 1280px) {
     width: 100%;
   }
 `;
@@ -140,20 +132,22 @@ export const Logo = styled.img`
   @media (max-width: 800px) {
     width: 40%;
   }
+
   width: ${({ width }) => width};
   margin-bottom: 10%;
 `;
 
 export const Button = styled.button`
-  @media (max-height: 874px) {
-    width: 90%;
-  }
   background: ${(props) => (props.disabled ? "#ddd" : "#ffe115")};
   border-radius: 5px;
-  width: 90%;
-  height: 50px;
+  height: 60px;
+  width: 60%;
   margin-top: 10%;
   border-width: 0px;
+
+  @media (max-height: 800px) {
+    width: 90%;
+  }
 `;
 
 export const ButtonText = styled.text`

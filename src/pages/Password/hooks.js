@@ -1,33 +1,21 @@
-import { useState, createRef, useEffect } from "react";
+import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
-export const LoginHooks = () => {
+export const usePassword = () => {
   const history = useHistory();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [access, setAccess] = useState([]);
-  const [showLogin, setShowLogin] = useState(false);
-
-  const restaurantId = localStorage.getItem("_id");
-
-  const recaptchaRef = createRef();
-
-  async function ClickForgotPassword() {
-    history.push("/forgotpassword");
-  }
+  const userName = sessionStorage.getItem("userName");
+  const userEmail = sessionStorage.getItem("userEmail");
 
   async function tryLogin(event) {
     event.preventDefault();
-    recaptchaRef.current.execute();
-    toast.info("Aguarde um pouco, estamos buscando seus dados");
-
     try {
       const response = await api.post("/restaurant/authenticate", {
-        email,
+        email: userEmail,
         password,
       });
 
@@ -71,25 +59,5 @@ export const LoginHooks = () => {
     }
   }
 
-  useEffect(() => {
-    async function GetAccess() {
-      const { data } = await api.get(`/partner/access/${restaurantId}`);
-
-      setAccess(data);
-    }
-    GetAccess();
-  }, []);
-
-  return [
-    email,
-    setEmail,
-    password,
-    setPassword,
-    recaptchaRef,
-    ClickForgotPassword,
-    tryLogin,
-    access,
-    showLogin,
-    setShowLogin,
-  ];
+  return [password, setPassword, tryLogin, userName, userEmail];
 };

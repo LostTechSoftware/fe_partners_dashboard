@@ -13,6 +13,8 @@ import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
 
 import { getLevel } from "./services/getLevel";
+import Page404 from "./pages/404";
+import Password from "./pages/Password";
 
 export default function Router() {
   const [level, setLevel] = useState(2);
@@ -71,7 +73,8 @@ export default function Router() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/password" component={Password} />
 
         <RootRoutes path="/settings/profile" component={Profile} />
         <RootRoutes path="/settings/access" component={Access} />
@@ -83,6 +86,8 @@ export default function Router() {
         <SubAcessRoutes path="/menu" component={Menu} />
 
         <MasterRoutes path="/finance" component={Finance} />
+
+        <Route exact path="*" component={Page404} />
       </Switch>
     </BrowserRouter>
   );
