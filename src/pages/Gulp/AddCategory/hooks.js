@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../../Components/Toast";
 import api from "../../../services/api";
 
 export const useAddCategory = () => {

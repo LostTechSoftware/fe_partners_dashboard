@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Fab } from "@material-ui/core";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 import filesize from "filesize";
 
 import { AddRounded } from "@material-ui/icons";
-import "react-toastify/dist/ReactToastify.css";
 
 import api from "../../../services/api";
 import ItemInfoForm from "../../../Components/ItemInfoForm";

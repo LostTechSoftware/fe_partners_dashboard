@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IconButton, TextField } from "@material-ui/core";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 import {
   CheckCircleRounded,
   CancelRounded,
@@ -11,7 +11,6 @@ import MainButton from "../../../Components/MainButton";
 import api from "../../../services/api";
 import "./styles.css";
 import Skeleton from "@material-ui/lab/Skeleton";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function RestaurantOpening() {
   const [loading, setLoading] = useState(true);

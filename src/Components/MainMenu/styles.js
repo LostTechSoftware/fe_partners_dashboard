@@ -130,6 +130,8 @@ export const Link = styled(ReactRouterLink)`
   font-weight: 500;
   text-decoration: none;
 
+  width: 100px;
+
   margin-left: 35px;
   color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
@@ -224,7 +226,7 @@ export const SubOption = styled.ul`
 `;
 
 export const Toggled = styled.div`
-  width: 100%;
+  width: 40%;
 
   display: flex;
   flex-direction: row-reverse;
@@ -245,4 +247,20 @@ export const Skip = styled.div`
 
   margin-left: 35px;
   color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
+`;
+
+export const Status = styled.div`
+  height: 8px;
+  width: 8px;
+  border-radius: 100px;
+
+  margin-left: 50px;
+
+  background: ${({ opened }) => (opened ? "#2ecc71" : "#E74C3C")};
+
+  ${({ isConecting }) =>
+    isConecting &&
+    css`
+      background: #ffe115;
+    `}
 `;
