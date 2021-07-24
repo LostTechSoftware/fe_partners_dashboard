@@ -10,7 +10,7 @@ export const Container = styled.div`
   overflow-y: scroll;
 
   flex-wrap: wrap;
-  padding: 25px;
+  padding: 25px 25px 50px 25px;
 
   display: flex;
 
@@ -41,7 +41,7 @@ export const StoryContainer = styled.div`
   margin-right: 35px;
   margin-bottom: 45px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 570px) {
     margin-right: 0px;
   }
 
@@ -73,6 +73,13 @@ export const ContainerDropZone = styled.div`
   justify-content: center;
 
   height: 493px;
+
+  margin-right: 35px;
+  margin-bottom: 45px;
+
+  @media (max-width: 570px) {
+    margin-right: 0px;
+  }
 `;
 
 export const ContainerModal = styled.div`
