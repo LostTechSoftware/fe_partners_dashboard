@@ -23,7 +23,7 @@ export const useMenu = () => {
           { text: "Pedidos", route: "requests" },
           { text: "Mensagens", route: "messages" },
           // { text: "Mapa", route: "" },
-          // { text: "Impulsionar", route: "" },
+          { text: "Impulsionar", route: "boost/stories" },
           { text: "Produtos", route: "menu" },
           { text: "Finanças", route: "finance" },
         ]);
