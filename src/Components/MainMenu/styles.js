@@ -256,5 +256,11 @@ export const Status = styled.div`
 
   margin-left: 50px;
 
-  background: #2ecc71;
+  background: ${({ opened }) => (opened ? "#2ecc71" : "#E74C3C")};
+
+  ${({ isConecting }) =>
+    isConecting &&
+    css`
+      background: #ffe115;
+    `}
 `;
