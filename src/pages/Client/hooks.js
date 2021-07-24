@@ -1,8 +1,9 @@
-import { useState, createRef, useContext } from "react";
+import { useState, createRef, useContext, useEffect } from "react";
 import api from "../../services/api";
 import { toast } from "../../Components/Toast";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../contexts/acessLevel";
+import { getLevel } from "../../services/getLevel";
 
 export const LoginHooks = () => {
   const { setLevel } = useContext(AuthContext);
