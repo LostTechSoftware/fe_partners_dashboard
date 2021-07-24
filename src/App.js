@@ -5,14 +5,18 @@ import Router from "./routes";
 
 import "./global.css";
 import "./print.css";
+import { OpenedProvider } from "./contexts/opened";
 import { AuthProvider } from "./contexts/acessLevel";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Router />
+        <OpenedProvider>
+          <Router />
+        </OpenedProvider>
       </AuthProvider>
+      <ToastContainer />
       <ToastContainer
         position="top-center"
         autoClose={5000}

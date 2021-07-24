@@ -13,6 +13,8 @@ import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
 
 import Localization from "./pages/Localization";
+import Page404 from "./pages/404";
+import Password from "./pages/Password";
 import AuthContext from "./contexts/acessLevel";
 
 export default function Router() {
@@ -61,7 +63,8 @@ export default function Router() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/password" component={Password} />
 
         <RootRoutes path="/settings/profile" component={Profile} />
         <RootRoutes path="/settings/access" component={Access} />
@@ -74,6 +77,8 @@ export default function Router() {
         <SubAcessRoutes path="/maps" component={Localization} />
 
         <MasterRoutes path="/finance" component={Finance} />
+
+        <Route exact path="*" component={Page404} />
       </Switch>
     </BrowserRouter>
   );
