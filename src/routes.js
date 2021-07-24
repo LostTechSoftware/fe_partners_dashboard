@@ -12,7 +12,10 @@ import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
 
+import Page404 from "./pages/404";
+import Password from "./pages/Password";
 import AuthContext from "./contexts/acessLevel";
+import Tester from "./pages/Tester";
 
 export default function Router() {
   const { level } = useContext(AuthContext);
@@ -60,7 +63,10 @@ export default function Router() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/password" component={Password} />
+
+        <Route path="/tester/accept/:email" component={Tester} />
 
         <RootRoutes path="/settings/profile" component={Profile} />
         <RootRoutes path="/settings/access" component={Access} />
@@ -72,6 +78,8 @@ export default function Router() {
         <SubAcessRoutes path="/menu" component={Menu} />
 
         <MasterRoutes path="/finance" component={Finance} />
+
+        <Route exact path="*" component={Page404} />
       </Switch>
     </BrowserRouter>
   );

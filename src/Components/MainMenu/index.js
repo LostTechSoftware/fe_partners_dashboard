@@ -29,6 +29,7 @@ import {
   RotateSubMenuToggleArrow,
   Toggled,
   Skip,
+  Status,
 } from "./styles";
 import { useMenu } from "./hooks";
 import { Hamburguer } from "../hamburguer";
@@ -196,6 +197,8 @@ export default function MainMenu({
                         <CaretDoubleLeft />
                       </Toggled>
                     )}
+                    {option.route === "requests" &&
+                      currentPage !== "requests" && <Status />}
                   </ContainerButton>
                 </Option>
               ))}
