@@ -22,8 +22,8 @@ export const useMenu = () => {
         return setMenuOptions([
           { text: "Pedidos", route: "requests" },
           { text: "Mensagens", route: "messages" },
-          { text: "Mapa", route: "maps" },
-          // { text: "Impulsionar", route: "" },
+          // { text: "Mapa", route: "" },
+          { text: "Impulsionar", route: "boost/stories" },
           { text: "Produtos", route: "menu" },
           { text: "Finanças", route: "finance" },
         ]);

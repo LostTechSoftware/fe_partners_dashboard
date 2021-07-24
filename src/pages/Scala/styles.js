@@ -45,7 +45,7 @@ export const Header = styled.div`
 
   align-items: center;
 
-  padding: 0 20px;
+  position: initial;
 
   @media screen and (max-width: 800px) {
     display: none;
@@ -55,11 +55,12 @@ export const Header = styled.div`
 export const ContainerButtons = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-around;
 `;
 
 export const ButtonHeader = styled.div`
   height: 83px;
+  width: 200px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,29 +80,4 @@ export const ButtonText = styled.p`
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: ${Themes().wordColors};
-`;
-
-export const Logo = styled.img`
-  height: 50px;
-  width: 50px;
-  border-radius: 100px;
-`;
-
-export const Skip = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-
-  color: #dddddd;
-`;
-
-export const ContainerSkip = styled.div`
-  width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  cursor: pointer;
 `;

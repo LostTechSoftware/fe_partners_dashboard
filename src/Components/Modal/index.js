@@ -23,6 +23,8 @@ function Modal({
   height = 100,
   buttonsDisabled = false,
   showTrash = false,
+  showDefaultButton = true,
+  showBackButton = true,
   onClickTrash = () => console.log("Action não configurada"),
   onClick = () => console.log("Action não configurada"),
 }) {
@@ -58,13 +60,16 @@ function Modal({
             className="animationModal"
             isMobile={isMobile}
           >
-            <BottomButton onClick={cancel} outline>
-              <BottomLabel outline>Voltar</BottomLabel>
-            </BottomButton>
-
-            <BottomButton onClick={onClick}>
-              <BottomLabel>Continuar</BottomLabel>
-            </BottomButton>
+            {showBackButton && (
+              <BottomButton onClick={cancel} outline>
+                <BottomLabel outline>Voltar</BottomLabel>
+              </BottomButton>
+            )}
+            {showDefaultButton && (
+              <BottomButton onClick={onClick}>
+                <BottomLabel>Continuar</BottomLabel>
+              </BottomButton>
+            )}
           </BottomContainer>
         )}
       </Container>
@@ -75,22 +80,26 @@ function Modal({
           className="animationModal"
           isMobile={isMobile}
         >
-          <BottomButton
-            disabled={buttonsDisabled}
-            onClick={!buttonsDisabled && cancel}
-            outline
-          >
-            <BottomLabel disabled={buttonsDisabled} outline>
-              Voltar
-            </BottomLabel>
-          </BottomButton>
+          {showBackButton && (
+            <BottomButton
+              disabled={buttonsDisabled}
+              onClick={!buttonsDisabled && cancel}
+              outline
+            >
+              <BottomLabel disabled={buttonsDisabled} outline>
+                Voltar
+              </BottomLabel>
+            </BottomButton>
+          )}
 
-          <BottomButton
-            disabled={buttonsDisabled}
-            onClick={!buttonsDisabled && onClick}
-          >
-            <BottomLabel disabled={buttonsDisabled}>Continuar</BottomLabel>
-          </BottomButton>
+          {showDefaultButton && (
+            <BottomButton
+              disabled={buttonsDisabled}
+              onClick={!buttonsDisabled && onClick}
+            >
+              <BottomLabel disabled={buttonsDisabled}>Continuar</BottomLabel>
+            </BottomButton>
+          )}
         </BottomContainer>
       )}
     </>
