@@ -6,16 +6,19 @@ const OpenedContext = createContext({
 });
 
 export const OpenedProvider = ({ children }) => {
-  const [restaurantIsOpen, setRestaurantIsOpen] = useState(false);
-  const [removeOption, setRemoveOption] = useState(false);
+  const [opened, setOpened] = useState(false);
+  const [remove, setRemove] = useState(false);
+  const [isConecting, setIsConecting] = useState(false);
 
   return (
     <OpenedContext.Provider
       value={{
-        restaurantIsOpen,
-        setRestaurantIsOpen,
-        removeOption,
-        setRemoveOption,
+        opened,
+        setOpened,
+        remove,
+        setRemove,
+        isConecting,
+        setIsConecting,
       }}
     >
       {children}
