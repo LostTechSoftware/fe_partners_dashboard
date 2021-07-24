@@ -14,7 +14,8 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
-  environment: process.env.REACT_APP_PROD === true ? "PRODUCTION" : "STAGING",
+  environment:
+    process.env.REACT_APP_NODE_ENV === "production" ? "PRODUCTION" : "STAGING",
 });
 
 // setup firebase
