@@ -15,6 +15,7 @@ import Finance from "./pages/Finance";
 import Page404 from "./pages/404";
 import Password from "./pages/Password";
 import AuthContext from "./contexts/acessLevel";
+import Tester from "./pages/Tester";
 
 export default function Router() {
   const { level } = useContext(AuthContext);
@@ -64,6 +65,8 @@ export default function Router() {
         <Route exact path="/" component={Login} />
         <Route path="/forgotpassword" component={ForgotPassword} />
         <Route path="/password" component={Password} />
+
+        <Route path="/tester/accept/:email" component={Tester} />
 
         <RootRoutes path="/settings/profile" component={Profile} />
         <RootRoutes path="/settings/access" component={Access} />
