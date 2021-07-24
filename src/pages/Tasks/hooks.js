@@ -1,9 +1,11 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 import api from "../../services/api";
 import socketio from "socket.io-client";
 import { toast } from "../../Components/Toast";
+import OpenedContext from "../../contexts/opened";
 
 export const useTasks = () => {
+  const { setOpened, setRemove, setIsConecting } = useContext(OpenedContext);
   const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);
   const [screen, setScreen] = useState(0);
   const [orders, setOrders] = useState([]);
@@ -23,16 +25,21 @@ export const useTasks = () => {
 
   const Reload = async () => {
     const { data } = await api.get("/opened");
+    setOpened(data.opened);
+    setRemove(data.opened);
+
     setRestaurantIsOpen(data.opened);
     setRemoveOption(data.removeOption);
   };
 
   window.addEventListener("offline", () => {
     setConnecting(true);
+    setIsConecting(true);
   });
 
   window.addEventListener("online", () => {
     setConnecting(false);
+    setIsConecting(false);
   });
 
   async function ChangeStatus(remove = true, delivery = true) {
