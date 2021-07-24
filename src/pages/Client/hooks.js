@@ -1,10 +1,12 @@
-import { useState, createRef } from "react";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, createRef, useContext } from "react";
 import api from "../../services/api";
-import { toast } from "react-toastify";
+import { toast } from "../../Components/Toast";
 import { useHistory } from "react-router-dom";
+import AuthContext from "../../contexts/acessLevel";
+import { getLevel } from "../../services/getLevel";
 
 export const LoginHooks = () => {
+  const { setLevel } = useContext(AuthContext);
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,6 +59,7 @@ export const LoginHooks = () => {
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
 
+      setLevel(await getLevel());
       setLoading(false);
       history.push("/requests");
     } catch (error) {
