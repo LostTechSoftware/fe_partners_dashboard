@@ -264,6 +264,11 @@ export const ProductText = styled.p`
   margin-left: 10%;
   width: 300px;
 
+  @media screen and (max-width: 1100px) {
+    margin-left: 5px;
+    width: 100px;
+  }
+
   @media screen and (max-width: 800px) {
     margin-left: 5px;
     width: 40%;
