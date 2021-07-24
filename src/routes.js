@@ -16,6 +16,7 @@ import Page404 from "./pages/404";
 import Password from "./pages/Password";
 import AuthContext from "./contexts/acessLevel";
 import Tester from "./pages/Tester";
+import Story from "./pages/Scala/Story";
 
 export default function Router() {
   const { level } = useContext(AuthContext);
@@ -72,6 +73,10 @@ export default function Router() {
         <RootRoutes path="/settings/access" component={Access} />
         <RootRoutes path="/settings/payments" component={Payments} />
         <RootRoutes path="/settings/partners" component={Partners} />
+
+        {/* <RootRoutes path="/boost/coupons" component={Coupons} /> */}
+        <Route path="/boost/stories" component={Story} />
+        {/* <RootRoutes path="/boost/announcement" component={Partners} /> */}
 
         <SubAcessRoutes path="/messages" component={Message} />
         <SubAcessRoutes path="/requests" component={Tasks} />
