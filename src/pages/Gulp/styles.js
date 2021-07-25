@@ -45,11 +45,13 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background: ${Themes().menuBars};
+
+  position: fixed;
 
   @media screen and (max-width: 980px) {
     justify-content: space-around;
