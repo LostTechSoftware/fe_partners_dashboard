@@ -27,6 +27,8 @@ function Partners() {
     withdrawalDelay,
     deliveryDelay,
     updateSettingsFee,
+    openAutomaticaly,
+    setOpenAutomaticaly,
   ] = usePartnerSettings();
 
   return (
@@ -52,7 +54,7 @@ function Partners() {
           </Row>
         </SettingsComponents>
 
-        <SettingsComponents defaultValue={settings.fee} title="Taxa de entrega">
+        <SettingsComponents showCheckBox={false} title="Taxa de entrega">
           <Row>
             <Label>1 quilômetro</Label>
             <Input
@@ -100,6 +102,15 @@ function Partners() {
         </SettingsComponents>
 
         <SettingsComponents
+          onChange={() => {
+            setOpenAutomaticaly(!openAutomaticaly);
+            if (!openAutomaticaly !== !settings.openAutomaticaly)
+              return updateSettingsFee(
+                settings.openAutomaticaly,
+                "openAutomaticaly"
+              );
+            updateSettingsFee(!settings.openAutomaticaly, "openAutomaticaly");
+          }}
           defaultValue={settings.openAutomaticaly}
           title="Abrir restaurante automaticamente ao entrar no aplicativo"
         />
