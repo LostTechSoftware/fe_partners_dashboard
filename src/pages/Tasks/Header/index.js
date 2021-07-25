@@ -13,7 +13,7 @@ import {
 } from "../styles";
 import { Row, Label, Input, Content } from "./styles";
 import PopUp from "../../../Components/PopUp";
-import CustomizedSwitches from "../../../Components/Checkbox";
+import CustomizedSwitches from "../../../Components/CustomizedSwitches";
 import { useHeader } from "./hooks";
 
 function Header({ opened, remove, ChangeStatus, connecting }) {
