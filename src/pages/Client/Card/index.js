@@ -16,14 +16,14 @@ import {
   Logo,
 } from "./styles";
 
-function Card({ items, setShowLogin }) {
+function Card({ items, setShowLogin, getMessageHour }) {
   const [obj] = useCard();
   const history = useHistory();
 
   return (
     <ContainerList>
       <Logo src={Themes().logo} />
-      <Label>Bom dia, qual seu nome?</Label>
+      <Label>{getMessageHour()}, qual seu nome?</Label>
       <List>
         {items.map((item) => (
           <Container
