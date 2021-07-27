@@ -14,6 +14,20 @@ export const LoginHooks = () => {
   const [access, setAccess] = useState([]);
   const [showLogin, setShowLogin] = useState(false);
 
+  function getMessageHour() {
+    const now = new Date();
+
+    if (now.getHours() >= 0 && now.getHours() < 5) {
+      return "Boa noite";
+    } else if (now.getHours() >= 5 && now.getHours() < 12) {
+      return "Bom dia";
+    } else if (now.getHours() >= 12 && now.getHours() < 18) {
+      return "Boa tarde";
+    } else {
+      return "Boa noite";
+    }
+  }
+
   const restaurantId = localStorage.getItem("_id");
 
   const recaptchaRef = createRef();
@@ -94,5 +108,6 @@ export const LoginHooks = () => {
     access,
     showLogin,
     setShowLogin,
+    getMessageHour,
   ];
 };

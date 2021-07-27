@@ -89,6 +89,8 @@ export const Code = styled.div`
     font-size: 15px;
     line-height: 18px;
 
+    text-transform: uppercase;
+
     color: #dddddd;
   }
   -webkit-line-clamp: 1;

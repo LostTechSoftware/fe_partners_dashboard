@@ -32,6 +32,7 @@ export default function Login() {
     access,
     showLogin,
     setShowLogin,
+    getMessageHour,
   ] = LoginHooks();
 
   return (
@@ -40,7 +41,11 @@ export default function Login() {
         <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Cooking-cuate.png"></Image>
 
         {access.length && !showLogin ? (
-          <Card setShowLogin={setShowLogin} items={access} />
+          <Card
+            getMessageHour={getMessageHour}
+            setShowLogin={setShowLogin}
+            items={access}
+          />
         ) : (
           <Form onSubmit={tryLogin}>
             <Logo src={Themes().logo}></Logo>
