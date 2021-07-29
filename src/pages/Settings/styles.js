@@ -7,7 +7,7 @@ export const Container = styled.div`
   position: absolute;
   right: 0;
   background: ${Themes().background};
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   ${(props) =>
     !props.isMobile &&

@@ -2,6 +2,7 @@ import React from "react";
 import { Copy } from "react-feather";
 
 import Settings from "..";
+import RadioButton from "../../../Components/RadioButton";
 import SettingsComponents from "../../../Components/SettingsComponents";
 import { usePartnerSettings } from "./hooks";
 
@@ -14,6 +15,8 @@ import {
   RowTheme,
   Code,
   CodeContainer,
+  CardPreview,
+  ContentRadio,
 } from "./styles";
 
 function Partners() {
@@ -24,6 +27,8 @@ function Partners() {
     withdrawalDelay,
     deliveryDelay,
     updateSettingsFee,
+    openAutomaticaly,
+    setOpenAutomaticaly,
   ] = usePartnerSettings();
 
   return (
@@ -31,25 +36,25 @@ function Partners() {
       <Container>
         <SettingsComponents defaultValue={true} showCheckBox={false} title="">
           <Row>
-            <Label>Tempo de retirada</Label>
+            <Label>Tempo de retirada (em mins)</Label>
             <Input
               value={withdrawalDelay}
               onChange={(event) => updateWithdrawalDelay(event.target.value)}
-              placeholder="00:00"
+              placeholder="00"
             />
           </Row>
 
           <Row>
-            <Label>Tempo de entrega</Label>
+            <Label>Tempo de entrega (em mins)</Label>
             <Input
               value={deliveryDelay}
               onChange={(event) => updateDeliveryDelay(event.target.value)}
-              placeholder="00:00"
+              placeholder="00"
             />
           </Row>
         </SettingsComponents>
 
-        <SettingsComponents defaultValue={settings.fee} title="Taxa de entrega">
+        <SettingsComponents showCheckBox={false} title="Taxa de entrega">
           <Row>
             <Label>1 quilômetro</Label>
             <Input
@@ -97,6 +102,15 @@ function Partners() {
         </SettingsComponents>
 
         <SettingsComponents
+          onChange={() => {
+            setOpenAutomaticaly(!openAutomaticaly);
+            if (!openAutomaticaly !== !settings.openAutomaticaly)
+              return updateSettingsFee(
+                settings.openAutomaticaly,
+                "openAutomaticaly"
+              );
+            updateSettingsFee(!settings.openAutomaticaly, "openAutomaticaly");
+          }}
           defaultValue={settings.openAutomaticaly}
           title="Abrir restaurante automaticamente ao entrar no aplicativo"
         />
@@ -107,67 +121,45 @@ function Partners() {
           title="Tema"
         >
           <RowTheme>
-            <label className="container">
-              {localStorage.getItem("theme") !== "dark" ? (
-                <input
-                  onChange={() => {
-                    localStorage.setItem("theme", "light");
-                    window.location.reload();
-                  }}
-                  type="checkbox"
-                  defaultChecked="checked"
-                />
-              ) : (
-                <input
-                  onChange={() => {
-                    localStorage.setItem("theme", "light");
-                    window.location.reload();
-                  }}
-                  type="checkbox"
-                />
-              )}
-              <span className="checkmark" />
-            </label>
-            <Label>Padrão</Label>
-          </RowTheme>
-          <RowTheme>
-            <Preview src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Light+preview+order.png" />
-            <Preview
-              margin
-              src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Light+preview+messages.png"
-            />
-          </RowTheme>
+            <CardPreview>
+              <Preview src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Light+preview+messages.png" />
+              <ContentRadio>
+                <RowTheme>
+                  <RadioButton
+                    handleRadioChange={() => {
+                      localStorage.setItem("theme", "light");
+                      window.location.reload();
+                    }}
+                    defaultValue={
+                      localStorage.getItem("theme") === "dark" && "Escuro"
+                    }
+                    options={[{ label: "Padrão", value: "Padrão" }]}
+                  />
+                  <Label>Padrão</Label>
+                </RowTheme>
+                <p>O tema padrão do FoodZilla, ideal para usar durante o dia</p>
+              </ContentRadio>
+            </CardPreview>
 
-          <RowTheme>
-            <label className="container">
-              {localStorage.getItem("theme") === "dark" ? (
-                <input
-                  onChange={() => {
-                    localStorage.setItem("theme", "dark");
-                    window.location.reload();
-                  }}
-                  type="checkbox"
-                  defaultChecked="checked"
-                />
-              ) : (
-                <input
-                  onChange={() => {
-                    localStorage.setItem("theme", "dark");
-                    window.location.reload();
-                  }}
-                  type="checkbox"
-                />
-              )}
-              <span className="checkmark" />
-            </label>
-            <Label>Escuro</Label>
-          </RowTheme>
-          <RowTheme>
-            <Preview src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Dark+preview+orders.png" />
-            <Preview
-              margin
-              src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Dark+preview+messages.png"
-            />
+            <CardPreview margin>
+              <Preview src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Dark+preview+messages.png" />
+              <ContentRadio>
+                <RowTheme>
+                  <RadioButton
+                    handleRadioChange={() => {
+                      localStorage.setItem("theme", "dark");
+                      window.location.reload();
+                    }}
+                    defaultValue={
+                      localStorage.getItem("theme") === "dark" && "Escuro"
+                    }
+                    options={[{ label: "Escuro", value: "Escuro" }]}
+                  />
+                  <Label>Escuro</Label>
+                </RowTheme>
+                <p>Um visual escuro para dar conforto aos olhos cansados </p>
+              </ContentRadio>
+            </CardPreview>
           </RowTheme>
         </SettingsComponents>
 

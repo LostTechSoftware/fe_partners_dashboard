@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { Themes } from "../../utils/themes";
 
 export const FullBackground = styled.section``;
 
@@ -29,7 +30,7 @@ export const SkeletonContainer = styled.div`
     flex: 1 1 30%;
     border-radius: 3px;
     background: #eee;
-    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background: ${Themes().skeleton};
     background-size: 200% 100%;
     animation: 1.5s ${Shine} linear infinite;
   }
@@ -42,7 +43,7 @@ export const Content = styled.div`
   h2,
   p {
     background: #eee;
-    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background: ${Themes().skeleton};
     border-radius: 5px;
     background-size: 200% 100%;
     animation: 1.5s ${Shine} linear infinite;

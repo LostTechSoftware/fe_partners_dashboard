@@ -172,6 +172,10 @@ export const Row = styled.div`
     css`
       justify-content: center;
     `}
+
+  @media screen and (max-width: 800px) {
+    padding: 0px 20px;
+  }
 `;
 
 export const TrashComponent = styled(Trash)`

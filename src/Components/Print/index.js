@@ -1,36 +1,128 @@
 import React from "react";
-import NumberFormat from "react-number-format";
+import moment from "moment";
 
-import FoodZillaLogo from "../../assets/logo.png";
+import { usePrint } from "./hooks";
 
-const PrinterHeader = () => (
-  <head className="print">
-    <h2>{sessionStorage.getItem("restaurantName")}</h2>
+import { Header, Content, Row, ContainerPayment, RowAdditinal } from "./styles";
+import "./styles.css";
 
-    <PrintUnderLine />
+export const Print = React.forwardRef((props, ref) => {
+  const { order } = props;
+  const [paymentMethod] = usePrint(order);
 
-    <span> Endereço: </span>
-    <p>{sessionStorage.getItem("restaurantAddress")}</p>
+  return (
+    <div ref={ref} className="print-media">
+      <Header>
+        <img src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg" />
+      </Header>
 
-    <span> Telefone: </span>
-    <p>
-      <NumberFormat
-        className="result print"
-        value={sessionStorage.getItem("restaurantPhone")}
-        displayType={"text"}
-        format="(##) ##### - ####"
-      />
-    </p>
-    <PrintUnderLine />
-  </head>
-);
+      <Content>
+        <h1>Pedido #{order.token}</h1>
+        <p>Feito às {moment(order.createdAt).format("HH:MM")}</p>
+        <p>
+          {order.removeOption
+            ? "Retirada"
+            : `Entregar até ${moment(order.createdAt)
+                .add(60, "minutes")
+                .format("HH:MM")}`}
+        </p>
+      </Content>
 
-const PrinterFooter = () => (
-  <footer className="print">
-    <img className="print" src={FoodZillaLogo} alt="logo foodzilla" />
-  </footer>
-);
+      <Content>
+        <h1>Cliente</h1>
+        <p>Nome: {order.user.name}</p>
+        {!order.removeOption && order.address && (
+          <>
+            <p>
+              Endereço: {order.address.street}, {order.address.Number}
+            </p>
+            <p>Bairro: {order.address.neighborhood}</p>
+          </>
+        )}
+      </Content>
 
-const PrintUnderLine = () => <div className="print printUnderLine" />;
+      <Content>
+        <h1>Pedido</h1>
+        {order.products.map((product) => (
+          <>
+            <Row>
+              <p className="title">{product.title}</p>
+              <p className="title">x{product.quantidade}</p>
+              <p className="title">
+                {(product.quantidade * product.price).toLocaleString("pt-br", {
+                  currency: "brl",
+                  style: "currency",
+                })}
+              </p>
+            </Row>
+            {product.additional && product.additional.length ? (
+              <p>Adicionais:</p>
+            ) : null}
+            <ul>
+              {product.additional &&
+                product.additional.map((additional) => (
+                  <RowAdditinal>
+                    <p className="title">{additional.title}</p>
+                    <p>x{additional.quantidade}</p>
+                    <p>
+                      {(
+                        additional.quantidade * additional.price
+                      ).toLocaleString("pt-br", {
+                        currency: "brl",
+                        style: "currency",
+                      })}
+                    </p>
+                  </RowAdditinal>
+                ))}
+            </ul>
+            <p>Observação: {product.observation}</p>
+          </>
+        ))}
+      </Content>
 
-export { PrinterHeader, PrinterFooter, PrintUnderLine };
+      <ContainerPayment>
+        <Row>
+          <p className="title">Valor</p>
+          <p>
+            {order.realPrice.toLocaleString("pt-br", {
+              currency: "brl",
+              style: "currency",
+            })}
+          </p>
+        </Row>
+
+        <Row>
+          <p className="title">Cupom</p>
+          <p>
+            {order.couponUsed.toLocaleString("pt-br", {
+              currency: "brl",
+              style: "currency",
+            })}
+          </p>
+        </Row>
+
+        <hr />
+
+        <Row>
+          <p className="title">{paymentMethod}</p>
+          <p>
+            {order.couponUsed.toLocaleString("pt-br", {
+              currency: "brl",
+              style: "currency",
+            })}
+          </p>
+        </Row>
+      </ContainerPayment>
+
+      <Row padding>
+        <p className="title">Troco para</p>
+        <p>
+          {order.change.toLocaleString("pt-br", {
+            currency: "brl",
+            style: "currency",
+          })}
+        </p>
+      </Row>
+    </div>
+  );
+});

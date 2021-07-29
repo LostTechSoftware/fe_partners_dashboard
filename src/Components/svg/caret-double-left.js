@@ -1,5 +1,4 @@
 import React from "react";
-import { Themes } from "../../utils/themes";
 
 export const CaretDoubleLeft = () => (
   <svg
@@ -11,14 +10,14 @@ export const CaretDoubleLeft = () => (
   >
     <path
       d="M21 21L11 11L21 1"
-      stroke={Themes().wordColors}
+      stroke={"#fff"}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M11 21L1 11L11 1"
-      stroke={Themes().wordColors}
+      stroke={"#fff"}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -1,16 +1,7 @@
 import styled, { css } from "styled-components";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Themes } from "../../utils/themes";
-import {
-  Settings,
-  HelpCircle,
-  MessageCircle,
-  Map,
-  TrendingUp,
-  Menu,
-  DollarSign,
-  ChevronDown,
-} from "react-feather";
+import { ChevronDown } from "react-feather";
 
 export const DesktopContainer = styled.aside`
   display: flex;
@@ -51,7 +42,7 @@ export const MobileContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 17px 21px;
-  background: ${Themes().menuBars};
+  background: ${Themes().background};
 `;
 
 export const Top = styled.div`
@@ -62,7 +53,7 @@ export const Top = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 50%;
-  background: ${Themes().menuBars};
+  background: ${Themes().background};
 `;
 
 export const ContentMobile = styled.div`
@@ -139,6 +130,8 @@ export const Link = styled(ReactRouterLink)`
   font-weight: 500;
   text-decoration: none;
 
+  width: 100px;
+
   margin-left: 35px;
   color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
 `;
@@ -211,6 +204,7 @@ const subOptionActiveStyles = css`
   border-left: 4px solid #ddd;
   color: #ddd;
 `;
+
 export const SubOption = styled.ul`
   display: ${(props) => (props.isSubMenuToggled ? "flex" : "none")};
   flex-direction: column;
@@ -221,7 +215,7 @@ export const SubOption = styled.ul`
 
   > li {
     ${(props) =>
-    props.active ? subOptionActiveStyles : subOptionDefaultStyles}
+      props.active ? subOptionActiveStyles : subOptionDefaultStyles}
     padding: 12px 16px;
 
     font-family: "Montserrat", sans-serif;
@@ -232,10 +226,41 @@ export const SubOption = styled.ul`
 `;
 
 export const Toggled = styled.div`
-  width: 100%;
+  width: 40%;
 
   display: flex;
   flex-direction: row-reverse;
 
   cursor: pointer;
+`;
+
+export const Skip = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 150%;
+  font-weight: 500;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  margin-left: 35px;
+  color: ${(props) => (props.selected ? "#fff" : Themes().wordColors)};
+`;
+
+export const Status = styled.div`
+  height: 8px;
+  width: 8px;
+  border-radius: 100px;
+
+  margin-left: 50px;
+
+  background: ${({ opened }) => (opened ? "#2ecc71" : "#E74C3C")};
+
+  ${({ isConecting }) =>
+    isConecting &&
+    css`
+      background: #ffe115;
+    `}
 `;

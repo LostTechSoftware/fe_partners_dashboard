@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dialog, IconButton } from "@material-ui/core";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 import PrintRoundedIcon from "@material-ui/icons/PrintRounded";
 
 import api from "../../../../services/api";
@@ -9,7 +9,6 @@ import PaymentMethod from "../../../../Components/PaymentMethod";
 
 import RejectionReason from "./RejectionReason";
 import "./styles.css";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function Footer({
   cancelClient,

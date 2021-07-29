@@ -1,0 +1,62 @@
+.foodMenu .itensTable svg {
+  height: 40px;
+  width: auto;
+  padding-right: 6px;
+}
+
+.foodMenu .itensTable .productsRowHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  padding: 16px;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  letter-spacing: 0.011em;
+}
+.foodMenu .itensTable .productsRowHeader h2 {
+  width: max-content !important;
+  padding: 16px !important;
+}
+
+.foodMenu .itensTable .MuiButton-root {
+  width: 100%;
+  max-width: 290px !important;
+  min-width: 180px !important;
+  border-radius: 18px;
+  text-transform: inherit;
+  max-width: 900px;
+}
+
+.foodMenu .itensTable .itemTitle p {
+  text-align: left;
+}
+
+.foodMenu .itensTable .MuiButton-root .MuiButton-label {
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 2000px) {
+  .foodMenu .itensTable .MuiButton-root {
+    max-width: 436px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .foodMenu .itensTable svg {
+    height: 20px;
+  }
+  .foodMenu .itensTable .MuiButton-root {
+    max-width: 240px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .foodMenu .itensTable .sellingStateRow {
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+    padding: 0 200px !important;
+  }
+  .foodMenu .itensTable .MuiTableCell-body {
+    border: 0;
+    padding-bottom: 3px;
+  }
+}

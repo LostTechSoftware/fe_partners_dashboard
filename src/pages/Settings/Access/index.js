@@ -37,8 +37,14 @@ const Loading = ({ repeat = 1 }) => {
 };
 
 function Access() {
-  const [getRandomColor, access, obj, showModal, setShowModal, loading] =
-    useAccess();
+  const [
+    getRandomColor,
+    access,
+    obj,
+    showModal,
+    setShowModal,
+    loading,
+  ] = useAccess();
 
   return (
     <Settings path="access">

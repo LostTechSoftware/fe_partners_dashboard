@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Settings,
   HelpCircle,
@@ -7,9 +7,8 @@ import {
   TrendingUp,
   Menu,
   DollarSign,
-  ChevronDown,
+  LogOut,
 } from "react-feather";
-import MaterialIcon from "material-icons-react";
 
 import {
   DesktopContainer,
@@ -29,12 +28,16 @@ import {
   SubOption,
   RotateSubMenuToggleArrow,
   Toggled,
+  Skip,
+  Status,
 } from "./styles";
 import { useMenu } from "./hooks";
 import { Hamburguer } from "../hamburguer";
 import { CaretDoubleLeft } from "../svg/caret-double-left";
 import { useScreenMeasure } from "../../utils/isMobile";
 import { Themes } from "../../utils/themes";
+import { TasksIcon } from "../../assets/tasks";
+import OpenedContext from "../../contexts/opened";
 
 const Icon = ({ icon, color }) => {
   const icons = {
@@ -43,7 +46,7 @@ const Icon = ({ icon, color }) => {
     Impulsionar: <TrendingUp color={color} size={30} />,
     Produtos: <Menu color={color} size={30} />,
     Finanças: <DollarSign color={color} size={30} />,
-    Pedidos: <MaterialIcon icon="ramen_dining" size={30} color={color} />,
+    Pedidos: <TasksIcon color={color} />,
   };
   return icons[icon] || <p />;
 };
@@ -55,8 +58,9 @@ export default function MainMenu({
   toggleMenu = false,
   setToggleMenu = () => console.log("Ooops, venha trabalhar conosco dev"),
 }) {
+  const { opened, remove, isConecting } = useContext(OpenedContext);
   const [isMobile] = useScreenMeasure();
-  const { menuOptions, toggled, setToggled } = useMenu();
+  const { menuOptions, toggled, setToggled, level, logout } = useMenu();
 
   return (
     <>
@@ -100,42 +104,51 @@ export default function MainMenu({
                     </Option>
                   ))}
 
-                  <Option settings>
-                    <ContainerButton>
-                      <Settings
-                        color={
-                          currentPage == "/settings"
-                            ? "#fff"
-                            : Themes().wordColors
-                        }
-                        size={30}
-                      />
-                      <Link>Configurações</Link>
-                      <ToggleSubMenu
-                        onClick={() => setToggled(!toggled)}
-                        isSubMenuToggled={toggled}
-                      >
-                        <RotateSubMenuToggleArrow
-                          color={Themes().gray}
-                          toggled={toggled}
+                  {level === 0 ? (
+                    <Option settings>
+                      <ContainerButton>
+                        <Settings
+                          color={
+                            currentPage == "/settings"
+                              ? "#fff"
+                              : Themes().wordColors
+                          }
+                          size={30}
                         />
-                      </ToggleSubMenu>
-                    </ContainerButton>
-                    <SubOption isSubMenuToggled={toggled}>
-                      <li>
-                        <Link to={"/settings/profile"}>Perfil</Link>
-                      </li>
-                      <li>
-                        <Link to={"/settings/access"}>Acessos</Link>
-                      </li>
-                      <li>
-                        <Link to={"/settings/payments"}>Pagamentos</Link>
-                      </li>
-                      <li>
-                        <Link to={"/settings/partners"}>Estabelecimento</Link>
-                      </li>
-                    </SubOption>
-                  </Option>
+                        <Link>Configurações</Link>
+                        <ToggleSubMenu
+                          onClick={() => setToggled(!toggled)}
+                          isSubMenuToggled={toggled}
+                        >
+                          <RotateSubMenuToggleArrow
+                            color={Themes().gray}
+                            toggled={toggled}
+                          />
+                        </ToggleSubMenu>
+                      </ContainerButton>
+                      <SubOption isSubMenuToggled={toggled}>
+                        <li>
+                          <Link to={"/settings/profile"}>Perfil</Link>
+                        </li>
+                        <li>
+                          <Link to={"/settings/access"}>Acessos</Link>
+                        </li>
+                        <li>
+                          <Link to={"/settings/payments"}>Pagamentos</Link>
+                        </li>
+                        <li>
+                          <Link to={"/settings/partners"}>Estabelecimento</Link>
+                        </li>
+                      </SubOption>
+                    </Option>
+                  ) : (
+                    <Option settings>
+                      <ContainerButton onClick={logout}>
+                        <LogOut color={Themes().wordColors} size={30} />
+                        <Skip>Sair</Skip>
+                      </ContainerButton>
+                    </Option>
+                  )}
 
                   <Option help>
                     <ContainerButton>
@@ -186,26 +199,42 @@ export default function MainMenu({
                         <CaretDoubleLeft />
                       </Toggled>
                     )}
+                    {option.route === "requests" &&
+                      currentPage !== "requests" && (
+                        <Status
+                          opened={opened || remove}
+                          isConecting={isConecting}
+                        />
+                      )}
                   </ContainerButton>
                 </Option>
               ))}
 
-              <Option selected={currentPage == "settings"} settings>
-                <ContainerButton>
-                  <Settings
-                    color={
-                      currentPage == "settings" ? "#fff" : Themes().wordColors
-                    }
-                    size={30}
-                  />
-                  <Link
-                    selected={currentPage == "settings"}
-                    to="/settings/profile"
-                  >
-                    Configurações
-                  </Link>
-                </ContainerButton>
-              </Option>
+              {level === 0 ? (
+                <Option selected={currentPage == "settings"} settings>
+                  <ContainerButton>
+                    <Settings
+                      color={
+                        currentPage == "settings" ? "#fff" : Themes().wordColors
+                      }
+                      size={30}
+                    />
+                    <Link
+                      selected={currentPage == "settings"}
+                      to="/settings/profile"
+                    >
+                      Configurações
+                    </Link>
+                  </ContainerButton>
+                </Option>
+              ) : (
+                <Option settings>
+                  <ContainerButton onClick={logout}>
+                    <LogOut color={Themes().wordColors} size={30} />
+                    <Skip>Sair</Skip>
+                  </ContainerButton>
+                </Option>
+              )}
 
               <Option help>
                 <ContainerButton>

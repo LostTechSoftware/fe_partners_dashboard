@@ -1,48 +1,91 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import { isAuthenticated } from "./services/auth";
-
-import Login from "./pages/Login";
-import Menu from "./pages/FoodMenu";
-import Money from "./pages/Money";
+import Menu from "./pages/Gulp";
+import Login from "./pages/Client";
+import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Settings/Profile";
 import Access from "./pages/Settings/Access";
 import Payments from "./pages/Settings/Payments";
 import Partners from "./pages/Settings/Partners";
 import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
+import Finance from "./pages/Finance";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
+import Page404 from "./pages/404";
+import Password from "./pages/Password";
+import AuthContext from "./contexts/acessLevel";
+import Tester from "./pages/Tester";
+import Story from "./pages/Scala/Story";
 
-const Router = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={Login} />
+export default function Router() {
+  const { level } = useContext(AuthContext);
 
-      <PrivateRoute path="/settings/profile" component={Profile} />
-      <PrivateRoute path="/settings/access" component={Access} />
-      <PrivateRoute path="/settings/payments" component={Payments} />
-      <PrivateRoute path="/settings/partners" component={Partners} />
+  const RootRoutes = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        level == 0 ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
 
-      <PrivateRoute path="/messages" component={Message} />
-      <PrivateRoute path="/requests" component={Tasks} />
-      <PrivateRoute path="/menu" component={Menu} />
+  const MasterRoutes = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        level <= 1 ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
 
-      <PrivateRoute path="/money" component={Money} />
-    </Switch>
-  </BrowserRouter>
-);
+  const SubAcessRoutes = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        level <= 2 ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
 
-export default Router;
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/password" component={Password} />
+
+        <Route path="/tester/accept/:email" component={Tester} />
+
+        <RootRoutes path="/settings/profile" component={Profile} />
+        <RootRoutes path="/settings/access" component={Access} />
+        <RootRoutes path="/settings/payments" component={Payments} />
+        <RootRoutes path="/settings/partners" component={Partners} />
+
+        {/* <RootRoutes path="/boost/coupons" component={Coupons} /> */}
+        <Route path="/boost/stories" component={Story} />
+        {/* <RootRoutes path="/boost/announcement" component={Partners} /> */}
+
+        <SubAcessRoutes path="/messages" component={Message} />
+        <SubAcessRoutes path="/requests" component={Tasks} />
+        <SubAcessRoutes path="/menu" component={Menu} />
+
+        <MasterRoutes path="/finance" component={Finance} />
+
+        <Route exact path="*" component={Page404} />
+      </Switch>
+    </BrowserRouter>
+  );
+}

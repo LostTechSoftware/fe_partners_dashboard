@@ -36,22 +36,20 @@ export const OrdersList = styled.div`
   height: 100%;
   width: 40%;
   background: ${Themes().messageBars};
-  display: flex;
+  display: ${({ toggleMenu }) => (toggleMenu ? "none" : "flex")};
+
   flex-direction: column;
   align-items: center;
+
   @media screen and (max-width: 800px) {
     width: 100%;
+    padding: 20px;
   }
 
-  padding: 20px;
+  padding: 95px 20px 20px 20px;
 
   overflow-y: auto;
   overflow-x: hidden;
-  ${({ toggleMenu }) =>
-    toggleMenu &&
-    css`
-      display: none;
-    `}
 
   ${({ showOrderDetails }) =>
     showOrderDetails &&
@@ -70,7 +68,7 @@ export const OrderDetails = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 20px;
+  padding: 95px 20px 150px 20px;
 
   overflow-y: scroll;
 
@@ -82,7 +80,7 @@ export const OrderDetails = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 100%;
-    padding-bottom: 80%;
+    padding: 0px 20px 20px 20px;
 
     ${({ showOrderDetails }) =>
       !showOrderDetails &&
@@ -130,7 +128,7 @@ export const Tab = styled.div`
 
   color: ${Themes().wordColors};
 
-  height: 100%;
+  height: 50px;
 
   ${({ selected }) =>
     selected &&
@@ -185,7 +183,9 @@ export const Header = styled.div`
 `;
 
 export const BasicInfo = styled.div`
-  margin-left: 20px;
+  @media screen and (min-width: 920px) {
+    margin-left: 20px;
+  }
 `;
 
 export const Title = styled.p`
@@ -197,6 +197,10 @@ export const Title = styled.p`
   font-family: "Roboto", sans-serif;
 
   max-width: 75%;
+
+  @media screen and (max-width: 800px) {
+    max-width: 100%;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -221,48 +225,6 @@ export const Hour = styled.p`
   line-height: 18px;
 
   margin-top: 10px;
-`;
-
-export const StatusContent = styled.div`
-  background: ${Themes().background};
-  color: ${Themes().gray};
-
-  box-shadow: 1px 1px 10px ${Themes().shadowStatus};
-  border-radius: 5px;
-
-  width: 100px;
-  height: 80px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  position: absolute;
-
-  @media screen and (min-width: 800px) {
-    right: 20px;
-    top: 20px;
-  }
-
-  @media screen and (max-width: 800px) {
-    right: 20px;
-    bottom: 10px;
-  }
-`;
-
-export const Status = styled.p`
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-
-  text-align: center;
-
-  color: ${({ color }) => color};
-
-  margin-top: 5px;
 `;
 
 export const ProductContainer = styled.div`
@@ -298,12 +260,29 @@ export const ProductText = styled.p`
   line-height: 21px;
 
   color: ${Themes().wordColors};
+
+  margin-left: 10%;
+  width: 300px;
+
+  @media screen and (max-width: 1100px) {
+    margin-left: 5px;
+    width: 100px;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-left: 5px;
+    width: 40%;
+
+    font-size: 12px;
+  }
 `;
 
 export const Collapsable = styled.div`
   border-left: 1px solid ${Themes().gray};
   border-right: 1px solid ${Themes().gray};
   border-bottom: 1px solid ${Themes().gray};
+
+  background: ${Themes().background};
 
   border-radius: 5px;
   width: 100%;
@@ -315,7 +294,6 @@ export const ContainerText = styled.div`
   align-items: center;
 
   width: 90%;
-  justify-content: space-around;
 `;
 
 export const Additional = styled.div`
@@ -346,12 +324,13 @@ export const Footer = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 100%;
+    position: relative;
   }
 `;
 
 export const LoadingContainer = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
 `;
 
 export const UserAvatar = styled.img`
@@ -403,22 +382,21 @@ export const ContainerPopUp = styled.div`
   align-items: center;
 `;
 
-export const ContainerPrint = styled.div`
+export const ContainerPrint = styled.button`
   color: ${Themes().gray};
+
+  background: transparent;
+  border: none;
 
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  margin-right: 20px;
 
   cursor: pointer;
 
   @media screen and (max-width: 800px) {
     display: none;
   }
-
-  width: 50%;
 
   > p {
     font-family: "Roboto", sans-serif;
@@ -539,4 +517,99 @@ export const ButtonChange = styled.div`
         color: #ffe115;
       `}
   }
+`;
+
+export const ContentBasicInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+export const HeaderStatus = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  background: ${Themes().background};
+
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 75px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+`;
+
+export const LeftContent = styled.div``;
+
+export const RightContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 290px;
+`;
+
+export const TitleStatus = styled.p`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: ${Themes().wordColors};
+`;
+
+export const Status = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  margin: 4px 0;
+  color: #dddddd;
+`;
+
+export const ButtonStatus = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #ffe115;
+
+  cursor: pointer;
+`;
+
+export const ContentTime = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 75px;
+
+  justify-content: center;
+`;
+
+export const RowTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+`;
+
+export const TimeText = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #dddddd;
 `;

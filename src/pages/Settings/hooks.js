@@ -9,10 +9,5 @@ export const useSettings = () => {
     setIsMenuMobileOpened(!isMenuMobileOpened);
   }, [isMenuMobileOpened]);
 
-  return [
-    isMenuMobileOpened,
-    setIsMenuMobileOpened,
-    handleMenuMobileOpen,
-    history,
-  ];
+  return [isMenuMobileOpened, handleMenuMobileOpen, history];
 };
