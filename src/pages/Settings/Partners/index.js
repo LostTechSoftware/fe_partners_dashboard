@@ -27,7 +27,7 @@ function Partners() {
   ] = usePartnerSettings();
 
   return (
-    <Settings path="partners">
+    <Settings disableScroll path="partners">
       <Container>
         <SettingsComponents defaultValue={true} showCheckBox={false} title="">
           <Row>

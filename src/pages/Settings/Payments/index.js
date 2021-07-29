@@ -15,7 +15,7 @@ function Payments() {
   ] = usePayments();
 
   return (
-    <Settings path="payments">
+    <Settings disableScroll path="payments">
       <Container>
         <SettingsComponents defaultValue={true} title="Cartão de crédito">
           <Content>
