@@ -61,28 +61,10 @@ export const Input = styled.input`
 `;
 
 export const Preview = styled.img`
-  width: 27%;
+  width: 100%;
   height: 188px;
 
-  @media only screen and (max-width: 1150px) {
-    width: 40%;
-  }
-
-  @media only screen and (max-width: 900px) {
-    width: 50%;
-  }
-
-  @media only screen and (max-width: 800px) {
-    width: 100%;
-    margin-top: 20px;
-    margin-left: 0px;
-  }
-
-  ${({ margin }) =>
-    margin &&
-    css`
-      margin-left: 20px;
-    `}
+  border-radius: 5px;
 `;
 
 export const RowTheme = styled.div`
@@ -93,6 +75,10 @@ export const RowTheme = styled.div`
   align-items: center;
 
   flex-wrap: wrap;
+
+  @media only screen and (max-width: 1226px) {
+    justify-content: center;
+  }
 `;
 
 export const Code = styled.div`
@@ -102,6 +88,8 @@ export const Code = styled.div`
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
+
+    text-transform: uppercase;
 
     color: #dddddd;
   }
@@ -119,4 +107,39 @@ export const Code = styled.div`
 export const CodeContainer = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const CardPreview = styled.div`
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+
+  width: 420px;
+  height: 312px;
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: 1226px) {
+    ${({ margin }) =>
+      margin &&
+      css`
+        margin-left: 20px;
+      `}
+  }
+
+  @media only screen and (max-width: 1226px) {
+    margin-top: 20px;
+  }
+`;
+
+export const ContentRadio = styled.div`
+  padding: 20px;
+
+  > p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: #dddddd;
+  }
 `;

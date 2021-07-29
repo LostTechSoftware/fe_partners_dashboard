@@ -8,16 +8,21 @@ export const usePartnerSettings = () => {
   const [withdrawalDelay, setWithdrawalDelay] = useState(0);
   const [deliveryDelay, setDeliveryDelay] = useState(0);
   const [click, setClick] = useState(0);
+  const [openAutomaticaly, setOpenAutomaticaly] = useState(false);
 
   async function updateSettingsFee(newValue, key) {
-    const newObj = settings;
+    try {
+      const newObj = settings;
 
-    newObj[key] = newValue;
+      newObj[key] = newValue;
 
-    setSettings(newObj);
-    setClick(click + 1);
+      setSettings(newObj);
+      setClick(click + 1);
 
-    await api.post("/partner/settings", { ...settings });
+      await api.post("/partner/settings", { ...settings });
+    } catch (error) {
+      toast.error("Erro ao alterar informação!");
+    }
   }
 
   useEffect(() => {
@@ -27,6 +32,7 @@ export const usePartnerSettings = () => {
       setSettings(data);
       setDeliveryDelay(data.delay);
       setWithdrawalDelay(data.delayRemove);
+      setOpenAutomaticaly(settings.openAutomaticaly);
     }
     GetSettings();
   }, []);
@@ -77,5 +83,7 @@ export const usePartnerSettings = () => {
     withdrawalDelay,
     deliveryDelay,
     updateSettingsFee,
+    openAutomaticaly,
+    setOpenAutomaticaly,
   ];
 };
