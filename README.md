@@ -8,7 +8,7 @@
   <h3 align="center">FoodZilla Partners Dashboard</h3>
 
   <p align="center">
-    Uma infraestrutura poderosa
+    Você é o delivery que você escolhe
     <br />
     <a href="https://partners.foodzilla.com.br">Produção</a>
     ·
@@ -25,6 +25,14 @@
 ### 🔔 About the project
 
 ![image](https://user-images.githubusercontent.com/37854189/127578542-4ef1d3d4-a870-465e-85bc-6a032a385972.png)
+
+
+![image](https://user-images.githubusercontent.com/37854189/127584918-b6c7869e-bdda-4270-807d-4f67868e71ec.png)
+
+
+![image](https://user-images.githubusercontent.com/37854189/127584997-5a1f68ba-32d8-464d-9ce7-043c94bd9803.png)
+
+
 
 Plataforma de acesso dos parceiros, onde se tem o total controle de seu estabelecimento, podendo gerenciar produtos e realizar diversas tarefas com features intuitivas e simples de serem manuseadas.
 
@@ -79,8 +87,6 @@ yarn staging
 ## ⚙️ Usage
 
 Usado para toda a infraestrutura do FoodZilla.
-
-_For more examples, please refer to the [Documentation](https://www.notion.so/foodzillabr/Engineering-Wiki-c8f9d76fc8c5490dbdd321dcf9e05e3f)_
 
 <!-- ROADMAP -->
 
