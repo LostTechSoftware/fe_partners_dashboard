@@ -10,65 +10,36 @@
   <p align="center">
     Uma infraestrutura poderosa
     <br />
-    <a href="https://www.notion.so/foodzillabr/Engineering-Wiki-c8f9d76fc8c5490dbdd321dcf9e05e3f"><strong>Veja a documentação »</strong></a>
-    <br />
-    <br />
-    <a href="https://partners.foodzilla.com.br">View Prod</a>
+    <a href="https://partners.foodzilla.com.br">Produção</a>
     ·
-    <a href="https://staging-partners.foodzilla.com.br">View staging</a>
+    <a href="https://staging-partners.foodzilla.com.br">Staging</a>
     ·
     <a href="https://helpcenter.foodzilla.com.br">Report Bug</a>
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
+
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+### 🔔 About the project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![image](https://user-images.githubusercontent.com/37854189/127578542-4ef1d3d4-a870-465e-85bc-6a032a385972.png)
 
-Esse é o web dos parceiros da plataforma que integra milhares de outras funcionalidades, sendo assim uma ferramenta poderosa e eficiente.
+Plataforma de acesso dos parceiros, onde se tem o total controle de seu estabelecimento, podendo gerenciar produtos e realizar diversas tarefas com features intuitivas e simples de serem manuseadas.
 
-### Built With
-
-Aqui vemos uma das mais poderosas ferramentas usadas pelo Backend
+### 🛠️ Built With
 
 - [React](https://pt-br.reactjs.org/)
 - [Heroku](https://heroku.coms)
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+## 🚀 Getting Started
 
 Para iniciar o projeto é necessário seguir os passos abaixo:
 
-### Prerequisites
+### 📋 Pre-requisites
 
 É preciso ter heroku-cli e yarn
 
@@ -83,7 +54,7 @@ Para iniciar o projeto é necessário seguir os passos abaixo:
   npm install -g heroku
   ```
 
-### Installation
+### 🔧 Installation
 
 1. Clone the repo
    ```sh
@@ -97,10 +68,15 @@ Para iniciar o projeto é necessário seguir os passos abaixo:
    ```JS
    heroku config -a foodzilla-partners-staging -s >> .env
    ```
+### ✔ Run
+
+```bash
+yarn staging
+```
 
 <!-- USAGE EXAMPLES -->
 
-## Usage
+## ⚙️ Usage
 
 Usado para toda a infraestrutura do FoodZilla.
 
@@ -108,13 +84,13 @@ _For more examples, please refer to the [Documentation](https://www.notion.so/fo
 
 <!-- ROADMAP -->
 
-## Roadmap
+## 🗺 Roadmap
 
-See the [PRs](https://github.com/LostTechSoftware/bk_clientes/pulls) for a list of proposed features (and known issues).
+See the [PRs](https://github.com/LostTechSoftware/fe_partners_dashboard/pulls) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
-## License
+## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
