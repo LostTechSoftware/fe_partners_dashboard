@@ -75,10 +75,6 @@ export const RowTheme = styled.div`
   align-items: center;
 
   flex-wrap: wrap;
-
-  @media only screen and (max-width: 1226px) {
-    justify-content: center;
-  }
 `;
 
 export const Code = styled.div`
@@ -107,6 +103,10 @@ export const Code = styled.div`
 export const CodeContainer = styled.div`
   display: flex;
   align-items: center;
+
+  > svg {
+    cursor: pointer;
+  }
 `;
 
 export const CardPreview = styled.div`

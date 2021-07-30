@@ -4,8 +4,14 @@ import { Themes } from "../../utils/themes";
 
 export const ContainerImage = styled.div`
   display: flex;
-  height: 100%;
   background: ${Themes().background};
+
+  @media (max-width: 800px) {
+    padding: 20px 0;
+  }
+
+  overflow-y: scroll;
+  height: 100%;
 `;
 
 export const Input = styled.div`

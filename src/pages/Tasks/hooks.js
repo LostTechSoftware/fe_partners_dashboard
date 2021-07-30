@@ -17,7 +17,7 @@ export const useTasks = () => {
   const [reason, setReason] = useState("");
   const [showOrderDetails, setShowOrderDetails] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
+  const [restaurantIsOpen, setRestaurantIsOpen] = useState(false);
   const [removeOption, setRemoveOption] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const _id = sessionStorage.getItem("_id");
@@ -103,7 +103,7 @@ export const useTasks = () => {
   async function Reconect() {
     if (connecting) return toast.error("Conectando");
 
-    toast.success("Conectado");
+    if (screen === 0) toast.success("Conectado");
   }
 
   useEffect(() => {

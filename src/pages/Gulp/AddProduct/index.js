@@ -86,7 +86,7 @@ function AddProduct({
           <Label>Nome do produto *</Label>
           <InputName
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => setName(event.target.value.slice(0, 100))}
             placeholder="Ex: Pizza de calabresa"
           />
           <CaractersCount>{name.length}/100</CaractersCount>
@@ -119,7 +119,9 @@ function AddProduct({
           <Label>Igredientes *</Label>
           <TextArea
             value={description}
-            onChange={(event) => setDescription(event.target.value)}
+            onChange={(event) =>
+              setDescription(event.target.value.slice(0, 100))
+            }
             placeholder="Ex: massa, queijo, tomate, presunto..."
           />
           <CaractersCount>{description.length}/100</CaractersCount>
@@ -136,7 +138,7 @@ function AddProduct({
             data-delimiter=","
             data-reverse
             value={price}
-            onChange={(event) => setPrice(event.target.value)}
+            onChange={(event) => setPrice(event.target.value.slice(0, 6))}
             type="number"
             placeholder="R$ 0,00"
           />

@@ -1,7 +1,7 @@
 import { toast as toastLib } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const dark = (message) =>
+const dark = (message) => {
   toastLib.dark(message.toUpperCase(), {
     position: "top-center",
     autoClose: 5000,
@@ -11,8 +11,9 @@ const dark = (message) =>
     draggable: true,
     progress: undefined,
   });
+};
 
-const defaultToast = (message) =>
+const defaultToast = (message) => {
   toastLib(message.toUpperCase(), {
     position: "top-center",
     autoClose: 5000,
@@ -22,6 +23,7 @@ const defaultToast = (message) =>
     draggable: true,
     progress: undefined,
   });
+};
 
 const sendToast = (message) =>
   localStorage.getItem("theme") === "dark"

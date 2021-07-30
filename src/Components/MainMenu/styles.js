@@ -58,10 +58,8 @@ export const Top = styled.div`
 
 export const ContentMobile = styled.div`
   width: 100vw;
-  height: 800px;
-  @media (min-height: 850px) {
-    height: 100%;
-  }
+  height: 100%;
+
   top: 0;
   right: 0;
   left: 0;
@@ -84,8 +82,12 @@ export const ContentHeader = styled.div`
   padding: 0 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
+
+  @media (min-width: 800px) {
+    justify-content: center;
+  }
+
   > button {
     background: transparent;
     border: none;

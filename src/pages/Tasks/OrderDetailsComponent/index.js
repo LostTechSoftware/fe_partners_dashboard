@@ -67,7 +67,7 @@ function OrderDetailsComponent({
                     <Subtitle>{selectedOrders.user.name}</Subtitle>
                     <Hour>
                       {selectedOrders.address
-                        ? selectedOrders.address.street
+                        ? `${selectedOrders.address.street}, ${selectedOrders.address.Number}, ${selectedOrders.address.neighborhood}`
                         : "Retirada"}
                     </Hour>
                   </BasicInfo>

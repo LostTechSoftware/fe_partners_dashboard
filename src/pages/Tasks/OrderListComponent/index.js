@@ -47,7 +47,7 @@ function OrderListComponent({
             Aceitos
           </Tab>
           <Tab onClick={() => setScreen(2)} selected={screen === 2}>
-            Em rota
+            Delivery
           </Tab>
         </Tabs>
       </AppBar>
