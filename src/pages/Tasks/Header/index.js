@@ -75,14 +75,14 @@ function Header({ opened, remove, ChangeStatus, connecting }) {
       <PopUp
         show={showOpenedPopUp}
         showDefault={false}
-        title="Aberto para"
+        title="Status do restaurante"
         width="600px"
         height="280px"
         mobileHeight="280px"
         close={() => setShowOpenedPopUp(!showOpenedPopUp)}
       >
         <Row>
-          <Label>Entrega</Label>
+          <Label>Restaurante aberto</Label>
           <CustomizedSwitches
             onChange={() => ChangeStatus(remove, !opened)}
             checked={opened}
@@ -93,7 +93,7 @@ function Header({ opened, remove, ChangeStatus, connecting }) {
         </Row>
 
         <Row>
-          <Label>Retirada</Label>
+          <Label>Aceita retirada</Label>
           <CustomizedSwitches
             onChange={() => ChangeStatus(!remove, opened)}
             checked={remove}

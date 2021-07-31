@@ -96,10 +96,6 @@ export default function FoodMenu() {
               <ButtonHeader onClick={() => setRemove(false)} selected={!remove}>
                 <ButtonText>Entrega</ButtonText>
               </ButtonHeader>
-
-              <ButtonHeader onClick={() => setRemove(true)} selected={remove}>
-                <ButtonText>Retirada</ButtonText>
-              </ButtonHeader>
             </ContainerButtons>
             <ContainerSelect>
               <Selector

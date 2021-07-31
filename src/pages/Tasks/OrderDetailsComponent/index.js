@@ -67,7 +67,7 @@ function OrderDetailsComponent({
                     <Subtitle>{selectedOrders.user.name}</Subtitle>
                     <Hour>
                       {selectedOrders.address
-                        ? selectedOrders.address.street
+                        ? `${selectedOrders.address.street}, ${selectedOrders.address.Number}, ${selectedOrders.address.neighborhood}`
                         : "Retirada"}
                     </Hour>
                   </BasicInfo>
@@ -142,29 +142,30 @@ function OrderDetailsComponent({
                     timeout="auto"
                     unmountOnExit
                   >
-                    {product.additional.additional.map((additional) => (
-                      <Additional>
-                        <AdditionalImage
-                          src={
-                            additional.avatar ||
-                            "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle.jpg"
-                          }
-                        />
-
-                        <ContainerText>
-                          <ProductText>{additional.title}</ProductText>
-                          <ProductText>{additional.quantidade}x</ProductText>
-                          <ProductText>
-                            {(
-                              additional.quantidade * additional.price
-                            ).toLocaleString("pt-br", {
-                              currency: "brl",
-                              style: "currency",
-                            })}
-                          </ProductText>
-                        </ContainerText>
-                      </Additional>
-                    ))}
+                    {product.additional.map((additionalRow) =>
+                      additionalRow.additional.map((additional) => (
+                        <Additional>
+                          <AdditionalImage
+                            src={
+                              additional.avatar ||
+                              "https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Doodle.jpg"
+                            }
+                          />
+                          <ContainerText>
+                            <ProductText>{additional.title}</ProductText>
+                            <ProductText>{additional.quantidade}x</ProductText>
+                            <ProductText>
+                              {(
+                                additional.quantidade * additional.price
+                              ).toLocaleString("pt-br", {
+                                currency: "brl",
+                                style: "currency",
+                              })}
+                            </ProductText>
+                          </ContainerText>
+                        </Additional>
+                      ))
+                    )}
                   </CollapseComponent>
                 </Collapsable>
               ) : null}

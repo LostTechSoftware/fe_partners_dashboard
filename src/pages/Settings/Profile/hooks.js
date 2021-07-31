@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../../services/api";
 import filesize from "filesize";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 
 export const useProfile = () => {
   const [restaurant, setRestaurant] = useState("");

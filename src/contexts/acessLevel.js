@@ -4,7 +4,7 @@ import { getLevel } from "../services/getLevel";
 const AuthContext = createContext({ level: 2 });
 
 export const AuthProvider = ({ children }) => {
-  const [level, setLevel] = useState(2);
+  const [level, setLevel] = useState(0);
 
   useEffect(() => {
     async function isLogged() {

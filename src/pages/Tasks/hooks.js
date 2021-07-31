@@ -17,7 +17,7 @@ export const useTasks = () => {
   const [reason, setReason] = useState("");
   const [showOrderDetails, setShowOrderDetails] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
+  const [restaurantIsOpen, setRestaurantIsOpen] = useState(false);
   const [removeOption, setRemoveOption] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const _id = sessionStorage.getItem("_id");
@@ -66,24 +66,37 @@ export const useTasks = () => {
   }
 
   const GetOrders = async () => {
-    setOrders([]);
     setLoading(true);
+
     const { data } = await api.get("/tasks/new");
+
     setNewOrders(data);
 
     if (screen === 0) {
       const response0 = await api.get("/tasks/new");
+
       setOrders(response0.data);
     }
+
     if (screen === 1) {
       const response1 = await api.get("/tasks/preparing");
+
       setOrders(response1.data);
     }
+
     if (screen === 2) {
       const response2 = await api.get("/tasks/delivery");
+
       setOrders(response2.data);
     }
 
+    const orderFind = orders.find(
+      (order) => selectedOrders && order._id == selectedOrders._id
+    );
+
+    console.log(orderFind);
+
+    orderFind && setSelectedOrders(orderFind);
     setLoading(false);
   };
 
@@ -98,12 +111,13 @@ export const useTasks = () => {
 
     socket.on("new_order", GetOrders);
     socket.on("open", Reload);
+    socket.on("status", GetOrders);
   }
 
   async function Reconect() {
     if (connecting) return toast.error("Conectando");
 
-    toast.success("Conectado");
+    if (screen === 0) toast.success("Conectado");
   }
 
   useEffect(() => {

@@ -1,8 +1,7 @@
 import { useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
-import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { toast } from "../../Components/Toast";
 
 export const usePassword = () => {
   const history = useHistory();

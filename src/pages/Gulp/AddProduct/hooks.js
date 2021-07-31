@@ -28,6 +28,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
   const [rowSelected, setRowSelected] = useState(rows[0]._id);
   const [loading, setLoading] = useState(false);
   const [showDays, setShowDays] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const deleteProductAvatar = async () => {
     try {
@@ -57,11 +58,14 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           const data = new FormData();
 
           data.append("title", name);
-          data.append("price", parseFloat(promotionalPrice || price));
+          data.append(
+            "price",
+            promotion ? parseFloat(promotionalPrice || price) : price
+          );
           data.append("description", description);
           data.append("daysActive", JSON.stringify(daysActive));
           data.append("promotion", promotion);
-          data.append("OldPrice", price);
+          data.append("OldPrice", promotion ? price : 0);
           data.append("schedule", showDays);
 
           if (uploadedFiles) data.append("avatar", uploadedFiles.file);
@@ -69,6 +73,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           await api.post(`/add/product/${rowSelected}`, data);
           setReload(true);
           toast.success("Produto salvo!");
+          setDisabled(true);
         } catch {
           toast.error("Erro ao salvar produto, tente novamente!");
         } finally {
@@ -79,11 +84,14 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       const dataEdit = new FormData();
 
       dataEdit.append("title", name);
-      dataEdit.append("price", parseFloat(promotionalPrice || price));
+      dataEdit.append(
+        "price",
+        promotion ? parseFloat(promotionalPrice || price) : price
+      );
       dataEdit.append("description", description);
       dataEdit.append("daysActive", JSON.stringify(daysActive));
       dataEdit.append("promotion", promotion);
-      dataEdit.append("OldPrice", price);
+      dataEdit.append("OldPrice", promotion ? price : 0);
       dataEdit.append("schedule", showDays);
 
       if (uploadedFiles) dataEdit.append("avatar", uploadedFiles.file);
@@ -93,6 +101,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       setReload(true);
 
       toast.success("Produto salvo!");
+      setDisabled(true);
     } catch {
       toast.error("Erro ao salvar produto, tente novamente!");
     } finally {
@@ -225,5 +234,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     showDays,
     setShowDays,
     deleteItem,
+    disabled,
+    setDisabled,
   };
 };

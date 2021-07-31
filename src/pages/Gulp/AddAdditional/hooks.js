@@ -6,12 +6,11 @@ export const useAddAdditinal = ({
   selectedAdditonal,
   uploadedFiles,
   selectedRows,
-  rows,
 }) => {
   const [name, setName] = useState(selectedAdditonal.title || "");
   const [price, setPrice] = useState(selectedAdditonal.price || 0);
   const [loading, setLoading] = useState(false);
-  const [rowId, setRowId] = useState(rows[0]);
+  const [rowId, setRowId] = useState(selectedRows._id);
 
   async function updateOrCreateItem() {
     try {
@@ -33,7 +32,7 @@ export const useAddAdditinal = ({
 
           if (uploadedFiles) data.append("avatar", uploadedFiles.file);
 
-          await api.post(`/additional/${selectedRows._id}`, data);
+          await api.post(`/additional/${rowId}`, data);
           toast.success("Adicinal salvo!");
         } catch {
           toast.error("Erro ao salvar Adicinal, tente novamente!");
@@ -51,7 +50,7 @@ export const useAddAdditinal = ({
       if (uploadedFiles) dataEdit.append("avatar", uploadedFiles.file);
 
       await api.post(
-        `/edit/additional/${selectedRows._id}/${selectedAdditonal._id}`,
+        `/edit/additional/${rowId}/${selectedAdditonal._id}`,
         dataEdit
       );
 

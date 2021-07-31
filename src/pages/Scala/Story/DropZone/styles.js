@@ -18,6 +18,10 @@ export const Section = styled.section`
     css`
       width: 400px;
       height: 400px;
+
+      @media (max-width: 800px) {
+        width: 100%;
+      }
     `}
 `;
 
@@ -107,4 +111,8 @@ export const ContainerHeader = styled.div`
   cursor: pointer;
 `;
 
-export const ContainerDragAndDrop = styled.div``;
+export const ContainerDragAndDrop = styled.div`
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+`;
