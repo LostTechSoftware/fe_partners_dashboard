@@ -28,6 +28,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
   const [rowSelected, setRowSelected] = useState(rows[0]._id);
   const [loading, setLoading] = useState(false);
   const [showDays, setShowDays] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const deleteProductAvatar = async () => {
     try {
@@ -72,6 +73,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           await api.post(`/add/product/${rowSelected}`, data);
           setReload(true);
           toast.success("Produto salvo!");
+          setDisabled(true);
         } catch {
           toast.error("Erro ao salvar produto, tente novamente!");
         } finally {
@@ -99,6 +101,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       setReload(true);
 
       toast.success("Produto salvo!");
+      setDisabled(true);
     } catch {
       toast.error("Erro ao salvar produto, tente novamente!");
     } finally {
@@ -231,5 +234,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     showDays,
     setShowDays,
     deleteItem,
+    disabled,
+    setDisabled,
   };
 };

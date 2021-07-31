@@ -58,6 +58,8 @@ function AddProduct({
     showDays,
     setShowDays,
     deleteItem,
+    disabled,
+    setDisabled,
   } = useAddProduct({ product, updateProductOnTable, reload, setReload, rows });
 
   return (
@@ -68,7 +70,7 @@ function AddProduct({
       title={
         !!(product && product._id) ? "Editar produto" : "Adicionar produto"
       }
-      buttonsDisabled={loading}
+      buttonsDisabled={loading || disabled}
       showTrash={!!product}
       onClickTrash={deleteItem}
     >
@@ -86,7 +88,10 @@ function AddProduct({
           <Label>Nome do produto *</Label>
           <InputName
             value={name}
-            onChange={(event) => setName(event.target.value.slice(0, 100))}
+            onChange={(event) => {
+              setDisabled(false);
+              setName(event.target.value.slice(0, 100));
+            }}
             placeholder="Ex: Pizza de calabresa"
           />
           <CaractersCount>{name.length}/100</CaractersCount>
@@ -104,7 +109,10 @@ function AddProduct({
             <Label>Categoria *</Label>
             <Selector
               value={rowSelected}
-              onChange={(event) => setRowSelected(event.target.value)}
+              onChange={(event) => {
+                setRowSelected(event.target.value);
+                setDisabled(false);
+              }}
             >
               {rows.map((row) => (
                 <Option value={row._id}>{row.title}</Option>
@@ -119,9 +127,10 @@ function AddProduct({
           <Label>Igredientes *</Label>
           <TextArea
             value={description}
-            onChange={(event) =>
-              setDescription(event.target.value.slice(0, 100))
-            }
+            onChange={(event) => {
+              setDisabled(false);
+              setDescription(event.target.value.slice(0, 100));
+            }}
             placeholder="Ex: massa, queijo, tomate, presunto..."
           />
           <CaractersCount>{description.length}/100</CaractersCount>
@@ -138,7 +147,10 @@ function AddProduct({
             data-delimiter=","
             data-reverse
             value={price}
-            onChange={(event) => setPrice(event.target.value.slice(0, 6))}
+            onChange={(event) => {
+              setDisabled(false);
+              setPrice(event.target.value.slice(0, 6));
+            }}
             type="number"
             placeholder="R$ 0,00"
           />
@@ -180,7 +192,10 @@ function AddProduct({
                 data-grouplength="2"
                 data-delimiter=","
                 data-reverse
-                onChange={(event) => setPromotionalPrice(event.target.value)}
+                onChange={(event) => {
+                  setDisabled(false);
+                  setPromotionalPrice(event.target.value);
+                }}
                 value={promotionalPrice}
                 type="number"
                 placeholder="R$ 0,00"
