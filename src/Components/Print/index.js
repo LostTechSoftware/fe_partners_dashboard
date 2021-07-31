@@ -3,18 +3,27 @@ import moment from "moment";
 
 import { usePrint } from "./hooks";
 
-import { Header, Content, Row, ContainerPayment, RowAdditinal } from "./styles";
+import {
+  Header,
+  Content,
+  Row,
+  ContainerPayment,
+  RowAdditinal,
+  RestaurantName,
+} from "./styles";
 import "./styles.css";
 
 export const Print = React.forwardRef((props, ref) => {
   const { order } = props;
-  const [paymentMethod] = usePrint(order);
+  const [paymentMethod, restaurantName] = usePrint(order);
 
   return (
     <div ref={ref} className="print-media">
       <Header>
         <img src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Logos/FoodZilla.svg" />
       </Header>
+
+      <RestaurantName>{restaurantName}</RestaurantName>
 
       <Content>
         <h1>Pedido #{order.token}</h1>
@@ -75,14 +84,14 @@ export const Print = React.forwardRef((props, ref) => {
                   </RowAdditinal>
                 ))}
             </ul>
-            <p>Observação: {product.observation}</p>
+            {product.observation && <p>Observação: {product.observation}</p>}
           </>
         ))}
       </Content>
 
       <ContainerPayment>
         <Row>
-          <p className="title">Valor</p>
+          <p>Sub-total</p>
           <p>
             {order.realPrice.toLocaleString("pt-br", {
               currency: "brl",
@@ -92,7 +101,7 @@ export const Print = React.forwardRef((props, ref) => {
         </Row>
 
         <Row>
-          <p className="title">Cupom</p>
+          <p>Cupom</p>
           <p>
             {order.couponUsed.toLocaleString("pt-br", {
               currency: "brl",
@@ -104,9 +113,9 @@ export const Print = React.forwardRef((props, ref) => {
         <hr />
 
         <Row>
-          <p className="title">{paymentMethod}</p>
+          <p>Cobrar do cliente</p>
           <p>
-            {order.couponUsed.toLocaleString("pt-br", {
+            {order.price.toLocaleString("pt-br", {
               currency: "brl",
               style: "currency",
             })}
@@ -115,7 +124,12 @@ export const Print = React.forwardRef((props, ref) => {
       </ContainerPayment>
 
       <Row padding>
-        <p className="title">Troco para</p>
+        <p>Método de pagamento:</p>
+        <p>{paymentMethod}</p>
+      </Row>
+
+      <Row padding nontop>
+        <p>Troco para:</p>
         <p>
           {order.change.toLocaleString("pt-br", {
             currency: "brl",

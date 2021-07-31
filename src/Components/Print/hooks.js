@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export const usePrint = (order) => {
   const [paymentMethod, setPaymentMethod] = useState("");
+  const restaurantName = sessionStorage.getItem("restaurantName");
 
   useEffect(() => {
     switch (order.payment_method) {
@@ -19,5 +20,5 @@ export const usePrint = (order) => {
     }
   }, [order]);
 
-  return [paymentMethod];
+  return [paymentMethod, restaurantName];
 };
