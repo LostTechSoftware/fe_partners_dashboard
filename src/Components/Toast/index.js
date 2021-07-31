@@ -1,28 +1,52 @@
 import { toast as toastLib } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const isMobile = () => {
+  return window.innerWidth <= 800;
+};
+
 const dark = (message) => {
-  toastLib.dark(message.toUpperCase(), {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+  isMobile()
+    ? toastLib.dark(message.toUpperCase(), {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    : toastLib.dark(message.toUpperCase(), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 };
 
 const defaultToast = (message) => {
-  toastLib(message.toUpperCase(), {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+  isMobile()
+    ? toastLib.dark(message.toUpperCase(), {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    : toastLib(message.toUpperCase(), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 };
 
 const sendToast = (message) =>
