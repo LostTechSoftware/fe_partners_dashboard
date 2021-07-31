@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Settings,
   HelpCircle,
@@ -9,7 +9,6 @@ import {
   DollarSign,
   LogOut,
 } from "react-feather";
-import MaterialIcon from "material-icons-react";
 
 import {
   DesktopContainer,
@@ -30,12 +29,15 @@ import {
   RotateSubMenuToggleArrow,
   Toggled,
   Skip,
+  Status,
 } from "./styles";
 import { useMenu } from "./hooks";
 import { Hamburguer } from "../hamburguer";
 import { CaretDoubleLeft } from "../svg/caret-double-left";
 import { useScreenMeasure } from "../../utils/isMobile";
 import { Themes } from "../../utils/themes";
+import { TasksIcon } from "../../assets/tasks";
+import OpenedContext from "../../contexts/opened";
 
 const Icon = ({ icon, color }) => {
   const icons = {
@@ -44,7 +46,7 @@ const Icon = ({ icon, color }) => {
     Impulsionar: <TrendingUp color={color} size={30} />,
     Produtos: <Menu color={color} size={30} />,
     Finanças: <DollarSign color={color} size={30} />,
-    Pedidos: <MaterialIcon icon="ramen_dining" size={30} color={color} />,
+    Pedidos: <TasksIcon color={color} />,
   };
   return icons[icon] || <p />;
 };
@@ -56,6 +58,7 @@ export default function MainMenu({
   toggleMenu = false,
   setToggleMenu = () => console.log("Ooops, venha trabalhar conosco dev"),
 }) {
+  const { opened, remove, isConecting } = useContext(OpenedContext);
   const [isMobile] = useScreenMeasure();
   const { menuOptions, toggled, setToggled, level, logout } = useMenu();
 
@@ -196,6 +199,13 @@ export default function MainMenu({
                         <CaretDoubleLeft />
                       </Toggled>
                     )}
+                    {option.route === "requests" &&
+                      currentPage !== "requests" && (
+                        <Status
+                          opened={opened || remove}
+                          isConecting={isConecting}
+                        />
+                      )}
                   </ContainerButton>
                 </Option>
               ))}

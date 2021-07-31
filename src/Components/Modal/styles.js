@@ -174,7 +174,7 @@ export const Row = styled.div`
     `}
 
   @media screen and (max-width: 800px) {
-    padding: 0px 10px;
+    padding: 0px 20px;
   }
 `;
 

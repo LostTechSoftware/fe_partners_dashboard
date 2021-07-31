@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../../Components/Toast";
 
 import api from "../../../services/api";
 
@@ -24,21 +23,20 @@ export const useFooterComponent = ({ order }) => {
   }, [order]);
 
   async function acceptOrder() {
-    await api.post(`/approve/order/${order._id}`).catch((error) => {
-      if (error) {
-        return toast.error(error.response.data);
-      }
-    });
-    toast.success("Pedido aceito!");
+    try {
+      await api.post(`/approve/order/${order._id}`);
+      toast.success("Pedido aceito!");
+    } catch {
+      return toast.error("Erro ao aceitar pedido");
+    }
   }
 
   async function deliveryOrder() {
-    await api.post(`/onTheWay/order/${order._id}`).catch((error) => {
-      if (error) {
-        return toast.error(error.response.data);
-      }
-    });
-    toast.success("Pedido enviado!");
+    try {
+      await api.post(`/onTheWay/order/${order._id}`);
+    } catch {
+      return toast.error("Erro ao enviar pedido");
+    }
   }
 
   return [paymentMethod, deliveryOrder, acceptOrder];

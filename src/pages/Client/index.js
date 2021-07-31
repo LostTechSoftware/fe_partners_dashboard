@@ -18,17 +18,21 @@ import {
 } from "./styles";
 
 import { LoginHooks } from "./hooks";
+import Card from "./Card";
 
 export default function Login() {
   const [
     email,
     setEmail,
-    loading,
     password,
     setPassword,
     recaptchaRef,
     ClickForgotPassword,
     tryLogin,
+    access,
+    showLogin,
+    setShowLogin,
+    getMessageHour,
   ] = LoginHooks();
 
   return (
@@ -36,40 +40,48 @@ export default function Login() {
       <ContainerImage>
         <Image src="https://foodzilla-staging.s3.us-east-2.amazonaws.com/Images/Cooking-cuate.png"></Image>
 
-        <Form onSubmit={tryLogin}>
-          <Logo src={Themes().logo}></Logo>
-          <Input>
+        {access.length && !showLogin ? (
+          <Card
+            getMessageHour={getMessageHour}
+            setShowLogin={setShowLogin}
+            items={access}
+          />
+        ) : (
+          <Form onSubmit={tryLogin}>
+            <Logo src={Themes().logo}></Logo>
+            <Input>
+              <ContainerInput>
+                <Label>Email</Label>
+                <InputName
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="exemplo@email.com"
+                />
+              </ContainerInput>
+            </Input>
             <ContainerInput>
-              <Label>Email</Label>
+              <Label>Senha</Label>
               <InputName
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="exemplo@email.com"
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Insira sua senha aqui"
               />
             </ContainerInput>
-          </Input>
-          <ContainerInput>
-            <Label>Senha</Label>
-            <InputName
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Insira sua senha aqui"
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey="6LeJfZsbAAAAAD0fXrsZvhAv8xPQg8Lkt10CAYhW"
+              size="invisible"
             />
-          </ContainerInput>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey="6Lf77XkbAAAAAKRYz0QM-nmwIT4yengo3mKp2eES"
-            size="invisible"
-          />
-          <ForgotPassword>
-            <p onClick={ClickForgotPassword}>Esqueci a senha</p>
-          </ForgotPassword>
+            <ForgotPassword>
+              <p onClick={ClickForgotPassword}>Esqueceu a senha?</p>
+            </ForgotPassword>
 
-          <Button onSubmit={tryLogin} type="submit" loading={loading}>
-            <ButtonText>Logar</ButtonText>
-          </Button>
-        </Form>
+            <Button onSubmit={tryLogin} type="submit">
+              <ButtonText>Logar</ButtonText>
+            </Button>
+          </Form>
+        )}
       </ContainerImage>
     </>
   );

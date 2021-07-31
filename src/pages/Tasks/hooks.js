@@ -1,10 +1,11 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 import api from "../../services/api";
 import socketio from "socket.io-client";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "../../Components/Toast";
+import OpenedContext from "../../contexts/opened";
 
 export const useTasks = () => {
+  const { setOpened, setRemove, setIsConecting } = useContext(OpenedContext);
   const [isMenuMobileOpened, setIsMenuMobileOpened] = useState(false);
   const [screen, setScreen] = useState(0);
   const [orders, setOrders] = useState([]);
@@ -18,47 +19,47 @@ export const useTasks = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [restaurantIsOpen, setRestaurantIsOpen] = useState(true);
   const [removeOption, setRemoveOption] = useState(false);
-  const [status, setStatus] = useState("");
-  const [color, setColor] = useState("#2ECC71");
-  const [showChange, setShowChange] = useState(false);
+  const [connecting, setConnecting] = useState(false);
   const _id = sessionStorage.getItem("_id");
   const name = sessionStorage.getItem("restaurantName");
 
   const Reload = async () => {
     const { data } = await api.get("/opened");
+    setOpened(data.opened);
+    setRemove(data.opened);
+
     setRestaurantIsOpen(data.opened);
     setRemoveOption(data.removeOption);
-
-    if (restaurantIsOpen) setStatus("Aberto");
-    if (!restaurantIsOpen) setStatus("Fechado");
   };
 
-  window.addEventListener("offline", function (e) {
-    setStatus("Conectando");
-    setColor("#FFE115");
+  window.addEventListener("offline", () => {
+    setConnecting(true);
+    setIsConecting(true);
   });
 
-  window.addEventListener("online", function (e) {
-    setStatus("Aberto");
-    setColor("#2ECC71");
+  window.addEventListener("online", () => {
+    setConnecting(false);
+    setIsConecting(false);
   });
 
-  async function ChangeStatus(toClose, remove = true, delivery = true) {
-    if (!toClose) return setShowChange(false);
-
+  async function ChangeStatus(remove = true, delivery = true) {
     try {
       await api.post("/close", { open: delivery, removeOption: remove });
       toast.success("Status atualizado");
       Reload();
-    } catch {
+    } catch (error) {
       toast.error("Erro ao atualizar status");
     }
   }
 
-  async function Collapse() {
+  async function Collapse(productId) {
     const obj = selectedOrders;
 
-    obj.showAdditionals = !obj.showAdditionals;
+    const index = obj.products.findIndex(
+      (product) => product._id === productId
+    );
+
+    obj.products[index].showAdditionals = !obj.products[index].showAdditionals;
 
     setSelectedOrders(obj);
     setClick(click + 1);
@@ -86,33 +87,31 @@ export const useTasks = () => {
     setLoading(false);
   };
 
+  async function SocketFunction() {
+    const socket = socketio(process.env.REACT_APP_SERVER, {
+      query: {
+        user: _id,
+        username: name,
+        restaurant: true,
+      },
+    });
+
+    socket.on("new_order", GetOrders);
+    socket.on("open", Reload);
+  }
+
+  async function Reconect() {
+    if (connecting) return toast.error("Conectando");
+
+    toast.success("Conectado");
+  }
+
   useEffect(() => {
-    async function SocketFunction() {
-      const socket = socketio(process.env.REACT_APP_SERVER, {
-        query: {
-          user: _id,
-          username: name,
-          restaurant: true,
-        },
-      });
-
-      socket.on("new_order", GetOrders);
-      socket.on("open", Reload);
-    }
     SocketFunction();
-
-    if (restaurantIsOpen) {
-      setStatus("Aberto");
-      setColor("#2ECC71");
-    }
-    if (!restaurantIsOpen) {
-      setStatus("Fechado");
-      setColor("#E74C3C");
-    }
-
     GetOrders();
     Reload();
-  }, [screen]);
+    Reconect();
+  }, [screen, connecting]);
 
   async function SendReason() {
     setLoading(true);
@@ -155,10 +154,7 @@ export const useTasks = () => {
     setToggleMenu,
     restaurantIsOpen,
     removeOption,
-    status,
-    color,
     ChangeStatus,
-    showChange,
-    setShowChange,
+    connecting,
   ];
 };

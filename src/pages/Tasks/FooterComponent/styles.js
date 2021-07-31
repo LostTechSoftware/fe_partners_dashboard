@@ -13,6 +13,8 @@ export const ContainerButtons = styled.div`
 
   @media screen and (max-width: 800px) {
     flex-direction: column;
+    padding: 0px;
+    margin-top: 20px;
   }
 `;
 
@@ -49,7 +51,13 @@ export const Button = styled.div`
     `}
 `;
 
-export const ContainerPrice = styled.div``;
+export const ContainerPrice = styled.div`
+  width: 50%;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
+`;
 
 export const Row = styled.div`
   display: flex;

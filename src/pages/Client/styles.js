@@ -20,19 +20,19 @@ export const Label = styled.div`
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 14px;
   color: #dddddd;
 `;
 
 export const ContainerInput = styled.div`
-  width: 90%;
+  width: 60%;
   margin-top: 20px;
-  ${(props) =>
-    props.half &&
-    `
-    width: 50%;
-  `}
+
+  @media (max-height: 800px) {
+    width: 90%;
+  }
+
   ${(props) =>
     props.flex &&
     `
@@ -48,34 +48,38 @@ export const InputName = styled.input`
   box-sizing: border-box;
   border-radius: 5px;
   width: 100%;
-  ${(props) =>
-    props.half &&
-    `
-    width: 90%;
-  `}
-  height: 35px;
+
+  height: 60px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 12px;
   line-height: 14px;
   color: ${Themes().wordColors};
-  padding: 5px;
+  padding: 20px;
   background: ${Themes().background};
 `;
 
 export const Logo = styled.img`
   width: 40%;
   margin-bottom: 10%;
+
+  @media (max-height: 800px) {
+    width: 60%;
+  }
 `;
 
 export const Button = styled.button`
   background: #ffe115;
   border-radius: 5px;
-  width: 90%;
-  height: 50px;
+  height: 60px;
+  width: 60%;
   margin-top: 10%;
   border-width: 0px;
+
+  @media (max-height: 800px) {
+    width: 90%;
+  }
 `;
 
 export const ButtonText = styled.text`
@@ -90,24 +94,22 @@ export const Form = styled.form`
     width: 100%;
     padding-right: 0px;
   }
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-  position: absolute;
-  right: 0;
-  padding-right: 10%;
-  width: 40%;
+  width: 50%;
 `;
 
 export const Image = styled.img`
   @media screen and (max-width: 800px) {
-    width: 0%;
-    padding-right: 0px;
+    display: none;
   }
+
   height: 100%;
-  width: 55%;
+  width: 50%;
   object-fit: contain;
 `;
 
@@ -130,7 +132,7 @@ export const LabelName = styled.label`
 export const LabelPassword = styled.label`
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 18px;
   color: #ddd;
 `;
 
@@ -139,16 +141,23 @@ export const ForgotPassword = styled.div`
   border-width: 0;
   display: flex;
   margin-top: 1%;
-  width: 100%;
-  padding: 0 25px;
+  width: 60%;
   display: flex;
   justify-content: flex-end;
 
+  @media (max-height: 800px) {
+    width: 90%;
+  }
+
   > p {
-    font-size: 14px;
+    font-size: 18px;
     color: #ffe115;
     font-family: "Roboto", sans-serif;
     cursor: pointer;
+
+    @media (max-width: 800px) {
+      font-size: 14px;
+    }
   }
 `;
 

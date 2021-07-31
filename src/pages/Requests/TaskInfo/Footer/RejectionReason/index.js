@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { DialogActions, Backdrop, CircularProgress } from "@material-ui/core";
-import { toast } from "react-toastify";
+import { toast } from "../../../Components/Toast";
 
 import api from "../../../../../services/api";
 import MainButton from "../../../../../Components/MainButton";
 import "./styles.css";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function RejectionReason({
   taskId,

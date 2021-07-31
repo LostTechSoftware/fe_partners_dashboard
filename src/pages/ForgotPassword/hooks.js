@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import api from "../../services/api";
-import { toast } from "react-toastify";
+import { toast } from "../../Components/Toast";
 import { useHistory } from "react-router-dom";
 
 export const ForgotPasswordHooks = () => {

@@ -1,14 +1,35 @@
-import { useState, createRef } from "react";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, createRef, useContext, useEffect } from "react";
 import api from "../../services/api";
-import { toast } from "react-toastify";
+import { toast } from "../../Components/Toast";
 import { useHistory } from "react-router-dom";
+import AuthContext from "../../contexts/acessLevel";
+import { getLevel } from "../../services/getLevel";
 
 export const LoginHooks = () => {
+  const { setLevel } = useContext(AuthContext);
   const history = useHistory();
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
+
+  const [access, setAccess] = useState([]);
+  const [showLogin, setShowLogin] = useState(false);
+
+  function getMessageHour() {
+    const now = new Date();
+
+    if (now.getHours() >= 0 && now.getHours() < 5) {
+      return "Boa noite";
+    } else if (now.getHours() >= 5 && now.getHours() < 12) {
+      return "Bom dia";
+    } else if (now.getHours() >= 12 && now.getHours() < 18) {
+      return "Boa tarde";
+    } else {
+      return "Boa noite";
+    }
+  }
+
+  const restaurantId = localStorage.getItem("_id");
+
   const recaptchaRef = createRef();
 
   async function ClickForgotPassword() {
@@ -18,7 +39,8 @@ export const LoginHooks = () => {
   async function tryLogin(event) {
     event.preventDefault();
     recaptchaRef.current.execute();
-    setLoading(true);
+    toast.info("Aguarde um pouco, estamos buscando seus dados");
+
     try {
       const response = await api.post("/restaurant/authenticate", {
         email,
@@ -43,6 +65,8 @@ export const LoginHooks = () => {
         response.data.user.location.coordinates
       );
 
+      localStorage.setItem("_id", restaurant || _id);
+
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("_id", restaurant || _id);
       sessionStorage.setItem("avatar", avatar);
@@ -57,22 +81,33 @@ export const LoginHooks = () => {
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
 
-      setLoading(false);
+      setLevel(await getLevel());
       history.push("/requests");
     } catch (error) {
-      setLoading(false);
-      toast.error("usúario ou senha incorretos, tente novamente!");
+      toast.error("Usúario ou senha incorretos, tente novamente!");
     }
   }
+
+  useEffect(() => {
+    async function GetAccess() {
+      const { data } = await api.get(`/partner/access/${restaurantId}`);
+
+      setAccess(data);
+    }
+    GetAccess();
+  }, []);
 
   return [
     email,
     setEmail,
-    loading,
     password,
     setPassword,
     recaptchaRef,
     ClickForgotPassword,
     tryLogin,
+    access,
+    showLogin,
+    setShowLogin,
+    getMessageHour,
   ];
 };
