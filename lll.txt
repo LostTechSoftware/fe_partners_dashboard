@@ -1,0 +1,7 @@
+git checkout master
+git fetch --all 
+git pull -caso esteja atras
+git status
+REACT_APP_PROD= false
+REACT_APP_SERVER_LOCAL= http://localhost:3001
+REACT_APP_SERVER= https://staging-bk.foodzilla.com.br
