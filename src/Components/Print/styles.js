@@ -44,11 +44,14 @@ export const Row = styled.div`
 
   padding: 10px 0px;
 
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding: 20px 10px;
-    `}}
+  ${({ padding, nontop }) =>
+    padding && !nontop
+      ? css`
+          padding: 10px 10px;
+        `
+      : css`
+          padding: 0px 10px;
+        `}}
 `;
 
 export const RowAdditinal = styled.li`
@@ -84,4 +87,15 @@ export const ContainerPayment = styled.div`
   > hr {
     border: 0.1px dashed #000000;
   }
+`;
+
+export const RestaurantName = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  padding: 10px 0px;
+
+  text-align: center;
+
+  color: #000000;
 `;
