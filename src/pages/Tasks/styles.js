@@ -208,7 +208,7 @@ export const Subtitle = styled.p`
 
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 15px;
   line-height: 18px;
 
