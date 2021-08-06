@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import api from "../../../services/api";
 import { toast } from "../../../Components/Toast";
 
 export const useAddProduct = ({ product, setReload, rows }) => {
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [name, setName] = useState(product.title ? product.title : "");
   const [description, setDescription] = useState(
     product.description ? product.description : ""
@@ -12,7 +12,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     product.promotion ? product.promotion : false
   );
   const [promotionalPrice, setPromotionalPrice] = useState(
-    product.price ? product.price : ""
+    product.price ? product.price : 0
   );
   const [daysActive, setDaysActive] = useState({
     segunda: { active: false },
@@ -28,7 +28,13 @@ export const useAddProduct = ({ product, setReload, rows }) => {
   const [rowSelected, setRowSelected] = useState(rows[0]._id);
   const [loading, setLoading] = useState(false);
   const [showDays, setShowDays] = useState(false);
-  const [disabled, setDisabled] = useState(false);
+  const [priceInputPosition, setPriceInputPosition] = useState(0);
+  const [
+    promotionalPriceInputPosition,
+    setPromotionalPriceInputPosition,
+  ] = useState(0);
+  const promotionalPriceInputRef = useRef(null);
+  const priceInputRef = useRef(null);
 
   const deleteProductAvatar = async () => {
     try {
@@ -46,6 +52,80 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     }
   };
 
+  function handlePriceChange(event) {
+    const position = event.target.selectionStart;
+    let formatedPrice = event.target.value;
+
+    // define for wrong cursor position when (value >= 100)
+    if (position > 2) setPriceInputPosition(position);
+    else setPriceInputPosition(4);
+
+    // Remove separação de centena e troca ',' por '.'
+    formatedPrice = formatedPrice.replace(/\./g, "");
+    formatedPrice = formatedPrice.replace(/,/g, ".");
+
+    // keep only numbers and 1 dot
+    formatedPrice = formatedPrice.replace(/[^0-9\.]|\.(?=\.)/g, "");
+
+    // erase a zero when finds 3 number for cents
+    formatedPrice = formatedPrice.replace(/0(?=([1-9]{0,2})$)/g, "");
+
+    // add a dot before last two number with no dot finded
+    const dotNotfinded = formatedPrice.indexOf(".") === -1;
+    if (dotNotfinded) {
+      let arrayPrice = formatedPrice.split("");
+      arrayPrice.push(arrayPrice[arrayPrice.length - 1]);
+      arrayPrice[arrayPrice.length - 2] = arrayPrice[arrayPrice.length - 3];
+      arrayPrice[arrayPrice.length - 3] = ".";
+      formatedPrice = arrayPrice.join("");
+    }
+
+    if (formatedPrice) setPrice(formatedPrice);
+    else setPrice(0);
+  }
+
+  function handlePromotionalPriceChange(event) {
+    const position = event.target.selectionStart;
+    let formatedPrice = event.target.value;
+
+    // define for wrong cursor position when (value >= 100)
+    if (position > 2) setPromotionalPriceInputPosition(position);
+    else setPromotionalPriceInputPosition(4);
+
+    // Remove separação de centena e troca ',' por '.'
+    formatedPrice = formatedPrice.replace(/\./g, "");
+    formatedPrice = formatedPrice.replace(/,/g, ".");
+
+    // keep only numbers and 1 dot
+    formatedPrice = formatedPrice.replace(/[^0-9\.]|\.(?=\.)/g, "");
+
+    // erase a zero when finds 3 number for cents
+    formatedPrice = formatedPrice.replace(/0(?=([1-9]{0,2})$)/g, "");
+
+    // add a dot before last two number with no dot finded
+    const dotNotfinded = formatedPrice.indexOf(".") === -1;
+    if (dotNotfinded) {
+      let arrayPrice = formatedPrice.split("");
+      arrayPrice.push(arrayPrice[arrayPrice.length - 1]);
+      arrayPrice[arrayPrice.length - 2] = arrayPrice[arrayPrice.length - 3];
+      arrayPrice[arrayPrice.length - 3] = ".";
+      formatedPrice = arrayPrice.join("");
+    }
+
+    if (formatedPrice) setPromotionalPrice(formatedPrice);
+    else setPromotionalPrice(0);
+  }
+
+  useEffect(() => {
+    priceInputRef.current.selectionStart = priceInputPosition;
+    priceInputRef.current.selectionEnd = priceInputPosition;
+
+    if (promotionalPriceInputRef.current) {
+      promotionalPriceInputRef.current.selectionStart = promotionalPriceInputPosition;
+      promotionalPriceInputRef.current.selectionEnd = promotionalPriceInputPosition;
+    }
+  }, [priceInputPosition, promotionalPriceInputPosition]);
+
   async function updateOrCreateItem() {
     try {
       if (!price || !name || !description)
@@ -60,7 +140,9 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           data.append("title", name);
           data.append(
             "price",
-            promotion ? parseFloat(promotionalPrice || price) : price
+            promotion
+              ? parseFloat(promotionalPrice || price)
+              : parseFloat(price)
           );
           data.append("description", description);
           data.append("daysActive", JSON.stringify(daysActive));
@@ -73,7 +155,6 @@ export const useAddProduct = ({ product, setReload, rows }) => {
           await api.post(`/add/product/${rowSelected}`, data);
           setReload(true);
           toast.success("Produto salvo!");
-          setDisabled(true);
         } catch {
           toast.error("Erro ao salvar produto, tente novamente!");
         } finally {
@@ -86,7 +167,7 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       dataEdit.append("title", name);
       dataEdit.append(
         "price",
-        promotion ? parseFloat(promotionalPrice || price) : price
+        promotion ? parseFloat(promotionalPrice || price) : parseFloat(price)
       );
       dataEdit.append("description", description);
       dataEdit.append("daysActive", JSON.stringify(daysActive));
@@ -101,7 +182,6 @@ export const useAddProduct = ({ product, setReload, rows }) => {
       setReload(true);
 
       toast.success("Produto salvo!");
-      setDisabled(true);
     } catch {
       toast.error("Erro ao salvar produto, tente novamente!");
     } finally {
@@ -217,11 +297,9 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     description,
     setDescription,
     price,
-    setPrice,
     promotion,
     setPromotion,
     promotionalPrice,
-    setPromotionalPrice,
     selectDay,
     daysActive,
     uploadedFiles,
@@ -234,7 +312,9 @@ export const useAddProduct = ({ product, setReload, rows }) => {
     showDays,
     setShowDays,
     deleteItem,
-    disabled,
-    setDisabled,
+    handlePriceChange,
+    priceInputRef,
+    handlePromotionalPriceChange,
+    promotionalPriceInputRef,
   };
 };

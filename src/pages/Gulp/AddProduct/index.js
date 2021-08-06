@@ -41,25 +41,25 @@ function AddProduct({
     description,
     setDescription,
     price,
-    setPrice,
     promotion,
     setPromotion,
     promotionalPrice,
-    setPromotionalPrice,
     selectDay,
     daysActive,
     uploadedFiles,
     setUploadedFile,
     updateOrCreateItem,
     rowSelected,
+    deleteProductAvatar,
     setRowSelected,
     loading,
-    deleteProductAvatar,
     showDays,
     setShowDays,
     deleteItem,
-    disabled,
-    setDisabled,
+    handlePriceChange,
+    priceInputRef,
+    handlePromotionalPriceChange,
+    promotionalPriceInputRef,
   } = useAddProduct({ product, updateProductOnTable, reload, setReload, rows });
 
   return (
@@ -70,7 +70,7 @@ function AddProduct({
       title={
         !!(product && product._id) ? "Editar produto" : "Adicionar produto"
       }
-      buttonsDisabled={loading || disabled}
+      buttonsDisabled={loading}
       showTrash={!!product}
       onClickTrash={deleteItem}
     >
@@ -82,14 +82,12 @@ function AddProduct({
           avatar={product.avatar}
         />
       </ContainerDropZone>
-
       <Input>
         <ContainerInput>
           <Label>Nome do produto *</Label>
           <InputName
             value={name}
             onChange={(event) => {
-              setDisabled(false);
               setName(event.target.value.slice(0, 100));
             }}
             placeholder="Ex: Pizza de calabresa"
@@ -97,7 +95,6 @@ function AddProduct({
           <CaractersCount>{name.length}/100</CaractersCount>
         </ContainerInput>
       </Input>
-
       <Input>
         <ContainerInput flex>
           <ContainerInput half>
@@ -111,7 +108,6 @@ function AddProduct({
               value={rowSelected}
               onChange={(event) => {
                 setRowSelected(event.target.value);
-                setDisabled(false);
               }}
             >
               {rows.map((row) => (
@@ -121,14 +117,12 @@ function AddProduct({
           </ContainerInput>
         </ContainerInput>
       </Input>
-
       <Input>
         <ContainerInput>
           <Label>Igredientes *</Label>
           <TextArea
             value={description}
             onChange={(event) => {
-              setDisabled(false);
               setDescription(event.target.value.slice(0, 100));
             }}
             placeholder="Ex: massa, queijo, tomate, presunto..."
@@ -137,27 +131,24 @@ function AddProduct({
           <CaractersCount>{description.length}/100</CaractersCount>
         </ContainerInput>
       </Input>
-
       <Input>
         <ContainerInput>
           <Label>Preço *</Label>
           <InputPrice
-            pattern="[0-9]*"
-            data-politespace
-            data-grouplength="2"
-            data-delimiter=","
-            data-reverse
-            value={price}
-            onChange={(event) => {
-              setDisabled(false);
-              setPrice(event.target.value.slice(0, 6));
-            }}
-            type="number"
+            value={
+              parseFloat(price) !== 0
+                ? parseFloat(price).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "brl",
+                  })
+                : ""
+            }
+            ref={priceInputRef}
+            onChange={handlePriceChange}
             placeholder="R$ 0,00"
           />
         </ContainerInput>
       </Input>
-
       <Separator>
         <SubTitle>Promoção</SubTitle>
 
@@ -180,7 +171,6 @@ function AddProduct({
           </label>
         </ContainerCheckBox>
       </Separator>
-
       {promotion && (
         <Input className="animationPromotion">
           <ContainerInput zeroMargin flex>
@@ -188,17 +178,16 @@ function AddProduct({
               <Label>Preço promocional</Label>
               <InputName
                 half
-                pattern="[0-9]*"
-                data-politespace
-                data-grouplength="2"
-                data-delimiter=","
-                data-reverse
-                onChange={(event) => {
-                  setDisabled(false);
-                  setPromotionalPrice(event.target.value);
-                }}
-                value={promotionalPrice}
-                type="number"
+                value={
+                  parseFloat(promotionalPrice) !== 0
+                    ? parseFloat(promotionalPrice).toLocaleString("pt-br", {
+                        style: "currency",
+                        currency: "brl",
+                      })
+                    : ""
+                }
+                ref={promotionalPriceInputRef}
+                onChange={handlePromotionalPriceChange}
                 placeholder="R$ 0,00"
               />
             </ContainerInput>
@@ -210,7 +199,6 @@ function AddProduct({
           </ContainerInput>
         </Input>
       )}
-
       <Separator>
         <SubTitle>Agendar disponibilidade</SubTitle>
 
@@ -230,7 +218,6 @@ function AddProduct({
           </label>
         </ContainerCheckBox>
       </Separator>
-
       {showDays && (
         <GridDays className="animationPromotion">
           {days.map((day) => (
