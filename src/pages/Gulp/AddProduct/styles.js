@@ -149,7 +149,7 @@ export const TextArea = styled.textarea`
   font-size: 12px;
   line-height: 14px;
 
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
 
   padding: 5px;
 `;
@@ -160,6 +160,7 @@ export const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 21px;
+  color: ${Themes().wordColors};
 
   @media screen and (max-width: 800px) {
     font-size: 15px;

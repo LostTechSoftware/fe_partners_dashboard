@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Section = styled.section`
-  background: #fff;
+  background: Themes() .background;
   width: 300px;
   height: 300px;
   border: 3px dashed ${(props) => (props.error ? "red" : "#ddd")};

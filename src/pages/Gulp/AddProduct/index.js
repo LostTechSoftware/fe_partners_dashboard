@@ -127,6 +127,7 @@ function AddProduct({
             }}
             placeholder="Ex: massa, queijo, tomate, presunto..."
           />
+
           <CaractersCount>{description.length}/100</CaractersCount>
         </ContainerInput>
       </Input>

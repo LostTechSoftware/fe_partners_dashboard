@@ -8,7 +8,8 @@
     "yarn": "<=1.22.10"
   },
   "os": [
-    "linux"
+    "linux",
+    "win32"
   ],
   "dependencies": {
     "@babel/helper-define-map": "7.13.12",
