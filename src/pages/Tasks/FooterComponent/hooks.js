@@ -24,7 +24,10 @@ export const useFooterComponent = ({ order }) => {
 
   async function acceptOrder() {
     try {
+      toast.info("Atualizando o pedido");
+
       await api.post(`/approve/order/${order._id}`);
+
       toast.success("Pedido aceito!");
     } catch {
       return toast.error("Erro ao aceitar pedido");
@@ -33,7 +36,11 @@ export const useFooterComponent = ({ order }) => {
 
   async function deliveryOrder() {
     try {
+      toast.info("Atualizando o pedido");
+
       await api.post(`/onTheWay/order/${order._id}`);
+
+      toast.success("Pedido enviado!");
     } catch {
       return toast.error("Erro ao enviar pedido");
     }

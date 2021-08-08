@@ -60,6 +60,7 @@ function OrderListComponent({
           onClick={() => {
             setSelectedOrders(order);
             setShowOrderDetails(true);
+            localStorage.setItem("selected_order_id", order._id);
           }}
         >
           <OrderCode>#{order.token}</OrderCode>

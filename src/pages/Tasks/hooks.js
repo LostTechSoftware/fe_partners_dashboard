@@ -20,6 +20,8 @@ export const useTasks = () => {
   const [restaurantIsOpen, setRestaurantIsOpen] = useState(false);
   const [removeOption, setRemoveOption] = useState(false);
   const [connecting, setConnecting] = useState(false);
+  const [inProgressOrders, setInprogressOrders] = useState([]);
+  const [deliveryOrders, setDeliveryOrders] = useState([]);
   const _id = sessionStorage.getItem("_id");
   const name = sessionStorage.getItem("restaurantName");
 
@@ -68,33 +70,34 @@ export const useTasks = () => {
   const GetOrders = async () => {
     setLoading(true);
 
-    const { data } = await api.get("/tasks/new");
+    const selectedOrderId = localStorage.getItem("selected_order_id");
 
-    setNewOrders(data);
+    const response0 = await api.get("/tasks/new");
+    const response1 = await api.get("/tasks/preparing");
+    const response2 = await api.get("/tasks/delivery");
+
+    setNewOrders(response0.data);
+
+    setInprogressOrders(response1.data);
+
+    setDeliveryOrders(response2.data);
 
     if (screen === 0) {
-      const response0 = await api.get("/tasks/new");
-
       setOrders(response0.data);
     }
 
     if (screen === 1) {
-      const response1 = await api.get("/tasks/preparing");
-
       setOrders(response1.data);
     }
 
     if (screen === 2) {
-      const response2 = await api.get("/tasks/delivery");
-
       setOrders(response2.data);
     }
 
-    const orderFind = orders.find(
-      (order) => selectedOrders && order._id == selectedOrders._id
-    );
-
-    console.log(orderFind);
+    const orderFind =
+      newOrders.find((order) => selectedOrderId == order._id) ||
+      inProgressOrders.find((order) => selectedOrderId == order._id) ||
+      deliveryOrders.find((order) => selectedOrderId == order._id);
 
     orderFind && setSelectedOrders(orderFind);
     setLoading(false);
