@@ -213,7 +213,7 @@ export const BoxDay = styled.div`
     css`
       border: 1px solid #ffe115;
       box-sizing: border-box;
-      background: #fff;
+      background: #242526;
     `}
 
   margin: 20px;
