@@ -63,15 +63,24 @@ function EditCategory({
     setSelectedIndex,
     loading,
     setReload,
+    onChangeTitle,
+    title,
   ] = useEditCategory({
     rowId: selectedRows._id,
     setAdditionals,
     additionals,
     setReloadRows,
+    rowTitle: selectedRows.title,
   });
 
   return (
-    <Modal width={50} cancel={cancel} title="Hamburgueres">
+    <Modal
+      width={50}
+      isEditable
+      cancel={cancel}
+      onChangeTitle={onChangeTitle}
+      title={title}
+    >
       {additionals.length ? (
         <Container>
           <ContainerPadding>

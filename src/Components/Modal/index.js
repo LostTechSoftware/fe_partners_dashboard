@@ -11,6 +11,7 @@ import {
   ClickOut,
   Row,
   TrashComponent,
+  TitleEditable,
 } from "./styles";
 import "./styles.css";
 
@@ -27,6 +28,8 @@ function Modal({
   showBackButton = true,
   onClickTrash = () => console.log("Action não configurada"),
   onClick = () => console.log("Action não configurada"),
+  isEditable = false,
+  onChangeTitle = (event) => console.log(event.target.value),
 }) {
   const [isMobile] = useScreenMeasure();
 
@@ -45,8 +48,11 @@ function Modal({
         isMobile={isMobile}
       >
         <Row showTrash={showTrash}>
-          <Title>{title}</Title>
-
+          {isEditable ? (
+            <TitleEditable onChange={onChangeTitle} value={title} />
+          ) : (
+            <Title>{title}</Title>
+          )}
           {showTrash && (
             <TrashComponent onClick={onClickTrash} color={Themes().gray} />
           )}
