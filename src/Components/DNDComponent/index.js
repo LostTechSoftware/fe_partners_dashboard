@@ -1,6 +1,6 @@
 import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { Menu, Trash } from "react-feather";
+import { Menu } from "react-feather";
 import { useDNDComponent } from "./hooks";
 import { ContainerFlex, Title, ContainerFlexTitle } from "./styles";
 
