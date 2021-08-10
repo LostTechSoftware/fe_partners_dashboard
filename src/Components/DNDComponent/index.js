@@ -2,7 +2,7 @@ import React from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Menu, Trash } from "react-feather";
 import { useDNDComponent } from "./hooks";
-import { ContainerFlex, Title } from "./styles";
+import { ContainerFlex, Title, ContainerFlexTitle } from "./styles";
 
 export default function DNDComponent({ defaultItens = [], setItem, children }) {
   const [getItemStyle, getListStyle, itens, onDragEnd] = useDNDComponent({
@@ -30,8 +30,10 @@ export default function DNDComponent({ defaultItens = [], setItem, children }) {
                   >
                     <ContainerFlex>
                       <Menu />
-                      <Title>{item.title}</Title>
-                      <Trash />
+
+                      <ContainerFlexTitle>
+                        <Title>{item.title}</Title>
+                      </ContainerFlexTitle>
                     </ContainerFlex>
                   </div>
                 )}
