@@ -89,14 +89,14 @@ function Product({
                   style: "currency",
                 })}
               </ProductPrice>
-              {product.OldPrice && (
+              {product.OldPrice ? (
                 <ProductOldPrice>
                   {product.OldPrice.toLocaleString("pt-br", {
                     currency: "brl",
                     style: "currency",
                   })}
                 </ProductOldPrice>
-              )}
+              ) : null}
             </ProductBottom>
           </ProductContainer>
         ))

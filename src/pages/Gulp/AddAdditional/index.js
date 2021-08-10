@@ -39,7 +39,6 @@ function AddAdditional({
     uploadedFiles,
     setUploadedFile,
     selectedRows,
-    rows,
   });
 
   return (

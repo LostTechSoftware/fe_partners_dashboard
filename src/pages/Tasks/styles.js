@@ -243,6 +243,10 @@ export const ProductContainer = styled.div`
   color: #ffe115;
 
   cursor: pointer;
+
+  > svg {
+    transition: transform 0.3s;
+  }
 `;
 
 export const Image = styled.img`
@@ -262,7 +266,7 @@ export const ProductText = styled.p`
   color: ${Themes().wordColors};
 
   margin-left: 10%;
-  width: 300px;
+  width: 150px;
 
   @media screen and (max-width: 1100px) {
     margin-left: 5px;
@@ -284,7 +288,8 @@ export const Collapsable = styled.div`
 
   background: ${Themes().background};
 
-  border-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   width: 100%;
 `;
 

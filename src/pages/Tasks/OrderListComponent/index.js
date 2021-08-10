@@ -47,7 +47,7 @@ function OrderListComponent({
             Aceitos
           </Tab>
           <Tab onClick={() => setScreen(2)} selected={screen === 2}>
-            Em rota
+            Delivery
           </Tab>
         </Tabs>
       </AppBar>
@@ -60,6 +60,7 @@ function OrderListComponent({
           onClick={() => {
             setSelectedOrders(order);
             setShowOrderDetails(true);
+            localStorage.setItem("selected_order_id", order._id);
           }}
         >
           <OrderCode>#{order.token}</OrderCode>

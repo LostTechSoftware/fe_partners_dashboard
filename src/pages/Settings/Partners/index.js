@@ -32,14 +32,16 @@ function Partners() {
   ] = usePartnerSettings();
 
   return (
-    <Settings path="partners">
+    <Settings disableScroll path="partners">
       <Container>
         <SettingsComponents defaultValue={true} showCheckBox={false} title="">
           <Row>
             <Label>Tempo de retirada (em mins)</Label>
             <Input
               value={withdrawalDelay}
-              onChange={(event) => updateWithdrawalDelay(event.target.value)}
+              onChange={(event) =>
+                updateWithdrawalDelay(event.target.value.slice(0, 3))
+              }
               placeholder="00"
             />
           </Row>
@@ -48,7 +50,9 @@ function Partners() {
             <Label>Tempo de entrega (em mins)</Label>
             <Input
               value={deliveryDelay}
-              onChange={(event) => updateDeliveryDelay(event.target.value)}
+              onChange={(event) =>
+                updateDeliveryDelay(event.target.value.slice(0, 3))
+              }
               placeholder="00"
             />
           </Row>
@@ -131,7 +135,7 @@ function Partners() {
                       window.location.reload();
                     }}
                     defaultValue={
-                      localStorage.getItem("theme") === "dark" && "Escuro"
+                      localStorage.getItem("theme") !== "dark" && "Padrão"
                     }
                     options={[{ label: "Padrão", value: "Padrão" }]}
                   />

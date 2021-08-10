@@ -15,7 +15,7 @@ import {
   ContainerSkip,
 } from "./styles";
 
-function Settings({ children, path = "profile", disableScroll }) {
+function Settings({ children, path = "profile", disableScroll = false }) {
   const [isMobile] = useScreenMeasure();
   const [isMenuMobileOpened, handleMenuMobileOpen, history] = useSettings();
 

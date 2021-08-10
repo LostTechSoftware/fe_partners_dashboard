@@ -181,3 +181,14 @@ export const Row = styled.div`
 export const TrashComponent = styled(Trash)`
   cursor: pointer;
 `;
+
+export const TitleEditable = styled.input`
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: ${Themes().wordColors};
+
+  background: ${Themes().background};
+`;

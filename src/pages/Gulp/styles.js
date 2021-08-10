@@ -157,7 +157,7 @@ export const ContainerSearch = styled.div`
 `;
 
 export const ContainerPadding = styled.div`
-  padding: 30px;
+  padding: 100px 30px 30px 30px;
   background: ${Themes().background};
 `;
 
