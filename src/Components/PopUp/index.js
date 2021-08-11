@@ -16,7 +16,7 @@ function PopUp({
   show,
   close,
   children,
-  width = "700px",
+  width = "90%",
   height = "50%",
   mobileWidth = "90%",
   mobileHeight = "90%",
