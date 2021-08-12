@@ -23,7 +23,7 @@
     "apexcharts": "3.27.2",
     "axios": "0.21.1",
     "babel-jest": "24.9.0",
-    "dotenv": "8.2.0",
+    "dotenv": "8.6.0",
     "filesize": "6.1.0",
     "firebase": "8.7.1",
     "fuse.js": "6.4.6",
