@@ -19,7 +19,7 @@
     "@material-ui/icons": "4.9.1",
     "@material-ui/lab": "4.0.0-alpha.56",
     "@sentry/react": "6.2.5",
-    "@sentry/tracing": "6.2.5",
+    "@sentry/tracing": "6.9.0",
     "apexcharts": "3.27.2",
     "axios": "0.21.1",
     "babel-jest": "24.9.0",
