@@ -88,7 +88,7 @@ export const ContainerModal = styled.div`
 `;
 
 export const EmptyContainer = styled.div`
-  height: 100%;
+  height: 85%;
   padding: 20px;
 
   display: flex;
