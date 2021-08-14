@@ -105,7 +105,7 @@ export default function MainMenu({
                   ))}
 
                   {level === 0 ? (
-                    <Option settings>
+                    <Option>
                       <ContainerButton>
                         <Settings
                           color={
@@ -142,7 +142,7 @@ export default function MainMenu({
                       </SubOption>
                     </Option>
                   ) : (
-                    <Option settings>
+                    <Option>
                       <ContainerButton onClick={logout}>
                         <LogOut color={Themes().wordColors} size={30} />
                         <Skip>Sair</Skip>
@@ -150,7 +150,7 @@ export default function MainMenu({
                     </Option>
                   )}
 
-                  <Option help>
+                  <Option>
                     <ContainerButton>
                       <HelpCircle color={Themes().wordColors} size={30} />
                       <LinkBottom href="https://helpcenter.foodzilla.com.br">
@@ -211,7 +211,7 @@ export default function MainMenu({
               ))}
 
               {level === 0 ? (
-                <Option selected={currentPage == "settings"} settings>
+                <Option selected={currentPage == "settings"}>
                   <ContainerButton>
                     <Settings
                       color={
@@ -228,7 +228,7 @@ export default function MainMenu({
                   </ContainerButton>
                 </Option>
               ) : (
-                <Option settings>
+                <Option>
                   <ContainerButton onClick={logout}>
                     <LogOut color={Themes().wordColors} size={30} />
                     <Skip>Sair</Skip>
@@ -236,7 +236,7 @@ export default function MainMenu({
                 </Option>
               )}
 
-              <Option help>
+              <Option>
                 <ContainerButton>
                   <HelpCircle color={Themes().wordColors} size={30} />
                   <LinkBottom href="https://helpcenter.foodzilla.com.br">
