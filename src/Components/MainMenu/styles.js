@@ -106,16 +106,6 @@ export const MenuOptions = styled.div`
 
 export const Option = styled.div`
   ${(props) =>
-    props.settings &&
-    `
-  margin-top: 100%;
-  `}
-  ${(props) =>
-    props.help &&
-    `
-    margin-top: 5%;
-  `}
-  ${(props) =>
     props.selected &&
     `
   background-color:#ffe115;
