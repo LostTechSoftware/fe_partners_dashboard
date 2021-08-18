@@ -7,7 +7,7 @@ export const InputName = styled.input`
   box-sizing: border-box;
   border-radius: 5px;
   width: 100%;
-
+sadasds
   ${(props) =>
     props.half &&
     css`
