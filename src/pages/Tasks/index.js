@@ -51,6 +51,7 @@ export default function Tasks() {
       <Container isMobile={isMobile}>
         <OrdersList toggleMenu={toggleMenu} showOrderDetails={showOrderDetails}>
           <OrderListComponent
+            selectedOrders={selectedOrders}
             setScreen={setScreen}
             screen={screen}
             orders={orders}

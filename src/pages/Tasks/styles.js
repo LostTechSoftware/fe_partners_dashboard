@@ -36,7 +36,6 @@ export const OrdersList = styled.div`
   height: 100%;
   width: 40%;
   background: ${Themes().messageBars};
-  display: ${({ toggleMenu }) => (toggleMenu ? "none" : "flex")};
 
   flex-direction: column;
   align-items: center;
@@ -143,7 +142,6 @@ export const OrderComponent = styled.div`
   height: 65px;
   border-radius: 5px;
   background: ${Themes().background};
-  border-left: 7px solid #ffe115;
   margin-top: 30px;
   display: flex;
   flex-direction: row;
@@ -151,6 +149,12 @@ export const OrderComponent = styled.div`
   align-items: center;
   padding: 5px 15px;
   cursor: pointer;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      border-left: 7px solid #ffe115;
+    `}
 `;
 
 export const OrderCode = styled.p`
