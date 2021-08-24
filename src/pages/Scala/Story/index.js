@@ -71,7 +71,7 @@ function Story() {
           onClickTrash={DeleteStory}
         >
           <ContainerModal>
-            <StoryImage src={selectedStory.image} />
+            <StoryImage width="350px" src={selectedStory.image} />
           </ContainerModal>
         </Modal>
       )}
