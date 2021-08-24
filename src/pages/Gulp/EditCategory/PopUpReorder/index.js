@@ -10,6 +10,7 @@ function PopUpReorder({ rows, show, close, setReload }) {
 
   return (
     <PopUp
+      width="700px"
       title={"Reorganizar categorias"}
       show={show}
       close={close}
