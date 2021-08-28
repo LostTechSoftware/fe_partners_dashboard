@@ -319,7 +319,9 @@ export const MinorInput = styled.input`
 
   text-align: center;
 
-  color: rgba(0, 0, 0, 0.8);
+  color: ${Themes().wordColors};
+
+  background: ${Themes().background};
 
   width: 40px;
   height: 30px;
