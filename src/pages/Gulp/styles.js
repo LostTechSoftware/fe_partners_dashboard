@@ -56,6 +56,10 @@ export const Header = styled.div`
   @media screen and (max-width: 980px) {
     justify-content: space-around;
   }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const ContainerButtons = styled.div`
