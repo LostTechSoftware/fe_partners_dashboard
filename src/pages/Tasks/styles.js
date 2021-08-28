@@ -537,7 +537,7 @@ export const HeaderStatus = styled.div`
   top: 0;
   width: 100%;
 
-  background: ${Themes().background};
+  background: ${Themes().menuBars};
 
   padding: 0 20px;
 
