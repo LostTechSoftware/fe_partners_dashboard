@@ -63,7 +63,7 @@ export const StoryContainer = styled.div`
 
 export const StoryImage = styled.img`
   height: 95%;
-  width: 100%;
+  width: ${({ width }) => width || "100%"};
   border-radius: 5px;
 `;
 
@@ -85,10 +85,12 @@ export const ContainerDropZone = styled.div`
 export const ContainerModal = styled.div`
   height: 100%;
   padding: 20px;
+  justify-content: center;
+  display: flex;
 `;
 
 export const EmptyContainer = styled.div`
-  height: 100%;
+  height: 85%;
   padding: 20px;
 
   display: flex;
