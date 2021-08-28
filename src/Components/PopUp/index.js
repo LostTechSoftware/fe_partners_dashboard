@@ -16,6 +16,7 @@ function PopUp({
   show,
   close,
   children,
+  style,
   width = "90%",
   height = "50%",
   mobileWidth = "90%",
@@ -23,6 +24,7 @@ function PopUp({
   showBack = true,
   showDefault = true,
   buttonsDisabled = false,
+  buttonContainerReorder = false,
   oneButton = false,
   clickOutside = false,
   buttonLabel = "Continuar",
@@ -34,6 +36,7 @@ function PopUp({
   return (
     <Container onClick={clickOutside && close} display={show}>
       <PopUpContainer
+        style={style}
         width={isMobile ? mobileWidth : width}
         height={isMobile ? mobileHeight : height}
       >
@@ -41,12 +44,13 @@ function PopUp({
 
         {children}
 
-        <BottomContainer isMobile={isMobile}>
+        <BottomContainer isMobile={isMobile} reorder={buttonContainerReorder}>
           {(!oneButton || showBack) && (
             <BottomButton
               disabled={buttonsDisabled}
               onClick={!buttonsDisabled && close}
               outline
+              reorder
             >
               <BottomLabel disabled={buttonsDisabled} outline>
                 {outlineButtonLabel}

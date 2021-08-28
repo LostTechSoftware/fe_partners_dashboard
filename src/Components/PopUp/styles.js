@@ -71,6 +71,12 @@ export const BottomContainer = styled.div`
   height: 75px;
   align-items: center;
   justify-content: space-around;
+
+  ${(props) =>
+    props.reorder &&
+    css`
+      position: relative;
+    `}
 `;
 
 export const BottomButton = styled.div`
