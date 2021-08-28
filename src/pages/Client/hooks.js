@@ -4,6 +4,7 @@ import { toast } from "../../Components/Toast";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../../contexts/acessLevel";
 import { getLevel } from "../../services/getLevel";
+import { identify } from "../../utils/identify";
 
 export const LoginHooks = () => {
   const { setLevel } = useContext(AuthContext);
@@ -80,6 +81,8 @@ export const LoginHooks = () => {
         "restaurantAddress",
         `Rua ${street} nº${Number}, ${city} - ${uf}`
       );
+
+      identify({ email, name });
 
       setLevel(await getLevel());
       history.push("/requests");
