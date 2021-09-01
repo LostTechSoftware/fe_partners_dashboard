@@ -33,6 +33,7 @@ function OrderListComponent({
   loading,
   setScreen,
   screen,
+  selectedOrders,
   setSelectedOrders,
   setShowOrderDetails,
 }) {
@@ -56,6 +57,7 @@ function OrderListComponent({
 
       {orders.map((order) => (
         <OrderComponent
+          selected={order._id === (selectedOrders && selectedOrders._id)}
           key={order._id}
           onClick={() => {
             setSelectedOrders(order);
