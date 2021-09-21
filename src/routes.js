@@ -11,7 +11,7 @@ import Partners from "./pages/Settings/Partners";
 import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
-import Register from "./pages/Register/TimeAndFee";
+import Register from "./pages/Register/RegisterFinal";
 import Page404 from "./pages/404";
 import Password from "./pages/Password";
 import AuthContext from "./contexts/acessLevel";
