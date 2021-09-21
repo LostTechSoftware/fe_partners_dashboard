@@ -15,6 +15,8 @@ import {
   InputName,
   ContainerInput,
   Label,
+  PartnerRegisterText,
+  PartnerRegisterButton,
 } from "./styles";
 
 import { LoginHooks } from "./hooks";
@@ -33,6 +35,7 @@ export default function Login() {
     showLogin,
     setShowLogin,
     getMessageHour,
+    ClickRegister,
   ] = LoginHooks();
 
   return (
@@ -47,40 +50,50 @@ export default function Login() {
             items={access}
           />
         ) : (
-          <Form onSubmit={tryLogin}>
-            <Logo src={Themes().logo}></Logo>
-            <Input>
+          <>
+            <Form onSubmit={tryLogin}>
+              <Logo src={Themes().logo}></Logo>
+              <Input>
+                <ContainerInput>
+                  <Label>Email</Label>
+                  <InputName
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="exemplo@email.com"
+                  />
+                </ContainerInput>
+              </Input>
               <ContainerInput>
-                <Label>Email</Label>
+                <Label>Senha</Label>
                 <InputName
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="exemplo@email.com"
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  placeholder="Insira sua senha aqui"
                 />
               </ContainerInput>
-            </Input>
-            <ContainerInput>
-              <Label>Senha</Label>
-              <InputName
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                placeholder="Insira sua senha aqui"
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey="6LeJfZsbAAAAAD0fXrsZvhAv8xPQg8Lkt10CAYhW"
+                size="invisible"
               />
-            </ContainerInput>
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey="6LeJfZsbAAAAAD0fXrsZvhAv8xPQg8Lkt10CAYhW"
-              size="invisible"
-            />
-            <ForgotPassword>
-              <p onClick={ClickForgotPassword}>Esqueceu a senha?</p>
-            </ForgotPassword>
+              <ForgotPassword>
+                <p onClick={ClickForgotPassword}>Esqueceu a senha?</p>
+              </ForgotPassword>
 
-            <Button onSubmit={tryLogin} type="submit">
-              <ButtonText>Logar</ButtonText>
-            </Button>
-          </Form>
+              <Button onSubmit={tryLogin} type="submit">
+                <ButtonText>Logar</ButtonText>
+              </Button>
+
+              <PartnerRegisterText>
+                Ainda não é parceiro do Foodzilla ?{" "}
+                <PartnerRegisterButton onClick={ClickRegister}>
+                  {" "}
+                  Vire agora
+                </PartnerRegisterButton>
+              </PartnerRegisterText>
+            </Form>
+          </>
         )}
       </ContainerImage>
     </>

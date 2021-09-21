@@ -37,6 +37,10 @@ export const LoginHooks = () => {
     history.push("/forgotpassword");
   }
 
+  async function ClickRegister() {
+    history.push("/register");
+  }
+
   async function tryLogin(event) {
     event.preventDefault();
     recaptchaRef.current.execute();
@@ -112,5 +116,6 @@ export const LoginHooks = () => {
     showLogin,
     setShowLogin,
     getMessageHour,
+    ClickRegister,
   ];
 };

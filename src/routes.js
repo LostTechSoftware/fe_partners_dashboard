@@ -11,7 +11,7 @@ import Partners from "./pages/Settings/Partners";
 import Message from "./pages/Messages";
 import Tasks from "./pages/Tasks";
 import Finance from "./pages/Finance";
-
+import Register from "./pages/Register/RegisterFinal";
 import Page404 from "./pages/404";
 import Password from "./pages/Password";
 import AuthContext from "./contexts/acessLevel";
@@ -66,6 +66,8 @@ export default function Router() {
         <Route exact path="/" component={Login} />
         <Route path="/forgotpassword" component={ForgotPassword} />
         <Route path="/password" component={Password} />
+
+        <Route path="/register" component={Register} />
 
         <Route path="/tester/accept/:email" component={Tester} />
 

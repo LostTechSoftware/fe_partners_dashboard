@@ -168,3 +168,20 @@ export const ForgotPassword = styled.div`
 `;
 
 export const DivAlign = styled.div``;
+
+export const PartnerRegisterText = styled.text`
+  margin-top: 2%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const PartnerRegisterButton = styled.div`
+  font-size: 15px;
+  border: none;
+  color: #ffe115;
+  background: transparent;
+  padding: 0px;
+  margin-left: 2px;
+  cursor: pointer;
+`;
