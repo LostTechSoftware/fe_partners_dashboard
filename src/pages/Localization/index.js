@@ -85,7 +85,7 @@ function Localization() {
         <MapContainer showInfo={showInfo && selectedInfo}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: "AIzaSyC2IaqbJWdjt0rwi7xTuuz0d39ouaAacjY",
+              key: process.env.REACT_APP_GOOGLE_KEY,
             }}
             defaultCenter={{
               lat: restaurantLocation[1],
